@@ -1,0 +1,73 @@
+2026-01-07T09:22:11.667Z [DEBUG] Watching for changes in setting files C:\Users\55315\.claude, D:\AI\cc_pro\.claude...
+2026-01-07T09:22:11.731Z [DEBUG] Using bash path: "C:\Program Files\Git\bin\bash.exe"
+2026-01-07T09:22:11.765Z [DEBUG] Loading plugin glm-plan-usage from source: "./plugins/glm-plan-usage"
+2026-01-07T09:22:11.780Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (14.3ms)
+2026-01-07T09:22:11.781Z [DEBUG] Using manifest version for glm-plan-usage@zai-coding-plugins: 0.0.1
+2026-01-07T09:22:11.782Z [DEBUG] Plugin glm-plan-usage@zai-coding-plugins version 0.0.1 already cached at C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-07T09:22:11.782Z [DEBUG] Copied local plugin glm-plan-usage to versioned cache: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-07T09:22:11.786Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-07T09:22:11.798Z [DEBUG] MCP server "zai-mcp-server": Starting connection with timeout of 30000ms
+2026-01-07T09:22:11.889Z [DEBUG] Git remote URL: null
+2026-01-07T09:22:11.889Z [DEBUG] No git remote URL found
+2026-01-07T09:22:11.889Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-01-07T09:22:30.953Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.952Z] INFO: MCP Server Application initialized
+2026-01-07T09:22:30.954Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.953Z] INFO: Starting MCP server...
+2026-01-07T09:22:30.955Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.956Z] INFO: UI to Artifact tool registered successfully
+2026-01-07T09:22:30.956Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.956Z] INFO: Text Extraction tool registered successfully
+2026-01-07T09:22:30.956Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.957Z] INFO: Error Diagnosis tool registered successfully
+2026-01-07T09:22:30.957Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.957Z] INFO: Diagram Analysis tool registered successfully
+2026-01-07T09:22:30.957Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.958Z] INFO: Data Visualization Analysis tool registered successfully
+2026-01-07T09:22:30.958Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.958Z] INFO: UI Diff Check tool registered successfully
+2026-01-07T09:22:30.958Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.958Z] INFO: General Image Analysis tool registered successfully
+2026-01-07T09:22:30.959Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.960Z] INFO: Video analysis tool registered successfully
+2026-01-07T09:22:30.960Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.960Z] INFO: Successfully registered all tools
+2026-01-07T09:22:30.961Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T09:22:30.961Z] INFO: MCP Server started successfully [{"mode":"ZHIPU","name":"zai-mcp-server","version":"0.1.2"}]
+2026-01-07T09:22:30.985Z [DEBUG] MCP server "zai-mcp-server": Successfully connected to stdio server in 19196ms
+2026-01-07T09:22:30.985Z [DEBUG] MCP server "zai-mcp-server": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zai-mcp-server","version":"0.1.2"}}
+2026-01-07T09:22:30.986Z [DEBUG] MCP server "web-search-prime": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-07T09:22:30.986Z [DEBUG] MCP server "web-search-prime": Node version: v22.21.0, Platform: win32
+2026-01-07T09:22:30.986Z [DEBUG] MCP server "web-search-prime": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-07T09:22:30.987Z [DEBUG] MCP server "web-search-prime": Proxy options: default
+2026-01-07T09:22:30.988Z [DEBUG] MCP server "web-search-prime": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_search_prime/mcp","headers":{"User-Agent":"claude-code/2.0.76","Authorization":"Bearer 72210fb5d72a4b55a755b2c6611176f6.P4abhna2xhjcnHA7"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-07T09:22:30.988Z [DEBUG] MCP server "web-search-prime": HTTP transport created successfully
+2026-01-07T09:22:30.991Z [DEBUG] MCP server "web-search-prime": Client created, setting up request handler
+2026-01-07T09:22:30.992Z [DEBUG] MCP server "web-search-prime": Starting connection with timeout of 30000ms
+2026-01-07T09:22:30.992Z [DEBUG] MCP server "web-search-prime": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-07T09:22:30.992Z [DEBUG] MCP server "web-search-prime": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-07T09:22:30.996Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-07T09:22:31.568Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-07T09:22:31.968Z [DEBUG] [SLOW OPERATION DETECTED] fs.appendFileSync (9.8ms)
+2026-01-07T09:22:32.020Z [DEBUG] MCP server "web-search-prime": Successfully connected to http server in 1034ms
+2026-01-07T09:22:32.021Z [DEBUG] MCP server "web-search-prime": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"mcp-web-search-prime","version":"0.0.1"}}
+2026-01-07T09:22:32.021Z [DEBUG] MCP server "web-reader": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-07T09:22:32.022Z [DEBUG] MCP server "web-reader": Node version: v22.21.0, Platform: win32
+2026-01-07T09:22:32.022Z [DEBUG] MCP server "web-reader": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-07T09:22:32.022Z [DEBUG] MCP server "web-reader": Proxy options: default
+2026-01-07T09:22:32.022Z [DEBUG] MCP server "web-reader": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_reader/mcp","headers":{"User-Agent":"claude-code/2.0.76","Authorization":"Bearer 72210fb5d72a4b55a755b2c6611176f6.P4abhna2xhjcnHA7"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-07T09:22:32.022Z [DEBUG] MCP server "web-reader": HTTP transport created successfully
+2026-01-07T09:22:32.024Z [DEBUG] MCP server "web-reader": Client created, setting up request handler
+2026-01-07T09:22:32.024Z [DEBUG] MCP server "web-reader": Starting connection with timeout of 30000ms
+2026-01-07T09:22:32.024Z [DEBUG] MCP server "web-reader": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-07T09:22:32.024Z [DEBUG] MCP server "web-reader": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-07T09:22:32.025Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-07T09:22:32.234Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-07T09:22:32.361Z [DEBUG] MCP server "web-reader": Successfully connected to http server in 340ms
+2026-01-07T09:22:32.361Z [DEBUG] MCP server "web-reader": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"web-reader-server","version":"0.0.1"}}
+2026-01-07T09:22:32.364Z [DEBUG] MCP server "chrome-devtools": Starting connection with timeout of 30000ms
+2026-01-07T09:22:42.871Z [ERROR] MCP server "chrome-devtools" Server stderr: chrome-devtools-mcp exposes content of the browser instance to the MCP clients allowing them to inspect,
+debug, and modify any data in the browser or DevTools.
+Avoid sharing sensitive or personal information that you do not want to share with MCP clients.
+2026-01-07T09:22:42.885Z [DEBUG] MCP server "chrome-devtools": Successfully connected to stdio server in 10524ms
+2026-01-07T09:22:42.886Z [DEBUG] MCP server "chrome-devtools": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"chrome_devtools","title":"Chrome DevTools MCP server","version":"0.12.1"}}
+2026-01-07T09:22:42.886Z [DEBUG] MCP server "github": Initializing HTTP transport to https://api.githubcopilot.com/mcp/
+2026-01-07T09:22:42.886Z [DEBUG] MCP server "github": Node version: v22.21.0, Platform: win32
+2026-01-07T09:22:42.886Z [DEBUG] MCP server "github": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-07T09:22:42.886Z [DEBUG] MCP server "github": Proxy options: default
+2026-01-07T09:22:42.886Z [DEBUG] MCP server "github": HTTP transport options: {"url":"https://api.githubcopilot.com/mcp/","headers":{"User-Agent":"claude-code/2.0.76"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-07T09:22:42.887Z [DEBUG] MCP server "github": HTTP transport created successfully
+2026-01-07T09:22:42.889Z [DEBUG] MCP server "github": Client created, setting up request handler
+2026-01-07T09:22:42.889Z [DEBUG] MCP server "github": Starting connection with timeout of 30000ms
+2026-01-07T09:22:42.889Z [DEBUG] MCP server "github": Testing basic HTTP connectivity to https://api.githubcopilot.com/mcp/
+2026-01-07T09:22:42.889Z [DEBUG] MCP server "github": Parsed URL: host=api.githubcopilot.com, port=default, protocol=https:
+2026-01-07T09:22:42.890Z [DEBUG] MCP server "github": No token data found
+2026-01-07T09:22:43.900Z [DEBUG] [SLOW OPERATION DETECTED] fs.appendFileSync (10.6ms)

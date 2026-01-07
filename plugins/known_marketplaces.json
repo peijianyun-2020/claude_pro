@@ -1,0 +1,18 @@
+{
+  "zai-coding-plugins": {
+    "source": {
+      "source": "directory",
+      "path": "C:\\Users\\55315\\AppData\\Roaming\\npm\\node_modules\\@z_ai\\coding-helper\\zai-coding-plugins"
+    },
+    "installLocation": "C:\\Users\\55315\\AppData\\Roaming\\npm\\node_modules\\@z_ai\\coding-helper\\zai-coding-plugins",
+    "lastUpdated": "2026-01-07T03:47:53.349Z"
+  },
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "C:\\Users\\55315\\.claude\\plugins\\marketplaces\\claude-plugins-official",
+    "lastUpdated": "2026-01-07T03:48:53.629Z"
+  }
+}

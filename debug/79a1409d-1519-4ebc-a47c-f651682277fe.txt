@@ -1,0 +1,348 @@
+2026-01-07T03:48:35.712Z [DEBUG] Watching for changes in setting files C:\Users\55315\.claude...
+2026-01-07T03:48:35.742Z [DEBUG] Using bash path: "C:\Program Files\Git\bin\bash.exe"
+2026-01-07T03:48:35.758Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-07T03:48:35.758Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-07T03:48:35.758Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-07T03:48:35.763Z [DEBUG] LSP server manager initialized successfully
+2026-01-07T03:48:35.763Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-01-07T03:48:35.766Z [DEBUG] Loading plugin glm-plan-usage from source: "./plugins/glm-plan-usage"
+2026-01-07T03:48:35.766Z [DEBUG] Using manifest version for glm-plan-usage@zai-coding-plugins: 0.0.1
+2026-01-07T03:48:35.767Z [DEBUG] Plugin glm-plan-usage@zai-coding-plugins version 0.0.1 already cached at C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-07T03:48:35.767Z [DEBUG] Copied local plugin glm-plan-usage to versioned cache: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-07T03:48:35.769Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-07T03:48:35.774Z [DEBUG] Stats cache does not exist, returning empty cache
+2026-01-07T03:48:35.774Z [DEBUG] Stats cache empty, processing all historical data in background
+2026-01-07T03:48:35.776Z [DEBUG] Plugin autoupdate: skipped (auto-updater disabled)
+2026-01-07T03:48:35.780Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[]
+2026-01-07T03:48:36.178Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults_DEPRECATED (385.6ms): tasklist | findstr /I "Code.exe Cursor.exe Windsurf.exe idea64.exe pycharm64.exe webstorm64.exe phps
+2026-01-07T03:48:36.180Z [DEBUG] Loaded 1 installed plugins from C:\Users\55315\.claude\plugins\installed_plugins.json
+2026-01-07T03:48:36.231Z [DEBUG] Creating shell snapshot for bash (C:\Program Files\Git\bin\bash.exe)
+2026-01-07T03:48:36.231Z [DEBUG] Looking for shell config file: C:\Users\55315\.bashrc
+2026-01-07T03:48:36.231Z [DEBUG] Shell config file not found: C:\Users\55315\.bashrc, creating snapshot with Claude Code defaults only
+2026-01-07T03:48:36.231Z [DEBUG] Snapshots directory: C:\Users\55315\.claude\shell-snapshots
+2026-01-07T03:48:36.247Z [DEBUG] Creating snapshot at: C:\Users\55315\.claude\shell-snapshots\snapshot-bash-1767757716231-o4p6gp.sh
+2026-01-07T03:48:36.247Z [DEBUG] Shell binary exists: true
+2026-01-07T03:48:36.247Z [DEBUG] Execution timeout: 10000ms
+2026-01-07T03:48:36.254Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\79a1409d-1519-4ebc-a47c-f651682277fe-agent-79a1409d-1519-4ebc-a47c-f651682277fe.json.tmp.7072.1767757716254
+2026-01-07T03:48:36.266Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (11.2ms)
+2026-01-07T03:48:36.266Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-07T03:48:36.266Z [DEBUG] Renaming C:\Users\55315\.claude\todos\79a1409d-1519-4ebc-a47c-f651682277fe-agent-79a1409d-1519-4ebc-a47c-f651682277fe.json.tmp.7072.1767757716254 to C:\Users\55315\.claude\todos\79a1409d-1519-4ebc-a47c-f651682277fe-agent-79a1409d-1519-4ebc-a47c-f651682277fe.json
+2026-01-07T03:48:36.266Z [DEBUG] File C:\Users\55315\.claude\todos\79a1409d-1519-4ebc-a47c-f651682277fe-agent-79a1409d-1519-4ebc-a47c-f651682277fe.json written atomically
+2026-01-07T03:48:36.270Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-07T03:48:36.270Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-07T03:48:36.270Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-07T03:48:36.273Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-01-07T03:48:36.290Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-07T03:48:36.290Z [DEBUG] Total plugin skills loaded: 1
+2026-01-07T03:48:36.290Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-07T03:48:36.290Z [DEBUG] Total plugin commands loaded: 1
+2026-01-07T03:48:36.292Z [DEBUG] Loaded 1 agents from plugin glm-plan-usage default directory
+2026-01-07T03:48:36.292Z [DEBUG] Total plugin agents loaded: 1
+2026-01-07T03:48:36.292Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, legacy commands: 0)
+2026-01-07T03:48:36.292Z [DEBUG] getSkills returning: 0 skill dir commands, 1 plugin skills
+2026-01-07T03:48:36.319Z [DEBUG] Git remote URL: null
+2026-01-07T03:48:36.319Z [DEBUG] No git remote URL found
+2026-01-07T03:48:36.319Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-01-07T03:48:36.368Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\55315\AppData\Roaming\npm\node_modules\@anthropic-ai\claude-code\vendor\ripgrep\x64-win32\rg.exe)
+2026-01-07T03:48:36.422Z [DEBUG] MCP server "zai-mcp-server": Starting connection with timeout of 30000ms
+2026-01-07T03:48:36.441Z [DEBUG] MCP server "web-search-prime": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-07T03:48:36.442Z [DEBUG] MCP server "web-search-prime": Node version: v22.21.0, Platform: win32
+2026-01-07T03:48:36.442Z [DEBUG] MCP server "web-search-prime": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-07T03:48:36.443Z [DEBUG] MCP server "web-reader": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-07T03:48:36.443Z [DEBUG] MCP server "web-reader": Node version: v22.21.0, Platform: win32
+2026-01-07T03:48:36.443Z [DEBUG] MCP server "web-reader": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-07T03:48:36.457Z [DEBUG] All plugins already exist, skipping migration
+2026-01-07T03:48:36.508Z [DEBUG] Initialized versioned plugins system with 1 plugins
+2026-01-07T03:48:36.508Z [DEBUG] MCP server "web-search-prime": Proxy options: default
+2026-01-07T03:48:36.509Z [DEBUG] MCP server "web-search-prime": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_search_prime/mcp","headers":{"User-Agent":"claude-code/2.0.76","Authorization":"Bearer 72210fb5d72a4b55a755b2c6611176f6.P4abhna2xhjcnHA7"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-07T03:48:36.509Z [DEBUG] MCP server "web-search-prime": HTTP transport created successfully
+2026-01-07T03:48:36.510Z [DEBUG] MCP server "web-search-prime": Client created, setting up request handler
+2026-01-07T03:48:36.510Z [DEBUG] MCP server "web-search-prime": Starting connection with timeout of 30000ms
+2026-01-07T03:48:36.510Z [DEBUG] MCP server "web-search-prime": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-07T03:48:36.510Z [DEBUG] MCP server "web-search-prime": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-07T03:48:36.510Z [DEBUG] MCP server "web-reader": Proxy options: default
+2026-01-07T03:48:36.510Z [DEBUG] MCP server "web-reader": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_reader/mcp","headers":{"User-Agent":"claude-code/2.0.76","Authorization":"Bearer 72210fb5d72a4b55a755b2c6611176f6.P4abhna2xhjcnHA7"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-07T03:48:36.510Z [DEBUG] MCP server "web-reader": HTTP transport created successfully
+2026-01-07T03:48:36.510Z [DEBUG] MCP server "web-reader": Client created, setting up request handler
+2026-01-07T03:48:36.511Z [DEBUG] MCP server "web-reader": Starting connection with timeout of 30000ms
+2026-01-07T03:48:36.511Z [DEBUG] MCP server "web-reader": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-07T03:48:36.511Z [DEBUG] MCP server "web-reader": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-07T03:48:36.522Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.7072.1767757716522
+2026-01-07T03:48:36.522Z [DEBUG] Preserving file permissions: 100666
+2026-01-07T03:48:36.526Z [DEBUG] Temp file written successfully, size: 2899 bytes
+2026-01-07T03:48:36.526Z [DEBUG] Applied original permissions to temp file
+2026-01-07T03:48:36.526Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.7072.1767757716522 to C:\Users\55315\.claude.json
+2026-01-07T03:48:36.527Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-07T03:48:36.553Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (11.2ms)
+2026-01-07T03:48:36.557Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-01-07T03:48:36.557Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T03:48:36.557Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-01-07T03:48:36.559Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-07T03:48:36.560Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-07T03:48:36.598Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2026-01-07T03:48:36.598Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T03:48:36.598Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2026-01-07T03:48:36.618Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2026-01-07T03:48:36.618Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T03:48:36.618Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2026-01-07T03:48:36.717Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.7072.1767757716717
+2026-01-07T03:48:36.718Z [DEBUG] Preserving file permissions: 100666
+2026-01-07T03:48:36.728Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (10.4ms)
+2026-01-07T03:48:36.728Z [DEBUG] Temp file written successfully, size: 2791 bytes
+2026-01-07T03:48:36.729Z [DEBUG] Applied original permissions to temp file
+2026-01-07T03:48:36.729Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.7072.1767757716717 to C:\Users\55315\.claude.json
+2026-01-07T03:48:36.730Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-07T03:48:36.757Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (25.0ms)
+2026-01-07T03:48:36.771Z [DEBUG] performStartupChecks called
+2026-01-07T03:48:36.772Z [DEBUG] Starting background plugin installations
+2026-01-07T03:48:36.772Z [DEBUG] performBackgroundPluginInstallations called
+2026-01-07T03:48:36.796Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.7072.1767757716796
+2026-01-07T03:48:36.796Z [DEBUG] Preserving file permissions: 100666
+2026-01-07T03:48:36.810Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (11.5ms)
+2026-01-07T03:48:36.810Z [DEBUG] Temp file written successfully, size: 2899 bytes
+2026-01-07T03:48:36.811Z [DEBUG] Applied original permissions to temp file
+2026-01-07T03:48:36.811Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.7072.1767757716796 to C:\Users\55315\.claude.json
+2026-01-07T03:48:36.812Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-07T03:48:36.812Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-07T03:48:36.818Z [DEBUG] Found 1 enabled plugins
+2026-01-07T03:48:36.819Z [DEBUG] All plugins already exist, skipping migration
+2026-01-07T03:48:36.819Z [DEBUG] Found 1 installed plugins (V2 format)
+2026-01-07T03:48:36.823Z [DEBUG] Attempting to auto-install official marketplace
+2026-01-07T03:48:36.839Z [DEBUG] Loaded plugins - Enabled: 1, Disabled: 0, Commands: 1, Agents: 1, Errors: 0
+2026-01-07T03:48:36.840Z [DEBUG] Found 0 missing plugins (not installed):
+2026-01-07T03:48:36.840Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-01-07T03:48:36.910Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.7072.1767757716910
+2026-01-07T03:48:36.911Z [DEBUG] Preserving file permissions: 100666
+2026-01-07T03:48:36.915Z [DEBUG] Temp file written successfully, size: 2899 bytes
+2026-01-07T03:48:36.916Z [DEBUG] Applied original permissions to temp file
+2026-01-07T03:48:36.916Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.7072.1767757716910 to C:\Users\55315\.claude.json
+2026-01-07T03:48:36.917Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-07T03:48:37.289Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-07T03:48:37.302Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-07T03:48:37.340Z [DEBUG] Shell snapshot created successfully (342 bytes)
+2026-01-07T03:48:37.410Z [DEBUG] MCP server "web-reader": Successfully connected to http server in 967ms
+2026-01-07T03:48:37.411Z [DEBUG] MCP server "web-reader": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"web-reader-server","version":"0.0.1"}}
+2026-01-07T03:48:37.412Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-07T03:48:37.737Z [DEBUG] Stream started - received first chunk
+2026-01-07T03:48:37.739Z [DEBUG] Stream started - received first chunk
+2026-01-07T03:48:38.166Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-07T03:48:38.167Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-07T03:48:38.167Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-07T03:48:38.167Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-07T03:48:38.448Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-07T03:48:38.448Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T03:48:38.448Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-07T03:48:38.451Z [DEBUG] FileHistory: Added snapshot for 0bd8a12c-49c3-4115-9586-a3b9ace28cc2, tracking 0 files
+2026-01-07T03:48:38.501Z [DEBUG] Total plugin output styles loaded: 0
+2026-01-07T03:48:38.539Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-07T03:48:38.540Z [DEBUG] Skills and commands included in Skill tool: glm-plan-usage:usage-query, usage-query-skill
+2026-01-07T03:48:38.540Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-07T03:48:38.758Z [DEBUG] MCP server "web-search-prime": Successfully connected to http server in 2317ms
+2026-01-07T03:48:38.758Z [DEBUG] MCP server "web-search-prime": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"mcp-web-search-prime","version":"0.0.1"}}
+2026-01-07T03:48:38.759Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-07T03:48:38.964Z [DEBUG] Stream started - received first chunk
+2026-01-07T03:48:38.969Z [DEBUG] Stream started - received first chunk
+2026-01-07T03:48:39.158Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.157Z] INFO: MCP Server Application initialized
+[2026-01-07T03:48:39.157Z] INFO: Starting MCP server...
+2026-01-07T03:48:39.159Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.158Z] INFO: UI to Artifact tool registered successfully
+2026-01-07T03:48:39.159Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.159Z] INFO: Text Extraction tool registered successfully
+2026-01-07T03:48:39.159Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.159Z] INFO: Error Diagnosis tool registered successfully
+2026-01-07T03:48:39.159Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.159Z] INFO: Diagram Analysis tool registered successfully
+2026-01-07T03:48:39.160Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.159Z] INFO: Data Visualization Analysis tool registered successfully
+2026-01-07T03:48:39.160Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.159Z] INFO: UI Diff Check tool registered successfully
+2026-01-07T03:48:39.160Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.160Z] INFO: General Image Analysis tool registered successfully
+2026-01-07T03:48:39.160Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.160Z] INFO: Video analysis tool registered successfully
+2026-01-07T03:48:39.160Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.160Z] INFO: Successfully registered all tools
+2026-01-07T03:48:39.161Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-07T03:48:39.160Z] INFO: MCP Server started successfully [{"mode":"ZHIPU","name":"zai-mcp-server","version":"0.1.2"}]
+2026-01-07T03:48:39.175Z [DEBUG] MCP server "zai-mcp-server": Successfully connected to stdio server in 2759ms
+2026-01-07T03:48:39.175Z [DEBUG] MCP server "zai-mcp-server": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zai-mcp-server","version":"0.1.2"}}
+2026-01-07T03:48:39.222Z [INFO] SSH not configured for GitHub, using HTTPS for anthropics/claude-plugins-official
+2026-01-07T03:48:39.258Z [DEBUG] [SLOW OPERATION DETECTED] fs.appendFileSync (8.7ms)
+2026-01-07T03:48:39.263Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-07T03:48:39.263Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T03:48:39.263Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-07T03:48:40.176Z [DEBUG] [SLOW OPERATION DETECTED] fs.appendFileSync (9.7ms)
+2026-01-07T03:48:53.625Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (13.6ms)
+2026-01-07T03:48:53.633Z [DEBUG] Added marketplace source: claude-plugins-official
+2026-01-07T03:48:53.633Z [DEBUG] Successfully auto-installed official marketplace
+2026-01-07T03:48:53.635Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.7072.1767757733635
+2026-01-07T03:48:53.635Z [DEBUG] Preserving file permissions: 100666
+2026-01-07T03:48:53.637Z [DEBUG] Temp file written successfully, size: 2994 bytes
+2026-01-07T03:48:53.637Z [DEBUG] Applied original permissions to temp file
+2026-01-07T03:48:53.637Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.7072.1767757733635 to C:\Users\55315\.claude.json
+2026-01-07T03:48:53.637Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-07T03:48:53.638Z [DEBUG] Showing marketplace installation success notification
+2026-01-07T03:48:53.647Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (8.6ms)
+2026-01-07T03:48:58.309Z [DEBUG] [SLOW OPERATION DETECTED] fs.appendFileSync (8.5ms)
+2026-01-07T03:48:58.312Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-07T03:48:58.312Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T03:48:58.312Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-07T03:49:00.215Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-07T03:49:00.215Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T03:49:00.215Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-07T03:49:00.311Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.7072.1767757740311
+2026-01-07T03:49:00.311Z [DEBUG] Preserving file permissions: 100666
+2026-01-07T03:49:00.320Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (9.0ms)
+2026-01-07T03:49:00.320Z [DEBUG] Temp file written successfully, size: 3043 bytes
+2026-01-07T03:49:00.321Z [DEBUG] Applied original permissions to temp file
+2026-01-07T03:49:00.321Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.7072.1767757740311 to C:\Users\55315\.claude.json
+2026-01-07T03:49:00.321Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-07T03:49:00.331Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (7.2ms)
+2026-01-07T03:49:00.346Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.7072.1767757740346
+2026-01-07T03:49:00.346Z [DEBUG] Preserving file permissions: 100666
+2026-01-07T03:49:00.348Z [DEBUG] Temp file written successfully, size: 3081 bytes
+2026-01-07T03:49:00.348Z [DEBUG] Applied original permissions to temp file
+2026-01-07T03:49:00.348Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.7072.1767757740346 to C:\Users\55315\.claude.json
+2026-01-07T03:49:00.348Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-07T03:49:00.366Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (16.9ms)
+2026-01-07T03:50:00.246Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-01-07T03:50:00.246Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T03:50:00.246Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-01-07T03:53:36.400Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-07T03:53:36.401Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-07T03:53:36.401Z [DEBUG] Metrics export disabled by organization setting
+2026-01-07T06:59:15.044Z [DEBUG] Metadata string for glm-plan-usage:usage-query:
+2026-01-07T06:59:15.044Z [DEBUG] <command-message>glm-plan-usage:usage-query</command-message>
+<command-name>/glm-plan-usage:usage-query</command-name>
+2026-01-07T06:59:15.044Z [DEBUG] command-message tags in metadata: 1
+2026-01-07T06:59:15.604Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-07T06:59:15.771Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-07T06:59:15.771Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-07T06:59:15.771Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-07T06:59:15.771Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-07T06:59:15.779Z [DEBUG] processPromptSlashCommand creating 3 messages for glm-plan-usage:usage-query
+2026-01-07T06:59:15.779Z [DEBUG] Message 1: <command-message>glm-plan-usage:usage-query</command-message>
+<command-name>/glm-plan-usage:usage-query</command-name>
+2026-01-07T06:59:15.779Z [DEBUG] Message 2 [META]: [{"type":"text","text":"# Usage Query\n\nInvoke @glm-plan-usage:usage-query-agent to retrieve the usage information for the current account.\n\n## Critical constraint\n\n**Run the query exactly once**
+2026-01-07T06:59:15.779Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-07T06:59:15.789Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (9.3ms)
+2026-01-07T06:59:15.810Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-07T06:59:15.810Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:15.810Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-07T06:59:15.813Z [DEBUG] FileHistory: Making snapshot for message 856881fc-1ff1-40be-8037-de768ada8af3
+2026-01-07T06:59:15.816Z [DEBUG] FileHistory: Added snapshot for 856881fc-1ff1-40be-8037-de768ada8af3, tracking 0 files
+2026-01-07T06:59:15.818Z [DEBUG] UserCommandMessage rendering: "glm-plan-usage:usage-query" (args: "none")
+2026-01-07T06:59:15.818Z [DEBUG] isSkillFormat: false
+2026-01-07T06:59:16.737Z [DEBUG] Stream started - received first chunk
+2026-01-07T06:59:18.487Z [DEBUG] executePreToolHooks called for tool: Task
+2026-01-07T06:59:18.534Z [DEBUG] Getting matching hook commands for PreToolUse with query: Task
+2026-01-07T06:59:18.534Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:18.534Z [DEBUG] Matched 0 unique hooks for query "Task" (0 before deduplication)
+2026-01-07T06:59:18.712Z [DEBUG] Getting matching hook commands for SubagentStart with query: glm-plan-usage:usage-query-agent
+2026-01-07T06:59:18.712Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:18.712Z [DEBUG] Matched 0 unique hooks for query "glm-plan-usage:usage-query-agent" (0 before deduplication)
+2026-01-07T06:59:19.455Z [DEBUG] Stream started - received first chunk
+2026-01-07T06:59:19.942Z [DEBUG] [SLOW OPERATION DETECTED] fs.appendFileSync (9.8ms)
+2026-01-07T06:59:20.097Z [DEBUG] executePreToolHooks called for tool: Skill
+2026-01-07T06:59:20.126Z [DEBUG] Getting matching hook commands for PreToolUse with query: Skill
+2026-01-07T06:59:20.127Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:20.127Z [DEBUG] Matched 0 unique hooks for query "Skill" (0 before deduplication)
+2026-01-07T06:59:20.155Z [DEBUG] Permission suggestions for Skill: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Skill",
+        "ruleContent": "glm-plan-usage:usage-query-skill"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  },
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Skill",
+        "ruleContent": "glm-plan-usage:usage-query-skill:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-01-07T06:59:20.191Z [DEBUG] executePermissionRequestHooks called for tool: Skill
+2026-01-07T06:59:20.202Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Skill
+2026-01-07T06:59:20.202Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:20.202Z [DEBUG] Matched 0 unique hooks for query "Skill" (0 before deduplication)
+2026-01-07T06:59:24.730Z [DEBUG] Persisting permission update: addRules to source 'localSettings'
+2026-01-07T06:59:24.730Z [DEBUG] Persisting 1 allow rule(s) to localSettings
+2026-01-07T06:59:24.733Z [DEBUG] Writing to temp file: D:\AI\cc_pro\.claude\settings.local.json.tmp.7072.1767769164733
+2026-01-07T06:59:24.745Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (12.4ms)
+2026-01-07T06:59:24.745Z [DEBUG] Temp file written successfully, size: 96 bytes
+2026-01-07T06:59:24.745Z [DEBUG] Renaming D:\AI\cc_pro\.claude\settings.local.json.tmp.7072.1767769164733 to D:\AI\cc_pro\.claude\settings.local.json
+2026-01-07T06:59:24.747Z [DEBUG] File D:\AI\cc_pro\.claude\settings.local.json written atomically
+2026-01-07T06:59:24.779Z [DEBUG] Applying permission update: Adding 1 allow rule(s) to destination 'localSettings': ["Skill(glm-plan-usage:usage-query-skill)"]
+2026-01-07T06:59:24.780Z [DEBUG] Metadata string for usage-query-skill:
+2026-01-07T06:59:24.780Z [DEBUG] <command-message>The "usage-query-skill" skill is loading</command-message>
+<command-name>usage-query-skill</command-name>
+2026-01-07T06:59:24.780Z [DEBUG] command-message tags in metadata: 1
+2026-01-07T06:59:24.801Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-07T06:59:24.814Z [DEBUG] processPromptSlashCommand creating 3 messages for usage-query-skill
+2026-01-07T06:59:24.814Z [DEBUG] Message 1: <command-message>The "usage-query-skill" skill is loading</command-message>
+<command-name>usage-query-skill</command-name>
+2026-01-07T06:59:24.814Z [DEBUG] Message 2 [META]: [{"type":"text","text":"Base directory for this skill: C:\\Users\\55315\\.claude\\plugins\\cache\\zai-coding-plugins\\glm-plan-usage\\0.0.1\\skills\\usage-query-skill\n\n# Usage Query Skill\n\nExecute
+2026-01-07T06:59:24.814Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-07T06:59:24.815Z [DEBUG] SkillTool returning 2 newMessages for skill glm-plan-usage:usage-query-skill
+2026-01-07T06:59:24.815Z [DEBUG] newMessage 1: [{"type":"text","text":"Base directory for this skill: C:\\Users\\55315\\.claude\\plugins\\cache\\zai-coding-plugins\\glm-plan-usage\\0.0.1\\skills\\u...
+2026-01-07T06:59:24.862Z [DEBUG] Getting matching hook commands for PostToolUse with query: Skill
+2026-01-07T06:59:24.862Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:24.862Z [DEBUG] Matched 0 unique hooks for query "Skill" (0 before deduplication)
+2026-01-07T06:59:26.030Z [DEBUG] Stream started - received first chunk
+2026-01-07T06:59:27.507Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-07T06:59:27.536Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-07T06:59:27.536Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:27.536Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-07T06:59:27.632Z [DEBUG] tree-sitter: loaded from disk
+2026-01-07T06:59:28.295Z [DEBUG] Stream started - received first chunk
+2026-01-07T06:59:28.694Z [DEBUG] Session environment not yet supported on Windows
+2026-01-07T06:59:30.452Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2026-01-07T06:59:30.452Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:30.452Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-07T06:59:31.264Z [DEBUG] Stream started - received first chunk
+2026-01-07T06:59:32.886Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-07T06:59:32.922Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-07T06:59:32.922Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:32.922Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-07T06:59:33.380Z [DEBUG] Stream started - received first chunk
+2026-01-07T06:59:33.798Z [DEBUG] Session environment not yet supported on Windows
+2026-01-07T06:59:36.376Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-07T06:59:36.376Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:36.376Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-07T06:59:37.047Z [DEBUG] Stream started - received first chunk
+2026-01-07T06:59:37.401Z [DEBUG] Stream started - received first chunk
+2026-01-07T06:59:47.479Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-07T06:59:47.479Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:47.479Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-07T06:59:47.504Z [DEBUG] Getting matching hook commands for PostToolUse with query: Task
+2026-01-07T06:59:47.504Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T06:59:47.504Z [DEBUG] Matched 0 unique hooks for query "Task" (0 before deduplication)
+2026-01-07T06:59:47.567Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-07T06:59:47.567Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-07T06:59:47.567Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-07T06:59:47.567Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-07T06:59:48.488Z [DEBUG] Stream started - received first chunk
+2026-01-07T07:00:04.084Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-07T07:00:04.084Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T07:00:04.084Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-07T07:00:04.262Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.7072.1767769204262
+2026-01-07T07:00:04.262Z [DEBUG] Preserving file permissions: 100666
+2026-01-07T07:00:04.272Z [DEBUG] [SLOW OPERATION DETECTED] fs.writeFileSync (9.5ms)
+2026-01-07T07:00:04.272Z [DEBUG] Temp file written successfully, size: 3106 bytes
+2026-01-07T07:00:04.272Z [DEBUG] Applied original permissions to temp file
+2026-01-07T07:00:04.272Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.7072.1767769204262 to C:\Users\55315\.claude.json
+2026-01-07T07:00:04.273Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-07T07:00:04.287Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (12.7ms)
+2026-01-07T07:00:04.300Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.7072.1767769204300
+2026-01-07T07:00:04.300Z [DEBUG] Preserving file permissions: 100666
+2026-01-07T07:00:04.303Z [DEBUG] Temp file written successfully, size: 3131 bytes
+2026-01-07T07:00:04.303Z [DEBUG] Applied original permissions to temp file
+2026-01-07T07:00:04.303Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.7072.1767769204300 to C:\Users\55315\.claude.json
+2026-01-07T07:00:04.304Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-07T07:00:04.319Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (14.5ms)
+2026-01-07T07:01:04.165Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-01-07T07:01:04.165Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T07:01:04.166Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-01-07T07:03:36.693Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-07T07:03:36.694Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-07T07:03:36.694Z [DEBUG] Metrics export disabled by organization setting

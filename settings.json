@@ -1,0 +1,11 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "72210fb5d72a4b55a755b2c6611176f6.P4abhna2xhjcnHA7",
+    "ANTHROPIC_BASE_URL": "https://open.bigmodel.cn/api/anthropic",
+    "API_TIMEOUT_MS": "3000000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+  },
+  "enabledPlugins": {
+    "glm-plan-usage@zai-coding-plugins": true
+  }
+}

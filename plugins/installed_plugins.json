@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "plugins": {
+    "glm-plan-usage@zai-coding-plugins": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\55315\\.claude\\plugins\\cache\\zai-coding-plugins\\glm-plan-usage\\0.0.1",
+        "version": "0.0.1",
+        "installedAt": "2026-01-07T03:47:59.072Z",
+        "lastUpdated": "2026-01-07T03:47:59.072Z",
+        "isLocal": true
+      }
+    ]
+  }
+}
