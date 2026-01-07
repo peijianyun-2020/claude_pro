@@ -219,3 +219,10 @@ Avoid sharing sensitive or personal information that you do not want to share wi
 2026-01-07T13:40:29.653Z [DEBUG] Skill prompt: showing "document-skills:webapp-testing" (userFacingName="webapp-testing")
 2026-01-07T13:40:29.653Z [DEBUG] Skill prompt: showing "document-skills:xlsx" (userFacingName="xlsx")
 2026-01-07T13:40:40.121Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-07T13:40:50.742Z [DEBUG] [SLOW OPERATION DETECTED] fs.appendFileSync (10.0ms)
+2026-01-07T13:40:50.746Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-07T13:40:50.746Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T13:40:50.746Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-07T13:40:50.752Z [DEBUG] Getting matching hook commands for SessionEnd with query: other
+2026-01-07T13:40:50.752Z [DEBUG] Found 0 hook matchers in settings
+2026-01-07T13:40:50.752Z [DEBUG] Matched 0 unique hooks for query "other" (0 before deduplication)
