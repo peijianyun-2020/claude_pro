@@ -1,0 +1,6 @@
+2026-01-07T10:55:35.606Z [DEBUG] Watching for changes in setting files C:\Users\55315\.claude, D:\AI\cc_pro\.claude...
+2026-01-07T10:55:35.643Z [DEBUG] Using bash path: "C:\Program Files\Git\bin\bash.exe"
+2026-01-07T10:55:35.744Z [DEBUG] Git remote URL: null
+2026-01-07T10:55:35.744Z [DEBUG] No git remote URL found
+2026-01-07T10:55:35.744Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-01-07T10:55:38.740Z [INFO] SSH not configured for GitHub, using HTTPS for anthropics/skills

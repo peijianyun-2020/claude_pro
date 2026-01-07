@@ -1,0 +1,162 @@
+"""
+南方区域电力现货价格数据处理脚本
+从交易系统API数据生成标准格式的CSV文件
+"""
+
+import csv
+import json
+import sys
+from pathlib import Path
+from datetime import datetime
+
+# 数据目录配置
+DATA_DIR = Path(r"D:\AI\cc_pro\现货价格采集")
+
+# 地区代码映射
+REGION_MAP = {
+    "00": "全区域",
+    "02": "广东",
+    "03": "广西",
+    "04": "云南",
+    "05": "贵州",
+    "06": "海南"
+}
+
+
+def parse_date(date_str):
+    """解析日期字符串，支持多种格式"""
+    date_str = date_str.strip().replace("-", "").replace("/", "")
+
+    if len(date_str) == 8:
+        return datetime.strptime(date_str, "%Y%m%d").strftime("%Y-%m-%d")
+    elif len(date_str) == 10:
+        return datetime.strptime(date_str, "%Y-%m-%d").strftime("%Y-%m-%d")
+    else:
+        raise ValueError(f"无法解析日期: {date_str}")
+
+
+def save_price_data(api_data, target_date, data_type="dayahead"):
+    """
+    保存价格数据为CSV
+
+    参数:
+        api_data: API返回的完整JSON数据
+        target_date: 目标日期 (YYYY-MM-DD 或 YYYYMMDD)
+        data_type: 数据类型 ("dayahead"=日前 或 "realtime"=实时)
+    """
+    # 解析日期
+    date_formatted = parse_date(target_date)
+
+    # 创建CSV数据
+    csv_data = []
+    headers = ["时间"] + list(REGION_MAP.values())
+    csv_data.append(headers)
+
+    # 生成24个小时的数据
+    for hour in range(24):
+        time_str = f"{hour:02d}:00"
+        row = [time_str]
+
+        for exchange_code in REGION_MAP.keys():
+            region_data = next(
+                (item for item in api_data["data"]
+                 if item["exchange"] == exchange_code),
+                None
+            )
+
+            if region_data:
+                price_key = f"price{hour:02d}00"
+                price = region_data.get(price_key, "0")
+                row.append(price)
+            else:
+                row.append("0")
+
+        csv_data.append(row)
+
+    # 生成文件名
+    date_short = date_formatted.replace("-", "")
+    type_label = "实时价格" if data_type == "realtime" else "日前价格"
+    csv_filename = f"{type_label}_{date_short}.csv"
+    csv_path = DATA_DIR / csv_filename
+
+    # 保存文件
+    with open(csv_path, 'w', newline='', encoding='utf-8-sig') as f:
+        writer = csv.writer(f)
+        writer.writerows(csv_data)
+
+    print(f"\n✅ 数据已保存: {csv_path}")
+    print(f"📊 记录数: {len(csv_data)-1} 行")
+    print(f"📅 日期: {date_formatted}")
+    print(f"🏷️  类型: {type_label}")
+
+    return csv_path
+
+
+def load_api_data_from_file(file_path):
+    """从JSON文件加载API数据"""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+
+def interactive_mode():
+    """交互式模式"""
+    print("\n" + "="*50)
+    print("南方区域电力现货价格数据处理工具")
+    print("="*50)
+
+    # 输入日期
+    date_input = input("\n请输入目标日期 (格式: YYYYMMDD 或 YYYY-MM-DD): ").strip()
+    if not date_input:
+        print("❌ 日期不能为空")
+        return
+
+    # 输入数据类型
+    print("\n请选择数据类型:")
+    print("  1. 日前数据")
+    print("  2. 实时数据")
+    type_input = input("请输入选项 (1 或 2): ").strip()
+
+    if type_input == "1":
+        data_type = "dayahead"
+    elif type_input == "2":
+        data_type = "realtime"
+    else:
+        print("❌ 无效的选项")
+        return
+
+    # 输入JSON文件路径（可选）
+    json_path = input("\n请输入API数据JSON文件路径 (留空则从粘贴板读取): ").strip()
+
+    if json_path:
+        try:
+            api_data = load_api_data_from_file(json_path)
+        except Exception as e:
+            print(f"❌ 读取文件失败: {e}")
+            return
+    else:
+        print("\n请将API返回的JSON数据粘贴到脚本中的 DEFAULT_API_DATA 变量")
+        print("或者将JSON数据保存为文件后重新运行脚本")
+        return
+
+    # 保存数据
+    try:
+        save_price_data(api_data, date_input, data_type)
+    except Exception as e:
+        print(f"❌ 处理失败: {e}")
+        return
+
+
+def main():
+    """主函数"""
+    if len(sys.argv) == 1:
+        # 无参数，进入交互模式
+        interactive_mode()
+    else:
+        print("\n使用方法:")
+        print("1. 交互模式: python process_spot_price.py")
+        print("2. 命令行模式（开发中）")
+        print("\n当前仅支持交互模式")
+
+
+if __name__ == "__main__":
+    main()
