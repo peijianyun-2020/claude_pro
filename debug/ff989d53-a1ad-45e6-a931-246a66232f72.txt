@@ -1,0 +1,63 @@
+2026-01-08T01:37:31.215Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (32.5ms)
+2026-01-08T01:37:31.239Z [DEBUG] [SLOW OPERATION DETECTED] fs.readSync (18.0ms)
+2026-01-08T01:37:31.271Z [DEBUG] [SLOW OPERATION DETECTED] fs.readSync (25.4ms)
+2026-01-08T01:37:31.392Z [DEBUG] Watching for changes in setting files C:\Users\55315\.claude, D:\AI\cc_pro\.claude...
+2026-01-08T01:37:31.437Z [DEBUG] Using bash path: "C:\Program Files\Git\bin\bash.exe"
+2026-01-08T01:37:31.478Z [DEBUG] [SLOW OPERATION DETECTED] fs.readdirSync (11.0ms)
+2026-01-08T01:37:31.479Z [DEBUG] Stats cache does not exist, returning empty cache
+2026-01-08T01:37:31.479Z [DEBUG] Stats cache empty, processing all historical data in background
+2026-01-08T01:37:31.483Z [DEBUG] Plugin autoupdate: skipped (auto-updater disabled)
+2026-01-08T01:37:31.492Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[]
+2026-01-08T01:37:31.503Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (10.0ms)
+2026-01-08T01:37:31.517Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (12.1ms)
+2026-01-08T01:37:31.529Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (10.0ms)
+2026-01-08T01:37:32.165Z [DEBUG] [SLOW OPERATION DETECTED] execSyncWithDefaults_DEPRECATED (617.0ms): tasklist | findstr /I "Code.exe Cursor.exe Windsurf.exe idea64.exe pycharm64.exe webstorm64.exe phps
+2026-01-08T01:37:32.185Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (18.6ms)
+2026-01-08T01:37:32.186Z [DEBUG] Loaded 1 installed plugins from C:\Users\55315\.claude\plugins\installed_plugins.json
+2026-01-08T01:37:32.254Z [DEBUG] Creating shell snapshot for bash (C:\Program Files\Git\bin\bash.exe)
+2026-01-08T01:37:32.254Z [DEBUG] Looking for shell config file: C:\Users\55315\.bashrc
+2026-01-08T01:37:32.255Z [DEBUG] Shell config file not found: C:\Users\55315\.bashrc, creating snapshot with Claude Code defaults only
+2026-01-08T01:37:32.255Z [DEBUG] Snapshots directory: C:\Users\55315\.claude\shell-snapshots
+2026-01-08T01:37:32.270Z [DEBUG] Creating snapshot at: C:\Users\55315\.claude\shell-snapshots\snapshot-bash-1767836252255-veqyh3.sh
+2026-01-08T01:37:32.270Z [DEBUG] Shell binary exists: true
+2026-01-08T01:37:32.270Z [DEBUG] Execution timeout: 10000ms
+2026-01-08T01:37:32.281Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\ff989d53-a1ad-45e6-a931-246a66232f72-agent-ff989d53-a1ad-45e6-a931-246a66232f72.json.tmp.18824.1767836252281
+2026-01-08T01:37:32.284Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-08T01:37:32.284Z [DEBUG] Renaming C:\Users\55315\.claude\todos\ff989d53-a1ad-45e6-a931-246a66232f72-agent-ff989d53-a1ad-45e6-a931-246a66232f72.json.tmp.18824.1767836252281 to C:\Users\55315\.claude\todos\ff989d53-a1ad-45e6-a931-246a66232f72-agent-ff989d53-a1ad-45e6-a931-246a66232f72.json
+2026-01-08T01:37:32.285Z [DEBUG] File C:\Users\55315\.claude\todos\ff989d53-a1ad-45e6-a931-246a66232f72-agent-ff989d53-a1ad-45e6-a931-246a66232f72.json written atomically
+2026-01-08T01:37:32.306Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (13.7ms)
+2026-01-08T01:37:32.308Z [DEBUG] Loading plugin glm-plan-usage from source: "./plugins/glm-plan-usage"
+2026-01-08T01:37:32.319Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (9.7ms)
+2026-01-08T01:37:32.319Z [DEBUG] Using manifest version for glm-plan-usage@zai-coding-plugins: 0.0.1
+2026-01-08T01:37:32.851Z [DEBUG] Plugin glm-plan-usage@zai-coding-plugins version 0.0.1 already cached at C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-08T01:37:32.851Z [DEBUG] Copied local plugin glm-plan-usage to versioned cache: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-08T01:37:32.856Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-08T01:37:32.856Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-08T01:37:32.856Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-08T01:37:32.856Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-08T01:37:32.875Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (17.3ms)
+2026-01-08T01:37:32.894Z [DEBUG] [SLOW OPERATION DETECTED] fs.readFileSync (16.8ms)
+2026-01-08T01:37:32.896Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-01-08T01:37:32.898Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-08T01:37:32.898Z [DEBUG] Total plugin skills loaded: 1
+2026-01-08T01:37:32.898Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-08T01:37:32.898Z [DEBUG] Total plugin commands loaded: 1
+2026-01-08T01:37:32.898Z [DEBUG] Loaded 2 unique skills (managed: 0, user: 2, project: 0, legacy commands: 0)
+2026-01-08T01:37:32.898Z [DEBUG] getSkills returning: 2 skill dir commands, 1 plugin skills
+2026-01-08T01:37:32.924Z [DEBUG] Git remote URL: null
+2026-01-08T01:37:32.924Z [DEBUG] No git remote URL found
+2026-01-08T01:37:32.924Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-01-08T01:37:32.928Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\55315\AppData\Roaming\npm\node_modules\@anthropic-ai\claude-code\vendor\ripgrep\x64-win32\rg.exe)
+2026-01-08T01:37:32.951Z [DEBUG] [SLOW OPERATION DETECTED] fs.readdirSync (19.3ms)
+2026-01-08T01:37:32.979Z [DEBUG] [SLOW OPERATION DETECTED] fs.readdirSync (12.6ms)
+2026-01-08T01:37:32.999Z [DEBUG] [SLOW OPERATION DETECTED] fs.readdirSync (13.8ms)
+2026-01-08T01:37:33.015Z [DEBUG] [SLOW OPERATION DETECTED] fs.readdirSync (14.1ms)
+2026-01-08T01:37:33.030Z [DEBUG] [SLOW OPERATION DETECTED] fs.readdirSync (11.9ms)
+2026-01-08T01:37:33.046Z [DEBUG] [SLOW OPERATION DETECTED] fs.readdirSync (13.6ms)
+2026-01-08T01:37:33.062Z [DEBUG] [SLOW OPERATION DETECTED] fs.readdirSync (10.3ms)
+2026-01-08T01:37:33.119Z [DEBUG] Install: Starting installation process (force=false, target=undefined)
+2026-01-08T01:37:33.119Z [DEBUG] Install: Calling installLatest(channelOrVersion=latest, force=true, forceReinstall=false)
+2026-01-08T01:37:33.226Z [DEBUG] Stats cache saved successfully (lastComputedDate: 2026-01-07)
+2026-01-08T01:37:33.226Z [DEBUG] Stats cache updated with 28 sessions
+2026-01-08T01:37:33.469Z [DEBUG] Shell snapshot created successfully (342 bytes)
+2026-01-08T01:37:33.692Z [ERROR] Install command failed: Error: Failed to fetch version from latest: Error: read ECONNRESET

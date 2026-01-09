@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "lastComputedDate": "2026-01-08",
+  "dailyActivity": [
+    {
+      "date": "2026-01-07",
+      "messageCount": 727,
+      "sessionCount": 28,
+      "toolCallCount": 205
+    },
+    {
+      "date": "2026-01-08",
+      "messageCount": 401,
+      "sessionCount": 4,
+      "toolCallCount": 125
+    }
+  ],
+  "dailyModelTokens": [
+    {
+      "date": "2026-01-07",
+      "tokensByModel": {
+        "glm-4.7": 1629047
+      }
+    },
+    {
+      "date": "2026-01-08",
+      "tokensByModel": {
+        "glm-4.7": 867965
+      }
+    }
+  ],
+  "modelUsage": {
+    "glm-4.7": {
+      "inputTokens": 2365429,
+      "outputTokens": 131583,
+      "cacheReadInputTokens": 15820672,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0,
+      "contextWindow": 0
+    }
+  },
+  "totalSessions": 32,
+  "totalMessages": 1128,
+  "longestSession": {
+    "sessionId": "79a1409d-1519-4ebc-a47c-f651682277fe",
+    "duration": 11485578,
+    "messageCount": 8,
+    "timestamp": "2026-01-07T03:48:38.437Z"
+  },
+  "firstSessionDate": "2026-01-07T03:48:38.437Z",
+  "hourCounts": {
+    "9": 2,
+    "10": 1,
+    "11": 1,
+    "16": 1,
+    "18": 1,
+    "19": 2,
+    "20": 14,
+    "21": 10
+  }
+}

@@ -1,0 +1,266 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+QQ邮箱IMAP邮件读取工具
+支持读取最近N封邮件，支持授权码登录
+"""
+
+import imaplib
+import email
+from email.header import decode_header
+import re
+import sys
+import os
+from datetime import datetime
+from pathlib import Path
+
+# Windows编码修复
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+# 邮箱配置
+IMAP_SERVER = "imap.qq.com"
+IMAP_PORT = 993
+
+def decode_mime_words(header_value):
+    """解码邮件头"""
+    if header_value is None:
+        return ""
+
+    decoded_list = decode_header(header_value)
+    decoded_string = ""
+
+    for content, encoding in decoded_list:
+        if isinstance(content, bytes):
+            if encoding:
+                try:
+                    decoded_string += content.decode(encoding)
+                except:
+                    decoded_string += content.decode('utf-8', errors='ignore')
+            else:
+                decoded_string += content.decode('utf-8', errors='ignore')
+        else:
+            decoded_string += str(content)
+
+    return decoded_string
+
+def get_email_body(msg):
+    """提取邮件正文"""
+    body = ""
+
+    if msg.is_multipart():
+        for part in msg.walk():
+            content_type = part.get_content_type()
+            content_disposition = str(part.get("Content-Disposition"))
+
+            # 获取文本内容
+            if content_type == "text/plain" and "attachment" not in content_disposition:
+                try:
+                    payload = part.get_payload(decode=True)
+                    charset = part.get_content_charset() or 'utf-8'
+                    body += payload.decode(charset, errors='ignore')
+                except:
+                    pass
+            elif content_type == "text/html" and "attachment" not in content_disposition and not body:
+                try:
+                    payload = part.get_payload(decode=True)
+                    charset = part.get_content_charset() or 'utf-8'
+                    body += payload.decode(charset, errors='ignore')
+                except:
+                    pass
+    else:
+        # 非多部分邮件
+        try:
+            payload = msg.get_payload(decode=True)
+            charset = msg.get_content_charset() or 'utf-8'
+            body = payload.decode(charset, errors='ignore')
+        except:
+            body = str(msg.get_payload())
+
+    return body
+
+def format_email_size(size_bytes):
+    """格式化邮件大小"""
+    for unit in ['B', 'KB', 'MB', 'GB']:
+        if size_bytes < 1024.0:
+            return f"{size_bytes:.1f} {unit}"
+        size_bytes /= 1024.0
+    return f"{size_bytes:.1f} TB"
+
+def read_qq_mails(email_address, auth_code, count=10, folder="INBOX"):
+    """
+    读取QQ邮箱的最近N封邮件
+
+    参数:
+        email_address: QQ邮箱地址
+        auth_code: 授权码（不是QQ密码）
+        count: 读取邮件数量，默认10封
+        folder: 邮件文件夹，默认INBOX
+
+    返回: 邮件列表
+    """
+    try:
+        # 连接到IMAP服务器
+        print(f"🔌 正在连接到 {IMAP_SERVER}:{IMAP_PORT}...")
+        mail = imaplib.IMAP4_SSL(IMAP_SERVER, IMAP_PORT)
+
+        # 登录
+        print(f"🔐 正在登录 {email_address}...")
+        mail.login(email_address, auth_code)
+
+        # 选择文件夹
+        mail.select(folder)
+        print(f"📁 已选择文件夹: {folder}")
+
+        # 搜索所有邮件
+        print(f"🔍 正在搜索邮件...")
+        status, messages = mail.search(None, "ALL")
+
+        if status != "OK":
+            print("❌ 搜索邮件失败")
+            return []
+
+        # 获取邮件ID列表
+        email_ids = messages[0].split()
+        total_emails = len(email_ids)
+        print(f"📧 总共找到 {total_emails} 封邮件")
+
+        # 获取最近的N封邮件
+        recent_ids = email_ids[-count:] if total_emails > count else email_ids
+        print(f"📥 正在读取最近 {len(recent_ids)} 封邮件...\n")
+
+        emails = []
+
+        # 倒序遍历（最新的在前）
+        for idx, email_id in enumerate(reversed(recent_ids), 1):
+            # 获取邮件
+            status, msg_data = mail.fetch(email_id, "(RFC822)")
+
+            if status != "OK":
+                continue
+
+            # 解析邮件
+            raw_email = msg_data[0][1]
+            msg = email.message_from_bytes(raw_email)
+
+            # 提取邮件信息
+            email_info = {
+                "序号": idx,
+                "主题": decode_mime_words(msg.get("Subject")),
+                "发件人": decode_mime_words(msg.get("From")),
+                "收件人": decode_mime_words(msg.get("To")),
+                "日期": msg.get("Date"),
+                "大小": format_email_size(len(raw_email)),
+                "正文": get_email_body(msg)
+            }
+
+            # 处理抄送
+            if msg.get("Cc"):
+                email_info["抄送"] = decode_mime_words(msg.get("Cc"))
+
+            emails.append(email_info)
+
+        # 关闭连接
+        mail.close()
+        mail.logout()
+
+        return emails
+
+    except imaplib.IMAP4.error as e:
+        print(f"❌ IMAP错误: {e}")
+        print("\n可能的原因:")
+        print("1. 授权码不正确（请确认使用的是授权码，不是QQ密码）")
+        print("2. IMAP服务未开启（请前往QQ邮箱设置中开启IMAP服务）")
+        print("3. 网络连接问题")
+        return []
+
+    except Exception as e:
+        print(f"❌ 发生错误: {e}")
+        return []
+
+def display_emails(emails):
+    """格式化显示邮件"""
+    if not emails:
+        print("📭 没有找到邮件")
+        return
+
+    print("=" * 80)
+    print(f"📧 收到 {len(emails)} 封邮件")
+    print("=" * 80)
+
+    for email_info in emails:
+        print(f"\n{'─' * 80}")
+        print(f"📬 邮件 #{email_info['序号']}")
+        print(f"{'─' * 80}")
+        print(f"📌 主题: {email_info['主题']}")
+        print(f"👤 发件人: {email_info['发件人']}")
+        print(f"📥 收件人: {email_info['收件人']}")
+        if '抄送' in email_info:
+            print(f"📧 抄送: {email_info['抄送']}")
+        print(f"📅 日期: {email_info['日期']}")
+        print(f"📏 大小: {email_info['大小']}")
+        print(f"{'─' * 80}")
+        print(f"📝 正文:")
+        print("─" * 80)
+
+        # 截取正文前1000字符
+        body = email_info['正文']
+        if len(body) > 1000:
+            body = body[:1000] + "\n\n... (内容过长，已截断)"
+        print(body)
+        print(f"{'─' * 80}")
+
+def main():
+    """主函数"""
+    # 从环境变量或参数读取配置
+    email_address = os.getenv("QQMAIL_EMAIL")
+    auth_code = os.getenv("QQMAIL_AUTH_CODE")
+
+    # 如果环境变量没有设置，从命令行参数读取
+    if not email_address or not auth_code:
+        if len(sys.argv) >= 3:
+            email_address = sys.argv[1]
+            auth_code = sys.argv[2]
+        else:
+            print("❌ 错误: 请提供邮箱地址和授权码")
+            print("\n使用方法:")
+            print("  方式1 (环境变量):")
+            print("    export QQMAIL_EMAIL=your@qq.com")
+            print("    export QQMAIL_AUTH_CODE=your_auth_code")
+            print("    python qqmail_reader.py")
+            print("\n  方式2 (命令行参数):")
+            print("    python qqmail_reader.py your@qq.com your_auth_code [邮件数量]")
+            print("\n📖 如何获取授权码:")
+            print("  1. 登录 QQ邮箱网页版")
+            print("  2. 进入 设置 -> 帐号与安全")
+            print("  3. 点击 设备管理 > 授权码管理")
+            print("  4. 生成一个新的授权码")
+            sys.exit(1)
+
+    # 读取邮件数量
+    count = 10
+    if len(sys.argv) >= 4:
+        try:
+            count = int(sys.argv[3])
+        except ValueError:
+            print("⚠️  邮件数量参数无效，使用默认值10")
+
+    print(f"\n{'=' * 80}")
+    print(f"📧 QQ邮箱读取工具")
+    print(f"{'=' * 80}\n")
+
+    # 读取邮件
+    emails = read_qq_mails(email_address, auth_code, count)
+
+    # 显示邮件
+    if emails:
+        display_emails(emails)
+
+    print(f"\n{'=' * 80}")
+    print(f"✅ 完成！")
+    print(f"{'=' * 80}\n")
+
+if __name__ == "__main__":
+    main()

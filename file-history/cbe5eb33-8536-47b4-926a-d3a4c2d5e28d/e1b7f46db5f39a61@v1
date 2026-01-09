@@ -1,0 +1,4 @@
+# QQ邮箱配置
+# 用于读取邮件的授权信息
+QQMAIL_EMAIL=553156963@qq.com
+QQMAIL_AUTH_CODE=zokdachkgczebcfa

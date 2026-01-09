@@ -1,0 +1,18 @@
+# QQ邮箱快捷命令 - PowerShell版本
+# 使用方法: .\qqmail.ps1 [[-Count] <Int32>]
+
+param(
+    [Parameter(Position=0)]
+    [int]$Count = 10
+)
+
+# 设置输出编码为UTF-8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
+# 切换到脚本所在目录
+$ScriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
+Set-Location $ScriptPath
+
+# 执行Python脚本
+python .claude\skills\qqmail_reader.py $Count

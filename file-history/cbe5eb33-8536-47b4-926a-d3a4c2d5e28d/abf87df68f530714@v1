@@ -1,0 +1,42 @@
+{
+  "name": "qqmail",
+  "description": "读取QQ邮箱的最近N封邮件内容",
+  "version": "1.0.0",
+  "author": "Claude Code",
+  "command": "python",
+  "args": [
+    ".claude/skills/qqmail_reader.py",
+    "{{email}}",
+    "{{auth_code}}",
+    "{{count}}"
+  ],
+  "environment": {
+    "QQMAIL_EMAIL": "{{QQMAIL_EMAIL}}",
+    "QQMAIL_AUTH_CODE": "{{QQMAIL_AUTH_CODE}}"
+  },
+  "parameters": {
+    "email": {
+      "description": "QQ邮箱地址",
+      "type": "string",
+      "default": "",
+      "required": false
+    },
+    "auth_code": {
+      "description": "QQ邮箱授权码",
+      "type": "string",
+      "default": "",
+      "required": false
+    },
+    "count": {
+      "description": "读取邮件数量",
+      "type": "number",
+      "default": 10,
+      "required": false
+    }
+  },
+  "prompts": {
+    "need_auth": "⚠️ 需要QQ邮箱授权码才能读取邮件\n\n请提供以下信息：\n1. QQ邮箱地址（例如：123456@qq.com）\n2. 授权码（在QQ邮箱网页版：设置 → 帐号与安全 → 设备管理 → 授权码管理）",
+    "success": "✅ 成功读取 {{count}} 封邮件",
+    "error": "❌ 读取邮件失败: {{error}}"
+  }
+}

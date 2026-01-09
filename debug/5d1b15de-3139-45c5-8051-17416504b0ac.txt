@@ -1,0 +1,79 @@
+2026-01-09T09:27:16.127Z [DEBUG] Getting matching hook commands for SessionEnd with query: clear
+2026-01-09T09:27:16.127Z [DEBUG] Found 0 hook matchers in settings
+2026-01-09T09:27:16.127Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-09T09:27:16.127Z [DEBUG] Cleared all session hooks for session a8cf26a2-b5b3-447c-86d8-607589f3a429
+2026-01-09T09:27:16.130Z [DEBUG] Getting matching hook commands for SessionStart with query: clear
+2026-01-09T09:27:16.131Z [DEBUG] Found 0 hook matchers in settings
+2026-01-09T09:27:16.131Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-09T09:27:16.145Z [DEBUG] FileHistory: Added snapshot for 4f5ab96c-9954-448c-a911-7228694ea075, tracking 0 files
+2026-01-09T09:27:16.184Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-09T09:27:29.654Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-09T09:27:29.655Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-09T09:27:29.655Z [DEBUG] Metrics export disabled by organization setting
+2026-01-09T10:27:21.315Z [DEBUG] npm view failed with code 1
+2026-01-09T10:27:21.315Z [DEBUG] npm stderr: (empty)
+2026-01-09T11:05:57.977Z [DEBUG] Applying permission update: Setting mode to 'default'
+2026-01-09T11:48:45.949Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-09T11:48:45.950Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-09T11:48:45.951Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-09T11:48:45.951Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-09T11:48:45.986Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-09T11:48:45.986Z [DEBUG] Found 0 hook matchers in settings
+2026-01-09T11:48:45.986Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-09T11:48:45.988Z [DEBUG] FileHistory: Making snapshot for message cefca010-736d-43b6-8c1e-eeb80ebd134c
+2026-01-09T11:48:45.992Z [DEBUG] FileHistory: Added snapshot for cefca010-736d-43b6-8c1e-eeb80ebd134c, tracking 0 files
+2026-01-09T11:48:46.042Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[D:\AI\cc_pro\.claude\skills]
+2026-01-09T11:48:46.102Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-09T11:48:46.102Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-09T11:48:46.102Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-09T11:48:46.216Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-09T11:48:46.216Z [DEBUG] Total plugin skills loaded: 1
+2026-01-09T11:48:46.216Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-09T11:48:46.216Z [DEBUG] Total plugin commands loaded: 1
+2026-01-09T11:48:46.218Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-09T11:48:46.220Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-09T11:48:46.220Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-09T11:48:46.220Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-09T11:48:46.224Z [DEBUG] Loaded 2 unique skills (managed: 0, user: 2, project: 0, legacy commands: 0)
+2026-01-09T11:48:46.225Z [DEBUG] getSkills returning: 2 skill dir commands, 1 plugin skills, 0 bundled skills
+2026-01-09T11:48:46.448Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-09T11:48:46.458Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-09T11:48:46.458Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-09T11:48:46.458Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-09T11:48:47.222Z [DEBUG] Stream started - received first chunk
+2026-01-09T11:48:47.437Z [DEBUG] Stream started - received first chunk
+2026-01-09T11:48:50.069Z [DEBUG] executePreToolHooks called for tool: mcp__web-search-prime__webSearchPrime
+2026-01-09T11:48:50.078Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-09T11:48:50.078Z [DEBUG] Found 0 hook matchers in settings
+2026-01-09T11:48:50.078Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-09T11:48:50.092Z [DEBUG] MCP server "web-search-prime": Calling MCP tool: webSearchPrime
+2026-01-09T11:48:50.093Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-09T11:48:51.942Z [DEBUG] MCP server "web-search-prime": Tool 'webSearchPrime' completed successfully in 1s
+2026-01-09T11:48:51.973Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-09T11:48:51.973Z [DEBUG] Found 0 hook matchers in settings
+2026-01-09T11:48:51.973Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-09T11:48:52.007Z [DEBUG] executePreToolHooks called for tool: mcp__web-search-prime__webSearchPrime
+2026-01-09T11:48:52.044Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-09T11:48:52.044Z [DEBUG] Found 0 hook matchers in settings
+2026-01-09T11:48:52.044Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-09T11:48:52.055Z [DEBUG] MCP server "web-search-prime": Calling MCP tool: webSearchPrime
+2026-01-09T11:48:52.055Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-09T11:48:53.988Z [DEBUG] MCP server "web-search-prime": Tool 'webSearchPrime' completed successfully in 1s
+2026-01-09T11:48:54.002Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-09T11:48:54.002Z [DEBUG] Found 0 hook matchers in settings
+2026-01-09T11:48:54.002Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-09T11:48:54.068Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-09T11:48:54.068Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-09T11:48:54.068Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-09T11:48:54.068Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-09T11:48:54.088Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-09T11:48:54.095Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-09T11:48:54.095Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-09T11:48:54.095Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-09T11:48:54.642Z [DEBUG] Stream started - received first chunk
+2026-01-09T11:49:11.072Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-09T11:49:11.072Z [DEBUG] Found 0 hook matchers in settings
+2026-01-09T11:49:11.072Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-09T11:52:29.892Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-09T11:52:29.892Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-09T11:52:29.892Z [DEBUG] Metrics export disabled by organization setting
