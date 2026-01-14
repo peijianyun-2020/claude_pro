@@ -1,0 +1,62 @@
+[
+  {
+    "content": "备份现有 Obsidian 仓库",
+    "status": "completed",
+    "activeForm": "备份现有 Obsidian 仓库"
+  },
+  {
+    "content": "创建新的目录结构（00-99 文件夹）",
+    "status": "completed",
+    "activeForm": "创建新的目录结构"
+  },
+  {
+    "content": "创建索引系统文件（总索引页和主题 MOC）",
+    "status": "completed",
+    "activeForm": "创建索引系统文件"
+  },
+  {
+    "content": "创建标签使用指南文档",
+    "status": "completed",
+    "activeForm": "创建标签使用指南文档"
+  },
+  {
+    "content": "创建4个模板文件（项目管理、学习笔记、内容创作、日记）",
+    "status": "completed",
+    "activeForm": "创建4个模板文件"
+  },
+  {
+    "content": "创建回顾模板",
+    "status": "completed",
+    "activeForm": "创建回顾模板"
+  },
+  {
+    "content": "创建使用指南",
+    "status": "completed",
+    "activeForm": "创建使用指南"
+  },
+  {
+    "content": "迁移 AI 学习内容到新目录",
+    "status": "pending",
+    "activeForm": "迁移 AI 学习内容"
+  },
+  {
+    "content": "迁移电力市场内容并建立索引",
+    "status": "pending",
+    "activeForm": "迁移电力市场内容"
+  },
+  {
+    "content": "迁移编程技术内容",
+    "status": "pending",
+    "activeForm": "迁移编程技术内容"
+  },
+  {
+    "content": "迁移个人管理和内容创作内容",
+    "status": "pending",
+    "activeForm": "迁移个人管理和内容创作内容"
+  },
+  {
+    "content": "整理附件到资源库",
+    "status": "pending",
+    "activeForm": "整理附件到资源库"
+  }
+]

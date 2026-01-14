@@ -1,0 +1,84 @@
+# 🤖 MOC: AI学习
+
+> **主题**: AI相关技术和工具
+> **笔记数**: ~50 篇
+> **更新**: 2025-01-11
+
+---
+
+## 🎯 学习路径
+
+### Claude 完整学习路径
+1. [[Claude完整学习文档]] ⭐ 系统学习 Claude
+2. [[MOC_Claude]] - Claude 全部笔记索引
+3. [[MOC_MCP技能]] - MCP 技能开发
+
+### LangChain 实战
+1. [[LangChain实战教程]] - 从入门到实践
+2. [[MOC_LangChain]] - LangChain 笔记索引
+
+### 本地化部署
+1. [[本地化部署DS]]
+2. [[RagFlow部署]]
+3. [[MOC_部署实践]]
+
+---
+
+## 📚 内容分类
+
+### 1. Claude 系列
+[[MOC_Claude]]
+
+- [[Claude完整学习文档]] - 官方文档和学习资料
+- [[Claude API 使用指南]]
+- [[Claude Skills 开发]]
+
+### 2. LangChain 框架
+[[MOC_LangChain]]
+
+- [[LangChain实战教程]]
+- [[LangChain核心概念]]
+- [[LangChain实战]]
+
+### 3. MCP 技能
+[[MOC_MCP技能]]
+
+- [[MCP技能开发]]
+- [[MCP最佳实践]]
+
+### 4. 本地化部署
+[[MOC_部署实践]]
+
+- [[本地化部署DS]]
+- [[RagFlow部署]]
+- [[AI复利工程]]
+
+---
+
+## 🔗 相关链接
+
+### 应用场景
+- [[MOC_电力市场]] - AI在电力市场中的应用
+- [[MOC_编程技术]] - Python 与 AI 开发
+- [[MOC_内容创作]] - AI 辅助内容创作
+
+---
+
+## 🏷️ 主要标签
+
+`#AI/Claude` `#AI/LangChain` `#AI/MCP` `#AI/部署` `#学习/教程`
+
+---
+
+## 📈 学习进度
+
+- [x] Claude 基础掌握
+- [ ] LangChain 深入学习
+- [ ] MCP 技能开发实践
+- [ ] 本地化部署优化
+
+**下次回顾**: 2025-02-11
+
+---
+
+**相关链接**: [[总索引页]] | [[MOC_Claude]] | [[MOC_LangChain]]

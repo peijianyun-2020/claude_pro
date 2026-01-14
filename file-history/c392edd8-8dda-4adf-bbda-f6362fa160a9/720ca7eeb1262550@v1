@@ -1,0 +1,93 @@
+# -*- coding: utf-8 -*-
+"""
+飞书应用配置诊断和解决方案
+"""
+import os
+import sys
+
+# 设置 Windows 控制台编码
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+from dotenv import load_dotenv
+load_dotenv()
+
+app_id = os.getenv("FEISHU_APP_ID")
+
+print("=" * 70)
+print("飞书应用配置诊断")
+print("=" * 70)
+
+print(f"\n应用ID: {app_id}")
+print("\n问题诊断:")
+print("-" * 70)
+print("应用能够连接飞书API，但无法访问任何知识库。")
+print("这说明应用缺少【机器人】能力和相关权限。")
+
+print("\n\n解决方案 (按顺序执行):")
+print("=" * 70)
+
+print("\n【第1步】添加机器人能力")
+print("-" * 70)
+print("1. 打开浏览器，访问: https://open.feishu.cn/")
+print("2. 登录后，点击右上角【控制台】")
+print(f"3. 找到并点击你的应用 (App ID: {app_id})")
+print("4. 在左侧菜单，点击【添加应用能力】")
+print("5. 找到【机器人】卡片，点击【+添加】按钮")
+print("6. 确认添加机器人能力")
+
+print("\n【第2步】配置权限")
+print("-" * 70)
+print("1. 在左侧菜单，点击【权限管理】")
+print("2. 在权限搜索框中，依次搜索并添加以下权限:")
+print("")
+print("   必需权限:")
+print("   ✓ wiki:wiki:read")
+print("   ✓ wiki:wiki.node:write")
+print("   ✓ drive:drive:readonly")
+print("   ✓ drive:file:create")
+print("   ✓ drive:media:create")
+print("")
+print("3. 勾选所有上述权限")
+print("4. 点击【批量开通】或【申请权限】")
+print("5. 等待权限申请通过（通常即时通过）")
+
+print("\n【第3步】发布应用")
+print("-" * 70)
+print("1. 在左侧菜单，点击【版本管理与发布】")
+print("2. 点击【创建新版本】")
+print("3. 填写版本信息，点击【确定】")
+print("4. 在版本列表中，找到刚创建的版本")
+print("5. 点击【提交审核】")
+print("6. 等待审核通过（通常几分钟内）")
+print("7. 审核通过后，点击【启用】按钮")
+print("")
+print("重要: 必须发布并启用应用，权限才会生效!")
+
+print("\n【第4步】验证配置")
+print("-" * 70)
+print("1. 重新运行测试脚本验证")
+print("2. 如果还是无法访问，请:")
+print("   - 确认应用已启用（不是草稿状态）")
+print("   - 确认所有权限都已添加并发布")
+print("   - 尝试等待5-10分钟后重试（权限可能需要时间同步）")
+
+print("\n【第5步】替代方案 - 使用用户授权方式")
+print("-" * 70)
+print("如果上述方法仍然无效，可以考虑使用用户授权方式:")
+print("1. 修改代码使用用户访问令牌(user_access_token)")
+print("2. 通过OAuth 2.0获取用户授权")
+print("3. 使用用户的身份上传文件")
+
+print("\n" + "=" * 70)
+print("配置完成后，请重新运行测试:")
+print("  python debug_wiki.py")
+print("=" * 70)
+
+print("\n如需帮助，请访问:")
+print("  - 飞书开放平台文档: https://open.feishu.cn/document/home/index")
+print("  - 权限配置指南: https://open.feishu.cn/document/faq/trouble-shooting/how-to-add-permissions-to-app")
+print()
+
+input("\n按回车键退出...")

@@ -1,0 +1,159 @@
+2026-01-12T13:06:36.543Z [DEBUG] Getting matching hook commands for SessionEnd with query: clear
+2026-01-12T13:06:36.543Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:06:36.543Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-12T13:06:36.543Z [DEBUG] Cleared all session hooks for session ee4d0bdf-9a40-4481-9950-8c1481e37eb3
+2026-01-12T13:06:36.545Z [DEBUG] Getting matching hook commands for SessionStart with query: clear
+2026-01-12T13:06:36.545Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:06:36.545Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-12T13:06:36.556Z [DEBUG] FileHistory: Added snapshot for 9ce7672d-315d-4f4b-9953-aac98517aad1, tracking 0 files
+2026-01-12T13:06:36.574Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-12T13:06:36.673Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.35888.1768223196673
+2026-01-12T13:06:36.673Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T13:06:36.673Z [DEBUG] Temp file written successfully, size: 5101 bytes
+2026-01-12T13:06:36.674Z [DEBUG] Applied original permissions to temp file
+2026-01-12T13:06:36.674Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.35888.1768223196673 to C:\Users\55315\.claude.json
+2026-01-12T13:06:36.674Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T13:06:36.694Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.35888.1768223196694
+2026-01-12T13:06:36.694Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T13:06:36.695Z [DEBUG] Temp file written successfully, size: 5101 bytes
+2026-01-12T13:06:36.695Z [DEBUG] Applied original permissions to temp file
+2026-01-12T13:06:36.695Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.35888.1768223196694 to C:\Users\55315\.claude.json
+2026-01-12T13:06:36.695Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T13:06:38.709Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.35888.1768223198709
+2026-01-12T13:06:38.709Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T13:06:38.709Z [DEBUG] Temp file written successfully, size: 5101 bytes
+2026-01-12T13:06:38.710Z [DEBUG] Applied original permissions to temp file
+2026-01-12T13:06:38.710Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.35888.1768223198709 to C:\Users\55315\.claude.json
+2026-01-12T13:06:38.711Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T13:06:38.711Z [DEBUG] Metadata string for qqmail:
+2026-01-12T13:06:38.711Z [DEBUG] <command-message>The "qqmail" skill is running</command-message>
+<command-name>qqmail</command-name>
+2026-01-12T13:06:38.711Z [DEBUG] command-message tags in metadata: 1
+2026-01-12T13:06:38.739Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T13:06:38.739Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T13:06:38.739Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T13:06:38.739Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T13:06:38.745Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-12T13:06:38.745Z [DEBUG] processPromptSlashCommand creating 3 messages for qqmail
+2026-01-12T13:06:38.745Z [DEBUG] Message 1: <command-message>The "qqmail" skill is running</command-message>
+<command-name>qqmail</command-name>
+2026-01-12T13:06:38.745Z [DEBUG] Message 2 [META]: [{"type":"text","text":"Base directory for this skill: C:\\Users\\55315\\.claude\\skills\\qqmail\n\n# QQ邮箱读取工具\r\n\r\n读取QQ邮箱的最近N封邮件内容。\r\n\r\n## 使用场景\r\n\r\n当用户想要：\r\n- 读取QQ邮箱的最新邮件\r\n- 查看最近的邮件列表\r\n-
+2026-01-12T13:06:38.745Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-12T13:06:38.748Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T13:06:38.748Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:06:38.748Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T13:06:38.758Z [DEBUG] FileHistory: Making snapshot for message dfee17ce-fd53-403d-a5f5-fdca3cde610e
+2026-01-12T13:06:38.758Z [DEBUG] FileHistory: Added snapshot for dfee17ce-fd53-403d-a5f5-fdca3cde610e, tracking 0 files
+2026-01-12T13:06:38.759Z [DEBUG] UserCommandMessage rendering: "The "qqmail" skill is running" (args: "none")
+2026-01-12T13:06:38.759Z [DEBUG] isSkillFormat: true
+2026-01-12T13:06:38.776Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[D:\AI\cc_pro\.claude\skills]
+2026-01-12T13:06:38.796Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-12T13:06:38.796Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-12T13:06:38.796Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-12T13:06:38.852Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-12T13:06:38.852Z [DEBUG] Total plugin skills loaded: 1
+2026-01-12T13:06:38.852Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-12T13:06:38.852Z [DEBUG] Total plugin commands loaded: 1
+2026-01-12T13:06:38.853Z [DEBUG] Loaded 5 unique skills (managed: 0, user: 3, project: 2, legacy commands: 0)
+2026-01-12T13:06:38.853Z [DEBUG] getSkills returning: 5 skill dir commands, 1 plugin skills, 0 bundled skills
+2026-01-12T13:06:38.976Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T13:06:38.980Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:06:38.980Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:06:38.980Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:06:41.621Z [DEBUG] npm view failed with code 1
+2026-01-12T13:06:41.621Z [DEBUG] npm stderr: (empty)
+2026-01-12T13:06:43.753Z [DEBUG] npm view failed with code 1
+2026-01-12T13:06:43.753Z [DEBUG] npm stderr: (empty)
+2026-01-12T13:06:49.641Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T13:06:49.641Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:06:49.641Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:06:49.641Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:06:52.164Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-12T13:06:52.165Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-12T13:06:52.165Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:06:52.165Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T13:06:52.324Z [DEBUG] Session environment not yet supported on Windows
+2026-01-12T13:06:56.140Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T13:06:56.140Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:06:56.140Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:06:56.140Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:06:56.151Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-12T13:06:56.151Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:06:56.151Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T13:06:56.174Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T13:06:56.174Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T13:06:56.174Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T13:06:56.174Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T13:06:56.180Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T13:06:56.184Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:06:56.184Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:06:56.184Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:06:57.397Z [DEBUG] Stream started - received first chunk
+2026-01-12T13:07:06.797Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T13:07:06.797Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:07:06.797Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:07:06.797Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:07:12.225Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T13:07:12.225Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:07:12.225Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T13:08:20.910Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T13:08:20.910Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T13:08:20.910Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T13:08:20.910Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T13:08:20.919Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T13:08:20.919Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:08:20.919Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T13:08:20.920Z [DEBUG] FileHistory: Making snapshot for message bc49078c-f117-4a3a-b082-152be9d77676
+2026-01-12T13:08:20.921Z [DEBUG] FileHistory: Added snapshot for bc49078c-f117-4a3a-b082-152be9d77676, tracking 0 files
+2026-01-12T13:08:20.960Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T13:08:20.960Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:08:20.960Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:08:20.960Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:08:20.994Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T13:08:20.998Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:08:20.998Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:08:20.998Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:08:31.600Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T13:08:31.600Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:08:31.600Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:08:31.600Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:08:31.602Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T13:08:31.602Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:08:31.602Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:08:31.602Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:09:02.024Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-12T13:09:02.030Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-12T13:09:02.030Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:09:02.030Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T13:09:03.077Z [DEBUG] FileHistory: Tracked file modification for D:\AI\cc_pro\小红书文案_QQ邮箱技能介绍.txt
+2026-01-12T13:09:03.081Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .txt
+2026-01-12T13:09:04.076Z [DEBUG] rg error (signal=undefined, code=ABORT_ERR, stderr: rg: D:\AI\cc_pro\nul: 函数不正确。 (os error 1)
+rg: D:\AI\cc_pro\program\202601_electricity_price_forecasting\nul: 函数不正确。 (os error 1)
+rg: D:\AI\cc_pro\test_2\nul: 函数不正确。 (os error 1)
+rg: D:\AI\cc_pro\现货价格预测系统\guangdong_price_predictor\nul: 函数不正确。 (os error 1)
+), 315 results
+2026-01-12T13:09:04.081Z [DEBUG] Writing to temp file: D:\AI\cc_pro\小红书文案_QQ邮箱技能介绍.txt.tmp.35888.1768223344081
+2026-01-12T13:09:04.081Z [DEBUG] Temp file written successfully, size: 1415 bytes
+2026-01-12T13:09:04.081Z [DEBUG] Renaming D:\AI\cc_pro\小红书文案_QQ邮箱技能介绍.txt.tmp.35888.1768223344081 to D:\AI\cc_pro\小红书文案_QQ邮箱技能介绍.txt
+2026-01-12T13:09:04.082Z [DEBUG] File D:\AI\cc_pro\小红书文案_QQ邮箱技能介绍.txt written atomically
+2026-01-12T13:09:04.090Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-12T13:09:04.090Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:09:04.090Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T13:09:04.110Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T13:09:04.110Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T13:09:04.110Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T13:09:04.110Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T13:09:04.196Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T13:09:04.200Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T13:09:04.200Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T13:09:04.200Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T13:09:04.768Z [DEBUG] Stream started - received first chunk
+2026-01-12T13:09:09.947Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T13:09:09.947Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:09:09.947Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T13:10:10.005Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-01-12T13:10:10.005Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:10:10.005Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-01-12T13:10:35.733Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T13:10:35.733Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T13:10:35.733Z [DEBUG] Metrics export disabled by organization setting

@@ -1,0 +1,86 @@
+import json
+import csv
+from datetime import datetime
+
+# 地区代码映射
+REGION_MAP = {
+    "00": "全区域",
+    "02": "广东",
+    "03": "广西",
+    "04": "云南",
+    "05": "贵州",
+    "06": "海南"
+}
+
+# 目标日期和数据类型
+TARGET_DATE = "2026-01-12"
+DATE_TYPE = "0"  # 0=日前
+
+# 读取JSON数据
+with open("现货价格采集/temp_data.json", "r", encoding="utf-8") as f:
+    api_response = json.load(f)
+
+# 保存API备份
+backup_file = f"现货价格采集/backups/api_backup_dayahead_{TARGET_DATE.replace('-', '')}.json"
+with open(backup_file, "w", encoding="utf-8") as f:
+    json.dump(api_response, f, ensure_ascii=False, indent=2)
+
+# 检查数据
+data = api_response.get("data", [])
+if not data:
+    print("❌ API返回空数据")
+    exit(1)
+
+# 验证数据完整性
+expected_regions = set(REGION_MAP.keys())
+actual_regions = {item["exchange"] for item in data}
+
+if expected_regions != actual_regions:
+    print(f"⚠️ 数据不完整: 期望{len(expected_regions)}个地区, 实际{len(actual_regions)}个地区")
+    print(f"缺失地区: {expected_regions - actual_regions}")
+
+# 准备CSV数据
+hours = [f"{h:02d}:00" for h in range(24)]
+csv_rows = []
+
+# 标题行
+header = ["时间"] + [REGION_MAP[code] for code in sorted(REGION_MAP.keys())]
+csv_rows.append(header)
+
+# 数据行 - 按小时组织
+for hour in range(24):
+    hour_str = f"{hour:02d}:00"
+    row = [hour_str]
+
+    for region_code in sorted(REGION_MAP.keys()):
+        # 找到对应地区的数据
+        region_data = next((item for item in data if item["exchange"] == region_code), None)
+        if region_data:
+            price_key = f"price{hour:02d}00"
+            price = region_data.get(price_key, "")
+            row.append(price)
+        else:
+            row.append("")
+
+    csv_rows.append(row)
+
+# 保存CSV文件
+csv_file = f"现货价格采集/日前价格_{TARGET_DATE.replace('-', '')}.csv"
+with open(csv_file, "w", encoding="utf-8-sig", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerows(csv_rows)
+
+# 数据验证
+print(f"✅ 采集成功！")
+print(f"📁 CSV文件: {csv_file}")
+print(f"💾 API备份: {backup_file}")
+print(f"📊 数据行数: {len(csv_rows) - 1}行")
+print(f"📍 地区数量: {len(data)}个")
+print(f"📅 运行日: {TARGET_DATE}")
+print(f"🔍 数据类型: 日前价格")
+
+# 显示部分数据预览
+print(f"\n数据预览:")
+print(f"{'时间':<8} {header[1]:<12} {header[2]:<12} {header[3]:<12}")
+for row in csv_rows[1:6]:
+    print(f"{row[0]:<8} {row[1]:<12} {row[2]:<12} {row[3]:<12}")

@@ -1,0 +1,54 @@
+{
+  "name": "wechat-collector",
+  "description": "微信公众号文章自动化采集工具。支持采集单篇文章、批量采集、相关文章采集，自动将文章保存为Markdown格式，支持图片下载和元数据保存。",
+  "version": "1.0.0",
+  "author": "Claude Code",
+  "homepage": "https://github.com/yourusername/wechat-collector",
+  "skills": [
+    {
+      "name": "wechat_article",
+      "description": "采集微信公众号文章。给定文章链接，自动提取标题、作者、公众号、发布时间、正文内容，转换为Markdown格式并保存到本地。支持下载文章中的图片。",
+      "usage": "请采集这篇微信文章：https://mp.weixin.qq.com/s/xxx",
+      "examples": [
+        "请帮我采集这篇文章：https://mp.weixin.qq.com/s/5cuBvvdfHuunxzW825fNHA",
+        "采集这个微信文章并下载图片",
+        "批量采集这些文章：[链接列表]",
+        "从这篇文章采集相关文章"
+      ],
+      "capabilities": [
+        "单篇文章采集",
+        "批量采集",
+        "相关文章自动发现和采集",
+        "图片自动下载",
+        "元数据保存",
+        "Markdown格式输出"
+      ]
+    }
+  ],
+  "config": {
+    "output_dir": "./wechat_articles",
+    "image_dir": "images",
+    "download_images": true,
+    "file_format": "{date}_{title}.md"
+  },
+  "requirements": [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "markdownify>=0.11.6",
+    "lxml>=4.9.0",
+    "Pillow>=10.0.0",
+    "python-dotenv>=1.0.0"
+  ],
+  "mcp_required": [
+    "chrome-devtools"
+  ],
+  "files": [
+    "wechat_collector.py",
+    "chrome_collector.py",
+    "article_parser.py",
+    "markdown_generator.py",
+    "image_downloader.py",
+    "config.py",
+    "utils.py"
+  ]
+}

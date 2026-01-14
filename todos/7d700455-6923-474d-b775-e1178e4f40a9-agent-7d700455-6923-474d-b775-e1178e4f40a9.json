@@ -1,0 +1,17 @@
+[
+  {
+    "content": "检查 uvx 是否已安装",
+    "status": "completed",
+    "activeForm": "检查 uvx 是否已安装"
+  },
+  {
+    "content": "检查并编辑 ~/.claude.json 配置文件",
+    "status": "in_progress",
+    "activeForm": "检查并编辑 ~/.claude.json 配置文件"
+  },
+  {
+    "content": "验证 MCP 配置是否成功",
+    "status": "pending",
+    "activeForm": "验证 MCP 配置是否成功"
+  }
+]

@@ -1,0 +1,157 @@
+# 飞书知识库文件上传技能
+
+## 技能说明
+
+该技能用于将本地文件或文件夹上传到飞书知识库。支持：
+- 上传单个文件到指定知识库节点
+- 批量上传整个文件夹的所有文件
+- 自动识别文件类型
+- 支持多种文件格式（Excel、Word、PDF、图片等）
+
+## 使用场景
+
+1. **上传单个文件**：
+   - "上传文件 D:\AI\cc_pro\program\20260113_File2feishu\数据文档\20260114日前.xlsx"
+   - "将 D:\path\to\file.pdf 上传到飞书知识库"
+
+2. **上传整个文件夹**：
+   - "上传文件夹 D:\AI\cc_pro\program\20260113_File2feishu\数据文档"
+   - "将 D:\path\to\folder 中的所有文件上传到知识库"
+
+3. **指定相对路径**：
+   - "上传 数据文档\20260114日前.xlsx"
+   - "上传 数据文档 文件夹"
+
+## 前置要求
+
+### 1. 创建飞书应用
+
+1. 访问 [飞书开放平台](https://open.feishu.cn/)
+2. 创建企业自建应用
+3. 获取 App ID 和 App Secret
+
+### 2. 配置权限
+
+在飞书开放平台，为应用添加以下权限：
+
+**必需权限：**
+- `wiki:wiki:read` - 获取知识库信息
+- `wiki:wiki.node:write` - 创建知识库节点
+- `drive:drive:readonly` - 读取文件
+- `drive:file:create` - 创建文件
+
+**权限配置路径：**
+应用详情 -> 权限管理 -> 搜索并添加上述权限
+
+### 3. 发布应用
+
+1. 在飞书开放平台提交应用审核
+2. 等待审核通过（通常几分钟内完成）
+3. 启用应用
+
+### 4. 获取知识库节点 Token
+
+1. 打开飞书知识库
+2. 进入要上传的目标文件夹
+3. 从浏览器地址栏复制 URL
+4. URL 格式类似：`https://feishu.cn/wiki/<wiki_token>?node=<node_token>`
+5. 记录 `node_token` 值
+
+### 5. 配置环境变量
+
+创建 `.env` 文件（参考 `.env.example`）：
+
+```bash
+FEISHU_APP_ID=cli_xxxxxxxxxxxxx
+FEISHU_APP_SECRET=xxxxxxxxxxxxxxxxxxxx
+FEISHU_WIKI_NODE_TOKEN=xxxxxxxxxxxxxx
+```
+
+## 技能实现逻辑
+
+当用户触发该技能时：
+
+1. **解析用户输入**：
+   - 识别文件路径或文件夹路径
+   - 判断是单个文件还是文件夹
+
+2. **验证路径**：
+   - 检查路径是否存在
+   - 验证文件类型
+
+3. **初始化上传器**：
+   - 读取环境变量中的配置
+   - 创建 FeishuWikiUploader 实例
+
+4. **执行上传**：
+   - 单文件：直接上传
+   - 文件夹：遍历所有文件并批量上传
+
+5. **返回结果**：
+   - 显示上传进度
+   - 汇总成功和失败的文件列表
+
+## 技术实现
+
+### 核心文件
+
+- `feishu_uploader.py`: 上传器实现
+  - `FeishuWikiUploader` 类
+  - `upload_file()`: 上传单个文件
+  - `upload_folder()`: 批量上传文件夹
+  - `get_tenant_access_token()`: 获取访问令牌
+  - `create_wiki_node()`: 创建知识库节点
+
+### API 调用流程
+
+1. 获取 tenant_access_token
+2. 上传文件到云空间（`/drive/v1/medias/upload_all`）
+3. 创建知识库节点（`/wiki/v2/spaces/*/nodes`）
+
+### 错误处理
+
+- 文件不存在：提示用户检查路径
+- 权限不足：提示检查应用权限配置
+- 上传失败：记录错误信息并继续处理其他文件
+- Token 过期：自动重新获取
+
+## 示例代码
+
+```python
+from feishu_uploader import FeishuWikiUploader
+import os
+
+# 从环境变量加载配置
+uploader = FeishuWikiUploader(
+    app_id=os.getenv("FEISHU_APP_ID"),
+    app_secret=os.getenv("FEISHU_APP_SECRET")
+)
+
+# 上传单个文件
+result = uploader.upload_file(
+    file_path="数据文档/20260114日前.xlsx",
+    parent_node_token=os.getenv("FEISHU_WIKI_NODE_TOKEN")
+)
+
+# 批量上传文件夹
+results = uploader.upload_folder(
+    folder_path="数据文档",
+    parent_node_token=os.getenv("FEISHU_WIKI_NODE_TOKEN")
+)
+```
+
+## 注意事项
+
+1. **文件大小限制**：单个文件最大 100MB
+2. **速率限制**：飞书 API 有调用频率限制，大量文件建议分批上传
+3. **权限有效期**：tenant_access_token 有效期 2 小时
+4. **文件夹结构**：批量上传不会保留子文件夹结构，所有文件会上传到同一节点下
+
+## 扩展功能
+
+未来可以考虑添加：
+- 支持保留文件夹层级结构
+- 支持过滤文件类型
+- 支持增量上传（只上传新文件）
+- 支持进度条显示
+- 支持断点续传

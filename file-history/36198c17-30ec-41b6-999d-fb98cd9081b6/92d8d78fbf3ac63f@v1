@@ -1,0 +1,331 @@
+#!/usr/bin/env python3
+"""
+飞书多维表格 API 客户端
+提供认证、记录查询、创建、更新等功能
+"""
+
+import os
+import json
+import time
+import requests
+from typing import Optional, Dict, List, Any
+from datetime import datetime, timedelta
+
+
+class FeishuClient:
+    """飞书多维表格 API 客户端"""
+
+    def __init__(
+        self,
+        app_id: Optional[str] = None,
+        app_secret: Optional[str] = None,
+        app_token: Optional[str] = None,
+        table_id: Optional[str] = None
+    ):
+        """
+        初始化飞书客户端
+
+        Args:
+            app_id: 飞书应用 ID（默认从环境变量读取）
+            app_secret: 飞书应用密钥（默认从环境变量读取）
+            app_token: 多维表格应用 token（默认从环境变量读取）
+            table_id: 数据表 ID（默认从环境变量读取）
+        """
+        self.app_id = app_id or os.getenv("FEISHU_APP_ID")
+        self.app_secret = app_secret or os.getenv("FEISHU_APP_SECRET")
+        self.app_token = app_token or os.getenv("FEISHU_APP_TOKEN")
+        self.table_id = table_id or os.getenv("FEISHU_TABLE_ID")
+
+        # API 基础 URL
+        self.base_url = "https://open.feishu.cn/open-apis"
+
+        # 访问令牌
+        self._access_token: Optional[str] = None
+        self._token_expire_time: Optional[datetime] = None
+
+        # 验证必要参数
+        if not all([self.app_id, self.app_secret]):
+            raise ValueError("缺少必要参数：FEISHU_APP_ID 和 FEISHU_APP_SECRET")
+
+    def _get_access_token(self) -> str:
+        """
+        获取访问令牌（自动刷新）
+
+        Returns:
+            访问令牌
+        """
+        # 如果令牌未过期，直接返回
+        if self._access_token and self._token_expire_time:
+            if datetime.now() < self._token_expire_time:
+                return self._access_token
+
+        # 获取新的访问令牌
+        url = f"{self.base_url}/auth/v3/tenant_access_token/internal"
+        payload = {
+            "app_id": self.app_id,
+            "app_secret": self.app_secret
+        }
+
+        try:
+            response = requests.post(url, json=payload)
+            response.raise_for_status()
+            data = response.json()
+
+            if data.get("code") != 0:
+                raise Exception(f"获取访问令牌失败: {data.get('msg')}")
+
+            self._access_token = data.get("tenant_access_token")
+            # 令牌有效期 2 小时，提前 5 分钟刷新
+            self._token_expire_time = datetime.now() + timedelta(hours=2) - timedelta(minutes=5)
+
+            return self._access_token
+
+        except Exception as e:
+            raise Exception(f"获取访问令牌时发生错误: {str(e)}")
+
+    def _make_request(
+        self,
+        method: str,
+        endpoint: str,
+        **kwargs
+    ) -> Dict[str, Any]:
+        """
+        发起 API 请求
+
+        Args:
+            method: HTTP 方法
+            endpoint: API 端点
+            **kwargs: 其他请求参数
+
+        Returns:
+            API 响应数据
+        """
+        access_token = self._get_access_token()
+        headers = kwargs.pop("headers", {})
+        headers["Authorization"] = f"Bearer {access_token}"
+        headers["Content-Type"] = "application/json"
+
+        url = f"{self.base_url}/{endpoint}"
+
+        try:
+            response = requests.request(
+                method=method,
+                url=url,
+                headers=headers,
+                **kwargs
+            )
+            response.raise_for_status()
+            data = response.json()
+
+            if data.get("code") != 0:
+                raise Exception(f"API 请求失败: {data.get('msg')}")
+
+            return data.get("data", {})
+
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"网络请求错误: {str(e)}")
+        except Exception as e:
+            raise Exception(f"请求处理错误: {str(e)}")
+
+    def get_table_schema(self) -> Dict[str, Any]:
+        """
+        获取表格字段结构
+
+        Returns:
+            表格字段信息
+        """
+        if not self.app_token or not self.table_id:
+            raise ValueError("缺少必要参数：FEISHU_APP_TOKEN 和 FEISHU_TABLE_ID")
+
+        endpoint = f"bitable/v1/apps/{self.app_token}/tables/{self.table_id}/fields"
+        return self._make_request("GET", endpoint)
+
+    def find_record(
+        self,
+        field_name: str,
+        field_value: Any
+    ) -> Optional[Dict[str, Any]]:
+        """
+        根据字段值查找记录
+
+        Args:
+            field_name: 字段名称
+            field_value: 字段值
+
+        Returns:
+            找到的记录，如果不存在则返回 None
+        """
+        if not self.app_token or not self.table_id:
+            raise ValueError("缺少必要参数：FEISHU_APP_TOKEN 和 FEISHU_TABLE_ID")
+
+        # 使用筛选条件查询
+        endpoint = f"bitable/v1/apps/{self.app_token}/tables/{self.table_id}/records"
+        params = {
+            "filter": json.dumps({
+                "conditions": [
+                    {
+                        "field_name": field_name,
+                        "operator": "is",
+                        "value": [field_value]
+                    }
+                ]
+            }),
+            "page_size": 1
+        }
+
+        try:
+            data = self._make_request("GET", endpoint, params=params)
+            items = data.get("items", [])
+
+            if items:
+                return items[0]
+            return None
+
+        except Exception as e:
+            raise Exception(f"查找记录失败: {str(e)}")
+
+    def create_record(self, fields: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        创建新记录
+
+        Args:
+            fields: 记录字段数据
+
+        Returns:
+            创建的记录
+        """
+        if not self.app_token or not self.table_id:
+            raise ValueError("缺少必要参数：FEISHU_APP_TOKEN 和 FEISHU_TABLE_ID")
+
+        endpoint = f"bitable/v1/apps/{self.app_token}/tables/{self.table_id}/records"
+        payload = {"fields": fields}
+
+        try:
+            data = self._make_request("POST", endpoint, json=payload)
+            return data.get("record", {})
+
+        except Exception as e:
+            raise Exception(f"创建记录失败: {str(e)}")
+
+    def update_record(
+        self,
+        record_id: str,
+        fields: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """
+        更新记录
+
+        Args:
+            record_id: 记录 ID
+            fields: 要更新的字段数据
+
+        Returns:
+            更新后的记录
+        """
+        if not self.app_token or not self.table_id:
+            raise ValueError("缺少必要参数：FEISHU_APP_TOKEN 和 FEISHU_TABLE_ID")
+
+        endpoint = f"bitable/v1/apps/{self.app_token}/tables/{self.table_id}/records/{record_id}"
+        payload = {"fields": fields}
+
+        try:
+            data = self._make_request("PUT", endpoint, json=payload)
+            return data.get("record", {})
+
+        except Exception as e:
+            raise Exception(f"更新记录失败: {str(e)}")
+
+    def upsert_record(
+        self,
+        fields: Dict[str, Any],
+        unique_field: str = "note_id"
+    ) -> Dict[str, Any]:
+        """
+        追加或更新记录
+
+        如果唯一字段值已存在则更新，否则创建新记录
+
+        Args:
+            fields: 记录字段数据
+            unique_field: 用于判断唯一性的字段名称
+
+        Returns:
+            操作结果（包含操作类型和记录）
+        """
+        try:
+            # 获取唯一字段值
+            unique_value = fields.get(unique_field)
+
+            if not unique_value:
+                # 没有唯一字段值，直接创建
+                record = self.create_record(fields)
+                return {"action": "created", "record": record}
+
+            # 查找是否已存在
+            existing_record = self.find_record(unique_field, unique_value)
+
+            if existing_record:
+                # 已存在，更新记录
+                record_id = existing_record.get("record_id")
+                record = self.update_record(record_id, fields)
+                return {"action": "updated", "record": record}
+            else:
+                # 不存在，创建新记录
+                record = self.create_record(fields)
+                return {"action": "created", "record": record}
+
+        except Exception as e:
+            raise Exception(f"Upsert 记录失败: {str(e)}")
+
+    def batch_create_records(
+        self,
+        records: List[Dict[str, Any]]
+    ) -> List[Dict[str, Any]]:
+        """
+        批量创建记录
+
+        Args:
+            records: 记录列表（每条记录都是字段字典）
+
+        Returns:
+            创建的记录列表
+        """
+        if not self.app_token or not self.table_id:
+            raise ValueError("缺少必要参数：FEISHU_APP_TOKEN 和 FEISHU_TABLE_ID")
+
+        endpoint = f"bitable/v1/apps/{self.app_token}/tables/{self.table_id}/records/batch_create"
+        payload = {"records": [{"fields": record} for record in records]}
+
+        try:
+            data = self._make_request("POST", endpoint, json=payload)
+            return data.get("records", [])
+
+        except Exception as e:
+            raise Exception(f"批量创建记录失败: {str(e)}")
+
+
+# 测试代码
+if __name__ == "__main__":
+    # 示例：测试客户端功能
+    try:
+        client = FeishuClient()
+
+        # 测试获取表格结构
+        print("获取表格结构...")
+        schema = client.get_table_schema()
+        print(f"字段数量: {len(schema.get('items', []))}")
+
+        # 测试创建记录
+        print("\n创建测试记录...")
+        test_record = {
+            "title": "测试笔记",
+            "author": "测试作者",
+            "likes": 100,
+            "note_id": f"test_{int(time.time())}"
+        }
+        result = client.upsert_record(test_record, unique_field="note_id")
+        print(f"操作类型: {result['action']}")
+        print(f"记录ID: {result['record'].get('record_id')}")
+
+    except Exception as e:
+        print(f"测试失败: {str(e)}")

@@ -1,0 +1,495 @@
+# 故障排查指南
+
+本文档帮助您解决在使用飞书多维表格 MCP 服务器时遇到的常见问题。
+
+## 目录
+
+1. [安装问题](#安装问题)
+2. [配置问题](#配置问题)
+3. [连接问题](#连接问题)
+4. [数据写入问题](#数据写入问题)
+5. [权限问题](#权限问题)
+6. [性能问题](#性能问题)
+
+## 安装问题
+
+### 问题 1：pip install 失败
+
+**症状**：
+```
+ERROR: Could not find a version that satisfies the requirement mcp
+```
+
+**原因**：Python 版本过低或网络问题
+
+**解决方法**：
+
+1. 检查 Python 版本（需要 3.8 或更高）：
+```bash
+python --version
+```
+
+2. 升级 pip：
+```bash
+python -m pip install --upgrade pip
+```
+
+3. 使用国内镜像源：
+```bash
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+4. 如果还是失败，手动安装：
+```bash
+pip install mcp requests python-dotenv
+```
+
+### 问题 2：找不到模块 'mcp'
+
+**症状**：
+```
+ModuleNotFoundError: No module named 'mcp'
+```
+
+**原因**：依赖未正确安装或安装到了错误的 Python 环境
+
+**解决方法**：
+
+1. 确认 Python 环境：
+```bash
+where python
+```
+
+2. 使用正确的 Python 安装依赖：
+```bash
+python -m pip install -r requirements.txt
+```
+
+3. 如果有多个 Python 版本，使用完整路径：
+```bash
+C:\Python311\python.exe -m pip install -r requirements.txt
+```
+
+## 配置问题
+
+### 问题 3：配置文件不生效
+
+**症状**：修改配置文件后，重启 Claude Code 仍无法使用
+
+**原因**：
+- 配置文件路径错误
+- JSON 格式错误
+- 环境变量未设置
+
+**解决方法**：
+
+1. 确认配置文件路径：
+   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+   - 打开路径：按 Win+R，输入 `%APPDATA%\Claude`
+
+2. 验证 JSON 格式：
+   - 使用在线 JSON 验证工具：https://jsonlint.com/
+   - 检查是否有缺失的逗号、括号
+
+3. 确认环境变量设置正确：
+```json
+{
+  "mcpServers": {
+    "feishu-bitable": {
+      "command": "python",
+      "args": ["D:/AI/cc_pro/program/202601 CLAUDE CODE链接飞书/feishu-bitable-mcp/server.py"],
+      "env": {
+        "FEISHU_APP_ID": "cli_xxx",
+        "FEISHU_APP_SECRET": "xxx",
+        "FEISHU_APP_TOKEN": "xxx",
+        "FEISHU_TABLE_ID": "xxx"
+      }
+    }
+  }
+}
+```
+
+4. 保存文件后，完全关闭并重启 Claude Code
+
+### 问题 4：环境变量未生效
+
+**症状**：
+```
+❌ 配置错误：缺少必要参数：FEISHU_APP_ID 和 FEISHU_APP_SECRET
+```
+
+**原因**：环境变量未正确设置
+
+**解决方法**：
+
+**方法 1：使用配置文件（推荐）**
+
+在 `claude_desktop_config.json` 中设置：
+```json
+"env": {
+  "FEISHU_APP_ID": "cli_xxx",
+  "FEISHU_APP_SECRET": "xxx",
+  "FEISHU_APP_TOKEN": "xxx",
+  "FEISHU_TABLE_ID": "xxx"
+}
+```
+
+**方法 2：使用系统环境变量**
+
+Windows:
+```cmd
+setx FEISHU_APP_ID "cli_xxx"
+setx FEISHU_APP_SECRET "xxx"
+setx FEISHU_APP_TOKEN "xxx"
+setx FEISHU_TABLE_ID "xxx"
+```
+
+**方法 3：使用 .env 文件**
+
+创建 `.env` 文件：
+```env
+FEISHU_APP_ID=cli_xxx
+FEISHU_APP_SECRET=xxx
+FEISHU_APP_TOKEN=xxx
+FEISHU_TABLE_ID=xxx
+```
+
+## 连接问题
+
+### 问题 5：无法连接到飞书 API
+
+**症状**：
+```
+❌ 操作失败：获取访问令牌失败
+```
+
+**原因**：
+- App ID 或 App Secret 错误
+- 网络连接问题
+- 飞书服务暂时不可用
+
+**解决方法**：
+
+1. 检查 App ID 和 App Secret：
+   - 登录飞书开放平台：https://open.feishu.cn/app
+   - 查看应用的凭证信息
+   - 重新复制 App ID 和 App Secret
+
+2. 测试网络连接：
+```bash
+ping open.feishu.cn
+```
+
+3. 使用测试脚本检查配置：
+```bash
+cd "D:\AI\cc_pro\program\202601 CLAUDE CODE链接飞书\feishu-bitable-mcp"
+python server.py --check
+```
+
+4. 如果使用代理，配置代理设置：
+```python
+# 在 feishu_client.py 中添加
+import os
+os.environ['HTTP_PROXY'] = 'http://your-proxy:port'
+os.environ['HTTPS_PROXY'] = 'http://your-proxy:port'
+```
+
+### 问题 6：访问令牌过期
+
+**症状**：
+```
+❌ 操作失败：访问令牌无效
+```
+
+**原因**：访问令牌已过期（通常 2 小时后过期）
+
+**解决方法**：
+
+**好消息**：客户端会自动刷新令牌，无需手动处理。
+
+如果仍然遇到此错误：
+1. 检查系统时间是否正确
+2. 重启 Claude Code
+3. 删除并重新配置 MCP 服务器
+
+## 数据写入问题
+
+### 问题 7：字段不存在
+
+**症状**：
+```
+❌ 操作失败：字段不存在
+```
+
+**原因**：字段名称错误或表格中没有该字段
+
+**解决方法**：
+
+1. 查看表格结构：
+```
+在 Claude Code 中输入：获取飞书表格的字段结构
+```
+
+2. 检查字段名称是否匹配（注意大小写和空格）
+
+3. 在飞书表格中创建缺失的字段：
+   - 打开多维表格
+   - 点击表头右侧的 `+` 按钮
+   - 添加字段并设置类型
+
+### 问题 8：字段类型不匹配
+
+**症状**：
+```
+❌ 操作失败：字段类型不匹配
+```
+
+**原因**：数据类型与飞书字段类型不匹配
+
+**解决方法**：
+
+1. 查看字段类型：
+```
+在 Claude Code 中输入：获取飞书表格的字段结构
+```
+
+2. 转换数据类型：
+
+| 飞书字段类型 | Python 数据类型 | 转换示例 |
+|------------|----------------|---------|
+| 文本 | `str` | `str(123)` → `"123"` |
+| 数字 | `int` 或 `float` | `int("123")` → `123` |
+| 日期 | `str` (ISO 格式) | `"2026-01-12"` |
+| 多选 | `list` | `["标签1", "标签2"]` |
+
+3. 在调用工具前转换数据：
+```
+将以下数据写入飞书表格，注意转换数据类型：
+- likes: "1234" 转换为数字 1234
+- publish_time: "今天" 转换为 "2026-01-12"
+```
+
+### 问题 9：唯一字段重复
+
+**症状**：
+```
+写入多条数据时，只有最后一条成功
+```
+
+**原因**：使用了错误的唯一字段，导致所有数据被认为是同一条记录
+
+**解决方法**：
+
+1. 确认唯一字段的值是唯一的：
+```
+检查这些数据的 note_id 是否都不同
+```
+
+2. 使用其他唯一字段：
+```
+使用 url 作为唯一字段写入
+```
+
+3. 不使用 upsert，改用 write_record：
+```
+直接写入记录，不要检查重复
+```
+
+## 权限问题
+
+### 问题 10：权限不足
+
+**症状**：
+```
+❌ 操作失败：权限不足
+```
+
+**原因**：飞书应用没有足够的权限
+
+**解决方法**：
+
+1. 登录飞书开放平台：https://open.feishu.cn/app
+
+2. 进入应用详情 → 权限管理
+
+3. 申请以下权限：
+   - `bitable:app` - 查看、评论和编辑多维表格
+
+4. 等待权限审批通过（个人应用通常会自动通过）
+
+5. 发布应用更新
+
+6. 重新测试连接
+
+### 问题 11：无法访问表格
+
+**症状**：
+```
+❌ 操作失败：无权访问该表格
+```
+
+**原因**：
+- 应用创建者没有表格访问权限
+- 表格未共享给应用创建者
+
+**解决方法**：
+
+1. 确认应用创建者有表格访问权限：
+   - 在飞书中打开表格
+   - 点击右上角"共享"
+   - 添加应用创建者的邮箱
+
+2. 或使用应用创建者的账号创建新表格
+
+## 性能问题
+
+### 问题 12：写入速度慢
+
+**症状**：写入大量数据时速度很慢
+
+**原因**：
+- 单条写入而非批量写入
+- API 频率限制
+- 网络延迟
+
+**解决方法**：
+
+1. 使用批量写入：
+```
+将这100条数据批量写入飞书表格
+```
+
+2. 分批处理（每批 100-500 条）：
+```
+将这1000条数据分成10批，每批100条写入飞书表格
+```
+
+3. 减少不必要的数据：
+```
+只写入需要的字段：title、author、likes、note_id
+```
+
+### 问题 13：API 频率限制
+
+**症状**：
+```
+❌ 操作失败：API 调用频率超限
+```
+
+**原因**：超过了飞书 API 的频率限制
+
+**解决方法**：
+
+1. 降低调用频率：
+   - 批量写入而不是单条写入
+   - 增加调用间隔
+
+2. 使用批量操作：
+   - `batch_write_records` 而不是多次 `write_record`
+
+3. 联系飞书提升限额：
+   - 飞书开放平台 → 应用详情 → 配置管理
+   - 申请提升 API 频率限额
+
+## 调试技巧
+
+### 1. 查看详细错误信息
+
+在 Claude Code 中，错误信息会显示详细的错误原因。仔细阅读错误信息，通常能找到问题所在。
+
+### 2. 使用测试脚本
+
+```bash
+cd "D:\AI\cc_pro\program\202601 CLAUDE CODE链接飞书\feishu-bitable-mcp"
+python server.py --check
+```
+
+这会显示：
+- 配置是否正确
+- 是否能连接到飞书 API
+- 表格字段数量
+
+### 3. 手动测试 API
+
+使用 Postman 或 curl 测试飞书 API：
+
+```bash
+# 获取访问令牌
+curl -X POST "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal" \
+  -H "Content-Type: application/json" \
+  -d '{"app_id":"cli_xxx","app_secret":"xxx"}'
+```
+
+### 4. 查看日志
+
+在 `feishu_client.py` 中添加日志：
+
+```python
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+# 在关键位置添加日志
+logger.debug(f"正在创建记录: {fields}")
+```
+
+### 5. 简化测试
+
+先使用简单的数据测试：
+
+```
+写入一条测试记录到飞书表格：
+- title: "测试"
+- note_id: "test_001"
+```
+
+确认基本功能正常后，再使用复杂的数据。
+
+## 常见错误码
+
+| 错误码 | 错误信息 | 原因 | 解决方法 |
+|-------|---------|------|---------|
+| 99991663 | app not found | 应用不存在或未发布 | 检查 App ID，发布应用 |
+| 99991401 | invalid credential | App Secret 错误 | 重新复制 App Secret |
+| 99991402 | access token expired | 访问令牌过期 | 客户端会自动刷新 |
+| 99991403 | access token denied | 访问令牌无效 | 重新获取令牌 |
+| 115005 | table not found | 表格不存在 | 检查 app_token 和 table_id |
+| 1254022 | field not found | 字段不存在 | 检查字段名称 |
+| 1254021 | field type mismatch | 字段类型不匹配 | 转换数据类型 |
+| 1254003 | no permission | 权限不足 | 申请 bitable:app 权限 |
+
+## 获取帮助
+
+如果以上方法都无法解决问题：
+
+1. 查看 [飞书开放平台文档](https://open.feishu.cn/document)
+2. 查看 [使用说明](./使用说明.md)
+3. 提交 Issue：https://github.com/your-repo/issues
+4. 联系飞书技术支持：https://open.feishu.cn/support
+
+提交 Issue 时，请提供：
+- 错误信息（完整截图或文本）
+- 配置信息（隐藏敏感信息）
+- 操作步骤
+- Python 版本：`python --version`
+- 操作系统版本
+
+## 预防措施
+
+1. **定期检查配置**：
+   ```bash
+   python server.py --check
+   ```
+
+2. **备份数据**：
+   - 定期导出飞书表格数据
+   - 保存重要配置信息
+
+3. **使用测试表格**：
+   - 先在测试表格中测试
+   - 确认无误后再写入正式表格
+
+4. **监控错误日志**：
+   - 定期查看 Claude Code 的错误日志
+   - 及时发现和解决问题

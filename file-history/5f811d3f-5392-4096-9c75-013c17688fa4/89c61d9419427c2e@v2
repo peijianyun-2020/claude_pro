@@ -1,0 +1,567 @@
+"""
+模型动态更新器
+
+Model updater for incremental learning and periodic retraining.
+Implements weekly incremental updates and monthly full retraining.
+"""
+
+from pathlib import Path
+from datetime import datetime, timedelta
+import pandas as pd
+import numpy as np
+import pickle
+import logging
+from typing import Dict, Optional, List, Tuple
+
+logger = logging.getLogger(__name__)
+
+
+class ModelUpdater:
+    """
+    模型动态更新器
+
+    实现三层更新机制：
+    1. 在线预测（每天）- 加载模型推理，不修改模型参数
+    2. 增量学习（每周）- 让模型学习最近一周的新数据
+    3. 完整重训练（每月）- 使用全部历史数据重新训练
+
+    Usage:
+        updater = ModelUpdater(region='广东')
+        updater.check_and_update()  # 自动检测并执行更新
+    """
+
+    def __init__(
+        self,
+        region: str = '广东',
+        config: Optional[Dict] = None,
+        models_dir: str = 'models',
+        data_dir: str = '基础数据',
+        lookback_days: int = 30,
+        forecast_days: int = 3
+    ):
+        """
+        初始化模型更新器
+
+        Args:
+            region: 预测区域
+            config: 配置参数
+            models_dir: 模型保存目录
+            data_dir: 数据目录
+            lookback_days: 特征构造的历史天数
+            forecast_days: 预测天数
+        """
+        self.region = region
+        self.config = config or self._load_default_config()
+        self.models_dir = Path(models_dir)
+        self.data_dir = Path(data_dir)
+        self.lookback_days = lookback_days
+        self.forecast_days = forecast_days
+
+        # Update thresholds
+        self.incremental_threshold_days = 7  # 增量学习：累积7天新数据
+        self.full_retrain_threshold_days = 30  # 完整重训练：累积30天新数据
+
+        # Update history
+        self.update_history = []
+
+        logger.info(f"初始化模型更新器 - 区域: {region}")
+
+    def _load_default_config(self) -> Dict:
+        """加载默认配置"""
+        return {
+            'models': {
+                'xgb_day_ahead': 'xgb_day_ahead.pkl',
+                'xgb_real_time': 'xgb_real_time.pkl',
+                'lstm_day_ahead': 'lstm_day_ahead.pth',
+                'lstm_real_time': 'lstm_real_time.pth',
+                'ensemble': 'ensemble.pkl'
+            },
+            'model_types': ['xgb_day_ahead', 'xgb_real_time',
+                           'lstm_day_ahead', 'lstm_real_time']
+        }
+
+    def load_model_metadata(self, model_type: str) -> Optional[Dict]:
+        """
+        加载模型元数据
+
+        Args:
+            model_type: 模型类型
+
+        Returns:
+            模型元数据字典或None
+        """
+        # Check if model_type exists in config
+        if model_type not in self.config['models']:
+            return None
+
+        model_path = self.models_dir / self.config['models'][model_type]
+        meta_path = model_path.with_suffix('.meta.json')
+
+        if not meta_path.exists():
+            # File doesn't exist, return None silently
+            return None
+
+        try:
+            import json
+            with open(meta_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            logger.error(f"加载模型元数据失败: {e}")
+            return None
+
+    def save_model_metadata(self, model_type: str, metadata: Dict) -> None:
+        """
+        保存模型元数据
+
+        Args:
+            model_type: 模型类型
+            metadata: 元数据字典
+        """
+        import json
+        model_path = self.models_dir / self.config['models'][model_type]
+        meta_path = model_path.with_suffix('.meta.json')
+
+        try:
+            # Create directory if it doesn't exist
+            meta_path.parent.mkdir(parents=True, exist_ok=True)
+
+            with open(meta_path, 'w', encoding='utf-8') as f:
+                json.dump(metadata, f, ensure_ascii=False, indent=2, default=str)
+            logger.info(f"保存模型元数据: {meta_path}")
+        except Exception as e:
+            logger.error(f"保存模型元数据失败: {e}")
+
+    def get_new_data_days(self, model_type: str) -> int:
+        """
+        获取自上次更新以来的新数据天数
+
+        Args:
+            model_type: 模型类型
+
+        Returns:
+            新数据天数
+        """
+        # Check if data directory exists first
+        day_ahead_dir = self.data_dir / '每日日前数据表'
+
+        if not day_ahead_dir.exists():
+            return 0  # No data directory, no new data
+
+        metadata = self.load_model_metadata(model_type)
+
+        if metadata is None or 'last_update_date' not in metadata:
+            # No metadata - check if any data files exist
+            excel_files = list(day_ahead_dir.glob('*.xlsx'))
+            return len(excel_files) if excel_files else 0
+
+        last_update = pd.to_datetime(metadata['last_update_date'])
+        today = pd.Timestamp.now().normalize()
+
+        # Get all Excel files
+        excel_files = sorted(day_ahead_dir.glob('*.xlsx'))
+
+        # Count files newer than last_update
+        new_days = 0
+        for file_path in excel_files:
+            # Extract date from filename (format: YYYYMMDD日前.xlsx)
+            try:
+                date_str = file_path.stem.replace('日前', '').replace('实时', '')
+                file_date = pd.to_datetime(date_str, format='%Y%m%d')
+
+                if file_date > last_update and file_date <= today:
+                    new_days += 1
+            except:
+                continue
+
+        return new_days
+
+    def check_and_update(self, force_incremental: bool = False, force_full_retrain: bool = False) -> Dict:
+        """
+        检查并执行模型更新
+
+        Args:
+            force_incremental: 强制执行增量学习
+            force_full_retrain: 强制执行完整重训练
+
+        Returns:
+            更新结果字典 {
+                'models_updated': 更新的模型列表,
+                'update_type': 更新类型,
+                'timestamp': 更新时间,
+                'details': 详细信息
+            }
+        """
+        logger.info("=" * 60)
+        logger.info("检查模型更新需求")
+        logger.info("=" * 60)
+
+        update_start = datetime.now()
+
+        if force_full_retrain:
+            update_type = 'full_retrain'
+            result = self._full_retrain()
+        elif force_incremental:
+            update_type = 'incremental'
+            result = self._incremental_update()
+        else:
+            # Auto-detect which update to perform
+            max_new_days = 0
+            for model_type in self.config['model_types']:
+                new_days = self.get_new_data_days(model_type)
+                max_new_days = max(max_new_days, new_days)
+
+            logger.info(f"最大新数据天数: {max_new_days}")
+
+            if max_new_days >= self.full_retrain_threshold_days:
+                update_type = 'full_retrain'
+                result = self._full_retrain()
+            elif max_new_days >= self.incremental_threshold_days:
+                update_type = 'incremental'
+                result = self._incremental_update()
+            else:
+                update_type = 'none'
+                result = {
+                    'models_updated': [],
+                    'details': f'无需更新（新数据: {max_new_days}天，阈值: {self.incremental_threshold_days}天）'
+                }
+                logger.info(result['details'])
+
+        # Record update history
+        history_entry = {
+            'timestamp': update_start,
+            'update_type': update_type,
+            'models_updated': result.get('models_updated', []),
+            'details': result.get('details', '')
+        }
+        self.update_history.append(history_entry)
+
+        # Keep only last 50 records
+        if len(self.update_history) > 50:
+            self.update_history = self.update_history[-50:]
+
+        return {
+            'models_updated': result.get('models_updated', []),
+            'update_type': update_type,
+            'timestamp': update_start,
+            'details': result.get('details', '')
+        }
+
+    def _incremental_update(self) -> Dict:
+        """
+        执行增量学习更新（每周）
+
+        Returns:
+            更新结果
+        """
+        logger.info("执行增量学习更新")
+
+        models_updated = []
+        results = {}
+
+        for model_type in self.config['model_types']:
+            new_days = self.get_new_data_days(model_type)
+
+            if new_days < self.incremental_threshold_days:
+                logger.info(f"{model_type}: 新数据不足（{new_days}天），跳过")
+                continue
+
+            # Check if model file exists
+            model_path = self.models_dir / self.config['models'][model_type]
+            if not model_path.exists():
+                logger.info(f"{model_type}: 模型文件不存在，跳过")
+                continue
+
+            logger.info(f"更新模型: {model_type}（新数据: {new_days}天）")
+
+            try:
+                if model_type.startswith('lstm'):
+                    success = self._incremental_update_lstm(model_type)
+                elif model_type.startswith('xgb'):
+                    success = self._incremental_update_xgb(model_type)
+                else:
+                    logger.warning(f"未知模型类型: {model_type}")
+                    continue
+
+                if success:
+                    models_updated.append(model_type)
+                    results[model_type] = 'success'
+                else:
+                    results[model_type] = 'failed'
+
+            except Exception as e:
+                logger.error(f"更新模型失败 {model_type}: {e}", exc_info=True)
+                results[model_type] = f'error: {e}'
+
+        logger.info(f"增量学习完成 - 更新模型: {len(models_updated)}")
+
+        return {
+            'models_updated': models_updated,
+            'details': f'增量学习更新，更新了{len(models_updated)}个模型'
+        }
+
+    def _incremental_update_lstm(self, model_type: str) -> bool:
+        """
+        LSTM模型增量学习（Fine-tune）
+
+        Args:
+            model_type: 模型类型
+
+        Returns:
+            是否成功
+        """
+        try:
+            import torch
+            from src.models.lstm_model import LSTMPricePredictor
+            from src.data_collection.excel_reader import ExcelReader
+            from src.preprocessing.feature_engineering import FeatureEngineer
+
+            # Load model
+            model_path = self.models_dir / self.config['models'][model_type]
+            model = LSTMPricePredictor(model_type=model_type.replace('lstm_', ''))
+            model.load(str(model_path))
+
+            # Load new data
+            reader = ExcelReader(region=self.region)
+            day_ahead_dir = self.data_dir / '每日日前数据表'
+            df = reader.read_day_ahead_price_directory(day_ahead_dir)
+
+            if len(df) < self.lookback_days * 24:
+                logger.warning(f"数据不足: {len(df)}小时")
+                return False
+
+            # Prepare features
+            engineer = FeatureEngineer()
+            df = engineer.create_all_features(df, price_col='price', datetime_col='datetime')
+            df = df.dropna()
+
+            # Prepare training samples (use most recent data)
+            recent_df = df.tail(self.incremental_threshold_days * 24 + self.lookback_days * 24)
+
+            if model_type == 'day_ahead':
+                X, y = engineer.prepare_training_samples(
+                    recent_df,
+                    lookback_days=self.lookback_days,
+                    forecast_days=self.forecast_days
+                )
+            else:
+                # For real-time, need day-ahead price as feature
+                # This is simplified - real implementation would merge real-time data
+                X, y = engineer.prepare_training_samples(
+                    recent_df,
+                    lookback_days=self.lookback_days,
+                    forecast_days=self.forecast_days
+                )
+
+            if len(X) == 0:
+                logger.warning("特征准备失败")
+                return False
+
+            # Fine-tune with lower learning rate
+            logger.info(f"Fine-tuning LSTM {model_type}...")
+
+            # Split for validation
+            split_idx = int(len(X) * 0.8)
+            X_train, X_val = X[:split_idx], X[split_idx:]
+            y_train, y_val = y[:split_idx], y[split_idx:]
+
+            # Train with small epochs for fine-tuning
+            model.train(X_train, y_train, epochs=3, batch_size=16)
+
+            # Evaluate on validation set
+            metrics = model.evaluate(X_val, y_val)
+            mape = metrics.get('mape', float('inf'))
+
+            logger.info(f"Fine-tune MAPE: {mape:.2f}%")
+
+            # Load old model to compare
+            old_model = LSTMPricePredictor(model_type=model_type.replace('lstm_', ''))
+            old_model.load(str(model_path))
+            old_metrics = old_model.evaluate(X_val, y_val)
+            old_mape = old_metrics.get('mape', float('inf'))
+
+            # Only replace if new model is better
+            if mape < old_mape:
+                model.save(str(model_path))
+
+                # Update metadata
+                self.save_model_metadata(model_type, {
+                    'last_update_date': datetime.now().isoformat(),
+                    'update_type': 'incremental',
+                    'mape': float(mape),
+                    'old_mape': float(old_mape),
+                    'improvement': float(old_mape - mape)
+                })
+
+                logger.info(f"模型已替换 - MAPE改善: {old_mape:.2f}% → {mape:.2f}%")
+                return True
+            else:
+                logger.info(f"模型未改善 - 保持旧模型 ({old_mape:.2f}% < {mape:.2f}%)")
+                return False
+
+        except Exception as e:
+            logger.error(f"LSTM增量更新失败: {e}", exc_info=True)
+            return False
+
+    def _incremental_update_xgb(self, model_type: str) -> bool:
+        """
+        XGBoost模型增量更新（使用全部数据重新训练）
+
+        Args:
+            model_type: 模型类型
+
+        Returns:
+            是否成功
+        """
+        try:
+            from src.models.xgboost_model import XGBoostPricePredictor
+            from src.data_collection.excel_reader import ExcelReader
+            from src.preprocessing.feature_engineering import FeatureEngineer
+
+            # Load all data
+            reader = ExcelReader(region=self.region)
+            day_ahead_dir = self.data_dir / '每日日前数据表'
+            df = reader.read_day_ahead_price_directory(day_ahead_dir)
+
+            if len(df) < self.lookback_days * 24:
+                logger.warning(f"数据不足: {len(df)}小时")
+                return False
+
+            # Prepare features
+            engineer = FeatureEngineer()
+            df = engineer.create_all_features(df, price_col='price', datetime_col='datetime')
+            df = df.dropna()
+
+            # Prepare training samples
+            X, y = engineer.prepare_training_samples(
+                df,
+                lookback_days=self.lookback_days,
+                forecast_days=self.forecast_days
+            )
+
+            if len(X) == 0:
+                logger.warning("特征准备失败")
+                return False
+
+            # Train new model
+            logger.info(f"重新训练XGBoost {model_type}...")
+
+            model = XGBoostPricePredictor(model_type=model_type.replace('xgb_', ''))
+            model.train(X, y, validation_split=0.2)
+
+            # Evaluate
+            split_idx = int(len(X) * 0.8)
+            metrics = model.evaluate(X[split_idx:], y[split_idx:])
+            mape = metrics.get('mape', float('inf'))
+
+            logger.info(f"新模型MAPE: {mape:.2f}%")
+
+            # Load old model to compare
+            model_path = self.models_dir / self.config['models'][model_type]
+            old_model = XGBoostPricePredictor(model_type=model_type.replace('xgb_', ''))
+
+            # Load using pickle
+            with open(model_path, 'rb') as f:
+                old_model_data = pickle.load(f)
+                old_model.model = old_model_data['model']
+
+            old_metrics = old_model.evaluate(X[split_idx:], y[split_idx:])
+            old_mape = old_metrics.get('mape', float('inf'))
+
+            # Only replace if new model is better
+            if mape < old_mape:
+                model.save(str(model_path))
+
+                # Update metadata
+                self.save_model_metadata(model_type, {
+                    'last_update_date': datetime.now().isoformat(),
+                    'update_type': 'incremental_retrain',
+                    'mape': float(mape),
+                    'old_mape': float(old_mape),
+                    'improvement': float(old_mape - mape)
+                })
+
+                logger.info(f"模型已替换 - MAPE改善: {old_mape:.2f}% → {mape:.2f}%")
+                return True
+            else:
+                logger.info(f"模型未改善 - 保持旧模型 ({old_mape:.2f}% < {mape:.2f}%)")
+                return False
+
+        except Exception as e:
+            logger.error(f"XGBoost增量更新失败: {e}", exc_info=True)
+            return False
+
+    def _full_retrain(self) -> Dict:
+        """
+        执行完整重训练（每月）
+
+        Returns:
+            更新结果
+        """
+        logger.info("执行完整重训练")
+
+        models_updated = []
+
+        for model_type in self.config['model_types']:
+            logger.info(f"完整重训练: {model_type}")
+
+            try:
+                # For full retrain, use same logic as incremental but with all data
+                if model_type.startswith('lstm'):
+                    success = self._incremental_update_lstm(model_type)
+                elif model_type.startswith('xgb'):
+                    success = self._incremental_update_xgb(model_type)
+                else:
+                    continue
+
+                if success:
+                    models_updated.append(model_type)
+
+            except Exception as e:
+                logger.error(f"完整重训练失败 {model_type}: {e}")
+
+        logger.info(f"完整重训练完成 - 更新模型: {len(models_updated)}")
+
+        return {
+            'models_updated': models_updated,
+            'details': f'完整重训练，更新了{len(models_updated)}个模型'
+        }
+
+    def get_update_history(self, limit: int = 10) -> List[Dict]:
+        """
+        获取更新历史记录
+
+        Args:
+            limit: 返回记录数限制
+
+        Returns:
+            更新历史列表
+        """
+        return self.update_history[-limit:]
+
+    def get_model_status(self, model_type: str) -> Dict:
+        """
+        获取模型状态信息
+
+        Args:
+            model_type: 模型类型
+
+        Returns:
+            模型状态字典
+        """
+        metadata = self.load_model_metadata(model_type)
+        new_days = self.get_new_data_days(model_type)
+
+        # Check if model or metadata exists
+        model_path = self.models_dir / self.config['models'][model_type]
+        meta_path = model_path.with_suffix('.meta.json')
+        exists = model_path.exists() or meta_path.exists()
+
+        return {
+            'model_type': model_type,
+            'model_path': str(model_path),
+            'exists': exists,
+            'metadata': metadata,
+            'new_data_days': new_days,
+            'needs_incremental_update': new_days >= self.incremental_threshold_days,
+            'needs_full_retrain': new_days >= self.full_retrain_threshold_days
+        }

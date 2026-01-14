@@ -1,0 +1,258 @@
+"""
+预测工作流 - 高级接口
+
+Prediction workflow - High-level interface for running predictions.
+"""
+
+from pathlib import Path
+from typing import Dict, Optional, List
+import pandas as pd
+import numpy as np
+import logging
+
+from .predictor import PricePredictor
+
+logger = logging.getLogger(__name__)
+
+
+class PredictionWorkflow:
+    """
+    预测工作流 - 高级接口
+
+    提供简化的接口用于执行完整的预测流程，包括：
+    - 单日预测
+    - 批量预测
+    - 预测历史记录管理
+    - 性能评估
+
+    Usage:
+        workflow = PredictionWorkflow(region='广东')
+        predictions = workflow.run_daily_prediction()
+    """
+
+    def __init__(
+        self,
+        region: str = '广东',
+        config: Optional[Dict] = None,
+        lookback_days: int = 30,
+        forecast_days: int = 3
+    ):
+        """
+        初始化预测工作流
+
+        Args:
+            region: 预测区域
+            config: 配置参数
+            lookback_days: 特征构造的历史天数
+            forecast_days: 预测天数
+        """
+        self.region = region
+        self.predictor = PricePredictor(
+            region=region,
+            config=config,
+            lookback_days=lookback_days,
+            forecast_days=forecast_days
+        )
+        self.prediction_history = []
+
+        logger.info(f"初始化预测工作流 - 区域: {region}")
+
+    def run_daily_prediction(self, save_results: bool = True) -> Dict:
+        """
+        执行单日预测
+
+        Args:
+            save_results: 是否保存预测结果
+
+        Returns:
+            预测结果字典 {
+                'predictions': 预测值,
+                'output_path': 输出文件路径,
+                'timestamp': 预测时间戳,
+                'region': 预测区域
+            }
+        """
+        logger.info(f"开始执行单日预测 - 区域: {self.region}")
+
+        try:
+            predictions, output_path = self.predictor.run(save_results=save_results)
+
+            result = {
+                'predictions': predictions,
+                'output_path': str(output_path) if output_path else None,
+                'timestamp': pd.Timestamp.now(),
+                'region': self.region,
+                'status': 'success'
+            }
+
+            # Record to history
+            self.prediction_history.append(result)
+
+            logger.info(f"单日预测完成 - 日前: {predictions.get('day_ahead').shape if predictions.get('day_ahead') is not None else 'N/A'}, "
+                       f"实时: {predictions.get('real_time').shape if predictions.get('real_time') is not None else 'N/A'}")
+
+            return result
+
+        except Exception as e:
+            logger.error(f"预测失败: {e}")
+            return {
+                'predictions': {},
+                'output_path': None,
+                'timestamp': pd.Timestamp.now(),
+                'region': self.region,
+                'status': 'failed',
+                'error': str(e)
+            }
+
+    def load_predictions(self, filepath: Path) -> pd.DataFrame:
+        """
+        加载历史预测结果
+
+        Args:
+            filepath: 预测结果文件路径
+
+        Returns:
+            预测结果DataFrame
+        """
+        try:
+            df = pd.read_csv(filepath)
+            df['datetime'] = pd.to_datetime(df['datetime'])
+            logger.info(f"加载预测结果: {filepath} ({len(df)} 条记录)")
+            return df
+        except Exception as e:
+            logger.error(f"加载预测结果失败: {e}")
+            return pd.DataFrame()
+
+    def get_prediction_summary(self, prediction_result: Dict) -> Dict:
+        """
+        获取预测结果摘要
+
+        Args:
+            prediction_result: 预测结果字典
+
+        Returns:
+            摘要字典 {
+                'day_ahead_mean': 日前价格均值,
+                'day_ahead_min': 日前价格最小值,
+                'day_ahead_max': 日前价格最大值,
+                'real_time_mean': 实时价格均值,
+                'real_time_min': 实时价格最小值,
+                'real_time_max': 实时价格最大值
+            }
+        """
+        summary = {}
+
+        predictions = prediction_result.get('predictions', {})
+
+        if 'day_ahead' in predictions and predictions['day_ahead'] is not None:
+            da_pred = predictions['day_ahead']
+            summary['day_ahead'] = {
+                'mean': float(np.mean(da_pred)),
+                'min': float(np.min(da_pred)),
+                'max': float(np.max(da_pred)),
+                'std': float(np.std(da_pred))
+            }
+
+        if 'real_time' in predictions and predictions['real_time'] is not None:
+            rt_pred = predictions['real_time']
+            summary['real_time'] = {
+                'mean': float(np.mean(rt_pred)),
+                'min': float(np.min(rt_pred)),
+                'max': float(np.max(rt_pred)),
+                'std': float(np.std(rt_pred))
+            }
+
+        return summary
+
+    def evaluate_prediction_accuracy(
+        self,
+        prediction_file: Path,
+        actual_data: pd.DataFrame
+    ) -> Dict[str, float]:
+        """
+        评估预测准确度
+
+        Args:
+            prediction_file: 预测结果文件路径
+            actual_data: 实际价格数据
+
+        Returns:
+            评估指标字典 {
+                'mape_day_ahead': 日前价格MAPE,
+                'mape_real_time': 实时价格MAPE,
+                'mae_day_ahead': 日前价格MAE,
+                'mae_real_time': 实时价格MAE
+            }
+        """
+        # Load predictions
+        pred_df = self.load_predictions(prediction_file)
+
+        if pred_df.empty:
+            logger.warning("预测结果为空，无法评估准确度")
+            return {}
+
+        # Merge with actual data
+        metrics = {}
+
+        for price_type in ['day_ahead', 'real_time']:
+            pred_type = pred_df[pred_df['type'] == price_type]
+
+            if pred_type.empty:
+                continue
+
+            # Merge with actual data
+            merged = pred_type.merge(
+                actual_data[['datetime', 'price']],
+                on='datetime',
+                how='inner',
+                suffixes=('_pred', '_actual')
+            )
+
+            if merged.empty:
+                logger.warning(f"没有找到{price_type}的实际价格数据")
+                continue
+
+            # Calculate metrics
+            pred_values = merged['price_pred'].values
+            actual_values = merged['price_actual'].values
+
+            # MAPE (handle zero values)
+            actual_safe = np.where(np.abs(actual_values) < 1e-10, 1e-10, actual_values)
+            mape = np.mean(np.abs((actual_values - pred_values) / actual_safe)) * 100
+
+            # MAE
+            mae = np.mean(np.abs(actual_values - pred_values))
+
+            metrics[f'mape_{price_type}'] = float(mape)
+            metrics[f'mae_{price_type}'] = float(mae)
+
+            logger.info(f"{price_type} MAPE: {mape:.2f}%, MAE: {mae:.2f}")
+
+        return metrics
+
+    def get_latest_predictions(self, predictions_dir: Optional[Path] = None) -> pd.DataFrame:
+        """
+        获取最新的预测结果
+
+        Args:
+            predictions_dir: 预测结果目录（可选）
+
+        Returns:
+            最新预测结果DataFrame
+        """
+        if predictions_dir is None:
+            predictions_dir = Path(self.predictor.config['data_paths']['predictions'])
+
+        if not predictions_dir.exists():
+            logger.warning(f"预测结果目录不存在: {predictions_dir}")
+            return pd.DataFrame()
+
+        # Get latest prediction file
+        prediction_files = sorted(predictions_dir.glob('*_predictions.csv'))
+
+        if not prediction_files:
+            logger.warning(f"没有找到预测结果文件")
+            return pd.DataFrame()
+
+        latest_file = prediction_files[-1]
+        return self.load_predictions(latest_file)

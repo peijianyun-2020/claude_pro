@@ -1,0 +1,222 @@
+"""
+文章解析器
+解析微信文章HTML，提取元数据和内容
+"""
+import re
+from typing import Dict, List, Optional, Any
+from bs4 import BeautifulSoup
+from datetime import datetime
+from chrome_collector import ArticleMetadata
+
+
+class ArticleParser:
+    """文章解析器"""
+
+    def __init__(self):
+        pass
+
+    def parse_from_snapshot(self, snapshot: str, url: str) -> Optional[ArticleMetadata]:
+        """
+        从页面快照解析文章
+
+        Args:
+            snapshot: 页面快照文本
+            url: 文章URL
+
+        Returns:
+            ArticleMetadata对象
+        """
+        try:
+            # 提取标题
+            title_match = re.search(r'uid=1_1 heading "([^"]+)"', snapshot)
+            title = title_match.group(1) if title_match else ""
+
+            # 提取作者
+            author_match = re.search(r'uid=1_3 StaticText "([^"]+)"', snapshot)
+            author = author_match.group(1) if author_match else ""
+
+            # 提取公众号名称
+            account_match = re.search(r'uid=1_5 StaticText "([^"]+)"', snapshot)
+            account_name = account_match.group(1) if account_match else ""
+
+            # 提取发布时间
+            time_match = re.search(r'uid=1_6 StaticText "([^"]+)"', snapshot)
+            publish_time = time_match.group(1) if time_match else ""
+
+            # 提取图片URL
+            images = re.findall(r'url="(https://mmbiz\.qpic\.cn/[^"]+)"', snapshot)
+
+            return ArticleMetadata(
+                title=title,
+                author=author,
+                account_name=account_name,
+                publish_time=publish_time,
+                url=url,
+                content_html="",  # 需要从HTML中获取
+                images=images
+            )
+        except Exception as e:
+            print(f"解析快照失败: {e}")
+            return None
+
+    def parse_from_html(self, html_content: str, url: str) -> Optional[ArticleMetadata]:
+        """
+        从HTML内容解析文章
+
+        Args:
+            html_content: HTML字符串
+            url: 文章URL
+
+        Returns:
+            ArticleMetadata对象
+        """
+        try:
+            soup = BeautifulSoup(html_content, 'lxml')
+
+            # 提取标题
+            title = ""
+            title_elem = soup.find('h1') or soup.find(class_='rich_media_title')
+            if title_elem:
+                title = title_elem.get_text(strip=True)
+
+            # 提取作者
+            author = ""
+            author_elem = soup.find(id='js_author_name') or soup.find(class_='rich_media_meta_text')
+            if author_elem:
+                author = author_elem.get_text(strip=True)
+
+            # 提取公众号名称
+            account_name = ""
+            account_elem = soup.find(class_='rich_media_meta_link_text')
+            if account_elem:
+                account_name = account_elem.get_text(strip=True)
+
+            # 提取发布时间
+            publish_time = ""
+            time_elems = soup.find_all(class_='rich_media_meta_text')
+            for elem in time_elems:
+                text = elem.get_text(strip=True)
+                # 检查是否包含日期格式
+                if re.search(r'\d{4}年\d{1,2}月\d{1,2}日', text):
+                    publish_time = text
+                    break
+
+            # 提取正文HTML
+            content_div = soup.find(id='js_content')
+            content_html = str(content_div) if content_div else ""
+
+            # 提取所有图片URL
+            images = []
+            if content_div:
+                img_tags = content_div.find_all('img')
+                for img in img_tags:
+                    src = img.get('src') or img.get('data-src')
+                    if src and src.startswith('http'):
+                        images.append(src)
+
+            return ArticleMetadata(
+                title=title,
+                author=author,
+                account_name=account_name,
+                publish_time=publish_time,
+                url=url,
+                content_html=content_html,
+                images=images
+            )
+        except Exception as e:
+            print(f"解析HTML失败: {e}")
+            return None
+
+    def parse_publish_time(self, time_str: str) -> Optional[datetime]:
+        """
+        解析发布时间字符串为datetime对象
+
+        Args:
+            time_str: 时间字符串，如 "2026年1月4日 11:16"
+
+        Returns:
+            datetime对象
+        """
+        try:
+            # 尝试多种时间格式
+            formats = [
+                "%Y年%m月%d日 %H:%M",
+                "%Y-%m-%d %H:%M",
+                "%Y/%m/%d %H:%M",
+            ]
+
+            for fmt in formats:
+                try:
+                    return datetime.strptime(time_str, fmt)
+                except ValueError:
+                    continue
+
+            return None
+        except Exception as e:
+            print(f"解析时间失败: {e}")
+            return None
+
+    def sanitize_filename(self, filename: str) -> str:
+        """
+        清理文件名，移除非法字符
+
+        Args:
+            filename: 原始文件名
+
+        Returns:
+            清理后的文件名
+        """
+        # 移除或替换Windows文件名中的非法字符
+        illegal_chars = ['<', '>', ':', '"', '/', '\\', '|', '?', '*']
+        for char in illegal_chars:
+            filename = filename.replace(char, '_')
+
+        # 移除前后空格
+        filename = filename.strip()
+
+        # 限制文件名长度
+        if len(filename) > 200:
+            filename = filename[:200]
+
+        return filename
+
+    def extract_related_links(self, snapshot: str) -> List[str]:
+        """
+        从快照中提取"相关文章"链接
+
+        Args:
+            snapshot: 页面快照文本
+
+        Returns:
+            相关文章URL列表
+        """
+        try:
+            # 提取所有微信文章链接
+            links = re.findall(r'url="(https://mp\.weixin\.qq\.com/s/[^"]+)"', snapshot)
+
+            # 去重并返回
+            return list(set(links))
+        except Exception as e:
+            print(f"提取相关链接失败: {e}")
+            return []
+
+    def create_metadata_dict(self, metadata: ArticleMetadata) -> Dict[str, Any]:
+        """
+        将ArticleMetadata转换为字典
+
+        Args:
+            metadata: ArticleMetadata对象
+
+        Returns:
+            元数据字典
+        """
+        return {
+            "title": metadata.title,
+            "author": metadata.author,
+            "account_name": metadata.account_name,
+            "publish_time": metadata.publish_time,
+            "url": metadata.url,
+            "image_count": len(metadata.images),
+            "images": metadata.images[:10],  # 只保存前10个图片URL
+            "collected_at": datetime.now().isoformat()
+        }

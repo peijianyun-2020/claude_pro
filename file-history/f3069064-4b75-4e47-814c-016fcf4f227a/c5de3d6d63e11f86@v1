@@ -1,0 +1,223 @@
+# 微信公众号文章采集工具
+
+基于Chrome DevTools MCP的微信公众号文章采集工具，支持将文章保存为Markdown格式。
+
+## 功能特性
+
+- ✅ **单篇文章采集**：给定文章链接，自动采集并保存为Markdown格式
+- ✅ **批量采集**：从文件读取多个链接，批量采集文章
+- ✅ **相关文章采集**：从一篇文章自动发现并采集相关文章
+- ✅ **图片下载**：自动下载文章中的图片到本地
+- ✅ **元数据保存**：保存文章的标题、作者、发布时间等元数据
+- ✅ **Markdown格式**：将文章内容转换为Markdown，便于编辑和处理
+
+## 技术方案
+
+本项目使用**Chrome DevTools MCP**工具进行采集，具有以下优势：
+
+- 无需处理复杂的反爬虫机制
+- 自动渲染JavaScript动态内容
+- 简单可靠，直接访问即可
+- 支持交互操作
+
+## 安装
+
+### 1. 安装依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. 确保Chrome DevTools MCP可用
+
+本工具需要Chrome DevTools MCP服务支持。请确保你的环境中已安装并配置好MCP服务。
+
+## 使用方法
+
+### 方式1：在Claude Code中使用
+
+直接在Claude Code对话中提供文章链接，Claude会自动调用MCP工具进行采集。
+
+**示例**：
+```
+请帮我采集这篇文章：https://mp.weixin.qq.com/s/5cuBvvdfHuunxzW825fNHA
+```
+
+### 方式2：命令行使用
+
+#### 采集单篇文章
+
+```bash
+python wechat_collector.py article "https://mp.weixin.qq.com/s/xxx"
+```
+
+#### 采集单篇文章并下载图片
+
+```bash
+python wechat_collector.py article "https://mp.weixin.qq.com/s/xxx" --download-images
+```
+
+#### 采集相关文章
+
+```bash
+python wechat_collector.py related "https://mp.weixin.qq.com/s/xxx" --depth 1
+```
+
+#### 批量采集
+
+创建一个文本文件 `links.txt`，每行一个链接：
+
+```
+https://mp.weixin.qq.com/s/xxx1
+https://mp.weixin.qq.com/s/xxx2
+https://mp.weixin.qq.com/s/xxx3
+```
+
+然后运行：
+
+```bash
+python wechat_collector.py batch links.txt
+```
+
+## 输出结构
+
+采集的文章会保存在 `./wechat_articles/` 目录下：
+
+```
+wechat_articles/
+├── 走进电力市场/              # 按公众号名称分类
+│   ├── 2026-01-04_《电力中长期市场基本规则》解读：总则和总体要求.md
+│   ├── 2026-01-04_《电力中长期市场基本规则》解读_metadata.json
+│   └── images/               # 图片目录
+│       ├── 001.png
+│       ├── 002.png
+│       └── ...
+└── index.json                # 索引文件（批量采集时生成）
+```
+
+## 配置
+
+编辑 `config.py` 文件可以自定义配置：
+
+```python
+# 存储配置
+OUTPUT_DIR = "./wechat_articles"  # 输出目录
+IMAGE_DIR = "images"              # 图片目录
+DOWNLOAD_IMAGES = True            # 是否默认下载图片
+
+# 文件命名
+FILE_FORMAT = "{date}_{title}.md"  # 文件命名格式
+
+# 采集配置
+DELAY_BETWEEN_REQUESTS = 2        # 请求间隔（秒）
+MAX_RETRIES = 3                   # 最大重试次数
+```
+
+## 文件说明
+
+- `wechat_collector.py` - 主程序入口
+- `chrome_collector.py` - Chrome DevTools MCP封装
+- `article_parser.py` - 文章解析器
+- `markdown_generator.py` - Markdown生成器
+- `image_downloader.py` - 图片下载器
+- `config.py` - 配置文件
+- `utils.py` - 工具函数
+
+## 注意事项
+
+1. **Chrome DevTools MCP要求**
+   - 需要确保Chrome浏览器可用
+   - 页面加载可能需要等待时间
+   - 建议单线程采集，避免并发问题
+
+2. **采集速度**
+   - 单篇文章采集约需10-30秒
+   - 批量采集会自动添加延时
+   - 进度会实时显示
+
+3. **图片下载**
+   - 微信图片可能需要referer才能访问
+   - 下载的图片仅供个人学习使用
+   - 可以选择不下载图片，只保留URL
+
+4. **法律声明**
+   - 本工具仅供学习研究使用
+   - 采集的内容请遵守版权法律
+   - 不得用于商业用途
+
+## 使用示例
+
+### 示例1：采集单篇文章
+
+```bash
+python wechat_collector.py article "https://mp.weixin.qq.com/s/5cuBvvdfHuunxzW825fNHA" --download-images
+```
+
+输出：
+```
+开始采集文章: https://mp.weixin.qq.com/s/5cuBvvdfHuunxzW825fNHA
+步骤1: 打开页面...
+步骤2: 获取页面快照...
+步骤3: 提取HTML内容...
+步骤4: 下载图片...
+已下载图片 1/5: 001.png
+已下载图片 2/5: 002.png
+...
+步骤5: 生成Markdown...
+✓ 文章采集完成!
+  Markdown: ./wechat_articles/走进电力市场/2026-01-04_《电力中长期市场基本规则》解读：总则和总体要求.md
+  元数据: ./wechat_accounts/走进电力市场/2026-01-04_《电力中长期市场基本规则》解读_metadata.json
+```
+
+### 示例2：批量采集
+
+创建 `links.txt`:
+```
+https://mp.weixin.qq.com/s/xxx1
+https://mp.weixin.qq.com/s/xxx2
+https://mp.weixin.qq.com/s/xxx3
+```
+
+运行：
+```bash
+python wechat_collector.py batch links.txt --download-images
+```
+
+## 故障排除
+
+### 问题1：无法连接到Chrome DevTools MCP
+
+**解决方案**：
+- 确保MCP服务已启动
+- 检查MCP配置是否正确
+- 尝试重启MCP服务
+
+### 问题2：图片下载失败
+
+**解决方案**：
+- 检查网络连接
+- 使用 `--download-images` 参数明确指定下载图片
+- 检查图片URL是否有效
+
+### 问题3：页面加载超时
+
+**解决方案**：
+- 增加超时时间配置（在 `config.py` 中）
+- 检查网络连接
+- 尝试重新采集
+
+## 后续扩展
+
+- [ ] 支持并发采集（多个Chrome标签页）
+- [ ] 支持导出为PDF格式
+- [ ] 支持数据库存储（SQLite/MySQL）
+- [ ] 支持搜索和过滤功能
+- [ ] 添加Web界面
+
+## 开源协议
+
+本项目仅供学习研究使用，请勿用于商业用途。
+
+## 联系方式
+
+如有问题或建议，欢迎提出Issue。

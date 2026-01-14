@@ -1,0 +1,126 @@
+# -*- coding: utf-8 -*-
+"""
+检查飞书应用权限和能力配置
+"""
+import os
+import sys
+import requests
+from dotenv import load_dotenv
+
+# 设置 Windows 控制台编码
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+# 加载环境变量
+load_dotenv()
+
+# 获取配置
+app_id = os.getenv("FEISHU_APP_ID")
+app_secret = os.getenv("FEISHU_APP_SECRET")
+
+print("=" * 70)
+print("飞书应用权限诊断工具")
+print("=" * 70)
+
+# 1. 获取访问令牌
+print(f"\n[步骤 1/5] 获取应用访问令牌...")
+token_url = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
+token_response = requests.post(token_url, json={
+    "app_id": app_id,
+    "app_secret": app_secret
+})
+token_result = token_response.json()
+
+if token_result.get("code") != 0:
+    print(f"   失败: {token_result.get('msg')}")
+    sys.exit(1)
+
+tenant_access_token = token_result.get("tenant_access_token")
+print(f"   成功! Token: {tenant_access_token[:20]}...")
+
+# 2. 检查应用信息
+print(f"\n[步骤 2/5] 获取应用信息...")
+app_url = f"https://open.feishu.cn/open-apis/application/v6/applications/{app_id}"
+headers = {
+    "Authorization": f"Bearer {tenant_access_token}"
+}
+
+app_response = requests.get(app_url, headers=headers)
+app_result = app_response.json()
+
+print(f"   响应码: {app_result.get('code')}")
+if app_result.get('code') == 0:
+    app_data = app_result.get('data', {}).get('application', {})
+    print(f"   应用名称: {app_data.get('app_name')}")
+    print(f"   应用类型: {app_data.get('app_type')}")
+    print(f"   状态: {app_data.get('status')}")
+else:
+    print(f"   错误: {app_result.get('msg')}")
+
+# 3. 检查知识库权限
+print(f"\n[步骤 3/5] 测试知识库访问权限...")
+test_endpoints = [
+    ("获取空间列表", "https://open.feishu.cn/open-apis/wiki/v2/spaces"),
+    ("获取驱动器列表", "https://open.feishu.cn/open-apis/drive/v1/drives"),
+]
+
+for name, url in test_endpoints:
+    print(f"\n   测试: {name}")
+    response = requests.get(url, headers=headers, params={"page_size": 10})
+    result = response.json()
+    print(f"   响应码: {result.get('code')}")
+
+    if result.get('code') == 0:
+        data = result.get('data', {})
+        if 'items' in data:
+            print(f"   结果: 找到 {len(data['items'])} 项")
+            if data['items']:
+                print(f"   第一项: {data['items'][0]}")
+        else:
+            print(f"   结果: {data}")
+    else:
+        error_msg = result.get('msg')
+        print(f"   错误: {error_msg}")
+
+        if 'permission' in error_msg.lower() or 'unauthorized' in error_msg.lower():
+            print(f"   >>> 缺少权限! 请检查应用权限配置")
+
+# 4. 检查文件上传权限
+print(f"\n[步骤 4/5] 测试文件上传API...")
+print(f"   注意: 这个测试不实际上传文件，只检查API是否可访问")
+upload_check_url = "https://open.feishu.cn/open-apis/drive/v1/medias/upload_all"
+# 只发送 HEAD 请求检查API是否存在
+response = requests.head(upload_check_url, headers=headers)
+print(f"   上传API响应: {response.status_code}")
+
+# 5. 诊断建议
+print(f"\n[步骤 5/5] 诊断建议")
+print("-" * 70)
+
+print("\n如果无法访问知识库，请按以下步骤操作：")
+print("\n1. 添加机器人能力:")
+print("   - 访问: https://open.feishu.cn/")
+print(f"   - 进入应用: {app_id}")
+print("   - 点击左侧【添加应用能力】")
+print("   - 找到【机器人】卡片，点击添加")
+
+print("\n2. 配置权限:")
+print("   - 点击【权限管理】")
+print("   - 搜索并添加以下权限:")
+print("     • wiki:wiki:read")
+print("     • wiki:wiki.node:write")
+print("     • drive:drive:readonly")
+print("     • drive:file:create")
+print("     • drive:media:create")
+
+print("\n3. 发布应用:")
+print("   - 点击【版本管理与发布】")
+print("   - 创建新版本")
+print("   - 提交审核")
+print("   - 等待审核通过后点击【启用】")
+
+print("\n4. 验证权限:")
+print("   - 发布后，重新运行此脚本检查")
+
+print("\n" + "=" * 70)

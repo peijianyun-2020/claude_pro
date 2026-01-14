@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastComputedDate": "2026-01-08",
+  "lastComputedDate": "2026-01-13",
   "dailyActivity": [
     {
       "date": "2026-01-07",
@@ -13,6 +13,36 @@
       "messageCount": 401,
       "sessionCount": 4,
       "toolCallCount": 125
+    },
+    {
+      "date": "2026-01-09",
+      "messageCount": 687,
+      "sessionCount": 10,
+      "toolCallCount": 179
+    },
+    {
+      "date": "2026-01-10",
+      "messageCount": 140,
+      "sessionCount": 3,
+      "toolCallCount": 26
+    },
+    {
+      "date": "2026-01-11",
+      "messageCount": 1271,
+      "sessionCount": 14,
+      "toolCallCount": 350
+    },
+    {
+      "date": "2026-01-12",
+      "messageCount": 1693,
+      "sessionCount": 13,
+      "toolCallCount": 490
+    },
+    {
+      "date": "2026-01-13",
+      "messageCount": 1060,
+      "sessionCount": 10,
+      "toolCallCount": 261
     }
   ],
   "dailyModelTokens": [
@@ -27,36 +57,71 @@
       "tokensByModel": {
         "glm-4.7": 867965
       }
+    },
+    {
+      "date": "2026-01-09",
+      "tokensByModel": {
+        "glm-4.7": 1138230
+      }
+    },
+    {
+      "date": "2026-01-10",
+      "tokensByModel": {
+        "glm-4.7": 136564
+      }
+    },
+    {
+      "date": "2026-01-11",
+      "tokensByModel": {
+        "glm-4.7": 2620238
+      }
+    },
+    {
+      "date": "2026-01-12",
+      "tokensByModel": {
+        "glm-4.7": 2523993
+      }
+    },
+    {
+      "date": "2026-01-13",
+      "tokensByModel": {
+        "glm-4.7": 2119257
+      }
     }
   ],
   "modelUsage": {
     "glm-4.7": {
-      "inputTokens": 2365429,
-      "outputTokens": 131583,
-      "cacheReadInputTokens": 15820672,
+      "inputTokens": 9938789,
+      "outputTokens": 1096505,
+      "cacheReadInputTokens": 165465472,
       "cacheCreationInputTokens": 0,
       "webSearchRequests": 0,
       "costUSD": 0,
       "contextWindow": 0
     }
   },
-  "totalSessions": 32,
-  "totalMessages": 1128,
+  "totalSessions": 82,
+  "totalMessages": 5979,
   "longestSession": {
-    "sessionId": "79a1409d-1519-4ebc-a47c-f651682277fe",
-    "duration": 11485578,
-    "messageCount": 8,
-    "timestamp": "2026-01-07T03:48:38.437Z"
+    "sessionId": "5f811d3f-5392-4096-9c75-013c17688fa4",
+    "duration": 22879992,
+    "messageCount": 998,
+    "timestamp": "2026-01-12T03:07:42.604Z"
   },
   "firstSessionDate": "2026-01-07T03:48:38.437Z",
   "hourCounts": {
+    "8": 3,
     "9": 2,
-    "10": 1,
-    "11": 1,
+    "10": 3,
+    "11": 3,
+    "13": 3,
+    "15": 7,
     "16": 1,
-    "18": 1,
-    "19": 2,
-    "20": 14,
-    "21": 10
+    "17": 4,
+    "18": 4,
+    "19": 10,
+    "20": 23,
+    "21": 17,
+    "22": 2
   }
 }

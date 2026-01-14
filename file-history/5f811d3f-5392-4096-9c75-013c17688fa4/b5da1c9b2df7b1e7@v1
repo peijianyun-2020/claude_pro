@@ -1,0 +1,238 @@
+"""
+预测2026年1月3日广东日前现货价格
+
+完整流程：
+1. 处理原始数据
+2. 训练日前价格模型
+3. 执行预测
+"""
+
+import sys
+import logging
+from pathlib import Path
+import pandas as pd
+import numpy as np
+from datetime import datetime
+
+# 添加项目路径
+sys.path.insert(0, str(Path(__file__).parent))
+
+# 配置日志
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/prediction_20260103.log', encoding='utf-8'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+
+def process_raw_data():
+    """处理原始日前价格数据"""
+    logger.info("=" * 60)
+    logger.info("步骤1: 处理原始日前价格数据")
+    logger.info("=" * 60)
+
+    from src.data.day_ahead_data_loader import DayAheadDataLoader
+    from src.data.preprocessing import DataPreprocessor
+
+    # 加载原始数据
+    logger.info("加载原始日前价格数据...")
+    loader = DayAheadDataLoader(region='广东')
+    raw_df = loader.load_all_data()
+
+    if raw_df is None or len(raw_df) == 0:
+        logger.error("未能加载任何数据，请检查数据文件")
+        return None
+
+    logger.info(f"成功加载 {len(raw_df)} 条数据记录")
+    logger.info(f"数据时间范围: {raw_df['datetime'].min()} 到 {raw_df['datetime'].max()}")
+
+    # 数据预处理
+    logger.info("开始数据预处理...")
+    preprocessor = DataPreprocessor(region='广东')
+
+    # 处理缺失值
+    df_clean = preprocessor.handle_missing_values(raw_df)
+    logger.info(f"缺失值处理完成，数据量: {len(df_clean)}")
+
+    # 添加时间特征
+    df_features = preprocessor.add_time_features(df_clean)
+    logger.info(f"时间特征添加完成，特征数: {len(df_features.columns)}")
+
+    # 添加滚动特征
+    df_rolling = preprocessor.add_rolling_features(df_features)
+    logger.info(f"滚动特征添加完成，特征数: {len(df_rolling.columns)}")
+
+    # 添加滞后特征
+    df_final = preprocessor.add_lag_features(df_rolling)
+    logger.info(f"滞后特征添加完成，最终特征数: {len(df_final.columns)}")
+
+    # 保存处理后的数据
+    output_path = Path('data/processed/day_ahead_processed.csv')
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    df_final.to_csv(output_path, index=False, encoding='utf-8-sig')
+    logger.info(f"✅ 处理后的数据已保存到: {output_path}")
+    logger.info(f"最终数据量: {len(df_final)} 行 × {len(df_final.columns)} 列")
+
+    return df_final
+
+
+def train_model(processed_data):
+    """训练日前价格预测模型"""
+    logger.info("=" * 60)
+    logger.info("步骤2: 训练日前价格预测模型")
+    logger.info("=" * 60)
+
+    from src.models.day_ahead_model import DayAheadXGBoostModel
+
+    # 创建模型
+    logger.info("初始化XGBoost日前价格模型...")
+    model = DayAheadXGBoostModel(
+        region='广东',
+        lookback_days=30,
+        forecast_days=3
+    )
+
+    # 准备训练数据
+    logger.info("准备训练数据...")
+    X_train, X_test, y_train, y_test = model.prepare_training_data(processed_data)
+
+    logger.info(f"训练集大小: {X_train.shape}")
+    logger.info(f"测试集大小: {X_test.shape}")
+
+    # 训练模型
+    logger.info("开始训练模型（这可能需要几分钟）...")
+    model.train()
+
+    # 评估模型
+    logger.info("评估模型性能...")
+    train_mape = model.evaluate(X_train, y_train)
+    test_mape = model.evaluate(X_test, y_test)
+
+    logger.info(f"训练集MAPE: {train_mape:.2f}%")
+    logger.info(f"测试集MAPE: {test_mape:.2f}%")
+
+    # 保存模型
+    model_path = Path('models/xgb_day_ahead.pkl')
+    model_path.parent.mkdir(parents=True, exist_ok=True)
+
+    model.save(str(model_path))
+    logger.info(f"✅ 模型已保存到: {model_path}")
+
+    return model
+
+
+def run_prediction():
+    """执行预测"""
+    logger.info("=" * 60)
+    logger.info("步骤3: 预测2026年1月3日日前价格")
+    logger.info("=" * 60)
+
+    from src.prediction.prediction_workflow import PredictionWorkflow
+
+    # 创建预测工作流
+    logger.info("初始化预测工作流...")
+    workflow = PredictionWorkflow(
+        region='广东',
+        lookback_days=30,
+        forecast_days=3
+    )
+
+    # 运行预测
+    logger.info("执行预测...")
+    try:
+        result = workflow.run_daily_prediction(save_results=True)
+
+        # 提取预测结果
+        if 'ensemble' in result:
+            predictions = result['ensemble']
+        elif 'xgboost_day' in result:
+            predictions = result['xgboost_day']
+        else:
+            logger.error("预测结果中没有有效的预测数据")
+            return None
+
+        logger.info(f"✅ 预测完成！共预测 {len(predictions)} 小时")
+
+        # 解析预测结果（3天×24小时=72小时）
+        logger.info("\n" + "=" * 60)
+        logger.info("2026年1月3日日前价格预测结果")
+        logger.info("=" * 60)
+
+        # 第一天（2026-01-03）
+        day1_prices = predictions[:24]
+        logger.info(f"\n📅 2026年1月3日（第1天）:")
+        logger.info(f"   平均价格: {np.mean(day1_prices):.2f} 元/MWh")
+        logger.info(f"   最低价格: {np.min(day1_prices):.2f} 元/MWh (小时 {np.argmin(day1_prices)})")
+        logger.info(f"   最高价格: {np.max(day1_prices):.2f} 元/MWh (小时 {np.argmax(day1_prices)})")
+        logger.info(f"   价格标准差: {np.std(day1_prices):.2f}")
+
+        # 详细小时价格
+        logger.info(f"\n⏰ 24小时价格明细:")
+        for hour in range(24):
+            logger.info(f"   {hour:02d}:00 - {day1_prices[hour]:.2f} 元/MWh")
+
+        # 第二天和第三天预测
+        if len(predictions) >= 48:
+            day2_prices = predictions[24:48]
+            logger.info(f"\n📅 2026年1月4日（第2天）:")
+            logger.info(f"   平均价格: {np.mean(day2_prices):.2f} 元/MWh")
+            logger.info(f"   最低价格: {np.min(day2_prices):.2f} 元/MWh")
+            logger.info(f"   最高价格: {np.max(day2_prices):.2f} 元/MWh")
+
+        if len(predictions) >= 72:
+            day3_prices = predictions[48:72]
+            logger.info(f"\n📅 2026年1月5日（第3天）:")
+            logger.info(f"   平均价格: {np.mean(day3_prices):.2f} 元/MWh")
+            logger.info(f"   最低价格: {np.min(day3_prices):.2f} 元/MWh")
+            logger.info(f"   最高价格: {np.max(day3_prices):.2f} 元/MWh")
+
+        logger.info("\n" + "=" * 60)
+
+        return predictions
+
+    except Exception as e:
+        logger.error(f"预测失败: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+
+
+def main():
+    """主函数"""
+    logger.info("🚀 开始预测2026年1月3日广东日前现货价格")
+    logger.info(f"执行时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+    try:
+        # 步骤1: 处理原始数据
+        processed_data = process_raw_data()
+        if processed_data is None:
+            logger.error("数据处理失败，终止流程")
+            return
+
+        # 步骤2: 训练模型
+        model = train_model(processed_data)
+        if model is None:
+            logger.error("模型训练失败，终止流程")
+            return
+
+        # 步骤3: 运行预测
+        predictions = run_prediction()
+        if predictions is None:
+            logger.error("预测失败")
+            return
+
+        logger.info("\n🎉 预测流程全部完成！")
+
+    except Exception as e:
+        logger.error(f"流程执行出错: {e}")
+        import traceback
+        traceback.print_exc()
+
+
+if __name__ == "__main__":
+    main()

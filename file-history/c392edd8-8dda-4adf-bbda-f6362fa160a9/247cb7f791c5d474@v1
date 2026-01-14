@@ -1,0 +1,289 @@
+# 飞书知识库文件上传工具
+
+自动化将本地文件或文件夹上传到飞书知识库的 Python 工具和 Claude Code 技能。
+
+## 功能特性
+
+✅ 支持上传单个文件到飞书知识库
+✅ 支持批量上传整个文件夹
+✅ 自动识别文件类型
+✅ 支持多种文件格式（Excel、Word、PDF、图片等）
+✅ 详细的错误提示和日志输出
+✅ 可作为 Claude Code 技能使用
+
+## 快速开始
+
+### 1. 安装依赖
+
+```bash
+pip install requests python-dotenv
+```
+
+### 2. 配置飞书应用
+
+#### 步骤 1：创建飞书应用
+
+1. 访问 [飞书开放平台](https://open.feishu.cn/)
+2. 点击"创建企业自建应用"
+3. 填写应用名称和描述
+4. 创建完成后记录 **App ID** 和 **App Secret**
+
+#### 步骤 2：配置应用权限
+
+在飞书开放平台，进入应用详情页：
+
+1. 点击左侧"权限管理"
+2. 搜索并添加以下权限：
+   - `wiki:wiki:read` - 获取知识库信息
+   - `wiki:wiki.node:write` - 创建知识库节点
+   - `drive:drive:readonly` - 读取文件
+   - `drive:file:create` - 创建文件
+3. 点击"申请权限"
+4. 等待权限审核通过（通常即时通过）
+
+#### 步骤 3：发布应用
+
+1. 在应用详情页点击"版本管理与发布"
+2. 创建版本
+3. 提交审核
+4. 审核通过后点击"启用"
+
+#### 步骤 4：获取知识库节点 Token
+
+1. 打开飞书客户端，进入要上传文件的知识库文件夹
+2. 在浏览器中打开该文件夹
+3. 从地址栏复制 URL，格式类似：
+   ```
+   https://feishu.cn/wiki/ABC123xyz?node=DEF456uvw
+   ```
+4. 记录 `node=` 后面的值（如：`DEF456uvw`）
+
+### 3. 配置环境变量
+
+1. 复制 `.env.example` 为 `.env`：
+
+```bash
+cp .env.example .env
+```
+
+2. 编辑 `.env` 文件，填入实际值：
+
+```bash
+FEISHU_APP_ID=cli_xxxxxxxxxxxxx
+FEISHU_APP_SECRET=xxxxxxxxxxxxxxxxxxxx
+FEISHU_WIKI_NODE_TOKEN=xxxxxxxxxxxxxx
+```
+
+### 4. 使用方式
+
+#### 方式 1：作为 Claude Code 技能使用
+
+在 Claude Code 中直接说：
+
+```
+上传文件 D:\AI\cc_pro\program\20260113_File2feishu\数据文档\20260114日前.xlsx
+```
+
+或批量上传：
+
+```
+上传文件夹 D:\AI\cc_pro\program\20260113_File2feishu\数据文档
+```
+
+#### 方式 2：直接使用 Python 脚本
+
+```python
+from feishu_uploader import FeishuWikiUploader
+import os
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
+
+# 创建上传器实例
+uploader = FeishuWikiUploader(
+    app_id=os.getenv("FEISHU_APP_ID"),
+    app_secret=os.getenv("FEISHU_APP_SECRET")
+)
+
+# 上传单个文件
+result = uploader.upload_file(
+    file_path="数据文档/20260114日前.xlsx",
+    parent_node_token=os.getenv("FEISHU_WIKI_NODE_TOKEN")
+)
+print(f"上传结果: {result}")
+
+# 批量上传文件夹
+results = uploader.upload_folder(
+    folder_path="数据文档",
+    parent_node_token=os.getenv("FEISHU_WIKI_NODE_TOKEN")
+)
+
+# 查看上传结果
+for r in results:
+    if r["status"] == "success":
+        print(f"✓ {r['file']}")
+    else:
+        print(f"✗ {r['file']}: {r['error']}")
+```
+
+## API 文档
+
+### FeishuWikiUploader 类
+
+#### 初始化
+
+```python
+uploader = FeishuWikiUploader(app_id, app_secret)
+```
+
+**参数：**
+- `app_id` (str): 飞书应用 ID
+- `app_secret` (str): 飞书应用密钥
+
+#### 方法
+
+##### upload_file()
+
+上传单个文件到知识库。
+
+```python
+result = uploader.upload_file(file_path, parent_node_token)
+```
+
+**参数：**
+- `file_path` (str): 文件路径
+- `parent_node_token` (str): 父节点 token
+
+**返回：**
+- `dict`: 上传结果
+
+##### upload_folder()
+
+批量上传文件夹中的所有文件。
+
+```python
+results = uploader.upload_folder(folder_path, parent_node_token, recursive=True)
+```
+
+**参数：**
+- `folder_path` (str): 文件夹路径
+- `parent_node_token` (str): 父节点 token
+- `recursive` (bool): 是否递归上传子文件夹，默认 True
+
+**返回：**
+- `List[dict]`: 上传结果列表
+
+## 使用示例
+
+### 示例 1：上传 Excel 文件
+
+```python
+uploader.upload_file(
+    "数据文档/20260114日前.xlsx",
+    "node_token_123"
+)
+```
+
+### 示例 2：批量上传文件夹
+
+```python
+results = uploader.upload_folder(
+    "数据文档",
+    "node_token_123",
+    recursive=True
+)
+
+# 统计结果
+success_count = sum(1 for r in results if r["status"] == "success")
+failed_count = len(results) - success_count
+
+print(f"上传完成：成功 {success_count} 个，失败 {failed_count} 个")
+```
+
+### 示例 3：错误处理
+
+```python
+try:
+    result = uploader.upload_file("test.pdf", "node_token_123")
+    print("上传成功！")
+except FileNotFoundError:
+    print("文件不存在，请检查路径")
+except Exception as e:
+    print(f"上传失败: {str(e)}")
+```
+
+## 文件结构
+
+```
+20260113_File2feishu/
+├── feishu_uploader.py       # 核心上传脚本
+├── .claudeskills            # Claude Code 技能配置
+├── .env.example             # 环境变量模板
+├── .env                     # 环境变量配置（不提交到 Git）
+├── README.md                # 说明文档
+└── 数据文档/                # 示例文件夹
+    ├── 20260113日前.xlsx
+    └── 20260114日前.xlsx
+```
+
+## 常见问题
+
+### Q1: 提示"获取token失败"
+
+**原因：** App ID 或 App Secret 配置错误
+
+**解决：**
+1. 检查 `.env` 文件中的配置是否正确
+2. 确认应用已启用
+3. 确认 App Secret 没有过期
+
+### Q2: 提示"创建知识库节点失败"
+
+**原因：** 权限不足或 node_token 错误
+
+**解决：**
+1. 确认应用已添加所需权限
+2. 检查 node_token 是否正确
+3. 确认应用已发布并启用
+
+### Q3: 文件上传后没有显示
+
+**原因：** 可能是知识库缓存问题
+
+**解决：**
+1. 刷新知识库页面
+2. 检查是否上传到了正确的文件夹
+3. 确认账号有查看权限
+
+### Q4: 支持哪些文件类型？
+
+支持常见的文件类型：
+- 文档：PDF、Word、TXT、Markdown
+- 表格：Excel、CSV
+- 图片：JPG、PNG、GIF、SVG
+- 其他：ZIP、PPT 等
+
+## 限制说明
+
+1. **文件大小**：单个文件最大 100MB（飞书限制）
+2. **API 频率**：每分钟最多 100 次调用（飞书限制）
+3. **Token 有效期**：tenant_access_token 有效期 2 小时
+4. **文件夹结构**：批量上传不会保留子文件夹结构
+
+## 开发计划
+
+- [ ] 支持保留文件夹层级结构
+- [ ] 支持过滤文件类型
+- [ ] 支持增量上传（只上传新文件）
+- [ ] 支持进度条显示
+- [ ] 支持断点续传
+- [ ] 添加单元测试
+
+## 技术支持
+
+如有问题或建议，请提交 Issue。
+
+## 许可证
+
+MIT License

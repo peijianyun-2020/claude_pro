@@ -1,0 +1,18 @@
+# 飞书应用配置
+# 请将此文件复制为 .env 并填入实际值
+
+# 飞书应用 App ID
+# 获取方式：飞书开放平台 -> 应用详情 -> 凭证与基础信息
+FEISHU_APP_ID=cli_xxxxxxxxxxxxx
+
+# 飞书应用 App Secret
+# 获取方式：飞书开放平台 -> 应用详情 -> 凭证与基础信息
+FEISHU_APP_SECRET=xxxxxxxxxxxxxxxxxxxx
+
+# 知识库节点 Token
+# 获取方式：
+# 1. 打开飞书知识库目标文件夹
+# 2. 从浏览器地址栏复制 URL
+# 3. URL 格式：https://feishu.cn/wiki/<wiki_token>?node=<node_token>
+# 4. 取 node_token 的值
+FEISHU_WIKI_NODE_TOKEN=xxxxxxxxxxxxxx

@@ -1,0 +1,322 @@
+2026-01-11T10:50:52.920Z [DEBUG] Watching for changes in setting files C:\Users\55315\.claude, D:\AI\cc_pro\.claude...
+2026-01-11T10:50:52.924Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-11T10:50:52.924Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-11T10:50:52.924Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-11T10:50:52.924Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-11T10:50:52.973Z [DEBUG] Using bash path: "C:\Program Files\Git\bin\bash.exe"
+2026-01-11T10:50:52.979Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-11T10:50:52.979Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-11T10:50:52.979Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-11T10:50:52.984Z [DEBUG] Applying permission update: Adding 34 allow rule(s) to destination 'localSettings': ["Skill(glm-plan-usage:usage-query-skill)","Bash(claude mcp add:*)","mcp__web-reader__webReader","WebSearch","Bash(claude:*)","mcp__web-search-prime__webSearchPrime","Bash(findstr:*)","Bash(cat:*)","Bash(git clone:*)","Bash(node:*)","Bash(npm --version:*)","Bash(pip:*)","Bash(if:*)","Bash(powershell:*)","Bash(dir:*)","Skill(xianhuoprice)","mcp__chrome-devtools__list_pages","mcp__chrome-devtools__navigate_page","mcp__chrome-devtools__take_snapshot","mcp__chrome-devtools__take_screenshot","mcp__chrome-devtools__list_network_requests","mcp__chrome-devtools__get_network_request","Bash(python:*)","Bash(where:*)","Bash(npm prefix:*)","Bash(npm update:*)","Bash(npm install:*)","Bash(npm view:*)","Bash(mkdir:*)","Bash(more:*)","Bash(cmd:*)","Bash(del:*)","Bash(echo:*)","Bash(ls:*)"]
+2026-01-11T10:50:52.985Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-01-11T10:50:52.990Z [DEBUG] Loading plugin glm-plan-usage from source: "./plugins/glm-plan-usage"
+2026-01-11T10:50:52.991Z [DEBUG] Using manifest version for glm-plan-usage@zai-coding-plugins: 0.0.1
+2026-01-11T10:50:52.991Z [DEBUG] Plugin glm-plan-usage@zai-coding-plugins version 0.0.1 already cached at C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-11T10:50:52.991Z [DEBUG] Copied local plugin glm-plan-usage to versioned cache: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-11T10:50:52.993Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-11T10:50:52.994Z [DEBUG] [STARTUP] MCP configs loaded in 9ms
+2026-01-11T10:50:52.995Z [DEBUG] [STARTUP] Running setup()...
+2026-01-11T10:50:52.998Z [DEBUG] Stats cache is up to date
+2026-01-11T10:50:52.999Z [DEBUG] Plugin autoupdate: skipped (auto-updater disabled)
+2026-01-11T10:50:53.002Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[D:\AI\cc_pro\.claude\skills]
+2026-01-11T10:50:53.445Z [DEBUG] Loaded 1 installed plugins from C:\Users\55315\.claude\plugins\installed_plugins.json
+2026-01-11T10:50:53.482Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\321069c4-3ef2-4923-b059-3fb98ecbac3f-agent-321069c4-3ef2-4923-b059-3fb98ecbac3f.json.tmp.30880.1768128653482
+2026-01-11T10:50:53.483Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-11T10:50:53.483Z [DEBUG] Renaming C:\Users\55315\.claude\todos\321069c4-3ef2-4923-b059-3fb98ecbac3f-agent-321069c4-3ef2-4923-b059-3fb98ecbac3f.json.tmp.30880.1768128653482 to C:\Users\55315\.claude\todos\321069c4-3ef2-4923-b059-3fb98ecbac3f-agent-321069c4-3ef2-4923-b059-3fb98ecbac3f.json
+2026-01-11T10:50:53.483Z [DEBUG] File C:\Users\55315\.claude\todos\321069c4-3ef2-4923-b059-3fb98ecbac3f-agent-321069c4-3ef2-4923-b059-3fb98ecbac3f.json written atomically
+2026-01-11T10:50:53.488Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-11T10:50:53.488Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-11T10:50:53.488Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-11T10:50:53.493Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-01-11T10:50:53.509Z [DEBUG] [STARTUP] setup() completed in 514ms
+2026-01-11T10:50:53.509Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-01-11T10:50:53.510Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-11T10:50:53.510Z [DEBUG] Total plugin skills loaded: 1
+2026-01-11T10:50:53.510Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-11T10:50:53.510Z [DEBUG] Total plugin commands loaded: 1
+2026-01-11T10:50:53.513Z [DEBUG] Loaded 1 agents from plugin glm-plan-usage default directory
+2026-01-11T10:50:53.513Z [DEBUG] Total plugin agents loaded: 1
+2026-01-11T10:50:53.514Z [DEBUG] Loaded 4 unique skills (managed: 0, user: 3, project: 1, legacy commands: 0)
+2026-01-11T10:50:53.514Z [DEBUG] getSkills returning: 4 skill dir commands, 1 plugin skills, 0 bundled skills
+2026-01-11T10:50:53.514Z [DEBUG] [STARTUP] Commands and agents loaded in 5ms
+2026-01-11T10:50:53.514Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-01-11T10:50:53.516Z [DEBUG] [render] initYoga starting
+2026-01-11T10:50:53.525Z [DEBUG] Total LSP servers loaded: 0
+2026-01-11T10:50:53.525Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-01-11T10:50:53.525Z [DEBUG] LSP manager initialized with 0 servers
+2026-01-11T10:50:53.525Z [DEBUG] LSP server manager initialized successfully
+2026-01-11T10:50:53.525Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-01-11T10:50:53.542Z [DEBUG] Creating shell snapshot for bash (C:\Program Files\Git\bin\bash.exe)
+2026-01-11T10:50:53.543Z [DEBUG] Looking for shell config file: C:\Users\55315\.bashrc
+2026-01-11T10:50:53.543Z [DEBUG] Shell config file not found: C:\Users\55315\.bashrc, creating snapshot with Claude Code defaults only
+2026-01-11T10:50:53.543Z [DEBUG] Snapshots directory: C:\Users\55315\.claude\shell-snapshots
+2026-01-11T10:50:53.582Z [DEBUG] Watching for changes in skill directories: C:\Users\55315\.claude\skills, D:\AI\cc_pro\.claude\skills...
+2026-01-11T10:50:53.587Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\55315\AppData\Roaming\npm\node_modules\@anthropic-ai\claude-code\vendor\ripgrep\x64-win32\rg.exe)
+2026-01-11T10:50:53.632Z [DEBUG] Creating snapshot at: C:\Users\55315\.claude\shell-snapshots\snapshot-bash-1768128653543-wd956t.sh
+2026-01-11T10:50:53.632Z [DEBUG] Shell binary exists: true
+2026-01-11T10:50:53.632Z [DEBUG] Execution timeout: 10000ms
+2026-01-11T10:50:53.646Z [DEBUG] [render] initYoga complete
+2026-01-11T10:50:53.718Z [DEBUG] [STARTUP] showSetupScreens() completed in 204ms
+2026-01-11T10:50:53.756Z [DEBUG] MCP server "zai-mcp-server": Starting connection with timeout of 30000ms
+2026-01-11T10:50:53.774Z [DEBUG] MCP server "chrome-devtools": Starting connection with timeout of 30000ms
+2026-01-11T10:50:53.794Z [DEBUG] MCP server "web-search-prime": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-11T10:50:53.794Z [DEBUG] MCP server "web-search-prime": Node version: v22.21.0, Platform: win32
+2026-01-11T10:50:53.794Z [DEBUG] MCP server "web-search-prime": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-11T10:50:53.795Z [DEBUG] MCP server "web-reader": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-11T10:50:53.795Z [DEBUG] MCP server "web-reader": Node version: v22.21.0, Platform: win32
+2026-01-11T10:50:53.795Z [DEBUG] MCP server "web-reader": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-11T10:50:53.796Z [DEBUG] MCP server "github": Initializing HTTP transport to https://api.githubcopilot.com/mcp/
+2026-01-11T10:50:53.796Z [DEBUG] MCP server "github": Node version: v22.21.0, Platform: win32
+2026-01-11T10:50:53.796Z [DEBUG] MCP server "github": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-11T10:50:53.797Z [DEBUG] MCP server "xiaohongshu-mcp": Initializing HTTP transport to http://localhost:18060/mcp
+2026-01-11T10:50:53.797Z [DEBUG] MCP server "xiaohongshu-mcp": Node version: v22.21.0, Platform: win32
+2026-01-11T10:50:53.797Z [DEBUG] MCP server "xiaohongshu-mcp": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-11T10:50:53.810Z [DEBUG] All plugins already exist, skipping migration
+2026-01-11T10:50:53.880Z [DEBUG] Initialized versioned plugins system with 1 plugins
+2026-01-11T10:50:53.880Z [DEBUG] MCP server "web-search-prime": Proxy options: default
+2026-01-11T10:50:53.880Z [DEBUG] MCP server "web-search-prime": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_search_prime/mcp","headers":{"User-Agent":"claude-code/2.1.2","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-11T10:50:53.880Z [DEBUG] MCP server "web-search-prime": HTTP transport created successfully
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-search-prime": Client created, setting up request handler
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-search-prime": Starting connection with timeout of 30000ms
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-search-prime": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-search-prime": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-reader": Proxy options: default
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-reader": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_reader/mcp","headers":{"User-Agent":"claude-code/2.1.2","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-reader": HTTP transport created successfully
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-reader": Client created, setting up request handler
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-reader": Starting connection with timeout of 30000ms
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-reader": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "web-reader": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "github": Proxy options: default
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "github": HTTP transport options: {"url":"https://api.githubcopilot.com/mcp/","headers":{"User-Agent":"claude-code/2.1.2"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-11T10:50:53.881Z [DEBUG] MCP server "github": HTTP transport created successfully
+2026-01-11T10:50:53.882Z [DEBUG] MCP server "github": Client created, setting up request handler
+2026-01-11T10:50:53.882Z [DEBUG] MCP server "github": Starting connection with timeout of 30000ms
+2026-01-11T10:50:53.882Z [DEBUG] MCP server "github": Testing basic HTTP connectivity to https://api.githubcopilot.com/mcp/
+2026-01-11T10:50:53.882Z [DEBUG] MCP server "github": Parsed URL: host=api.githubcopilot.com, port=default, protocol=https:
+2026-01-11T10:50:53.882Z [DEBUG] MCP server "xiaohongshu-mcp": Proxy options: default
+2026-01-11T10:50:53.882Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP transport options: {"url":"http://localhost:18060/mcp","headers":{"User-Agent":"claude-code/2.1.2"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-11T10:50:53.882Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP transport created successfully
+2026-01-11T10:50:53.882Z [DEBUG] MCP server "xiaohongshu-mcp": Client created, setting up request handler
+2026-01-11T10:50:53.885Z [DEBUG] MCP server "xiaohongshu-mcp": Starting connection with timeout of 30000ms
+2026-01-11T10:50:53.885Z [DEBUG] MCP server "xiaohongshu-mcp": Testing basic HTTP connectivity to http://localhost:18060/mcp
+2026-01-11T10:50:53.885Z [DEBUG] MCP server "xiaohongshu-mcp": Parsed URL: host=localhost, port=18060, protocol=http:
+2026-01-11T10:50:53.885Z [DEBUG] MCP server "xiaohongshu-mcp": Using loopback address: localhost
+2026-01-11T10:50:53.897Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.30880.1768128653897
+2026-01-11T10:50:53.898Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T10:50:53.898Z [DEBUG] Temp file written successfully, size: 5019 bytes
+2026-01-11T10:50:53.898Z [DEBUG] Applied original permissions to temp file
+2026-01-11T10:50:53.898Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.30880.1768128653897 to C:\Users\55315\.claude.json
+2026-01-11T10:50:53.899Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T10:50:53.924Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-01-11T10:50:53.924Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:50:53.924Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-01-11T10:50:53.926Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-11T10:50:53.926Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-11T10:50:53.926Z [DEBUG] MCP server "github": No token data found
+2026-01-11T10:50:53.927Z [DEBUG] MCP server "xiaohongshu-mcp": No token data found
+2026-01-11T10:50:53.932Z [DEBUG] [render] initYoga starting
+2026-01-11T10:50:53.947Z [DEBUG] [render] initYoga complete
+2026-01-11T10:50:53.957Z [DEBUG] Git remote URL: null
+2026-01-11T10:50:53.957Z [DEBUG] No git remote URL found
+2026-01-11T10:50:53.957Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-01-11T10:50:53.964Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2026-01-11T10:50:53.964Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:50:53.964Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2026-01-11T10:50:53.989Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2026-01-11T10:50:53.989Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:50:53.989Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2026-01-11T10:50:54.005Z [DEBUG] Getting matching hook commands for SubagentStart with query: Bash
+2026-01-11T10:50:54.005Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:50:54.005Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T10:50:54.086Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-01-11T10:50:54.090Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-01-11T10:50:54.091Z [DEBUG] performStartupChecks called
+2026-01-11T10:50:54.092Z [DEBUG] Starting background plugin installations
+2026-01-11T10:50:54.092Z [DEBUG] performBackgroundPluginInstallations called
+2026-01-11T10:50:54.106Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-11T10:50:54.109Z [DEBUG] Found 1 enabled plugins
+2026-01-11T10:50:54.110Z [DEBUG] All plugins already exist, skipping migration
+2026-01-11T10:50:54.110Z [DEBUG] Found 1 installed plugins (V2 format)
+2026-01-11T10:50:54.114Z [DEBUG] Loaded plugins - Enabled: 1, Disabled: 0, Commands: 1, Agents: 1, Errors: 0
+2026-01-11T10:50:54.114Z [DEBUG] Found 0 missing plugins (not installed):
+2026-01-11T10:50:54.114Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-01-11T10:50:54.156Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP Connection failed after 359ms: fetch failed (code: none, errno: none)
+2026-01-11T10:50:54.157Z [ERROR] MCP server "xiaohongshu-mcp" TypeError: fetch failed
+2026-01-11T10:50:54.168Z [DEBUG] MCP server "xiaohongshu-mcp": Connection failed after 371ms: fetch failed
+2026-01-11T10:50:54.168Z [ERROR] MCP server "xiaohongshu-mcp" Connection failed: fetch failed
+2026-01-11T10:50:54.183Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.30880.1768128654183
+2026-01-11T10:50:54.183Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T10:50:54.183Z [DEBUG] Temp file written successfully, size: 5019 bytes
+2026-01-11T10:50:54.184Z [DEBUG] Applied original permissions to temp file
+2026-01-11T10:50:54.184Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.30880.1768128654183 to C:\Users\55315\.claude.json
+2026-01-11T10:50:54.184Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T10:50:54.224Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:50:54.224Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T10:50:54.224Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T10:50:54.227Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-11T10:50:54.227Z [DEBUG] Skills and commands included in Skill tool: xianhuoprice, xianhuoxiaohongshu, glm-plan-usage:usage-query, usage-query-skill
+2026-01-11T10:50:54.227Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-11T10:50:54.229Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:50:54.229Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:50:54.230Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:50:54.234Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:50:54.234Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:50:54.234Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:50:54.234Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:50:54.235Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:50:54.235Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:50:54.540Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-11T10:50:54.562Z [DEBUG] Shell snapshot created successfully (342 bytes)
+2026-01-11T10:50:54.617Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-11T10:50:54.722Z [DEBUG] MCP server "web-search-prime": Successfully connected to http server in 928ms
+2026-01-11T10:50:54.722Z [DEBUG] MCP server "web-search-prime": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"mcp-web-search-prime","version":"0.0.1"}}
+2026-01-11T10:50:54.723Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-11T10:50:54.886Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:50:54.964Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:50:54.977Z [DEBUG] MCP server "web-reader": Successfully connected to http server in 1182ms
+2026-01-11T10:50:54.977Z [DEBUG] MCP server "web-reader": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"web-reader-server","version":"0.0.1"}}
+2026-01-11T10:50:54.977Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-11T10:50:55.382Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:50:57.166Z [DEBUG] MCP server "github": No client info found
+2026-01-11T10:50:57.167Z [DEBUG] MCP server "github": HTTP Connection failed after 3371ms: Incompatible auth server: does not support dynamic client registration (code: none, errno: none)
+2026-01-11T10:50:57.167Z [ERROR] MCP server "github" Error: Incompatible auth server: does not support dynamic client registration
+2026-01-11T10:50:57.167Z [DEBUG] MCP server "github": Connection failed after 3371ms: Incompatible auth server: does not support dynamic client registration
+2026-01-11T10:50:57.167Z [ERROR] MCP server "github" Connection failed: Incompatible auth server: does not support dynamic client registration
+2026-01-11T10:50:57.234Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T10:50:57.236Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T10:50:57.236Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:50:57.236Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T10:50:57.339Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:50:57.343Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:50:57.343Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:50:57.343Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:50:57.674Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:50:58.278Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T10:50:58.278Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T10:50:58.279Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T10:50:58.280Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T10:50:58.280Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:50:58.280Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T10:50:58.280Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T10:50:58.280Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:50:58.280Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T10:50:58.280Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T10:50:58.280Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:50:58.280Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T10:50:58.481Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T10:50:58.482Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:50:58.482Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:50:58.482Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:50:58.762Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T10:50:58.763Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T10:50:58.763Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:50:58.763Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T10:50:58.847Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:50:58.848Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:50:58.848Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:50:58.848Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:50:59.123Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:50:59.539Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:51:00.105Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-11T10:51:00.107Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-11T10:51:00.107Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:51:00.107Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-11T10:51:00.237Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:51:00.240Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:51:00.240Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:51:00.240Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:51:00.456Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:51:00.625Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-11T10:51:00.625Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:51:00.625Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T10:51:01.074Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-11T10:51:01.074Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:51:01.074Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T10:51:01.795Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T10:51:01.796Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T10:51:01.796Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:51:01.796Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T10:51:01.932Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:51:01.935Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:51:01.935Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:51:01.935Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:51:02.156Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:51:03.273Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T10:51:03.274Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T10:51:03.274Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:51:03.274Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T10:51:03.371Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:51:03.373Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:51:03.373Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:51:03.373Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:51:03.590Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:51:03.611Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.610Z] INFO: MCP Server Application initialized
+2026-01-11T10:51:03.612Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.611Z] INFO: Starting MCP server...
+2026-01-11T10:51:03.613Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.612Z] INFO: UI to Artifact tool registered successfully
+2026-01-11T10:51:03.613Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.613Z] INFO: Text Extraction tool registered successfully
+2026-01-11T10:51:03.613Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.613Z] INFO: Error Diagnosis tool registered successfully
+2026-01-11T10:51:03.613Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.613Z] INFO: Diagram Analysis tool registered successfully
+2026-01-11T10:51:03.614Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.613Z] INFO: Data Visualization Analysis tool registered successfully
+2026-01-11T10:51:03.614Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.614Z] INFO: UI Diff Check tool registered successfully
+2026-01-11T10:51:03.614Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.614Z] INFO: General Image Analysis tool registered successfully
+2026-01-11T10:51:03.614Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.614Z] INFO: Video analysis tool registered successfully
+2026-01-11T10:51:03.614Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.614Z] INFO: Successfully registered all tools
+2026-01-11T10:51:03.615Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T10:51:03.615Z] INFO: MCP Server started successfully [{"mode":"ZHIPU","name":"zai-mcp-server","version":"0.1.2"}]
+2026-01-11T10:51:03.622Z [DEBUG] MCP server "zai-mcp-server": Successfully connected to stdio server in 9871ms
+2026-01-11T10:51:03.622Z [DEBUG] MCP server "zai-mcp-server": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zai-mcp-server","version":"0.1.2"}}
+2026-01-11T10:51:04.557Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T10:51:04.558Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T10:51:04.558Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:51:04.558Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T10:51:04.663Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:51:04.665Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:51:04.665Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:51:04.665Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:51:04.733Z [ERROR] MCP server "chrome-devtools" Server stderr: chrome-devtools-mcp exposes content of the browser instance to the MCP clients allowing them to inspect,
+debug, and modify any data in the browser or DevTools.
+Avoid sharing sensitive or personal information that you do not want to share with MCP clients.
+2026-01-11T10:51:04.740Z [DEBUG] MCP server "chrome-devtools": Successfully connected to stdio server in 10967ms
+2026-01-11T10:51:04.740Z [DEBUG] MCP server "chrome-devtools": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"chrome_devtools","title":"Chrome DevTools MCP server","version":"0.12.1"}}
+2026-01-11T10:51:04.884Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:51:06.113Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:51:06.114Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:51:06.114Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:51:06.114Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:51:06.478Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:51:07.276Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-11T10:51:07.277Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-11T10:51:07.277Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:51:07.277Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-11T10:51:07.334Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:51:07.335Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:51:07.335Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:51:07.335Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:51:07.557Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:51:08.309Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-11T10:51:08.309Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-11T10:51:08.309Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:51:08.309Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-11T10:51:08.367Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T10:51:08.368Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T10:51:08.368Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T10:51:08.368Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T10:51:08.759Z [DEBUG] Stream started - received first chunk
+2026-01-11T10:51:13.048Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-11T10:51:13.048Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T10:51:13.048Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T10:51:22.239Z [DEBUG] UserCommandMessage rendering: "status" (args: "none")
+2026-01-11T10:51:22.239Z [DEBUG] isSkillFormat: false
+2026-01-11T10:51:22.276Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-11T10:51:22.339Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.30880.1768128682339
+2026-01-11T10:51:22.339Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T10:51:22.339Z [DEBUG] Temp file written successfully, size: 5019 bytes
+2026-01-11T10:51:22.340Z [DEBUG] Applied original permissions to temp file
+2026-01-11T10:51:22.340Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.30880.1768128682339 to C:\Users\55315\.claude.json
+2026-01-11T10:51:22.341Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T10:51:22.380Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.30880.1768128682380
+2026-01-11T10:51:22.380Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T10:51:22.380Z [DEBUG] Temp file written successfully, size: 5019 bytes
+2026-01-11T10:51:22.380Z [DEBUG] Applied original permissions to temp file
+2026-01-11T10:51:22.380Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.30880.1768128682380 to C:\Users\55315\.claude.json
+2026-01-11T10:51:22.381Z [DEBUG] File C:\Users\55315\.claude.json written atomically

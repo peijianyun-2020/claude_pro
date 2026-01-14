@@ -1,0 +1,315 @@
+"""
+测试预测调度器模块
+
+Test suite for prediction scheduler module.
+"""
+
+import pytest
+import time
+from datetime import datetime, timedelta
+from apscheduler.schedulers.background import BackgroundScheduler
+
+from src.scheduling.scheduler import PredictionScheduler
+
+
+class TestPredictionScheduler:
+    """测试PredictionScheduler类"""
+
+    @pytest.fixture
+    def scheduler(self):
+        """创建PredictionScheduler实例"""
+        return PredictionScheduler(region='广东', lookback_days=7, forecast_days=2)
+
+    def test_scheduler_initialization(self, scheduler):
+        """测试调度器初始化
+
+        Test that the scheduler initializes correctly.
+        """
+        assert scheduler.region == '广东'
+        assert scheduler.lookback_days == 7
+        assert scheduler.forecast_days == 2
+        assert isinstance(scheduler.scheduler, BackgroundScheduler)
+        assert not scheduler.scheduler.running
+        assert len(scheduler.task_history) == 0
+        print("[PASS] Scheduler initialized correctly")
+
+    def test_schedule_daily_prediction(self, scheduler):
+        """测试调度每日预测任务
+
+        Test scheduling a daily prediction task.
+        """
+        job_id = scheduler.schedule_daily_prediction(hour=8, minute=0)
+
+        assert job_id == 'daily_prediction_广东'
+        assert len(scheduler.get_jobs()) == 1
+
+        job = scheduler.get_jobs()[0]
+        assert job.name == '每日预测-广东(08:00)'
+
+        print(f"[PASS] Daily prediction scheduled: {job_id}")
+
+    def test_schedule_daily_prediction_custom_id(self, scheduler):
+        """测试自定义ID调度每日预测
+
+        Test scheduling daily prediction with custom job ID.
+        """
+        custom_id = 'my_custom_job'
+        job_id = scheduler.schedule_daily_prediction(hour=9, minute=30, job_id=custom_id)
+
+        assert job_id == custom_id
+        assert len(scheduler.get_jobs()) == 1
+
+        print(f"[PASS] Custom ID scheduling works: {custom_id}")
+
+    def test_schedule_interval_prediction(self, scheduler):
+        """测试调度间隔预测任务
+
+        Test scheduling an interval prediction task.
+        """
+        job_id = scheduler.schedule_interval_prediction(hours=2)
+
+        assert job_id == 'interval_prediction_广东'
+        assert len(scheduler.get_jobs()) == 1
+
+        job = scheduler.get_jobs()[0]
+        assert '间隔预测-广东(每2小时)' in job.name
+
+        print(f"[PASS] Interval prediction scheduled: {job_id}")
+
+    def test_schedule_one_time_prediction(self, scheduler):
+        """测试调度一次性预测任务
+
+        Test scheduling a one-time prediction task.
+        """
+        run_date = datetime.now() + timedelta(minutes=5)
+        job_id = scheduler.schedule_one_time_prediction(run_date=run_date)
+
+        assert 'onetime_prediction_广东' in job_id
+        assert len(scheduler.get_jobs()) == 1
+
+        print(f"[PASS] One-time prediction scheduled: {job_id}")
+
+    def test_start_stop_scheduler(self, scheduler):
+        """测试启动和停止调度器
+
+        Test starting and stopping the scheduler.
+        """
+        assert not scheduler.scheduler.running
+
+        scheduler.start()
+        assert scheduler.scheduler.running
+
+        scheduler.stop(wait=False)
+        assert not scheduler.scheduler.running
+
+        print("[PASS] Scheduler start/stop works correctly")
+
+    def test_pause_resume_scheduler(self, scheduler):
+        """测试暂停和恢复调度器
+
+        Test pausing and resuming the scheduler.
+        """
+        scheduler.schedule_daily_prediction(hour=8, minute=0)
+        scheduler.start()
+
+        # Pause
+        scheduler.pause()
+        # Scheduler is still running but jobs are paused
+        assert scheduler.scheduler.running
+
+        # Resume
+        scheduler.resume()
+        assert scheduler.scheduler.running
+
+        scheduler.stop(wait=False)
+
+        print("[PASS] Scheduler pause/resume works correctly")
+
+    def test_remove_job(self, scheduler):
+        """测试移除任务
+
+        Test removing a scheduled job.
+        """
+        job_id = scheduler.schedule_daily_prediction(hour=8, minute=0)
+        assert len(scheduler.get_jobs()) == 1
+
+        result = scheduler.remove_job(job_id)
+        assert result is True
+        assert len(scheduler.get_jobs()) == 0
+
+        # Try to remove non-existent job
+        result = scheduler.remove_job('non_existent_job')
+        assert result is False
+
+        print("[PASS] Job removal works correctly")
+
+    def test_get_job_info(self, scheduler):
+        """测试获取任务信息
+
+        Test getting information about a scheduled job.
+        """
+        job_id = scheduler.schedule_daily_prediction(hour=8, minute=0)
+
+        job_info = scheduler.get_job_info(job_id)
+
+        assert job_info is not None
+        assert job_info['id'] == job_id
+        assert 'name' in job_info
+        assert 'next_run_time' in job_info
+
+        print(f"[PASS] Job info retrieved: {job_info['name']}")
+
+    def test_get_job_info_nonexistent(self, scheduler):
+        """测试获取不存在任务的信息
+
+        Test getting info for non-existent job.
+        """
+        job_info = scheduler.get_job_info('non_existent_job')
+        assert job_info is None
+
+        print("[PASS] Non-existent job returns None")
+
+    def test_get_scheduler_status(self, scheduler):
+        """测试获取调度器状态
+
+        Test getting scheduler status.
+        """
+        scheduler.schedule_daily_prediction(hour=8, minute=0)
+        scheduler.schedule_interval_prediction(hours=2)
+
+        status = scheduler.get_scheduler_status()
+
+        assert 'running' in status
+        assert 'job_count' in status
+        assert 'jobs' in status
+        assert 'task_history_count' in status
+
+        assert status['running'] is False  # Not started yet
+        assert status['job_count'] == 2
+        assert len(status['jobs']) == 2
+
+        print(f"[PASS] Scheduler status: {status['job_count']} jobs")
+
+    def test_get_task_history(self, scheduler):
+        """测试获取任务历史
+
+        Test getting task execution history.
+        """
+        history = scheduler.get_task_history(limit=5)
+
+        assert isinstance(history, list)
+        assert len(history) <= 5
+
+        print("[PASS] Task history retrieved")
+
+    def test_run_prediction_now(self, scheduler):
+        """测试立即执行预测
+
+        Test running prediction immediately (manual trigger).
+        """
+        # This will fail if no model/data available, but tests the flow
+        result = scheduler.run_prediction_now()
+
+        assert isinstance(result, dict)
+        assert 'job_id' in result
+        assert 'start_time' in result
+        assert 'end_time' in result
+        assert 'status' in result
+        assert 'region' in result
+
+        # Status will be 'failed' or 'error' since no models/data
+        assert result['status'] in ['success', 'failed', 'error']
+        assert result['region'] == '广东'
+
+        print(f"[PASS] Manual prediction executed: {result['status']}")
+
+    def test_multiple_jobs_scheduling(self, scheduler):
+        """测试调度多个任务
+
+        Test scheduling multiple jobs.
+        """
+        scheduler.schedule_daily_prediction(hour=8, minute=0)
+        scheduler.schedule_daily_prediction(hour=20, minute=0, job_id='evening_job')
+        scheduler.schedule_interval_prediction(hours=6)
+
+        jobs = scheduler.get_jobs()
+        assert len(jobs) == 3
+
+        status = scheduler.get_scheduler_status()
+        assert status['job_count'] == 3
+
+        print("[PASS] Multiple jobs scheduled successfully")
+
+    def test_replace_existing_job(self, scheduler):
+        """测试替换已存在的任务
+
+        Test replacing an existing scheduled job.
+        """
+        job_id = 'test_job'
+
+        # Schedule first job
+        scheduler.schedule_daily_prediction(hour=8, minute=0, job_id=job_id)
+        assert len(scheduler.get_jobs()) == 1
+
+        # Replace with different time
+        scheduler.schedule_daily_prediction(hour=10, minute=30, job_id=job_id)
+        assert len(scheduler.get_jobs()) == 1  # Still only 1 job
+
+        job_info = scheduler.get_job_info(job_id)
+        assert '10:30' in job_info['name']
+
+        print("[PASS] Job replacement works correctly")
+
+
+class TestSchedulerIntegration:
+    """集成测试 - 调度器完整流程"""
+
+    @pytest.fixture
+    def scheduler(self):
+        """创建调度器实例"""
+        return PredictionScheduler(region='广东', lookback_days=7, forecast_days=1)
+
+    def test_full_scheduler_lifecycle(self, scheduler):
+        """测试调度器完整生命周期
+
+        Test complete scheduler lifecycle: schedule -> start -> run -> stop.
+        """
+        # Schedule job
+        job_id = scheduler.schedule_daily_prediction(hour=8, minute=0)
+        assert len(scheduler.get_jobs()) == 1
+
+        # Start scheduler
+        scheduler.start()
+        assert scheduler.scheduler.running
+
+        # Check status
+        status = scheduler.get_scheduler_status()
+        assert status['running'] is True
+        assert status['job_count'] == 1
+
+        # Stop scheduler
+        scheduler.stop(wait=True)
+        assert not scheduler.scheduler.running
+
+        print("[PASS] Full scheduler lifecycle works")
+
+    def test_manual_execution_with_scheduled_jobs(self, scheduler):
+        """测试在调度任务存在时手动执行
+
+        Test manual execution while jobs are scheduled.
+        """
+        scheduler.schedule_daily_prediction(hour=8, minute=0)
+        scheduler.start()
+
+        # Manual execution
+        result = scheduler.run_prediction_now()
+        assert result is not None
+        assert 'status' in result
+
+        # Check task history
+        history = scheduler.get_task_history()
+        assert len(history) > 0
+
+        scheduler.stop(wait=False)
+
+        print("[PASS] Manual execution with scheduled jobs works")

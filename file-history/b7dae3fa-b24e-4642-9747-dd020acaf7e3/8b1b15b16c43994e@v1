@@ -1,0 +1,578 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""批量处理现货价格数据并生成CSV文件（2026-01-09至2026-01-10）"""
+
+import json
+import csv
+from pathlib import Path
+
+# API响应数据
+api_data_by_date = {
+    "2026-01-09": {
+        "code": 0,
+        "msg": "success",
+        "data": [
+            {
+                "watchUserPriceId": "73585d4e03b444468c2ba80832aa6a87",
+                "lastOperator": None,
+                "price1900": "518.734",
+                "price1800": "508.5336",
+                "price1200": "-56.4967",
+                "price1300": "-56.4689",
+                "price1000": "-53.7064",
+                "dateType": "1",
+                "price1100": "-56.1231",
+                "price1600": "215.2942",
+                "price1700": "519.8724",
+                "price1400": "-56.5954",
+                "price1500": "-52.1563",
+                "price0900": "50.871",
+                "price0700": "475.3585",
+                "price0800": "383.8723",
+                "price0100": "478.539",
+                "price0200": "474.7331",
+                "price2300": "416.2496",
+                "price2200": "463.0166",
+                "price0000": "519.41",
+                "price2100": "510.1012",
+                "price0500": "467.0052",
+                "price0600": "470.9267",
+                "createTime": "2026-01-10T23:55:00",
+                "price0300": "471.7381",
+                "price0400": "468.4796",
+                "lastModifyTime": None,
+                "exchange": "06",
+                "createUser": "system",
+                "price2000": "495.4417",
+                "operateDate": "2026-01-09"
+            },
+            {
+                "watchUserPriceId": "c59d4b9864bf4c7f954a9735b9aba861",
+                "lastOperator": None,
+                "price1900": "580.3675",
+                "price1800": "402.8358",
+                "price1200": "130.5962",
+                "price1300": "6.8218",
+                "price1000": "276.3601",
+                "dateType": "1",
+                "price1100": "274.6418",
+                "price1600": "307.487",
+                "price1700": "394.5857",
+                "price1400": "33.2347",
+                "price1500": "120.4521",
+                "price0900": "213.2379",
+                "price0700": "326.5807",
+                "price0800": "267.0857",
+                "price0100": "266.1903",
+                "price0200": "174.7593",
+                "price2300": "329.5742",
+                "price2200": "445.5181",
+                "price0000": "249.4812",
+                "price2100": "453.0035",
+                "price0500": "239.474",
+                "price0600": "297.1305",
+                "createTime": "2026-01-10T23:55:00",
+                "price0300": "177.9321",
+                "price0400": "206.734",
+                "lastModifyTime": None,
+                "exchange": "03",
+                "createUser": "system",
+                "price2000": "477.7749",
+                "operateDate": "2026-01-09"
+            },
+            {
+                "watchUserPriceId": "f027bcfe6c09458d9475f25cec6aaf40",
+                "lastOperator": None,
+                "price1900": "907.7105",
+                "price1800": "581.0014",
+                "price1200": "423.4821",
+                "price1300": "413.6855",
+                "price1000": "475.8781",
+                "dateType": "1",
+                "price1100": "469.3005",
+                "price1600": "451.9396",
+                "price1700": "504.0714",
+                "price1400": "416.8715",
+                "price1500": "429.5966",
+                "price0900": "501.4139",
+                "price0700": "461.7855",
+                "price0800": "491.3452",
+                "price0100": "419.7779",
+                "price0200": "406.5234",
+                "price2300": "400.1971",
+                "price2200": "503.1277",
+                "price0000": "448.2779",
+                "price2100": "587.6266",
+                "price0500": "396.6737",
+                "price0600": "414.7528",
+                "createTime": "2026-01-10T23:55:00",
+                "price0300": "395.443",
+                "price0400": "394.8045",
+                "lastModifyTime": None,
+                "exchange": "05",
+                "createUser": "system",
+                "price2000": "696.575",
+                "operateDate": "2026-01-09"
+            },
+            {
+                "watchUserPriceId": "b6061441eb3d4f3db7a9f5dbd6319990",
+                "lastOperator": None,
+                "price1900": "516.5785",
+                "price1800": "427.5025",
+                "price1200": "235.8436",
+                "price1300": "158.6675",
+                "price1000": "260.3024",
+                "dateType": "1",
+                "price1100": "273.1849",
+                "price1600": "190.3484",
+                "price1700": "281.9126",
+                "price1400": "84.4782",
+                "price1500": "112.5611",
+                "price0900": "409.0238",
+                "price0700": "382.8531",
+                "price0800": "428.719",
+                "price0100": "344.2094",
+                "price0200": "369.4783",
+                "price2300": "337.2423",
+                "price2200": "366.155",
+                "price0000": "341.2331",
+                "price2100": "417.3291",
+                "price0500": "334.9303",
+                "price0600": "346.8034",
+                "createTime": "2026-01-10T23:55:00",
+                "price0300": "340.7468",
+                "price0400": "294.8881",
+                "lastModifyTime": None,
+                "exchange": "04",
+                "createUser": "system",
+                "price2000": "423.9484",
+                "operateDate": "2026-01-09"
+            },
+            {
+                "watchUserPriceId": "4a0c0de3dd23419cabc292af7b55a0e8",
+                "lastOperator": None,
+                "price1900": "489.2036",
+                "price1800": "402.315",
+                "price1200": "158.7899",
+                "price1300": "149.0723",
+                "price1000": "252.453",
+                "dateType": "1",
+                "price1100": "263.5385",
+                "price1600": "287.6036",
+                "price1700": "362.9943",
+                "price1400": "144.9035",
+                "price1500": "168.4228",
+                "price0900": "292.8422",
+                "price0700": "370.632",
+                "price0800": "382.9769",
+                "price0100": "337.3347",
+                "price0200": "316.6522",
+                "price2300": "361.4586",
+                "price2200": "415.4432",
+                "price0000": "345.1834",
+                "price2100": "413.1592",
+                "price0500": "318.1108",
+                "price0600": "334.3522",
+                "createTime": "2026-01-10T23:55:00",
+                "price0300": "308.3251",
+                "price0400": "301.2869",
+                "lastModifyTime": None,
+                "exchange": "00",
+                "createUser": "system",
+                "price2000": "426.7484",
+                "operateDate": "2026-01-09"
+            },
+            {
+                "watchUserPriceId": "a487ac959f034c8db9f6f016c2da0991",
+                "lastOperator": None,
+                "price1900": "317.904",
+                "price1800": "317.6198",
+                "price1200": "108.0967",
+                "price1300": "168.6676",
+                "price1000": "243.2085",
+                "dateType": "1",
+                "price1100": "266.313",
+                "price1600": "291.141",
+                "price1700": "311.9452",
+                "price1400": "180.1011",
+                "price1500": "184.6633",
+                "price0900": "266.4897",
+                "price0700": "333.5533",
+                "price0800": "376.4005",
+                "price0100": "307.3949",
+                "price0200": "288.009",
+                "price2300": "361.1408",
+                "price2200": "390.1129",
+                "price0000": "316.219",
+                "price2100": "325.7971",
+                "price0500": "286.1594",
+                "price0600": "290.7109",
+                "createTime": "2026-01-10T23:55:00",
+                "price0300": "283.73",
+                "price0400": "277.1792",
+                "lastModifyTime": None,
+                "exchange": "02",
+                "createUser": "system",
+                "price2000": "317.2813",
+                "operateDate": "2026-01-09"
+            }
+        ]
+    },
+    "2026-01-10": {
+        "code": 0,
+        "msg": "success",
+        "data": [
+            {
+                "watchUserPriceId": "8449c32a9d95433c9ec497e292c225c7",
+                "lastOperator": None,
+                "price1900": "389.6296",
+                "price1800": "483.0996",
+                "price1200": "98.481",
+                "price1300": "170.3395",
+                "price1000": "233.2482",
+                "dateType": "1",
+                "price1100": "189.4783",
+                "price1600": "289.9934",
+                "price1700": "397.8039",
+                "price1400": "196.8414",
+                "price1500": "201.6606",
+                "price0900": "260.7094",
+                "price0700": "323.1952",
+                "price0800": "366.9679",
+                "price0100": "356.3565",
+                "price0200": "332.0864",
+                "price2300": "330.6355",
+                "price2200": "388.781",
+                "price0000": "385.9332",
+                "price2100": "418.0934",
+                "price0500": "322.6575",
+                "price0600": "325.3246",
+                "createTime": "2026-01-11T23:55:00",
+                "price0300": "328.6477",
+                "price0400": "319.2961",
+                "lastModifyTime": None,
+                "exchange": "00",
+                "createUser": "system",
+                "price2000": "376.7763",
+                "operateDate": "2026-01-10"
+            },
+            {
+                "watchUserPriceId": "ebac38f4241746fe82eb532036ac58a9",
+                "lastOperator": None,
+                "price1900": "494.1942",
+                "price1800": "401.7107",
+                "price1200": "-55.8585",
+                "price1300": "-56.4679",
+                "price1000": "18.9643",
+                "dateType": "1",
+                "price1100": "4.794",
+                "price1600": "160.8907",
+                "price1700": "470.4796",
+                "price1400": "-56.4084",
+                "price1500": "-56.3392",
+                "price0900": "126.8951",
+                "price0700": "450.0865",
+                "price0800": "457.3293",
+                "price0100": "485.0574",
+                "price0200": "509.1912",
+                "price2300": "369.1755",
+                "price2200": "495.7922",
+                "price0000": "525.7643",
+                "price2100": "545.3349",
+                "price0500": "479.1264",
+                "price0600": "487.981",
+                "createTime": "2026-01-11T23:55:00",
+                "price0300": "484.4606",
+                "price0400": "494.2148",
+                "lastModifyTime": None,
+                "exchange": "06",
+                "createUser": "system",
+                "price2000": "548.0363",
+                "operateDate": "2026-01-10"
+            },
+            {
+                "watchUserPriceId": "a03c3c223a744731967f4f2f9645de0f",
+                "lastOperator": None,
+                "price1900": "360.1784",
+                "price1800": "498.0121",
+                "price1200": "116.6831",
+                "price1300": "216.3389",
+                "price1000": "250.7992",
+                "dateType": "1",
+                "price1100": "222.2521",
+                "price1600": "316.453",
+                "price1700": "413.2203",
+                "price1400": "226.6046",
+                "price1500": "259.0478",
+                "price0900": "291.6613",
+                "price0700": "336.2153",
+                "price0800": "393.1133",
+                "price0100": "359.4723",
+                "price0200": "320.6282",
+                "price2300": "318.2567",
+                "price2200": "374.7241",
+                "price0000": "382.3385",
+                "price2100": "363.7153",
+                "price0500": "307.5519",
+                "price0600": "323.6915",
+                "createTime": "2026-01-11T23:55:00",
+                "price0300": "313.7713",
+                "price0400": "312.2981",
+                "lastModifyTime": None,
+                "exchange": "02",
+                "createUser": "system",
+                "price2000": "320.3681",
+                "operateDate": "2026-01-10"
+            },
+            {
+                "watchUserPriceId": "2fa4f9b29fbf4259977f1eedde5e0274",
+                "lastOperator": None,
+                "price1900": "328.2594",
+                "price1800": "376.2971",
+                "price1200": "32.0702",
+                "price1300": "119.3676",
+                "price1000": "228.3158",
+                "dateType": "1",
+                "price1100": "107.6043",
+                "price1600": "289.8589",
+                "price1700": "372.6397",
+                "price1400": "151.9788",
+                "price1500": "203.0811",
+                "price0900": "263.6505",
+                "price0700": "300.204",
+                "price0800": "334.9816",
+                "price0100": "316.278",
+                "price0200": "284.8499",
+                "price2300": "250.1865",
+                "price2200": "234.8724",
+                "price0000": "332.3785",
+                "price2100": "338.958",
+                "price0500": "292.7217",
+                "price0600": "294.1809",
+                "createTime": "2026-01-11T23:55:00",
+                "price0300": "291.0741",
+                "price0400": "283.717",
+                "lastModifyTime": None,
+                "exchange": "03",
+                "createUser": "system",
+                "price2000": "345.4874",
+                "operateDate": "2026-01-10"
+            },
+            {
+                "watchUserPriceId": "2a47b2f6817d4886af77e4a39c10ece3",
+                "lastOperator": None,
+                "price1900": "482.572",
+                "price1800": "671.3052",
+                "price1200": "371.6755",
+                "price1300": "344.0289",
+                "price1000": "470.4882",
+                "dateType": "1",
+                "price1100": "434.0571",
+                "price1600": "437.0083",
+                "price1700": "506.4805",
+                "price1400": "363.6448",
+                "price1500": "396.2586",
+                "price0900": "444.3305",
+                "price0700": "384.724",
+                "price0800": "439.2548",
+                "price0100": "443.4015",
+                "price0200": "417.541",
+                "price2300": "442.7341",
+                "price2200": "655.7719",
+                "price0000": "451.7417",
+                "price2100": "687.8141",
+                "price0500": "413.3945",
+                "price0600": "381.6434",
+                "createTime": "2026-01-11T23:55:00",
+                "price0300": "421.2079",
+                "price0400": "417.2405",
+                "lastModifyTime": None,
+                "exchange": "05",
+                "createUser": "system",
+                "price2000": "501.364",
+                "operateDate": "2026-01-10"
+            },
+            {
+                "watchUserPriceId": "8f292b208495407ab3f1e66e966b43cf",
+                "lastOperator": None,
+                "price1900": "398.3184",
+                "price1800": "459.9743",
+                "price1200": "13.051",
+                "price1300": "108.6735",
+                "price1000": "148.9726",
+                "dateType": "1",
+                "price1100": "117.9446",
+                "price1600": "197.175",
+                "price1700": "276.2025",
+                "price1400": "185.3124",
+                "price1500": "69.381",
+                "price0900": "133.0834",
+                "price0700": "208.8991",
+                "price0800": "241.4764",
+                "price0100": "262.4268",
+                "price0200": "254.9437",
+                "price2300": "337.1966",
+                "price2200": "327.7237",
+                "price0000": "327.7935",
+                "price2100": "372.7293",
+                "price0500": "245.6597",
+                "price0600": "237.6206",
+                "createTime": "2026-01-11T23:55:00",
+                "price0300": "256.9807",
+                "price0400": "214.4283",
+                "lastModifyTime": None,
+                "exchange": "04",
+                "createUser": "system",
+                "price2000": "367.1254",
+                "operateDate": "2026-01-10"
+            }
+        ]
+    }
+}
+
+# 地区代码映射
+REGION_MAP = {
+    "00": "全区域",
+    "02": "广东",
+    "03": "广西",
+    "04": "云南",
+    "05": "贵州",
+    "06": "海南"
+}
+
+def process_date_to_csv(date_str, api_response):
+    """处理单个日期的数据并生成CSV文件"""
+
+    # Check if data is empty
+    if not api_response["data"]:
+        print(f"  [ERROR] API returned empty data for {date_str}")
+        return False
+
+    # 创建地区-价格映射
+    region_prices = {}
+    for item in api_response["data"]:
+        exchange = item["exchange"]
+        region_name = REGION_MAP.get(exchange, f"未知({exchange})")
+        region_prices[region_name] = item
+
+    # 准备CSV数据
+    csv_rows = []
+    csv_rows.append(["时间"] + list(REGION_MAP.values()))
+
+    # 填充每个小时的数据
+    for hour_idx in range(24):
+        hour_str = f"{hour_idx:02d}:00"
+        row = [hour_str]
+
+        for region_code, region_name in REGION_MAP.items():
+            if region_name in region_prices:
+                price_key = f"price{hour_idx:02d}00"
+                price = region_prices[region_name].get(price_key, "")
+                row.append(price)
+            else:
+                row.append("")
+
+        csv_rows.append(row)
+
+    # 保存CSV文件
+    output_dir = Path(r"D:\AI\cc_pro\现货价格采集")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # 格式化日期字符串（从 YYYY-MM-DD 到 YYYYMMDD）
+    date_formatted = date_str.replace("-", "")
+    csv_file = output_dir / f"实时价格_{date_formatted}.csv"
+
+    with open(csv_file, 'w', newline='', encoding='utf-8-sig') as f:
+        writer = csv.writer(f)
+        writer.writerows(csv_rows)
+
+    print(f"  [OK] CSV: {csv_file}")
+    print(f"  [INFO] Data rows: {len(csv_rows) - 1} (excluding header)")
+
+    # Save API backup
+    backup_dir = output_dir / "backups"
+    backup_dir.mkdir(parents=True, exist_ok=True)
+
+    backup_file = backup_dir / f"api_backup_realtime_{date_formatted}.json"
+
+    with open(backup_file, 'w', encoding='utf-8') as f:
+        json.dump(api_response, f, ensure_ascii=False, indent=2)
+
+    print(f"  [BACKUP] Backup: {backup_file}")
+
+    # Verify data integrity
+    expected_regions = 6
+    expected_hours = 24
+
+    actual_regions = len(region_prices)
+    actual_hours = len(csv_rows) - 1
+
+    print(f"  [CHECK] Regions: {actual_regions}/{expected_regions}")
+    print(f"  [CHECK] Hours: {actual_hours}/{expected_hours}")
+
+    if actual_regions == expected_regions and actual_hours == expected_hours:
+        print(f"  [OK] Integrity: PASS")
+        return True
+    else:
+        print(f"  [WARNING] Integrity: ISSUES FOUND")
+        return False
+
+def batch_process_all_dates():
+    """批量处理所有日期的数据"""
+
+    print("=" * 60)
+    print("[INFO] Batch Processing Spot Price Data (2026-01-09 to 2026-01-10)")
+    print("=" * 60)
+    print()
+
+    success_count = 0
+    failed_count = 0
+    failed_dates = []
+
+    # Process each date
+    for date_str in sorted(api_data_by_date.keys()):
+        print(f"[Processing] {date_str}:")
+
+        api_response = api_data_by_date[date_str]
+        success = process_date_to_csv(date_str, api_response)
+
+        if success:
+            success_count += 1
+        else:
+            failed_count += 1
+            failed_dates.append(date_str)
+
+        print()
+
+    # Summary
+    print("=" * 60)
+    print("[SUMMARY] Batch Collection Results")
+    print("=" * 60)
+    print(f"Total: {len(api_data_by_date)} dates")
+    print(f"Success: {success_count} dates")
+    print(f"Failed: {failed_count} dates")
+
+    if success_count > 0:
+        print()
+        print("[SUCCESS] Successfully collected files:")
+        for date_str in sorted(api_data_by_date.keys()):
+            date_formatted = date_str.replace("-", "")
+            print(f"  - {date_str}: 实时价格_{date_formatted}.csv")
+
+    if failed_count > 0:
+        print()
+        print(f"[ERROR] Failed dates: {', '.join(failed_dates)}")
+
+    print()
+    print("=" * 60)
+    print("[COMPLETE] Batch collection finished!")
+    print("=" * 60)
+
+    return failed_count == 0
+
+if __name__ == "__main__":
+    success = batch_process_all_dates()
+    if success:
+        print("\n[SUCCESS] All dates processed successfully!")
+    else:
+        print("\n[WARNING] Some dates had issues during processing")

@@ -1,0 +1,77 @@
+"""
+Download all images from WeChat article and update Markdown
+"""
+import requests
+from pathlib import Path
+import json
+import re
+from urllib.parse import urlparse
+
+# File paths
+md_file = Path(r"D:\AI\cc_pro\program\20260113_GZH-collect\wechat_articles\腾讯云开发者\2026-01-13_大模型狂飙2025：一篇文理清从模型到智能体的架构演进.md")
+image_dir = Path(r"D:\AI\cc_pro\program\20260113_GZH-collect\wechat_articles\腾讯云开发者\images")
+
+# Read markdown to find all image URLs
+with open(md_file, 'r', encoding='utf-8') as f:
+    md_content = f.read()
+
+# Extract all image URLs from markdown
+# Pattern: ![](url) or
+![alt](url)
+image_pattern = r'!\[.*?\]\((https://mmbiz\.qpic\.cn/[^\)]+)\)'
+image_urls = re.findall(image_pattern, md_content)
+
+print(f"Found {len(image_urls)} unique image URLs in Markdown")
+
+# Headers for downloading
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+    'Referer': 'https://mp.weixin.qq.com/'
+}
+
+# Download images
+downloaded_images = []
+for i, url in enumerate(image_urls, 1):
+    try:
+        print(f"\nDownloading image {i}/{len(image_urls)}...")
+        print(f"  URL: {url[:80]}...")
+
+        response = requests.get(url, headers=headers, timeout=15)
+        response.raise_for_status()
+
+        # Generate filename
+        filename = f"image_{i:03d}.png"
+        filepath = image_dir / filename
+
+        # Save image
+        filepath.write_bytes(response.content)
+        downloaded_images.append({
+            'index': i,
+            'url': url,
+            'local_path': f"images/{filename}",
+            'filename': filename
+        })
+        print(f"  Saved: {filename} ({len(response.content)} bytes)")
+    except Exception as e:
+        print(f"  Failed: {e}")
+
+print(f"\nDownload complete! {len(downloaded_images)} images")
+
+# Save mapping
+mapping_file = image_dir / "image_mapping.json"
+with open(mapping_file, 'w', encoding='utf-8') as f:
+    json.dump(downloaded_images, f, ensure_ascii=False, indent=2)
+print(f"Mapping saved: {mapping_file}")
+
+# Update Markdown with local paths
+updated_md = md_content
+for img in downloaded_images:
+    # Replace the URL in markdown
+    updated_md = updated_md.replace(img['url'], img['local_path'])
+
+# Save updated markdown
+with open(md_file, 'w', encoding='utf-8') as f:
+    f.write(updated_md)
+
+print(f"\nMarkdown file updated with local image references")
+print(f"File: {md_file}")

@@ -1,0 +1,67 @@
+[
+  {
+    "content": "深入分析现有仓库结构和内容分布",
+    "status": "completed",
+    "activeForm": "深入分析现有仓库结构和内容分布"
+  },
+  {
+    "content": "设计新的笔记架构方案",
+    "status": "completed",
+    "activeForm": "设计新的笔记架构方案"
+  },
+  {
+    "content": "征求用户对新架构的意见",
+    "status": "completed",
+    "activeForm": "征求用户对新架构的意见"
+  },
+  {
+    "content": "创建新目录结构（10-99）",
+    "status": "completed",
+    "activeForm": "创建新目录结构（10-99）"
+  },
+  {
+    "content": "创建新的总索引页和MOC文件",
+    "status": "in_progress",
+    "activeForm": "创建新的总索引页和MOC文件"
+  },
+  {
+    "content": "迁移AI学习笔记",
+    "status": "pending",
+    "activeForm": "迁移AI学习笔记"
+  },
+  {
+    "content": "迁移电力市场笔记",
+    "status": "pending",
+    "activeForm": "迁移电力市场笔记"
+  },
+  {
+    "content": "迁移编程技术笔记",
+    "status": "pending",
+    "activeForm": "迁移编程技术笔记"
+  },
+  {
+    "content": "迁移内容创作笔记",
+    "status": "pending",
+    "activeForm": "迁移内容创作笔记"
+  },
+  {
+    "content": "迁移时间管理和个人笔记",
+    "status": "pending",
+    "activeForm": "迁移时间管理和个人笔记"
+  },
+  {
+    "content": "迁移项目文档和资源",
+    "status": "pending",
+    "activeForm": "迁移项目文档和资源"
+  },
+  {
+    "content": "清理旧文件夹结构",
+    "status": "pending",
+    "activeForm": "清理旧文件夹结构"
+  },
+  {
+    "content": "验证迁移完整性",
+    "status": "pending",
+    "activeForm": "验证迁移完整性"
+  }
+]

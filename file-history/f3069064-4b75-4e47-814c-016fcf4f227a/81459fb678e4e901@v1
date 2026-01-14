@@ -1,0 +1,289 @@
+"""
+微信公众号文章采集工具
+主程序入口
+"""
+import sys
+import json
+import argparse
+from pathlib import Path
+from datetime import datetime
+from typing import List, Optional
+
+from config import OUTPUT_DIR, IMAGE_DIR, DOWNLOAD_IMAGES, FILE_FORMAT, DELAY_BETWEEN_REQUESTS
+from chrome_collector import ChromeCollector
+from article_parser import ArticleParser
+from markdown_generator import MarkdownGenerator
+from image_downloader import ImageDownloader
+
+
+class WeChatCollector:
+    """微信文章采集器"""
+
+    def __init__(self):
+        self.collector = ChromeCollector()
+        self.parser = ArticleParser()
+        self.generator = MarkdownGenerator()
+        self.downloader = None
+
+    def collect_article(self, url: str, download_images: bool = DOWNLOAD_IMAGES) -> bool:
+        """
+        采集单篇文章
+
+        Args:
+            url: 文章URL
+            download_images: 是否下载图片
+
+        Returns:
+            是否成功
+        """
+        print(f"\n开始采集文章: {url}")
+
+        try:
+            # 1. 打开页面（通过MCP工具）
+            print("步骤1: 打开页面...")
+            # 注意：这里需要通过实际的MCP工具调用
+            # mcp__chrome-devtools__navigate_page(url=url, type='url')
+
+            # 2. 获取页面快照
+            print("步骤2: 获取页面快照...")
+            # snapshot = mcp__chrome-devtools__take_snapshot()
+
+            # 由于我们在非MCP环境中，这里提供一个测试用的模拟数据
+            # 实际使用时，需要通过MCP工具获取真实数据
+            print("注意: 需要通过Chrome DevTools MCP工具获取页面数据")
+            print("请在MCP环境中调用此程序")
+
+            # 3. 执行JavaScript获取完整HTML
+            print("步骤3: 提取HTML内容...")
+            # html_data = mcp__chrome-devtools__evaluate_script(
+            #     function="""
+            #     () => {
+            #         return {
+            #             title: document.querySelector('h1')?.innerText || '',
+            #             author: document.querySelector('#js_author_name')?.innerText || '',
+            #             account_name: document.querySelector('.rich_media_meta_link_text')?.innerText || '',
+            #             publish_time: document.querySelector('.rich_media_meta_text')?.innerText || '',
+            #             content_html: document.querySelector('#js_content')?.innerHTML || '',
+            #             images: Array.from(document.querySelectorAll('#js_content img'))
+            #                 .map(img => img.src || img['data-src'])
+            #                 .filter(src => src)
+            #         };
+            #     }
+            #     """
+            # )
+
+            # 4. 解析文章数据
+            # metadata = self.parser.parse_from_html(html_data['content_html'], url)
+            # metadata.title = html_data.get('title', metadata.title)
+            # metadata.author = html_data.get('author', metadata.author)
+            # metadata.account_name = html_data.get('account_name', metadata.account_name)
+            # metadata.publish_time = html_data.get('publish_time', metadata.publish_time)
+            # metadata.images = html_data.get('images', [])
+
+            # 5. 创建保存目录
+            account_dir = OUTPUT_DIR / "account_name"  # 需要从metadata获取
+            account_dir.mkdir(parents=True, exist_ok=True)
+
+            # 6. 下载图片
+            image_mappings = {}
+            if download_images:
+                print("步骤4: 下载图片...")
+                self.downloader = ImageDownloader(account_dir)
+                # image_mappings = self.downloader.download_images(
+                #     metadata.images,
+                #     prefix=f"{metadata.account_name}_"
+                # )
+
+            # 7. 生成Markdown
+            print("步骤5: 生成Markdown...")
+            # markdown_content = self.generator.generate_article_markdown(
+            #     metadata,
+            #     image_mappings if download_images else None
+            # )
+
+            # 8. 保存文件
+            # filename = self.generator.generate_filename(metadata, FILE_FORMAT)
+            # md_path = account_dir / filename
+            # self.generator.save_markdown_file(markdown_content, str(md_path))
+
+            # 9. 保存元数据
+            # metadata_dict = self.parser.create_metadata_dict(metadata)
+            # metadata_path = account_dir / f"{filename.replace('.md', '_metadata.json')}"
+            # with open(metadata_path, 'w', encoding='utf-8') as f:
+            #     json.dump(metadata_dict, f, ensure_ascii=False, indent=2)
+
+            print(f"✓ 文章采集完成!")
+            # print(f"  Markdown: {md_path}")
+            # print(f"  元数据: {metadata_path}")
+
+            return True
+
+        except Exception as e:
+            print(f"✗ 采集失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return False
+
+    def collect_related_articles(self, url: str, depth: int = 1, download_images: bool = DOWNLOAD_IMAGES) -> List[str]:
+        """
+        采集"相关文章"
+
+        Args:
+            url: 起始文章URL
+            depth: 采集深度（1表示只采集直接相关的文章）
+            download_images: 是否下载图片
+
+        Returns:
+            采集的文章URL列表
+        """
+        print(f"\n开始采集相关文章，起始URL: {url}")
+
+        try:
+            # 1. 采集起始文章
+            self.collect_article(url, download_images)
+
+            # 2. 获取相关文章链接
+            print("获取相关文章链接...")
+            # snapshot = mcp__chrome-devtools__take_snapshot()
+            # related_links = self.parser.extract_related_links(snapshot)
+
+            # 3. 逐个采集相关文章
+            collected = [url]
+            # for link in related_links[:10]:  # 限制数量
+            #     if link not in collected:
+            #         print(f"\n采集相关文章: {link}")
+            #         if self.collect_article(link, download_images):
+            #             collected.append(link)
+            #         time.sleep(DELAY_BETWEEN_REQUESTS)
+
+            print(f"\n✓ 相关文章采集完成，共采集 {len(collected)} 篇")
+            return collected
+
+        except Exception as e:
+            print(f"✗ 采集相关文章失败: {e}")
+            return [url]
+
+    def collect_batch(self, links_file: str, download_images: bool = DOWNLOAD_IMAGES) -> dict:
+        """
+        批量采集文章
+
+        Args:
+            links_file: 包含文章链接的文件路径
+            download_images: 是否下载图片
+
+        Returns:
+            采集结果统计
+        """
+        print(f"\n开始批量采集，链接文件: {links_file}")
+
+        # 读取链接
+        try:
+            with open(links_file, 'r', encoding='utf-8') as f:
+                links = [line.strip() for line in f if line.strip()]
+        except Exception as e:
+            print(f"✗ 读取链接文件失败: {e}")
+            return {}
+
+        print(f"共 {len(links)} 个链接待采集")
+
+        results = {
+            'total': len(links),
+            'success': 0,
+            'failed': 0,
+            'articles': []
+        }
+
+        for i, link in enumerate(links, 1):
+            print(f"\n[{i}/{len(links)}] 采集: {link}")
+
+            if self.collect_article(link, download_images):
+                results['success'] += 1
+                results['articles'].append({'url': link, 'status': 'success'})
+            else:
+                results['failed'] += 1
+                results['articles'].append({'url': link, 'status': 'failed'})
+
+            # 添加延时
+            if i < len(links):
+                import time
+                time.sleep(DELAY_BETWEEN_REQUESTS)
+
+        # 保存采集结果
+        result_file = OUTPUT_DIR / f"batch_result_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        with open(result_file, 'w', encoding='utf-8') as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
+
+        print(f"\n✓ 批量采集完成!")
+        print(f"  总数: {results['total']}")
+        print(f"  成功: {results['success']}")
+        print(f"  失败: {results['failed']}")
+        print(f"  结果文件: {result_file}")
+
+        return results
+
+
+def main():
+    """主函数"""
+    parser = argparse.ArgumentParser(
+        description='微信公众号文章采集工具',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+使用示例:
+  # 采集单篇文章
+  python wechat_collector.py article "https://mp.weixin.qq.com/s/xxx"
+
+  # 采集单篇文章并下载图片
+  python wechat_collector.py article "https://mp.weixin.qq.com/s/xxx" --download-images
+
+  # 从"相关文章"采集多篇
+  python wechat_collector.py related "https://mp.weixin.qq.com/s/xxx" --depth 1
+
+  # 批量采集
+  python wechat_collector.py batch links.txt
+
+  # 批量采集并下载图片
+  python wechat_collector.py batch links.txt --download-images
+        """
+    )
+
+    subparsers = parser.add_subparsers(dest='command', help='采集命令')
+
+    # 单篇文章采集命令
+    article_parser = subparsers.add_parser('article', help='采集单篇文章')
+    article_parser.add_argument('url', help='文章URL')
+    article_parser.add_argument('--download-images', action='store_true', help='下载图片')
+
+    # 相关文章采集命令
+    related_parser = subparsers.add_parser('related', help='采集相关文章')
+    related_parser.add_argument('url', help='起始文章URL')
+    related_parser.add_argument('--depth', type=int, default=1, help='采集深度')
+    related_parser.add_argument('--download-images', action='store_true', help='下载图片')
+
+    # 批量采集命令
+    batch_parser = subparsers.add_parser('batch', help='批量采集文章')
+    batch_parser.add_argument('links_file', help='包含文章链接的文件')
+    batch_parser.add_argument('--download-images', action='store_true', help='下载图片')
+
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        sys.exit(1)
+
+    # 创建采集器
+    collector = WeChatCollector()
+
+    # 执行对应的命令
+    if args.command == 'article':
+        success = collector.collect_article(args.url, args.download_images)
+        sys.exit(0 if success else 1)
+
+    elif args.command == 'related':
+        collector.collect_related_articles(args.url, args.depth, args.download_images)
+
+    elif args.command == 'batch':
+        collector.collect_batch(args.links_file, args.download_images)
+
+
+if __name__ == '__main__':
+    main()

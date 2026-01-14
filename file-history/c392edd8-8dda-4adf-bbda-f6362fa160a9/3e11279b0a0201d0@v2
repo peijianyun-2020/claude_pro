@@ -1,0 +1,144 @@
+"""
+飞书知识库上传示例脚本
+用于测试文件上传功能
+"""
+
+import os
+import sys
+from pathlib import Path
+from dotenv import load_dotenv
+from feishu_uploader import FeishuWikiUploader
+
+
+def main():
+    """主函数"""
+    # 加载环境变量
+    load_dotenv()
+
+    # 检查配置
+    app_id = os.getenv("FEISHU_APP_ID")
+    app_secret = os.getenv("FEISHU_APP_SECRET")
+    wiki_space_id = os.getenv("FEISHU_WIKI_SPACE_ID")
+    node_token = os.getenv("FEISHU_WIKI_NODE_TOKEN")
+
+    if not all([app_id, app_secret]):
+        print("❌ 错误：请先配置 .env 文件")
+        print("\n请按照以下步骤配置：")
+        print("1. 复制 .env.example 为 .env")
+        print("2. 填入 FEISHU_APP_ID")
+        print("3. 填入 FEISHU_APP_SECRET")
+        print("4. 填入 FEISHU_WIKI_SPACE_ID（从知识库 URL 中获取）")
+        print("\n详细配置说明请参考 README.md")
+        sys.exit(1)
+
+    print("=" * 60)
+    print("飞书知识库文件上传工具")
+    print("=" * 60)
+
+    # 创建上传器
+    print("\n📡 正在连接飞书...")
+    uploader = FeishuWikiUploader(app_id, app_secret, wiki_space_id)
+
+    try:
+        # 获取 token（验证配置是否正确）
+        uploader.get_tenant_access_token()
+        print("✅ 连接成功！")
+    except Exception as e:
+        print(f"❌ 连接失败：{str(e)}")
+        print("\n请检查配置是否正确：")
+        print("1. App ID 和 App Secret 是否正确")
+        print("2. 应用是否已启用")
+        print("3. 应用权限是否已添加")
+        sys.exit(1)
+
+    # 获取用户输入
+    print("\n请选择上传方式：")
+    print("1. 上传单个文件")
+    print("2. 上传整个文件夹")
+    print("3. 上传示例数据（数据文档文件夹）")
+
+    choice = input("\n请输入选项 (1/2/3): ").strip()
+
+    if choice == "1":
+        # 上传单个文件
+        file_path = input("请输入文件路径: ").strip().strip('"')
+
+        if not Path(file_path).exists():
+            print(f"❌ 文件不存在：{file_path}")
+            sys.exit(1)
+
+        print(f"\n📤 正在上传文件：{Path(file_path).name}")
+
+        try:
+            result = uploader.upload_file(file_path)  # 自动使用根节点
+            print("✅ 上传成功！")
+            print(f"结果：{result}")
+        except Exception as e:
+            print(f"❌ 上传失败：{str(e)}")
+
+    elif choice == "2":
+        # 上传文件夹
+        folder_path = input("请输入文件夹路径: ").strip().strip('"')
+
+        if not Path(folder_path).exists() or not Path(folder_path).is_dir():
+            print(f"❌ 文件夹不存在：{folder_path}")
+            sys.exit(1)
+
+        print(f"\n📤 正在上传文件夹：{Path(folder_path).name}")
+
+        results = uploader.upload_folder(folder_path)  # 自动使用根节点
+
+        # 统计结果
+        success_count = sum(1 for r in results if r["status"] == "success")
+        failed_count = len(results) - success_count
+
+        print("\n" + "=" * 60)
+        print("上传完成！")
+        print(f"总计：{len(results)} 个文件")
+        print(f"✅ 成功：{success_count} 个")
+        print(f"❌ 失败：{failed_count} 个")
+
+        if failed_count > 0:
+            print("\n失败文件列表：")
+            for r in results:
+                if r["status"] == "failed":
+                    print(f"  - {Path(r['file']).name}: {r['error']}")
+
+    elif choice == "3":
+        # 上传示例数据
+        folder_path = Path("数据文档")
+
+        if not folder_path.exists():
+            print(f"❌ 示例数据文件夹不存在：{folder_path}")
+            sys.exit(1)
+
+        print(f"\n📤 正在上传示例数据：{folder_path.name}")
+
+        results = uploader.upload_folder(str(folder_path))  # 自动使用根节点
+
+        # 统计结果
+        success_count = sum(1 for r in results if r["status"] == "success")
+        failed_count = len(results) - success_count
+
+        print("\n" + "=" * 60)
+        print("上传完成！")
+        print(f"总计：{len(results)} 个文件")
+        print(f"✅ 成功：{success_count} 个")
+        print(f"❌ 失败：{failed_count} 个")
+
+        if failed_count > 0:
+            print("\n失败文件列表：")
+            for r in results:
+                if r["status"] == "failed":
+                    print(f"  - {Path(r['file']).name}: {r['error']}")
+    else:
+        print("❌ 无效的选项")
+        sys.exit(1)
+
+    print("\n" + "=" * 60)
+    print("打开飞书知识库查看上传的文件吧！")
+    print("=" * 60)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,451 @@
+# 使用说明
+
+本文档详细介绍如何配置和使用飞书多维表格 MCP 服务器。
+
+## 目录
+
+1. [安装配置](#安装配置)
+2. [基本使用](#基本使用)
+3. [工具详解](#工具详解)
+4. [使用示例](#使用示例)
+5. [最佳实践](#最佳实践)
+
+## 安装配置
+
+### 方法 1：命令行安装（推荐）
+
+1. 打开命令提示符或 PowerShell
+
+2. 运行安装命令：
+```bash
+claude mcp add feishu-bitable python "D:/AI/cc_pro/program/202601 CLAUDE CODE链接飞书/feishu-bitable-mcp/server.py"
+```
+
+3. 设置环境变量：
+```bash
+claude mcp set-env feishu-bitable FEISHU_APP_ID "cli_xxxxxxxxxxxxx"
+claude mcp set-env feishu-bitable FEISHU_APP_SECRET "xxxxxxxxxxxxxxxxxxxx"
+claude mcp set-env feishu-bitable FEISHU_APP_TOKEN "bascnxxxxxxxxxxxx"
+claude mcp set-env feishu-bitable FEISHU_TABLE_ID "tblxxxxxxxxxxxx"
+```
+
+4. 重启 Claude Code
+
+### 方法 2：配置文件安装
+
+1. 找到 Claude Code 的 MCP 配置文件：
+   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - Linux: `~/.config/Claude/claude_desktop_config.json`
+
+2. 编辑配置文件，添加以下内容：
+
+```json
+{
+  "mcpServers": {
+    "feishu-bitable": {
+      "command": "python",
+      "args": ["D:/AI/cc_pro/program/202601 CLAUDE CODE链接飞书/feishu-bitable-mcp/server.py"],
+      "env": {
+        "FEISHU_APP_ID": "cli_xxxxxxxxxxxxx",
+        "FEISHU_APP_SECRET": "xxxxxxxxxxxxxxxxxxxx",
+        "FEISHU_APP_TOKEN": "bascnxxxxxxxxxxxx",
+        "FEISHU_TABLE_ID": "tblxxxxxxxxxxxx"
+      }
+    }
+  }
+}
+```
+
+3. 保存文件并重启 Claude Code
+
+### 安装依赖
+
+首次使用前，需要安装 Python 依赖：
+
+```bash
+cd "D:\AI\cc_pro\program\202601 CLAUDE CODE链接飞书\feishu-bitable-mcp"
+pip install -r requirements.txt
+```
+
+### 测试连接
+
+运行测试脚本验证配置：
+
+```bash
+cd "D:\AI\cc_pro\program\202601 CLAUDE CODE链接飞书\feishu-bitable-mcp"
+python server.py --check
+```
+
+如果配置正确，会显示：
+```
+✅ FEISHU_APP_ID: 已配置
+✅ FEISHU_APP_SECRET: 已配置
+✅ FEISHU_APP_TOKEN: 已配置
+✅ FEISHU_TABLE_ID: 已配置
+✅ 成功连接到飞书多维表格！
+   字段数量: 8
+```
+
+## 基本使用
+
+### 在 Claude Code 中调用
+
+配置完成后，可以在 Claude Code 对话中直接调用：
+
+#### 示例 1：写入小红书笔记
+
+```
+将这个小红书笔记写入飞书表格：
+- 标题：测试笔记标题
+- 作者：测试作者
+- 点赞数：1234
+- 收藏数：567
+- 评论数：89
+- 笔记ID：note_20260112_001
+- 链接：https://xiaohongshu.com/explore/123456
+- 发布时间：2026-01-12
+```
+
+#### 示例 2：批量写入数据
+
+```
+将以下监控数据批量写入飞书表格：
+1. 时间戳：2026-01-12 10:00:00，指标名称：价格，数值：100.5
+2. 时间戳：2026-01-12 10:05:00，指标名称：价格，数值：101.2
+3. 时间戳：2026-01-12 10:10:00，指标名称：价格，数值：99.8
+```
+
+#### 示例 3：获取表结构
+
+```
+获取飞书表格的字段结构
+```
+
+## 工具详解
+
+MCP 服务器提供以下工具：
+
+### 1. upsert_record（推荐）
+
+**功能**：追加或更新记录
+
+**特点**：
+- 根据唯一字段判断记录是否存在
+- 存在则更新，不存在则创建
+- 自动去重，避免重复数据
+
+**参数**：
+- `fields`（必需）：记录字段数据，JSON 对象格式
+- `unique_field`（可选）：用于判断唯一性的字段名称，默认 `note_id`
+
+**使用场景**：
+- 写入社交媒体数据（根据笔记ID去重）
+- 定期更新的监控数据
+- 需要自动去重的数据
+
+**示例**：
+```json
+{
+  "fields": {
+    "title": "笔记标题",
+    "author": "作者",
+    "likes": 1234,
+    "note_id": "unique_id_123"
+  },
+  "unique_field": "note_id"
+}
+```
+
+### 2. write_record
+
+**功能**：写入单条记录
+
+**特点**：
+- 每次都创建新记录
+- 不会检查是否重复
+- 速度快，适合确定不会重复的数据
+
+**参数**：
+- `fields`（必需）：记录字段数据，JSON 对象格式
+
+**使用场景**：
+- 写入日志数据
+- 写入临时数据
+- 不需要去重的数据
+
+**示例**：
+```json
+{
+  "fields": {
+    "title": "笔记标题",
+    "author": "作者",
+    "likes": 1234
+  }
+}
+```
+
+### 3. batch_write_records
+
+**功能**：批量写入多条记录
+
+**特点**：
+- 一次性写入多条记录
+- 比单条写入效率高
+- 适合大量数据导入
+
+**参数**：
+- `records`（必需）：记录列表，每条记录都是字段数据的 JSON 对象
+
+**使用场景**：
+- 批量导入历史数据
+- 定期批量同步数据
+- 数据迁移
+
+**示例**：
+```json
+{
+  "records": [
+    {
+      "title": "笔记1",
+      "likes": 100
+    },
+    {
+      "title": "笔记2",
+      "likes": 200
+    }
+  ]
+}
+```
+
+### 4. find_record
+
+**功能**：根据字段值查找记录
+
+**参数**：
+- `field_name`（必需）：字段名称
+- `field_value`（必需）：字段值
+
+**使用场景**：
+- 检查记录是否已存在
+- 查找特定记录的详细信息
+
+**示例**：
+```json
+{
+  "field_name": "note_id",
+  "field_value": "note_20260112_001"
+}
+```
+
+### 5. get_table_schema
+
+**功能**：获取表格字段结构
+
+**返回**：
+- 字段数量
+- 每个字段的名称、类型、描述
+
+**使用场景**：
+- 查看表格有哪些字段
+- 了解字段类型
+- 调试字段映射问题
+
+## 使用示例
+
+### 示例 1：同步小红书笔记数据
+
+**场景**：使用小红书 skill 获取笔记后，自动写入飞书表格
+
+**对话示例**：
+```
+用户：搜索小红书上关于"AI工具"的笔记
+
+Claude：[搜索到10条笔记]
+
+用户：将这些笔记写入飞书表格，使用 note_id 作为唯一字段
+
+Claude：[调用 upsert_record 工具，批量写入10条笔记]
+
+结果：✅ 成功创建 10 条记录
+```
+
+**数据结构**：
+```json
+{
+  "title": "笔记标题",
+  "author": "作者昵称",
+  "likes": 1234,
+  "collects": 567,
+  "comments": 89,
+  "url": "https://xiaohongshu.com/...",
+  "note_id": "64f6a1b2xxxxx",
+  "publish_time": "2026-01-12",
+  "tags": ["AI工具", "效率"]
+}
+```
+
+### 示例 2：监控数据定期同步
+
+**场景**：定期同步价格监控数据到飞书表格
+
+**对话示例**：
+```
+用户：将今天的电力现货价格数据写入飞书表格
+
+Claude：[获取今天的电价数据]
+
+用户：写入飞书表格，用时间戳作为唯一字段
+
+Claude：[调用 upsert_record 工具]
+
+结果：✅ 记录更新成功（如果已存在）或 ✅ 记录创建成功（如果不存在）
+```
+
+**数据结构**：
+```json
+{
+  "timestamp": "2026-01-12 10:00:00",
+  "region": "广东",
+  "price": 123.45,
+  "data_type": "日前市场",
+  "source": "南方区域电力现货交易系统"
+}
+```
+
+### 示例 3：抖音爆款视频分析
+
+**场景**：分析抖音账号后，将爆款视频数据写入飞书表格
+
+**对话示例**：
+```
+用户：分析这个抖音账号的爆款视频：[账号ID]
+
+Claude：[分析完成，找到5个爆款视频]
+
+用户：将这些视频数据写入飞书表格
+
+Claude：[调用 batch_write_records 工具]
+
+结果：✅ 成功创建 5 条记录
+```
+
+**数据结构**：
+```json
+{
+  "title": "视频标题",
+  "author": "作者昵称",
+  "likes": 5678,
+  "shares": 234,
+  "comments": 156,
+  "url": "https://douyin.com/...",
+  "video_id": "7123456789012345678",
+  "publish_time": "2026-01-12",
+  "duration": "00:01:30"
+}
+```
+
+## 最佳实践
+
+### 1. 选择合适的唯一字段
+
+为不同类型的数据选择合适的唯一字段：
+
+| 数据类型 | 推荐唯一字段 | 原因 |
+|---------|------------|------|
+| 小红书笔记 | `note_id` | 笔记唯一标识 |
+| 抖音视频 | `video_id` 或 `url` | 视频唯一标识 |
+| 监控数据 | `timestamp` + `region` | 时间+地区组合 |
+| 价格数据 | `timestamp` + `product_id` | 时间+产品组合 |
+
+### 2. 字段命名规范
+
+- 使用小写字母和下划线：`note_id`、`publish_time`
+- 避免使用特殊字符和空格
+- 使用有意义的名称：`title` 而不是 `t`
+
+### 3. 数据类型映射
+
+确保 Python 数据类型与飞书字段类型匹配：
+
+| 飞书字段类型 | Python 数据类型 | 示例 |
+|------------|----------------|------|
+| 文本 | `str` | `"标题"` |
+| 长文本 | `str` | `"长文本内容..."` |
+| 数字 | `int` 或 `float` | `1234` 或 `123.45` |
+| 日期 | `str` (ISO 格式) | `"2026-01-12"` |
+| 日期时间 | `str` (ISO 格式) | `"2026-01-12T10:00:00"` |
+| URL | `str` | `"https://example.com"` |
+| 多选 | `list` | `["标签1", "标签2"]` |
+| 电话 | `str` | `"+86 138 0000 0000"` |
+| 邮箱 | `str` | `"user@example.com"` |
+
+### 4. 批量写入优化
+
+- 批量写入比单条写入效率高
+- 每批建议 100-500 条记录
+- 超过 500 条建议分批写入
+
+### 5. 错误处理
+
+常见错误及解决方法：
+
+| 错误信息 | 原因 | 解决方法 |
+|---------|------|---------|
+| `缺少必要参数` | 环境变量未配置 | 检查环境变量配置 |
+| `字段不存在` | 字段名称错误 | 使用 `get_table_schema` 查看正确字段名 |
+| `字段类型不匹配` | 数据类型错误 | 检查数据类型，转换为正确类型 |
+| `权限不足` | 应用权限不够 | 在飞书开放平台申请 `bitable:app` 权限 |
+| `频率限制` | API 调用过于频繁 | 降低调用频率或分批处理 |
+
+### 6. 安全建议
+
+- 不要将 `App Secret` 提交到代码仓库
+- 使用环境变量存储敏感信息
+- 定期更换 `App Secret`
+- 限制应用权限范围（仅申请必要权限）
+
+### 7. 性能优化
+
+- 使用 `upsert_record` 而不是 `find_record` + `create/update`
+- 批量写入时使用 `batch_write_records`
+- 避免频繁调用 `get_table_schema`（缓存结果）
+
+## 常见问题
+
+### Q1：如何查看写入的数据是否成功？
+
+**A**：
+1. 在飞书多维表格中查看数据
+2. 使用 `find_record` 工具查询
+3. 检查工具返回的 `record_id`
+
+### Q2：数据写入后如何修改？
+
+**A**：
+1. 使用 `upsert_record` 工具，传入相同的唯一字段值
+2. 工具会自动检测并更新记录
+
+### Q3：可以写入到多个表格吗？
+
+**A**：可以，但需要：
+1. 创建多个 MCP 服务器配置
+2. 每个配置指向不同的 `app_token` 和 `table_id`
+3. 在调用时指定使用哪个服务器
+
+### Q4：如何处理字段名称中包含特殊字符？
+
+**A**：
+- 避免使用特殊字符作为字段名
+- 如果必须使用，使用 `get_table_schema` 查看准确的字段名称
+- 在调用时使用准确的字段名称
+
+## 下一步
+
+- [飞书应用创建指南](./飞书应用创建指南.md) - 创建飞书应用
+- [故障排查](./故障排查.md) - 解决常见问题
+
+## 需要帮助？
+
+- 飞书开放平台文档：https://open.feishu.cn/document
+- 提交 Issue：https://github.com/your-repo/issues

@@ -1,0 +1,41 @@
+"""
+Update Markdown file with local image references
+"""
+import json
+from pathlib import Path
+
+# File paths
+md_file = Path(r"D:\AI\cc_pro\program\20260113_GZH-collect\wechat_articles\腾讯云开发者\2026-01-13_大模型狂飙2025：一篇文理清从模型到智能体的架构演进.md")
+mapping_file = Path(r"D:\AI\cc_pro\program\20260113_GZH-collect\wechat_articles\腾讯云开发者\images\image_mapping.json")
+
+# Read image mapping
+with open(mapping_file, 'r', encoding='utf-8') as f:
+    image_mapping = json.load(f)
+
+# Read markdown content
+with open(md_file, 'r', encoding='utf-8') as f:
+    md_content = f.read()
+
+# Replace image URLs with local paths
+for img in image_mapping:
+    original_url = img['url']
+    local_path = img['local_path']
+    # Replace URL with local path in markdown
+    md_content = md_content.replace(original_url, local_path)
+
+# Also replace any image URLs that appear in markdown image format
+# Extract the base URL without the hash fragment
+for i, img in enumerate(image_mapping, 1):
+    original_url = img['url']
+    base_url = original_url.split('#')[0]  # Remove hash fragment
+    local_path = img['local_path']
+
+    # Replace the URL (with or without hash fragment)
+    md_content = md_content.replace(base_url, local_path)
+
+# Write updated markdown
+with open(md_file, 'w', encoding='utf-8') as f:
+    f.write(md_content)
+
+print(f"Updated Markdown file: {md_file}")
+print(f"Replaced {len(image_mapping)} image URLs with local paths")

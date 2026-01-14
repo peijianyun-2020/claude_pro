@@ -1,0 +1,1896 @@
+2026-01-11T11:18:54.574Z [DEBUG] Watching for changes in setting files C:\Users\55315\.claude, D:\AI\cc_pro\.claude...
+2026-01-11T11:18:54.580Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-11T11:18:54.580Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-11T11:18:54.580Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-11T11:18:54.580Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-11T11:18:54.634Z [DEBUG] Using bash path: "C:\Program Files\Git\bin\bash.exe"
+2026-01-11T11:18:54.644Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-11T11:18:54.644Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-11T11:18:54.644Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-11T11:18:54.654Z [DEBUG] Applying permission update: Adding 34 allow rule(s) to destination 'localSettings': ["Skill(glm-plan-usage:usage-query-skill)","Bash(claude mcp add:*)","mcp__web-reader__webReader","WebSearch","Bash(claude:*)","mcp__web-search-prime__webSearchPrime","Bash(findstr:*)","Bash(cat:*)","Bash(git clone:*)","Bash(node:*)","Bash(npm --version:*)","Bash(pip:*)","Bash(if:*)","Bash(powershell:*)","Bash(dir:*)","Skill(xianhuoprice)","mcp__chrome-devtools__list_pages","mcp__chrome-devtools__navigate_page","mcp__chrome-devtools__take_snapshot","mcp__chrome-devtools__take_screenshot","mcp__chrome-devtools__list_network_requests","mcp__chrome-devtools__get_network_request","Bash(python:*)","Bash(where:*)","Bash(npm prefix:*)","Bash(npm update:*)","Bash(npm install:*)","Bash(npm view:*)","Bash(mkdir:*)","Bash(more:*)","Bash(cmd:*)","Bash(del:*)","Bash(echo:*)","Bash(ls:*)"]
+2026-01-11T11:18:54.654Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-01-11T11:18:54.664Z [DEBUG] Loading plugin glm-plan-usage from source: "./plugins/glm-plan-usage"
+2026-01-11T11:18:54.666Z [DEBUG] Using manifest version for glm-plan-usage@zai-coding-plugins: 0.0.1
+2026-01-11T11:18:54.667Z [DEBUG] Plugin glm-plan-usage@zai-coding-plugins version 0.0.1 already cached at C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-11T11:18:54.667Z [DEBUG] Copied local plugin glm-plan-usage to versioned cache: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-11T11:18:54.670Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-11T11:18:54.672Z [DEBUG] [STARTUP] MCP configs loaded in 18ms
+2026-01-11T11:18:54.673Z [DEBUG] [STARTUP] Running setup()...
+2026-01-11T11:18:54.679Z [DEBUG] Stats cache is up to date
+2026-01-11T11:18:54.680Z [DEBUG] Plugin autoupdate: skipped (auto-updater disabled)
+2026-01-11T11:18:54.687Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[D:\AI\cc_pro\.claude\skills]
+2026-01-11T11:18:54.731Z [DEBUG] Loaded 1 installed plugins from C:\Users\55315\.claude\plugins\installed_plugins.json
+2026-01-11T11:18:54.792Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768130334792
+2026-01-11T11:18:54.794Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-11T11:18:54.794Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768130334792 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T11:18:54.795Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T11:18:54.802Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-11T11:18:54.802Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-11T11:18:54.802Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-11T11:18:54.810Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-01-11T11:18:54.833Z [DEBUG] [STARTUP] setup() completed in 160ms
+2026-01-11T11:18:54.833Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-01-11T11:18:54.835Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-11T11:18:54.835Z [DEBUG] Total plugin skills loaded: 1
+2026-01-11T11:18:54.835Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-11T11:18:54.835Z [DEBUG] Total plugin commands loaded: 1
+2026-01-11T11:18:54.838Z [DEBUG] Loaded 1 agents from plugin glm-plan-usage default directory
+2026-01-11T11:18:54.838Z [DEBUG] Total plugin agents loaded: 1
+2026-01-11T11:18:54.838Z [DEBUG] Loaded 4 unique skills (managed: 0, user: 3, project: 1, legacy commands: 0)
+2026-01-11T11:18:54.838Z [DEBUG] getSkills returning: 4 skill dir commands, 1 plugin skills, 0 bundled skills
+2026-01-11T11:18:54.839Z [DEBUG] [STARTUP] Commands and agents loaded in 6ms
+2026-01-11T11:18:54.839Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-01-11T11:18:54.841Z [DEBUG] [render] initYoga starting
+2026-01-11T11:18:54.854Z [DEBUG] Total LSP servers loaded: 0
+2026-01-11T11:18:54.854Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-01-11T11:18:54.854Z [DEBUG] LSP manager initialized with 0 servers
+2026-01-11T11:18:54.854Z [DEBUG] LSP server manager initialized successfully
+2026-01-11T11:18:54.855Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-01-11T11:18:54.883Z [DEBUG] Creating shell snapshot for bash (C:\Program Files\Git\bin\bash.exe)
+2026-01-11T11:18:54.884Z [DEBUG] Looking for shell config file: C:\Users\55315\.bashrc
+2026-01-11T11:18:54.884Z [DEBUG] Shell config file not found: C:\Users\55315\.bashrc, creating snapshot with Claude Code defaults only
+2026-01-11T11:18:54.884Z [DEBUG] Snapshots directory: C:\Users\55315\.claude\shell-snapshots
+2026-01-11T11:18:54.949Z [DEBUG] [render] initYoga complete
+2026-01-11T11:18:54.954Z [DEBUG] Watching for changes in skill directories: C:\Users\55315\.claude\skills, D:\AI\cc_pro\.claude\skills...
+2026-01-11T11:18:54.960Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\55315\AppData\Roaming\npm\node_modules\@anthropic-ai\claude-code\vendor\ripgrep\x64-win32\rg.exe)
+2026-01-11T11:18:55.013Z [DEBUG] Creating snapshot at: C:\Users\55315\.claude\shell-snapshots\snapshot-bash-1768130334884-qoyock.sh
+2026-01-11T11:18:55.013Z [DEBUG] Shell binary exists: true
+2026-01-11T11:18:55.013Z [DEBUG] Execution timeout: 10000ms
+2026-01-11T11:18:55.117Z [DEBUG] [STARTUP] showSetupScreens() completed in 278ms
+2026-01-11T11:18:55.169Z [DEBUG] MCP server "zai-mcp-server": Starting connection with timeout of 30000ms
+2026-01-11T11:18:55.192Z [DEBUG] MCP server "chrome-devtools": Starting connection with timeout of 30000ms
+2026-01-11T11:18:55.217Z [DEBUG] MCP server "web-search-prime": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-11T11:18:55.218Z [DEBUG] MCP server "web-search-prime": Node version: v22.21.0, Platform: win32
+2026-01-11T11:18:55.218Z [DEBUG] MCP server "web-search-prime": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-11T11:18:55.220Z [DEBUG] MCP server "web-reader": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-11T11:18:55.220Z [DEBUG] MCP server "web-reader": Node version: v22.21.0, Platform: win32
+2026-01-11T11:18:55.220Z [DEBUG] MCP server "web-reader": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-11T11:18:55.221Z [DEBUG] MCP server "github": Initializing HTTP transport to https://api.githubcopilot.com/mcp/
+2026-01-11T11:18:55.221Z [DEBUG] MCP server "github": Node version: v22.21.0, Platform: win32
+2026-01-11T11:18:55.221Z [DEBUG] MCP server "github": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-11T11:18:55.222Z [DEBUG] MCP server "xiaohongshu-mcp": Initializing HTTP transport to http://localhost:18060/mcp
+2026-01-11T11:18:55.222Z [DEBUG] MCP server "xiaohongshu-mcp": Node version: v22.21.0, Platform: win32
+2026-01-11T11:18:55.222Z [DEBUG] MCP server "xiaohongshu-mcp": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-11T11:18:55.241Z [DEBUG] All plugins already exist, skipping migration
+2026-01-11T11:18:55.322Z [DEBUG] Initialized versioned plugins system with 1 plugins
+2026-01-11T11:18:55.322Z [DEBUG] MCP server "web-search-prime": Proxy options: default
+2026-01-11T11:18:55.323Z [DEBUG] MCP server "web-search-prime": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_search_prime/mcp","headers":{"User-Agent":"claude-code/2.1.2","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-11T11:18:55.323Z [DEBUG] MCP server "web-search-prime": HTTP transport created successfully
+2026-01-11T11:18:55.323Z [DEBUG] MCP server "web-search-prime": Client created, setting up request handler
+2026-01-11T11:18:55.323Z [DEBUG] MCP server "web-search-prime": Starting connection with timeout of 30000ms
+2026-01-11T11:18:55.323Z [DEBUG] MCP server "web-search-prime": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-11T11:18:55.323Z [DEBUG] MCP server "web-search-prime": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-11T11:18:55.324Z [DEBUG] MCP server "web-reader": Proxy options: default
+2026-01-11T11:18:55.324Z [DEBUG] MCP server "web-reader": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_reader/mcp","headers":{"User-Agent":"claude-code/2.1.2","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-11T11:18:55.324Z [DEBUG] MCP server "web-reader": HTTP transport created successfully
+2026-01-11T11:18:55.324Z [DEBUG] MCP server "web-reader": Client created, setting up request handler
+2026-01-11T11:18:55.324Z [DEBUG] MCP server "web-reader": Starting connection with timeout of 30000ms
+2026-01-11T11:18:55.324Z [DEBUG] MCP server "web-reader": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-11T11:18:55.324Z [DEBUG] MCP server "web-reader": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-11T11:18:55.327Z [DEBUG] MCP server "github": Proxy options: default
+2026-01-11T11:18:55.327Z [DEBUG] MCP server "github": HTTP transport options: {"url":"https://api.githubcopilot.com/mcp/","headers":{"User-Agent":"claude-code/2.1.2"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-11T11:18:55.327Z [DEBUG] MCP server "github": HTTP transport created successfully
+2026-01-11T11:18:55.328Z [DEBUG] MCP server "github": Client created, setting up request handler
+2026-01-11T11:18:55.328Z [DEBUG] MCP server "github": Starting connection with timeout of 30000ms
+2026-01-11T11:18:55.328Z [DEBUG] MCP server "github": Testing basic HTTP connectivity to https://api.githubcopilot.com/mcp/
+2026-01-11T11:18:55.328Z [DEBUG] MCP server "github": Parsed URL: host=api.githubcopilot.com, port=default, protocol=https:
+2026-01-11T11:18:55.328Z [DEBUG] MCP server "xiaohongshu-mcp": Proxy options: default
+2026-01-11T11:18:55.328Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP transport options: {"url":"http://localhost:18060/mcp","headers":{"User-Agent":"claude-code/2.1.2"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-11T11:18:55.328Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP transport created successfully
+2026-01-11T11:18:55.328Z [DEBUG] MCP server "xiaohongshu-mcp": Client created, setting up request handler
+2026-01-11T11:18:55.331Z [DEBUG] MCP server "xiaohongshu-mcp": Starting connection with timeout of 30000ms
+2026-01-11T11:18:55.331Z [DEBUG] MCP server "xiaohongshu-mcp": Testing basic HTTP connectivity to http://localhost:18060/mcp
+2026-01-11T11:18:55.331Z [DEBUG] MCP server "xiaohongshu-mcp": Parsed URL: host=localhost, port=18060, protocol=http:
+2026-01-11T11:18:55.331Z [DEBUG] MCP server "xiaohongshu-mcp": Using loopback address: localhost
+2026-01-11T11:18:55.348Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.27228.1768130335348
+2026-01-11T11:18:55.349Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T11:18:55.350Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T11:18:55.350Z [DEBUG] Applied original permissions to temp file
+2026-01-11T11:18:55.351Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.27228.1768130335348 to C:\Users\55315\.claude.json
+2026-01-11T11:18:55.351Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T11:18:55.376Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-01-11T11:18:55.376Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:18:55.376Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-01-11T11:18:55.378Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-11T11:18:55.379Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-11T11:18:55.379Z [DEBUG] MCP server "github": No token data found
+2026-01-11T11:18:55.379Z [DEBUG] MCP server "xiaohongshu-mcp": No token data found
+2026-01-11T11:18:55.386Z [DEBUG] [render] initYoga starting
+2026-01-11T11:18:55.407Z [DEBUG] [render] initYoga complete
+2026-01-11T11:18:55.416Z [DEBUG] Git remote URL: null
+2026-01-11T11:18:55.416Z [DEBUG] No git remote URL found
+2026-01-11T11:18:55.416Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-01-11T11:18:55.424Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2026-01-11T11:18:55.424Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:18:55.424Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2026-01-11T11:18:55.443Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2026-01-11T11:18:55.443Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:18:55.443Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2026-01-11T11:18:55.465Z [DEBUG] Getting matching hook commands for SubagentStart with query: Bash
+2026-01-11T11:18:55.465Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:18:55.465Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T11:18:55.574Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-01-11T11:18:55.580Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-01-11T11:18:55.581Z [DEBUG] performStartupChecks called
+2026-01-11T11:18:55.582Z [DEBUG] Starting background plugin installations
+2026-01-11T11:18:55.582Z [DEBUG] performBackgroundPluginInstallations called
+2026-01-11T11:18:55.601Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-11T11:18:55.604Z [DEBUG] Found 1 enabled plugins
+2026-01-11T11:18:55.605Z [DEBUG] All plugins already exist, skipping migration
+2026-01-11T11:18:55.605Z [DEBUG] Found 1 installed plugins (V2 format)
+2026-01-11T11:18:55.611Z [DEBUG] Loaded plugins - Enabled: 1, Disabled: 0, Commands: 1, Agents: 1, Errors: 0
+2026-01-11T11:18:55.611Z [DEBUG] Found 0 missing plugins (not installed):
+2026-01-11T11:18:55.611Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-01-11T11:18:55.643Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP Connection failed after 421ms: fetch failed (code: none, errno: none)
+2026-01-11T11:18:55.643Z [ERROR] MCP server "xiaohongshu-mcp" TypeError: fetch failed
+2026-01-11T11:18:55.658Z [DEBUG] MCP server "xiaohongshu-mcp": Connection failed after 436ms: fetch failed
+2026-01-11T11:18:55.658Z [ERROR] MCP server "xiaohongshu-mcp" Connection failed: fetch failed
+2026-01-11T11:18:55.719Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.27228.1768130335719
+2026-01-11T11:18:55.719Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T11:18:55.722Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T11:18:55.722Z [DEBUG] Applied original permissions to temp file
+2026-01-11T11:18:55.722Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.27228.1768130335719 to C:\Users\55315\.claude.json
+2026-01-11T11:18:55.723Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T11:18:55.812Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T11:18:55.812Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T11:18:55.812Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T11:18:55.818Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-11T11:18:55.819Z [DEBUG] Skills and commands included in Skill tool: xianhuoprice, xianhuoxiaohongshu, glm-plan-usage:usage-query, usage-query-skill
+2026-01-11T11:18:55.819Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-11T11:18:55.823Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:18:55.823Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:18:55.824Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:18:55.830Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:18:55.830Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:18:55.831Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:18:55.831Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:18:55.832Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:18:55.832Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:18:55.999Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-11T11:18:56.088Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-11T11:18:56.230Z [DEBUG] MCP server "web-reader": Successfully connected to http server in 1010ms
+2026-01-11T11:18:56.231Z [DEBUG] MCP server "web-reader": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"web-reader-server","version":"0.0.1"}}
+2026-01-11T11:18:56.232Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-11T11:18:56.395Z [DEBUG] Shell snapshot created successfully (342 bytes)
+2026-01-11T11:18:56.530Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:18:56.546Z [DEBUG] MCP server "web-search-prime": Successfully connected to http server in 1329ms
+2026-01-11T11:18:56.546Z [DEBUG] MCP server "web-search-prime": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"mcp-web-search-prime","version":"0.0.1"}}
+2026-01-11T11:18:56.547Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-11T11:18:56.592Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:18:56.698Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:18:57.607Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-11T11:18:57.790Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T11:18:57.791Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T11:18:57.791Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:18:57.791Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T11:18:57.916Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T11:18:57.919Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:18:57.919Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:18:57.919Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:18:58.054Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.052Z] INFO: MCP Server Application initialized
+2026-01-11T11:18:58.054Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.053Z] INFO: Starting MCP server...
+2026-01-11T11:18:58.054Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.054Z] INFO: UI to Artifact tool registered successfully
+2026-01-11T11:18:58.055Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.054Z] INFO: Text Extraction tool registered successfully
+2026-01-11T11:18:58.055Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.054Z] INFO: Error Diagnosis tool registered successfully
+2026-01-11T11:18:58.055Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.055Z] INFO: Diagram Analysis tool registered successfully
+2026-01-11T11:18:58.055Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.055Z] INFO: Data Visualization Analysis tool registered successfully
+2026-01-11T11:18:58.055Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.055Z] INFO: UI Diff Check tool registered successfully
+2026-01-11T11:18:58.056Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.055Z] INFO: General Image Analysis tool registered successfully
+2026-01-11T11:18:58.056Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.056Z] INFO: Video analysis tool registered successfully
+2026-01-11T11:18:58.056Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.056Z] INFO: Successfully registered all tools
+2026-01-11T11:18:58.057Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-11T11:18:58.056Z] INFO: MCP Server started successfully [{"mode":"ZHIPU","name":"zai-mcp-server","version":"0.1.2"}]
+2026-01-11T11:18:58.063Z [DEBUG] MCP server "zai-mcp-server": Successfully connected to stdio server in 2901ms
+2026-01-11T11:18:58.063Z [DEBUG] MCP server "zai-mcp-server": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zai-mcp-server","version":"0.1.2"}}
+2026-01-11T11:18:58.229Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:18:58.423Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-11T11:18:58.423Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:18:58.423Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T11:18:58.424Z [ERROR] MCP server "chrome-devtools" Server stderr: chrome-devtools-mcp exposes content of the browser instance to the MCP clients allowing them to inspect,
+debug, and modify any data in the browser or DevTools.
+Avoid sharing sensitive or personal information that you do not want to share with MCP clients.
+2026-01-11T11:18:58.431Z [DEBUG] MCP server "chrome-devtools": Successfully connected to stdio server in 3240ms
+2026-01-11T11:18:58.431Z [DEBUG] MCP server "chrome-devtools": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"chrome_devtools","title":"Chrome DevTools MCP server","version":"0.12.1"}}
+2026-01-11T11:18:58.433Z [DEBUG] Applying permission update: Setting mode to 'bypassPermissions'
+2026-01-11T11:18:58.562Z [DEBUG] MCP server "github": No client info found
+2026-01-11T11:18:58.563Z [DEBUG] MCP server "github": HTTP Connection failed after 3342ms: Incompatible auth server: does not support dynamic client registration (code: none, errno: none)
+2026-01-11T11:18:58.563Z [ERROR] MCP server "github" Error: Incompatible auth server: does not support dynamic client registration
+2026-01-11T11:18:58.563Z [DEBUG] MCP server "github": Connection failed after 3342ms: Incompatible auth server: does not support dynamic client registration
+2026-01-11T11:18:58.563Z [ERROR] MCP server "github" Connection failed: Incompatible auth server: does not support dynamic client registration
+2026-01-11T11:18:58.821Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T11:18:58.822Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T11:18:58.822Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:18:58.822Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T11:18:58.951Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T11:18:58.953Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:18:58.953Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:18:58.953Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:18:59.322Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:18:59.659Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-11T11:18:59.659Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:18:59.659Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T11:18:59.959Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T11:18:59.960Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T11:18:59.960Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:18:59.960Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T11:19:00.057Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T11:19:00.059Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:19:00.059Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:19:00.059Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:19:00.308Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:19:01.219Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-11T11:19:01.220Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-11T11:19:01.220Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:19:01.220Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-11T11:19:01.317Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T11:19:01.319Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:19:01.319Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:19:01.319Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:19:01.552Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:19:02.486Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-11T11:19:02.487Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-11T11:19:02.487Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:19:02.487Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-11T11:19:02.576Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T11:19:02.577Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:19:02.577Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:19:02.577Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:19:02.615Z [DEBUG] npm view failed with code 1
+2026-01-11T11:19:02.615Z [DEBUG] npm stderr: (empty)
+2026-01-11T11:19:02.912Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:19:02.941Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.27228.1768130342941
+2026-01-11T11:19:02.941Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T11:19:02.941Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T11:19:02.941Z [DEBUG] Applied original permissions to temp file
+2026-01-11T11:19:02.941Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.27228.1768130342941 to C:\Users\55315\.claude.json
+2026-01-11T11:19:02.942Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T11:19:02.943Z [DEBUG] Metadata string for xianhuoprice:
+2026-01-11T11:19:02.943Z [DEBUG] <command-message>The "xianhuoprice" skill is running</command-message>
+<command-name>xianhuoprice</command-name>
+2026-01-11T11:19:02.943Z [DEBUG] command-message tags in metadata: 1
+2026-01-11T11:19:02.981Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T11:19:02.981Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T11:19:02.981Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T11:19:02.981Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T11:19:02.988Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-11T11:19:03.249Z [DEBUG] processPromptSlashCommand creating 4 messages for xianhuoprice
+2026-01-11T11:19:03.249Z [DEBUG] Message 1: <command-message>The "xianhuoprice" skill is running</command-message>
+<command-name>xianhuoprice</command-name>
+2026-01-11T11:19:03.249Z [DEBUG] Message 2 [META]: [{"type":"text","text":"Base directory for this skill: C:\\Users\\55315\\.claude\\skills\\xianhuoprice\n\n# 南方区域电力现货价格采集助手\r\n\r\n## 概述\r\n\r\n本 Skill 提供从南方区域现货电能量交易系统自动提取用电侧成交价格数据的能力，包括：\r\n1. 日前价格数据
+2026-01-11T11:19:03.249Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-11T11:19:03.249Z [DEBUG] Message 4: [ATTACHMENT]
+2026-01-11T11:19:03.269Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-11T11:19:03.269Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:19:03.269Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T11:19:03.273Z [DEBUG] FileHistory: Added snapshot for a7fb49e1-5036-4366-9d1a-4039c49d7cd5, tracking 0 files
+2026-01-11T11:19:03.275Z [DEBUG] UserCommandMessage rendering: "The "xianhuoprice" skill is running" (args: "none")
+2026-01-11T11:19:03.275Z [DEBUG] isSkillFormat: true
+2026-01-11T11:19:03.361Z [DEBUG] Total plugin output styles loaded: 0
+2026-01-11T11:19:03.391Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T11:19:03.403Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:19:03.403Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:19:03.403Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:19:03.565Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-11T11:19:03.566Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-11T11:19:03.566Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:19:03.566Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-11T11:19:03.657Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T11:19:03.658Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T11:19:03.658Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T11:19:03.658Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T11:19:03.801Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:19:07.150Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-11T11:19:07.150Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:19:07.150Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T11:19:07.307Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.27228.1768130347307
+2026-01-11T11:19:07.307Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T11:19:07.308Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T11:19:07.308Z [DEBUG] Applied original permissions to temp file
+2026-01-11T11:19:07.308Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.27228.1768130347307 to C:\Users\55315\.claude.json
+2026-01-11T11:19:07.309Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T11:19:07.339Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.27228.1768130347339
+2026-01-11T11:19:07.339Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T11:19:07.339Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T11:19:07.340Z [DEBUG] Applied original permissions to temp file
+2026-01-11T11:19:07.340Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.27228.1768130347339 to C:\Users\55315\.claude.json
+2026-01-11T11:19:07.340Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T11:19:07.522Z [DEBUG] Stream started - received first chunk
+2026-01-11T11:19:08.261Z [DEBUG] npm view failed with code 1
+2026-01-11T11:19:08.261Z [DEBUG] npm stderr: (empty)
+2026-01-11T11:19:11.725Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-11T11:19:11.725Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T11:19:11.725Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T11:23:55.113Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-11T11:23:55.113Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-11T11:23:55.113Z [DEBUG] Metrics export disabled by organization setting
+2026-01-11T12:14:03.214Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:14:03.214Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:14:03.214Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:14:03.214Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:14:03.234Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-11T12:14:03.234Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:03.234Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:14:03.235Z [DEBUG] FileHistory: Making snapshot for message b570caf4-da2d-4d50-9bfb-5b3c073a0178
+2026-01-11T12:14:03.236Z [DEBUG] FileHistory: Added snapshot for b570caf4-da2d-4d50-9bfb-5b3c073a0178, tracking 0 files
+2026-01-11T12:14:03.295Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T12:14:03.296Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:03.296Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:03.296Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:03.360Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:14:03.369Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:03.369Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:03.369Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:04.308Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:04.578Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:09.807Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:14:09.819Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:14:09.819Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:09.819Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:14:09.837Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133649837
+2026-01-11T12:14:09.837Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:14:09.838Z [DEBUG] Temp file written successfully, size: 306 bytes
+2026-01-11T12:14:09.839Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:14:09.839Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133649837 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:14:09.839Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:14:09.857Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:14:09.857Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:09.857Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:14:09.883Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:14:09.883Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:14:09.883Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:14:09.883Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:14:09.907Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:14:09.920Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:09.920Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:09.920Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:10.715Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:16.639Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-11T12:14:16.639Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:16.639Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:14:16.806Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.27228.1768133656806
+2026-01-11T12:14:16.806Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:14:16.807Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T12:14:16.807Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:14:16.807Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.27228.1768133656806 to C:\Users\55315\.claude.json
+2026-01-11T12:14:16.808Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T12:14:29.664Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:14:29.664Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:14:29.664Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:14:29.664Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:14:29.680Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-11T12:14:29.680Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:29.680Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:14:29.684Z [DEBUG] FileHistory: Making snapshot for message 11ad2f71-3d51-4990-a647-d9779d656d7c
+2026-01-11T12:14:29.685Z [DEBUG] FileHistory: Added snapshot for 11ad2f71-3d51-4990-a647-d9779d656d7c, tracking 0 files
+2026-01-11T12:14:29.762Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T12:14:29.762Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:29.762Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:29.762Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:29.825Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:14:29.833Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:29.833Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:29.834Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:30.581Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:30.582Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:36.778Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:14:36.790Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:14:36.790Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:36.790Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:14:36.809Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133676809
+2026-01-11T12:14:36.809Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:14:36.810Z [DEBUG] Temp file written successfully, size: 420 bytes
+2026-01-11T12:14:36.811Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:14:36.811Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133676809 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:14:36.812Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:14:36.837Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:14:36.837Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:36.837Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:14:36.850Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_pages
+2026-01-11T12:14:36.881Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_pages
+2026-01-11T12:14:36.881Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:36.881Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_pages" (0 before deduplication)
+2026-01-11T12:14:36.896Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_pages
+2026-01-11T12:14:37.815Z [DEBUG] MCP server "chrome-devtools": Tool 'list_pages' completed successfully in 919ms
+2026-01-11T12:14:37.829Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_pages
+2026-01-11T12:14:37.829Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:37.829Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_pages" (0 before deduplication)
+2026-01-11T12:14:37.868Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:14:37.868Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:14:37.868Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:14:37.868Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:14:37.890Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:14:37.900Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:37.900Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:37.900Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:38.768Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:40.361Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__navigate_page
+2026-01-11T12:14:40.370Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__navigate_page
+2026-01-11T12:14:40.371Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:40.371Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__navigate_page" (0 before deduplication)
+2026-01-11T12:14:40.381Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: navigate_page
+2026-01-11T12:14:42.550Z [DEBUG] MCP server "chrome-devtools": Tool 'navigate_page' completed successfully in 2s
+2026-01-11T12:14:42.563Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__navigate_page
+2026-01-11T12:14:42.563Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:42.563Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__navigate_page" (0 before deduplication)
+2026-01-11T12:14:42.598Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:14:42.598Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:14:42.598Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:14:42.598Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:14:42.614Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:14:42.621Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:42.621Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:42.621Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:43.026Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:43.897Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:14:43.910Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:14:43.910Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:43.910Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:14:43.927Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: take_snapshot
+2026-01-11T12:14:44.035Z [DEBUG] MCP server "chrome-devtools": Tool 'take_snapshot' completed successfully in 108ms
+2026-01-11T12:14:44.051Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:14:44.051Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:44.051Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:14:44.108Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:14:44.108Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:14:44.108Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:14:44.108Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:14:44.135Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:14:44.149Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:44.149Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:44.149Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:44.483Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:45.954Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:14:45.970Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:14:45.970Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:45.970Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:14:45.998Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: take_snapshot
+2026-01-11T12:14:46.016Z [DEBUG] MCP server "chrome-devtools": Tool 'take_snapshot' completed successfully in 18ms
+2026-01-11T12:14:46.032Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:14:46.032Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:46.032Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:14:46.098Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:14:46.098Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:14:46.098Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:14:46.098Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:14:46.143Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:14:46.164Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:46.164Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:46.164Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:46.483Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:48.822Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__take_screenshot
+2026-01-11T12:14:48.824Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__take_screenshot
+2026-01-11T12:14:48.824Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:48.824Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_screenshot" (0 before deduplication)
+2026-01-11T12:14:48.847Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: take_screenshot
+2026-01-11T12:14:49.084Z [DEBUG] MCP server "chrome-devtools": Tool 'take_screenshot' completed successfully in 237ms
+2026-01-11T12:14:49.106Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__take_screenshot
+2026-01-11T12:14:49.106Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:49.106Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_screenshot" (0 before deduplication)
+2026-01-11T12:14:49.181Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:14:49.181Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:14:49.181Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:14:49.181Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:14:49.210Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:14:49.226Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:49.226Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:49.226Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:49.566Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:53.501Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:14:53.519Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:14:53.519Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:53.519Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:14:53.560Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133693560
+2026-01-11T12:14:53.560Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:14:53.561Z [DEBUG] Temp file written successfully, size: 502 bytes
+2026-01-11T12:14:53.562Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:14:53.562Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133693560 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:14:53.564Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:14:53.599Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:14:53.599Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:53.599Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:14:53.658Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:14:53.658Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:14:53.658Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:14:53.658Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:14:53.688Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:14:53.701Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:14:53.701Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:14:53.701Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:14:54.137Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:14:55.747Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-11T12:14:55.747Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:14:55.747Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:15:20.089Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:15:20.089Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:15:20.089Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:15:20.089Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:15:20.111Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-11T12:15:20.111Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:20.111Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:15:20.112Z [DEBUG] FileHistory: Making snapshot for message e994b181-f655-4ca0-bea5-9b74a8503a5e
+2026-01-11T12:15:20.113Z [DEBUG] FileHistory: Added snapshot for e994b181-f655-4ca0-bea5-9b74a8503a5e, tracking 0 files
+2026-01-11T12:15:20.185Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T12:15:20.186Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:15:20.186Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:15:20.186Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:15:20.243Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:15:20.252Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:15:20.252Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:15:20.252Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:15:21.071Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:15:21.096Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:15:24.129Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:15:24.130Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:15:24.130Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:24.130Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:15:24.147Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: take_snapshot
+2026-01-11T12:15:24.219Z [DEBUG] MCP server "chrome-devtools": Tool 'take_snapshot' completed successfully in 72ms
+2026-01-11T12:15:24.231Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:15:24.231Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:24.231Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:15:24.269Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:15:24.269Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:15:24.269Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:15:24.269Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:15:24.288Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:15:24.295Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:15:24.295Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:15:24.295Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:15:24.755Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:15:30.568Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:15:30.569Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:15:30.569Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:30.570Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:15:30.583Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:15:30.881Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 298ms
+2026-01-11T12:15:30.891Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:15:30.891Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:30.891Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:15:30.927Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:15:30.927Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:15:30.927Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:15:30.927Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:15:30.945Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:15:30.951Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:15:30.951Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:15:30.951Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:15:31.357Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:15:33.869Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:15:33.879Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:15:33.879Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:33.880Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:15:33.893Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:15:34.165Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 272ms
+2026-01-11T12:15:34.178Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:15:34.178Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:34.178Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:15:34.214Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:15:34.214Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:15:34.214Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:15:34.214Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:15:34.230Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:15:34.238Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:15:34.238Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:15:34.238Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:15:34.703Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:15:37.188Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__press_key
+2026-01-11T12:15:37.189Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:15:37.189Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:37.189Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:15:37.213Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: press_key
+2026-01-11T12:15:37.477Z [DEBUG] MCP server "chrome-devtools": Tool 'press_key' completed successfully in 264ms
+2026-01-11T12:15:37.485Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:15:37.485Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:37.485Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:15:37.523Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:15:37.523Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:15:37.523Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:15:37.523Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:15:37.541Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:15:37.549Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:15:37.549Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:15:37.549Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:15:38.205Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:15:40.014Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:15:40.024Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:15:40.024Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:40.024Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:15:40.035Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:15:40.039Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 4ms
+2026-01-11T12:15:40.051Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:15:40.051Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:40.051Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:15:40.094Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:15:40.094Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:15:40.094Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:15:40.094Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:15:40.140Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:15:40.142Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:15:40.142Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:15:40.142Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:15:40.622Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:15:43.521Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:15:43.530Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:15:43.530Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:43.530Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:15:43.553Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133743553
+2026-01-11T12:15:43.553Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:15:43.555Z [DEBUG] Temp file written successfully, size: 296 bytes
+2026-01-11T12:15:43.556Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:15:43.556Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133743553 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:15:43.557Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:15:43.580Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:15:43.580Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:43.580Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:15:43.592Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__get_network_request
+2026-01-11T12:15:43.626Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:15:43.626Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:43.626Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:15:43.638Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: get_network_request
+2026-01-11T12:15:43.642Z [DEBUG] MCP server "chrome-devtools": Tool 'get_network_request' completed successfully in 4ms
+2026-01-11T12:15:43.649Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:15:43.649Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:15:43.649Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:15:43.692Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:15:43.692Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:15:43.692Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:15:43.692Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:15:43.722Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:15:43.733Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:15:43.733Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:15:43.733Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:16:05.607Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:16:09.253Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:16:09.291Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:16:09.291Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:16:09.291Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:16:09.311Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133769311
+2026-01-11T12:16:09.312Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:16:09.313Z [DEBUG] Temp file written successfully, size: 290 bytes
+2026-01-11T12:16:09.313Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:16:09.313Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133769311 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:16:09.316Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:16:09.333Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:16:09.333Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:16:09.333Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:16:09.370Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:16:09.370Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:16:09.370Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:16:09.370Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:16:09.386Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:16:09.395Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:16:09.395Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:16:09.395Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:16:09.878Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:16:11.318Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__take_screenshot
+2026-01-11T12:16:11.327Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__take_screenshot
+2026-01-11T12:16:11.327Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:16:11.327Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_screenshot" (0 before deduplication)
+2026-01-11T12:16:11.337Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: take_screenshot
+2026-01-11T12:16:15.457Z [DEBUG] MCP server "chrome-devtools": Tool 'take_screenshot' completed successfully in 4s
+2026-01-11T12:16:16.511Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__take_screenshot
+2026-01-11T12:16:16.511Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:16:16.511Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_screenshot" (0 before deduplication)
+2026-01-11T12:16:16.542Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:16:16.542Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:16:16.542Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:16:16.542Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:16:16.556Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:16:16.564Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:16:16.564Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:16:16.564Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:16:18.738Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:16:22.975Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-11T12:16:22.975Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:16:22.975Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:18:31.874Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:18:31.874Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:18:31.874Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:18:31.874Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:18:31.890Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-11T12:18:31.890Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:18:31.890Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:18:31.891Z [DEBUG] FileHistory: Making snapshot for message 7a398be5-d829-4c8c-b180-c6c3c65d2f2c
+2026-01-11T12:18:31.892Z [DEBUG] FileHistory: Added snapshot for 7a398be5-d829-4c8c-b180-c6c3c65d2f2c, tracking 0 files
+2026-01-11T12:18:31.954Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T12:18:31.955Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:18:31.955Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:18:31.955Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:18:32.009Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:18:32.020Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:18:32.020Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:18:32.020Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:18:33.008Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:18:34.137Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:18:41.097Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:18:41.130Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:18:41.130Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:18:41.130Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:18:41.148Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133921148
+2026-01-11T12:18:41.148Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:18:41.149Z [DEBUG] Temp file written successfully, size: 462 bytes
+2026-01-11T12:18:41.149Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:18:41.149Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133921148 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:18:41.150Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:18:41.166Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:18:41.166Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:18:41.166Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:18:41.183Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-11T12:18:41.222Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-11T12:18:41.222Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:18:41.222Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-11T12:18:43.605Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-11T12:18:43.605Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:18:43.605Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-11T12:18:43.629Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:18:43.629Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:18:43.629Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:18:43.629Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:18:43.641Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:18:43.647Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:18:43.647Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:18:43.647Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:18:54.253Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-11T12:18:54.253Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:18:54.253Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:18:54.253Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:18:55.198Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-11T12:18:55.198Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-11T12:18:55.198Z [DEBUG] Metrics export disabled by organization setting
+2026-01-11T12:18:59.029Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-11T12:18:59.030Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-11T12:18:59.030Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:18:59.030Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-11T12:18:59.044Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-11T12:18:59.044Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-11T12:18:59.053Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-11T12:18:59.053Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:18:59.053Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-11T12:18:59.053Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-11T12:18:59.053Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:18:59.053Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-11T12:19:07.479Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-11T12:19:07.479Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:19:07.479Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-11T12:19:07.479Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-11T12:19:07.479Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:19:07.479Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-11T12:19:07.517Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-11T12:19:07.517Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:19:07.517Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-11T12:19:07.629Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:19:07.629Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:19:07.629Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:19:07.629Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:19:08.159Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:19:08.179Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:19:08.179Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:19:08.179Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:19:18.821Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-11T12:19:18.822Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:19:18.822Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:19:18.822Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:19:28.318Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:19:28.321Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:19:28.321Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:19:28.321Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:19:28.368Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133968368
+2026-01-11T12:19:28.368Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:19:28.370Z [DEBUG] Temp file written successfully, size: 376 bytes
+2026-01-11T12:19:28.372Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:19:28.372Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768133968368 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:19:28.374Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:19:28.401Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:19:28.401Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:19:28.401Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:19:28.460Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:19:28.460Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:19:28.460Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:19:28.460Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:19:28.502Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:19:28.524Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:19:28.524Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:19:28.524Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:19:30.459Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:20:10.172Z [WARN] Streaming stall detected: 38.5s gap between events (stall #1)
+2026-01-11T12:20:10.241Z [WARN] Streaming completed with 1 stall(s), total stall time: 38.5s
+2026-01-11T12:20:10.505Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-11T12:20:10.517Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-11T12:20:10.517Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:20:10.517Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-11T12:20:11.995Z [DEBUG] FileHistory: Tracked file modification for C:\Users\55315\.claude\skills\xianhuoprice\scripts\auto_collect_spot_price.py
+2026-01-11T12:20:12.006Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .py
+2026-01-11T12:20:12.314Z [DEBUG] [binaryCheck] Binary 'pyright-langserver' not found (exit code: 1)
+2026-01-11T12:20:12.314Z [DEBUG] [lspRecommendation] Skipping pyright-lsp@claude-plugins-official (binary 'pyright-langserver' not found)
+2026-01-11T12:20:12.983Z [DEBUG] rg error (signal=undefined, code=ABORT_ERR, stderr: rg: D:\AI\cc_pro\nul: 函数不正确。 (os error 1)
+rg: D:\AI\cc_pro\test_2\nul: 函数不正确。 (os error 1)
+rg: D:\AI\cc_pro\现货价格预测系统\guangdong_price_predictor\nul: 函数不正确。 (os error 1)
+), 277 results
+2026-01-11T12:20:12.996Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\skills\xianhuoprice\scripts\auto_collect_spot_price.py.tmp.27228.1768134012996
+2026-01-11T12:20:12.998Z [DEBUG] Temp file written successfully, size: 13720 bytes
+2026-01-11T12:20:12.998Z [DEBUG] Renaming C:\Users\55315\.claude\skills\xianhuoprice\scripts\auto_collect_spot_price.py.tmp.27228.1768134012996 to C:\Users\55315\.claude\skills\xianhuoprice\scripts\auto_collect_spot_price.py
+2026-01-11T12:20:12.999Z [DEBUG] File C:\Users\55315\.claude\skills\xianhuoprice\scripts\auto_collect_spot_price.py written atomically
+2026-01-11T12:20:13.028Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-11T12:20:13.029Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:20:13.029Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-11T12:20:13.124Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:20:13.124Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:20:13.124Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:20:13.124Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:20:13.299Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:20:13.319Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:20:13.319Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:20:13.319Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:20:14.301Z [DEBUG] Detected skill change: C:\Users\55315\.claude\skills\xianhuoprice\scripts\auto_collect_spot_price.py
+2026-01-11T12:20:14.302Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[D:\AI\cc_pro\.claude\skills]
+2026-01-11T12:20:14.318Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-11T12:20:14.318Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-11T12:20:14.318Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-11T12:20:14.326Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-11T12:20:14.326Z [DEBUG] Total plugin skills loaded: 1
+2026-01-11T12:20:14.326Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-11T12:20:14.326Z [DEBUG] Total plugin commands loaded: 1
+2026-01-11T12:20:14.328Z [DEBUG] Loaded 4 unique skills (managed: 0, user: 3, project: 1, legacy commands: 0)
+2026-01-11T12:20:14.328Z [DEBUG] getSkills returning: 4 skill dir commands, 1 plugin skills, 0 bundled skills
+2026-01-11T12:20:15.215Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:20:58.908Z [WARN] Streaming stall detected: 42.5s gap between events (stall #1)
+2026-01-11T12:20:58.950Z [WARN] Streaming completed with 1 stall(s), total stall time: 42.5s
+2026-01-11T12:20:58.972Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:20:59.028Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:20:59.028Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:20:59.028Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:20:59.063Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134059063
+2026-01-11T12:20:59.063Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:20:59.065Z [DEBUG] Temp file written successfully, size: 378 bytes
+2026-01-11T12:20:59.066Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:20:59.066Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134059063 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:20:59.069Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:20:59.103Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:20:59.103Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:20:59.103Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:20:59.353Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-11T12:20:59.366Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-11T12:20:59.366Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:20:59.366Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-11T12:21:00.766Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\skills\xianhuoprice\SKILL.md.tmp.27228.1768134060766
+2026-01-11T12:21:00.766Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:21:00.777Z [DEBUG] Temp file written successfully, size: 7375 bytes
+2026-01-11T12:21:00.778Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:21:00.778Z [DEBUG] Renaming C:\Users\55315\.claude\skills\xianhuoprice\SKILL.md.tmp.27228.1768134060766 to C:\Users\55315\.claude\skills\xianhuoprice\SKILL.md
+2026-01-11T12:21:00.780Z [DEBUG] File C:\Users\55315\.claude\skills\xianhuoprice\SKILL.md written atomically
+2026-01-11T12:21:00.910Z [DEBUG] FileHistory: Tracked file modification for C:\Users\55315\.claude\skills\xianhuoprice\SKILL.md
+2026-01-11T12:21:00.938Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-01-11T12:21:00.950Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-11T12:21:00.950Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:21:00.950Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-11T12:21:12.599Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:21:12.599Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:21:12.599Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:21:12.599Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:21:12.876Z [DEBUG] Detected skill change: C:\Users\55315\.claude\skills\xianhuoprice\SKILL.md
+2026-01-11T12:21:12.876Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[D:\AI\cc_pro\.claude\skills]
+2026-01-11T12:21:12.884Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-11T12:21:12.884Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-11T12:21:12.884Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-11T12:21:12.890Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-11T12:21:12.890Z [DEBUG] Total plugin skills loaded: 1
+2026-01-11T12:21:12.890Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-11T12:21:12.890Z [DEBUG] Total plugin commands loaded: 1
+2026-01-11T12:21:12.892Z [DEBUG] Loaded 4 unique skills (managed: 0, user: 3, project: 1, legacy commands: 0)
+2026-01-11T12:21:12.892Z [DEBUG] getSkills returning: 4 skill dir commands, 1 plugin skills, 0 bundled skills
+2026-01-11T12:21:12.933Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:21:12.937Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-11T12:21:12.937Z [DEBUG] Skills and commands included in Skill tool: xianhuoprice, xianhuoxiaohongshu, glm-plan-usage:usage-query, usage-query-skill
+2026-01-11T12:21:12.937Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-11T12:21:12.950Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:21:12.950Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:21:12.950Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:21:23.533Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-11T12:21:23.533Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:21:23.533Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:21:23.533Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:21:52.595Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:21:52.597Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:21:52.597Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:21:52.597Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:21:52.634Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134112634
+2026-01-11T12:21:52.634Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:21:52.636Z [DEBUG] Temp file written successfully, size: 378 bytes
+2026-01-11T12:21:52.636Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:21:52.636Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134112634 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:21:52.638Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:21:52.671Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:21:52.671Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:21:52.671Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:21:52.959Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:21:52.959Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:21:52.959Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:21:52.959Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:21:53.392Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:21:53.407Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:21:53.407Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:21:53.407Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:21:55.212Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:21:56.435Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-11T12:21:56.469Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-11T12:21:56.469Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:21:56.469Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-11T12:21:58.821Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-11T12:21:58.821Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:21:58.821Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-11T12:21:58.876Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:21:58.876Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:21:58.876Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:21:58.876Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:21:59.532Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:21:59.547Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:21:59.547Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:21:59.547Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:22:01.551Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:22:19.703Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-11T12:22:19.717Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-11T12:22:19.717Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:22:19.717Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-11T12:22:21.109Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\skills\xianhuoprice\README.md.tmp.27228.1768134141109
+2026-01-11T12:22:21.109Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:22:21.112Z [DEBUG] Temp file written successfully, size: 3105 bytes
+2026-01-11T12:22:21.113Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:22:21.113Z [DEBUG] Renaming C:\Users\55315\.claude\skills\xianhuoprice\README.md.tmp.27228.1768134141109 to C:\Users\55315\.claude\skills\xianhuoprice\README.md
+2026-01-11T12:22:21.117Z [DEBUG] File C:\Users\55315\.claude\skills\xianhuoprice\README.md written atomically
+2026-01-11T12:22:21.176Z [DEBUG] FileHistory: Tracked file modification for C:\Users\55315\.claude\skills\xianhuoprice\README.md
+2026-01-11T12:22:21.202Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-01-11T12:22:21.217Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-11T12:22:21.217Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:22:21.217Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-11T12:22:26.943Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:22:26.943Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:22:26.943Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:22:26.943Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:22:27.435Z [DEBUG] Detected skill change: C:\Users\55315\.claude\skills\xianhuoprice\README.md
+2026-01-11T12:22:27.436Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[D:\AI\cc_pro\.claude\skills]
+2026-01-11T12:22:27.447Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-11T12:22:27.447Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-11T12:22:27.447Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-11T12:22:27.455Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-11T12:22:27.455Z [DEBUG] Total plugin skills loaded: 1
+2026-01-11T12:22:27.455Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-11T12:22:27.455Z [DEBUG] Total plugin commands loaded: 1
+2026-01-11T12:22:27.456Z [DEBUG] Loaded 4 unique skills (managed: 0, user: 3, project: 1, legacy commands: 0)
+2026-01-11T12:22:27.456Z [DEBUG] getSkills returning: 4 skill dir commands, 1 plugin skills, 0 bundled skills
+2026-01-11T12:22:27.506Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:22:27.510Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-11T12:22:27.510Z [DEBUG] Skills and commands included in Skill tool: xianhuoprice, xianhuoxiaohongshu, glm-plan-usage:usage-query, usage-query-skill
+2026-01-11T12:22:27.510Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-11T12:22:27.525Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:22:27.525Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:22:27.525Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:22:30.153Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:22:33.545Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:22:33.558Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:22:33.558Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:22:33.558Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:22:33.590Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134153590
+2026-01-11T12:22:33.590Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:22:33.592Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-11T12:22:33.593Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:22:33.594Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134153590 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:22:33.595Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:22:33.627Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:22:33.627Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:22:33.627Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:22:33.691Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:22:33.691Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:22:33.691Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:22:33.691Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:22:34.214Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:22:34.233Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:22:34.233Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:22:34.233Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:22:36.151Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:22:42.643Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-11T12:22:42.643Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:22:42.643Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:23:13.397Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.27228.1768134193397
+2026-01-11T12:23:13.397Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:23:13.397Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T12:23:13.398Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:23:13.398Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.27228.1768134193397 to C:\Users\55315\.claude.json
+2026-01-11T12:23:13.399Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T12:23:13.400Z [DEBUG] Metadata string for xianhuoprice:
+2026-01-11T12:23:13.400Z [DEBUG] <command-message>The "xianhuoprice" skill is running</command-message>
+<command-name>xianhuoprice</command-name>
+2026-01-11T12:23:13.400Z [DEBUG] command-message tags in metadata: 1
+2026-01-11T12:23:13.424Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:23:13.424Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:23:13.424Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:23:13.424Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:23:13.430Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-11T12:23:13.817Z [DEBUG] processPromptSlashCommand creating 3 messages for xianhuoprice
+2026-01-11T12:23:13.817Z [DEBUG] Message 1: <command-message>The "xianhuoprice" skill is running</command-message>
+<command-name>xianhuoprice</command-name>
+2026-01-11T12:23:13.817Z [DEBUG] Message 2 [META]: [{"type":"text","text":"Base directory for this skill: C:\\Users\\55315\\.claude\\skills\\xianhuoprice\n\n# 南方区域电力现货价格自动化采集助手\r\n\r\n## 概述\r\n\r\n本 Skill 提供从南方区域现货电能量交易系统**自动化提取**用电侧成交价格数据的能力，包括：\r\n1
+2026-01-11T12:23:13.817Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-11T12:23:13.824Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-11T12:23:13.824Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:23:13.824Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:23:13.847Z [DEBUG] FileHistory: Making snapshot for message 292d221f-0702-46a9-901f-553c1b256438
+2026-01-11T12:23:13.874Z [DEBUG] FileHistory: Added snapshot for 292d221f-0702-46a9-901f-553c1b256438, tracking 3 files
+2026-01-11T12:23:13.877Z [DEBUG] UserCommandMessage rendering: "The "xianhuoprice" skill is running" (args: "none")
+2026-01-11T12:23:13.877Z [DEBUG] isSkillFormat: true
+2026-01-11T12:23:14.012Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:23:14.020Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:23:14.020Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:23:14.020Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:23:16.297Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:23:20.364Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-11T12:23:20.364Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:23:20.364Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:23:35.026Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:23:35.026Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:23:35.026Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:23:35.026Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:23:35.555Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-11T12:23:35.555Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:23:35.555Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:23:35.555Z [DEBUG] FileHistory: Making snapshot for message 4d9ceb78-9201-4382-bec2-d4c0f28db0fb
+2026-01-11T12:23:35.558Z [DEBUG] FileHistory: Added snapshot for 4d9ceb78-9201-4382-bec2-d4c0f28db0fb, tracking 3 files
+2026-01-11T12:23:35.612Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T12:23:35.613Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:23:35.613Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:23:35.613Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:23:35.665Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:23:35.673Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:23:35.673Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:23:35.673Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:23:46.227Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-11T12:23:46.228Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:23:46.228Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:23:46.228Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:23:46.232Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-11T12:23:46.232Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:23:46.232Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:23:46.232Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:23:53.141Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:23:53.143Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:23:53.143Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:23:53.143Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:23:53.163Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134233163
+2026-01-11T12:23:53.163Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:23:53.164Z [DEBUG] Temp file written successfully, size: 502 bytes
+2026-01-11T12:23:53.164Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:23:53.164Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134233163 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:23:53.166Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:23:53.177Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:23:53.177Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:23:53.177Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:23:53.188Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_pages
+2026-01-11T12:23:53.222Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_pages
+2026-01-11T12:23:53.222Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:23:53.222Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_pages" (0 before deduplication)
+2026-01-11T12:23:53.231Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_pages
+2026-01-11T12:23:53.233Z [DEBUG] MCP server "chrome-devtools": Tool 'list_pages' completed successfully in 2ms
+2026-01-11T12:23:53.243Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_pages
+2026-01-11T12:23:53.243Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:23:53.243Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_pages" (0 before deduplication)
+2026-01-11T12:23:53.274Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:23:53.274Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:23:53.274Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:23:53.274Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:23:53.742Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:23:53.751Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:23:53.751Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:23:53.751Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:23:55.206Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-11T12:23:55.206Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-11T12:23:55.206Z [DEBUG] Metrics export disabled by organization setting
+2026-01-11T12:24:00.534Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:24:01.730Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:24:01.732Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:24:01.732Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:01.732Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:24:01.751Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: take_snapshot
+2026-01-11T12:24:01.915Z [DEBUG] MCP server "chrome-devtools": Tool 'take_snapshot' completed successfully in 164ms
+2026-01-11T12:24:01.926Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:24:01.926Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:01.926Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:24:01.980Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:24:01.980Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:24:01.980Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:24:01.980Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:24:02.435Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:24:02.441Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:24:02.441Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:24:02.441Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:24:05.962Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:24:09.593Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:24:09.594Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:24:09.594Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:09.594Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:24:09.607Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:24:09.900Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 293ms
+2026-01-11T12:24:09.911Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:24:09.911Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:09.911Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:24:09.953Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:24:09.953Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:24:09.953Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:24:09.953Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:24:10.356Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:24:10.363Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:24:10.363Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:24:10.363Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:24:12.311Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:24:14.780Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:24:14.787Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:24:14.787Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:14.787Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:24:14.800Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:24:19.830Z [ERROR] MCP server "chrome-devtools" Timed out after waiting 5000ms
+Cause: Locator.click
+2026-01-11T12:24:19.831Z [DEBUG] MCP server "chrome-devtools": Tool 'click' failed after 5s: Timed out after waiting 5000ms
+Cause: Locator.click
+2026-01-11T12:24:19.845Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: mcp__chrome-devtools__click
+2026-01-11T12:24:19.845Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:19.845Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:24:19.891Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:24:19.891Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:24:19.891Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:24:19.891Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:24:20.416Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:24:20.423Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:24:20.423Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:24:20.423Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:24:23.954Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:24:25.575Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:24:25.576Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:24:25.576Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:25.576Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:24:25.591Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: take_snapshot
+2026-01-11T12:24:25.654Z [DEBUG] MCP server "chrome-devtools": Tool 'take_snapshot' completed successfully in 63ms
+2026-01-11T12:24:25.661Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:24:25.661Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:25.661Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:24:25.696Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:24:25.696Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:24:25.696Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:24:25.696Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:24:26.118Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:24:26.125Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:24:26.125Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:24:26.125Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:24:28.183Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:24:36.902Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__fill
+2026-01-11T12:24:36.904Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__fill
+2026-01-11T12:24:36.904Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:36.904Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__fill" (0 before deduplication)
+2026-01-11T12:24:36.919Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: fill
+2026-01-11T12:24:38.364Z [DEBUG] MCP server "chrome-devtools": Tool 'fill' completed successfully in 1s
+2026-01-11T12:24:38.375Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__fill
+2026-01-11T12:24:38.376Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:38.376Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__fill" (0 before deduplication)
+2026-01-11T12:24:38.411Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:24:38.411Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:24:38.411Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:24:38.411Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:24:38.871Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:24:38.873Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:24:38.873Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:24:38.873Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:24:41.179Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:24:46.626Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:24:46.652Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:24:46.652Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:46.652Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:24:46.667Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134286667
+2026-01-11T12:24:46.667Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:24:46.668Z [DEBUG] Temp file written successfully, size: 506 bytes
+2026-01-11T12:24:46.668Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:24:46.668Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134286667 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:24:46.669Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:24:46.682Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:24:46.682Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:46.682Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:24:46.693Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:24:46.730Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:24:46.730Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:46.730Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:24:46.743Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:24:49.449Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 2s
+2026-01-11T12:24:49.457Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:24:49.457Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:49.457Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:24:49.499Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:24:49.499Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:24:49.499Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:24:49.499Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:24:50.005Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:24:50.011Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:24:50.011Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:24:50.011Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:24:52.167Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:24:55.161Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__press_key
+2026-01-11T12:24:55.163Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:24:55.163Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:55.163Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:24:55.185Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: press_key
+2026-01-11T12:24:55.488Z [DEBUG] MCP server "chrome-devtools": Tool 'press_key' completed successfully in 303ms
+2026-01-11T12:24:55.498Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:24:55.498Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:24:55.498Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:24:55.538Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:24:55.538Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:24:55.538Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:24:55.538Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:24:55.969Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:24:55.977Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:24:55.977Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:24:55.977Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:24:58.083Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:25:03.262Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-11T12:25:03.283Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-11T12:25:03.283Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:03.283Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:25:03.298Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134303298
+2026-01-11T12:25:03.298Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:25:03.299Z [DEBUG] Temp file written successfully, size: 508 bytes
+2026-01-11T12:25:03.300Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:25:03.300Z [DEBUG] Renaming C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json.tmp.27228.1768134303298 to C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json
+2026-01-11T12:25:03.301Z [DEBUG] File C:\Users\55315\.claude\todos\09b3451d-9efa-42cf-89e3-4f5786b47f8f-agent-09b3451d-9efa-42cf-89e3-4f5786b47f8f.json written atomically
+2026-01-11T12:25:03.314Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-11T12:25:03.314Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:03.314Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-11T12:25:03.325Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:25:03.351Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:25:03.351Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:03.351Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:25:03.363Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:25:03.365Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 2ms
+2026-01-11T12:25:03.378Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:25:03.378Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:03.378Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:25:03.424Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:25:03.424Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:25:03.424Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:25:03.424Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:25:03.897Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:25:03.905Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:25:03.905Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:25:03.905Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:25:06.176Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:25:11.798Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__get_network_request
+2026-01-11T12:25:11.828Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:25:11.828Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:11.828Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:25:11.840Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: get_network_request
+2026-01-11T12:25:11.847Z [DEBUG] MCP server "chrome-devtools": Tool 'get_network_request' completed successfully in 7ms
+2026-01-11T12:25:11.857Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:25:11.857Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:11.857Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:25:11.899Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:25:11.899Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:25:11.899Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:25:11.899Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:25:12.392Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:25:12.403Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:25:12.403Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:25:12.403Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:25:14.693Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:25:20.536Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:25:20.547Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:25:20.547Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:20.547Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:25:20.559Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: take_snapshot
+2026-01-11T12:25:20.622Z [DEBUG] MCP server "chrome-devtools": Tool 'take_snapshot' completed successfully in 63ms
+2026-01-11T12:25:20.630Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:25:20.630Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:20.630Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:25:20.675Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:25:20.675Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:25:20.675Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:25:20.675Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:25:21.091Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:25:21.097Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:25:21.097Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:25:21.097Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:25:23.308Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:25:28.437Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:25:28.438Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:25:28.438Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:28.438Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:25:28.455Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:25:30.796Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 2s
+2026-01-11T12:25:30.809Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:25:30.809Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:30.809Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:25:30.852Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:25:30.852Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:25:30.852Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:25:30.852Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:25:31.292Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:25:31.302Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:25:31.302Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:25:31.302Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:25:33.626Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:25:37.101Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:25:37.112Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:25:37.112Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:37.112Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:25:37.124Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:25:37.127Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 3ms
+2026-01-11T12:25:37.144Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:25:37.144Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:37.144Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:25:37.193Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:25:37.193Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:25:37.193Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:25:37.193Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:25:37.704Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:25:37.714Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:25:37.714Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:25:37.714Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:25:40.452Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:25:48.175Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__get_network_request
+2026-01-11T12:25:48.177Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:25:48.177Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:48.177Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:25:48.199Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: get_network_request
+2026-01-11T12:25:48.203Z [DEBUG] MCP server "chrome-devtools": Tool 'get_network_request' completed successfully in 4ms
+2026-01-11T12:25:48.219Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:25:48.219Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:48.219Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:25:48.260Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:25:48.260Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:25:48.260Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:25:48.260Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:25:49.410Z [DEBUG] Getting matching hook commands for PreCompact with query: auto
+2026-01-11T12:25:49.410Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:25:49.410Z [DEBUG] Matched 0 unique hooks for query "auto" (0 before deduplication)
+2026-01-11T12:25:49.412Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:25:49.414Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:25:49.414Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:25:49.414Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:26:14.166Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:26:38.001Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:26:38.001Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:26:38.001Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:26:38.001Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:26:38.001Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:26:38.001Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:26:38.002Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:26:38.002Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:26:38.002Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:26:38.828Z [DEBUG] Getting matching hook commands for SessionStart with query: compact
+2026-01-11T12:26:38.828Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:26:38.828Z [DEBUG] Matched 0 unique hooks for query "compact" (0 before deduplication)
+2026-01-11T12:26:38.832Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:26:38.906Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:26:38.906Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:26:38.906Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:26:39.380Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:26:46.165Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:26:46.167Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:26:46.167Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:26:46.167Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:26:46.182Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: take_snapshot
+2026-01-11T12:26:46.311Z [DEBUG] MCP server "chrome-devtools": Tool 'take_snapshot' completed successfully in 129ms
+2026-01-11T12:26:46.336Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__take_snapshot
+2026-01-11T12:26:46.336Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:26:46.336Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__take_snapshot" (0 before deduplication)
+2026-01-11T12:26:46.399Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:26:46.399Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:26:46.399Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:26:46.399Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:26:47.642Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:26:47.649Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:26:47.649Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:26:47.649Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:26:48.184Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:26:52.340Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:26:52.341Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:26:52.341Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:26:52.341Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:26:52.357Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:26:55.115Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 2s
+2026-01-11T12:26:55.127Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:26:55.127Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:26:55.127Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:26:55.167Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:26:55.168Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:26:55.168Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:26:55.168Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:26:55.185Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:26:55.193Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:26:55.193Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:26:55.193Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:26:55.776Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:26:58.611Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:26:58.613Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:26:58.613Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:26:58.613Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:26:58.631Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:26:58.635Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 4ms
+2026-01-11T12:26:58.646Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:26:58.646Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:26:58.646Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:26:58.704Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:26:58.705Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:26:58.705Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:26:58.705Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:26:58.722Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:26:58.730Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:26:58.730Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:26:58.730Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:26:59.339Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:03.297Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__get_network_request
+2026-01-11T12:27:03.308Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:27:03.308Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:03.308Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:27:03.320Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: get_network_request
+2026-01-11T12:27:03.321Z [DEBUG] MCP server "chrome-devtools": Tool 'get_network_request' completed successfully in 1ms
+2026-01-11T12:27:03.334Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:27:03.334Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:03.334Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:27:03.386Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:27:03.386Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:27:03.386Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:27:03.386Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:27:03.405Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:27:03.415Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:03.415Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:03.415Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:04.033Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:06.343Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:27:06.345Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:27:06.345Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:06.345Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:27:06.361Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:27:09.233Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 2s
+2026-01-11T12:27:09.245Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:27:09.245Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:09.245Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:27:09.294Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:27:09.294Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:27:09.294Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:27:09.294Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:27:09.335Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:27:09.339Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:09.339Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:09.339Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:10.115Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:12.962Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:27:12.972Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:27:12.972Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:12.972Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:27:12.984Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:27:12.987Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 3ms
+2026-01-11T12:27:13.000Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:27:13.000Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:13.000Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:27:13.062Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:27:13.062Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:27:13.062Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:27:13.062Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:27:13.085Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:27:13.094Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:13.094Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:13.094Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:13.771Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:17.961Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__get_network_request
+2026-01-11T12:27:17.989Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:27:17.989Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:17.989Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:27:17.999Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: get_network_request
+2026-01-11T12:27:18.022Z [DEBUG] MCP server "chrome-devtools": Tool 'get_network_request' completed successfully in 23ms
+2026-01-11T12:27:18.034Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:27:18.034Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:18.034Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:27:18.074Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:27:18.074Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:27:18.074Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:27:18.074Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:27:18.093Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:27:18.105Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:18.105Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:18.106Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:18.806Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:22.614Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:27:22.647Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:27:22.647Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:22.647Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:27:22.659Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:27:25.379Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 2s
+2026-01-11T12:27:25.390Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:27:25.390Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:25.390Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:27:25.441Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:27:25.441Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:27:25.442Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:27:25.442Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:27:25.460Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:27:25.467Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:25.467Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:25.467Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:26.173Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:28.314Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:27:28.341Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:27:28.341Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:28.341Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:27:28.355Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:27:28.357Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 2ms
+2026-01-11T12:27:28.365Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:27:28.365Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:28.365Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:27:28.397Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:27:28.397Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:27:28.397Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:27:28.397Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:27:28.413Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:27:28.422Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:28.422Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:28.422Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:29.169Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:30.557Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:27:30.558Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:27:30.558Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:30.558Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:27:30.572Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:27:30.574Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 2ms
+2026-01-11T12:27:30.587Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:27:30.587Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:30.587Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:27:30.624Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:27:30.624Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:27:30.624Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:27:30.624Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:27:30.669Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:27:30.673Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:30.673Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:30.673Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:31.376Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:37.811Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__evaluate_script
+2026-01-11T12:27:37.812Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__evaluate_script
+2026-01-11T12:27:37.812Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:37.812Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__evaluate_script" (0 before deduplication)
+2026-01-11T12:27:37.827Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: evaluate_script
+2026-01-11T12:27:38.054Z [DEBUG] MCP server "chrome-devtools": Tool 'evaluate_script' completed successfully in 227ms
+2026-01-11T12:27:38.066Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__evaluate_script
+2026-01-11T12:27:38.066Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:38.066Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__evaluate_script" (0 before deduplication)
+2026-01-11T12:27:38.095Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:27:38.095Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:27:38.095Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:27:38.095Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:27:38.111Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:27:38.120Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:38.120Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:38.120Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:38.820Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:44.921Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-11T12:27:44.921Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:44.921Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:27:56.215Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:27:56.215Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:27:56.216Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:27:56.216Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:27:56.234Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-11T12:27:56.234Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:27:56.235Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:27:56.237Z [DEBUG] FileHistory: Making snapshot for message 77612591-cb79-439b-baec-f086dd0ee5a2
+2026-01-11T12:27:56.240Z [DEBUG] FileHistory: Added snapshot for 77612591-cb79-439b-baec-f086dd0ee5a2, tracking 3 files
+2026-01-11T12:27:56.301Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T12:27:56.301Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:56.301Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:56.301Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:56.353Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:27:56.361Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:27:56.361Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:27:56.361Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:27:57.028Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:27:57.448Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:28:01.430Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-11T12:28:01.430Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:28:01.430Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:28:26.790Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:28:26.790Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:28:26.790Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:28:26.790Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:28:26.813Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-11T12:28:26.813Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:28:26.813Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-11T12:28:26.817Z [DEBUG] FileHistory: Making snapshot for message 8cd1b789-33a2-4404-ba01-6be880c52c85
+2026-01-11T12:28:26.820Z [DEBUG] FileHistory: Added snapshot for 8cd1b789-33a2-4404-ba01-6be880c52c85, tracking 3 files
+2026-01-11T12:28:26.883Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-11T12:28:26.884Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:28:26.884Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:28:26.884Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:28:26.951Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:28:26.961Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:28:26.961Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:28:26.961Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:28:37.519Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-11T12:28:37.519Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:28:37.519Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:28:37.519Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:28:37.522Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-11T12:28:37.522Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:28:37.522Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:28:37.522Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:28:41.383Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__navigate_page
+2026-01-11T12:28:41.385Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__navigate_page
+2026-01-11T12:28:41.385Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:28:41.385Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__navigate_page" (0 before deduplication)
+2026-01-11T12:28:41.398Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: navigate_page
+2026-01-11T12:28:41.922Z [DEBUG] MCP server "chrome-devtools": Tool 'navigate_page' completed successfully in 524ms
+2026-01-11T12:28:41.932Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__navigate_page
+2026-01-11T12:28:41.932Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:28:41.932Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__navigate_page" (0 before deduplication)
+2026-01-11T12:28:41.962Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:28:41.962Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:28:41.962Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:28:41.962Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:28:41.978Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:28:41.986Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:28:41.986Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:28:41.986Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:28:42.785Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:28:44.260Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__wait_for
+2026-01-11T12:28:44.262Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__wait_for
+2026-01-11T12:28:44.262Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:28:44.262Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__wait_for" (0 before deduplication)
+2026-01-11T12:28:44.283Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: wait_for
+2026-01-11T12:28:44.561Z [DEBUG] MCP server "chrome-devtools": Tool 'wait_for' completed successfully in 278ms
+2026-01-11T12:28:44.575Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__wait_for
+2026-01-11T12:28:44.575Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:28:44.575Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__wait_for" (0 before deduplication)
+2026-01-11T12:28:44.642Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:28:44.642Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:28:44.642Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:28:44.642Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:28:44.668Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:28:44.683Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:28:44.683Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:28:44.683Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:28:45.619Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:28:49.545Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:28:49.562Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:28:49.562Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:28:49.562Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:28:49.583Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:28:49.853Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 270ms
+2026-01-11T12:28:49.876Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:28:49.876Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:28:49.876Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:28:49.948Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:28:49.948Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:28:49.948Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:28:49.948Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:28:49.972Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:28:49.987Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:28:49.987Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:28:49.987Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:28:50.904Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:28:55.209Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-11T12:28:55.209Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-11T12:28:55.209Z [DEBUG] Metrics export disabled by organization setting
+2026-01-11T12:29:15.053Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__fill
+2026-01-11T12:29:15.083Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__fill
+2026-01-11T12:29:15.083Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:15.083Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__fill" (0 before deduplication)
+2026-01-11T12:29:15.095Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: fill
+2026-01-11T12:29:15.571Z [DEBUG] MCP server "chrome-devtools": Tool 'fill' completed successfully in 476ms
+2026-01-11T12:29:15.585Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__fill
+2026-01-11T12:29:15.585Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:15.585Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__fill" (0 before deduplication)
+2026-01-11T12:29:15.631Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:29:15.631Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:29:15.631Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:29:15.631Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:29:15.678Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:29:15.682Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:29:15.682Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:29:15.682Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:29:16.497Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:29:19.435Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__click
+2026-01-11T12:29:19.437Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:29:19.437Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:19.437Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:29:19.453Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: click
+2026-01-11T12:29:19.718Z [DEBUG] MCP server "chrome-devtools": Tool 'click' completed successfully in 265ms
+2026-01-11T12:29:19.727Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__click
+2026-01-11T12:29:19.728Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:19.728Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__click" (0 before deduplication)
+2026-01-11T12:29:19.771Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:29:19.771Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:29:19.771Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:29:19.771Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:29:19.789Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:29:19.796Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:29:19.796Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:29:19.796Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:29:21.241Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:29:24.462Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__press_key
+2026-01-11T12:29:24.463Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:29:24.463Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:24.463Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:29:24.480Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: press_key
+2026-01-11T12:29:24.746Z [DEBUG] MCP server "chrome-devtools": Tool 'press_key' completed successfully in 265ms
+2026-01-11T12:29:24.757Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:29:24.757Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:24.757Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:29:24.803Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:29:24.803Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:29:24.803Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:29:24.803Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:29:24.820Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:29:24.829Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:29:24.830Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:29:24.830Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:29:25.653Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:29:36.955Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:29:36.957Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:29:36.957Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:36.957Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:29:36.976Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:29:36.978Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 2ms
+2026-01-11T12:29:36.994Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:29:36.994Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:36.994Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:29:37.034Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:29:37.034Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:29:37.034Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:29:37.034Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:29:37.050Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:29:37.058Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:29:37.058Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:29:37.058Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:29:37.859Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:29:41.338Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__get_network_request
+2026-01-11T12:29:41.340Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:29:41.340Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:41.340Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:29:41.357Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: get_network_request
+2026-01-11T12:29:41.360Z [DEBUG] MCP server "chrome-devtools": Tool 'get_network_request' completed successfully in 3ms
+2026-01-11T12:29:41.369Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__get_network_request
+2026-01-11T12:29:41.369Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:41.369Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__get_network_request" (0 before deduplication)
+2026-01-11T12:29:41.405Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:29:41.405Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:29:41.405Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:29:41.405Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:29:41.421Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:29:41.430Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:29:41.430Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:29:41.430Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:29:42.267Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:29:46.474Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__fill
+2026-01-11T12:29:46.475Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__fill
+2026-01-11T12:29:46.475Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:46.475Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__fill" (0 before deduplication)
+2026-01-11T12:29:46.489Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: fill
+2026-01-11T12:29:46.771Z [DEBUG] MCP server "chrome-devtools": Tool 'fill' completed successfully in 282ms
+2026-01-11T12:29:46.785Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__fill
+2026-01-11T12:29:46.785Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:46.785Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__fill" (0 before deduplication)
+2026-01-11T12:29:46.840Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:29:46.840Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:29:46.840Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:29:46.840Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:29:46.879Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:29:46.883Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:29:46.883Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:29:46.883Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:29:47.728Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:29:50.995Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__press_key
+2026-01-11T12:29:50.998Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:29:50.998Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:50.998Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:29:51.014Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: press_key
+2026-01-11T12:29:51.284Z [DEBUG] MCP server "chrome-devtools": Tool 'press_key' completed successfully in 270ms
+2026-01-11T12:29:51.298Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:29:51.298Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:51.298Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:29:51.343Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:29:51.343Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:29:51.343Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:29:51.343Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:29:51.362Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:29:51.372Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:29:51.372Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:29:51.372Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:29:52.702Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:29:56.107Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__press_key
+2026-01-11T12:29:56.108Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:29:56.109Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:56.109Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:29:56.126Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: press_key
+2026-01-11T12:29:56.390Z [DEBUG] MCP server "chrome-devtools": Tool 'press_key' completed successfully in 264ms
+2026-01-11T12:29:56.403Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__press_key
+2026-01-11T12:29:56.403Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:29:56.403Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__press_key" (0 before deduplication)
+2026-01-11T12:29:56.441Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:29:56.441Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:29:56.441Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:29:56.441Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:29:56.456Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:29:56.465Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:29:56.465Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:29:56.465Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:29:57.629Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:30:01.079Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:30:01.080Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:30:01.080Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:30:01.080Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:30:01.098Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:30:01.101Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 3ms
+2026-01-11T12:30:01.111Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:30:01.111Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:30:01.111Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:30:01.153Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:30:01.153Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:30:01.153Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:30:01.153Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:30:01.175Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:30:01.184Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:30:01.184Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:30:01.184Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:30:02.142Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:30:05.246Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:30:05.256Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:30:05.256Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:30:05.256Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:30:05.267Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:30:05.270Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 3ms
+2026-01-11T12:30:05.277Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:30:05.277Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:30:05.277Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:30:05.311Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:30:05.311Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:30:05.311Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:30:05.311Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:30:05.327Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:30:05.336Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:30:05.336Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:30:05.336Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:30:06.250Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:30:08.601Z [DEBUG] executePreToolHooks called for tool: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:30:08.609Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:30:08.609Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:30:08.609Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:30:08.622Z [DEBUG] MCP server "chrome-devtools": Calling MCP tool: list_network_requests
+2026-01-11T12:30:08.623Z [DEBUG] MCP server "chrome-devtools": Tool 'list_network_requests' completed successfully in 1ms
+2026-01-11T12:30:08.635Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__chrome-devtools__list_network_requests
+2026-01-11T12:30:08.635Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:30:08.635Z [DEBUG] Matched 0 unique hooks for query "mcp__chrome-devtools__list_network_requests" (0 before deduplication)
+2026-01-11T12:30:08.674Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-11T12:30:08.674Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-11T12:30:08.674Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-11T12:30:08.674Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-11T12:30:08.726Z [DEBUG] Getting matching hook commands for PreCompact with query: auto
+2026-01-11T12:30:08.726Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:30:08.726Z [DEBUG] Matched 0 unique hooks for query "auto" (0 before deduplication)
+2026-01-11T12:30:08.728Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-11T12:30:08.729Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-11T12:30:08.729Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-11T12:30:08.729Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-11T12:30:29.788Z [DEBUG] Stream started - received first chunk
+2026-01-11T12:30:46.960Z [ERROR] MCP server "zai-mcp-server" Server stderr: ^C
+2026-01-11T12:30:47.008Z [ERROR] MCP server "zai-mcp-server" Server stderr: ^C

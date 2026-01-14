@@ -1,0 +1,326 @@
+# 微信公众号采集 Skill - 安装配置指南
+
+## 📦 已创建的文件清单
+
+### 核心模块
+1. `config.py` - 配置管理
+2. `chrome_collector.py` - Chrome DevTools MCP封装
+3. `article_parser.py` - 文章解析器
+4. `markdown_generator.py` - Markdown生成器
+5. `image_downloader.py` - 图片下载器
+6. `utils.py` - 工具函数
+7. `wechat_collector.py` - 命令行主程序
+8. `test_collector.py` - 测试脚本
+
+### Skill相关
+9. `skill.json` - 技能配置文件
+10. `skill.py` - 技能信息定义
+11. `wechat_collector_skill.py` - 技能主入口
+12. `SKILL_README.md` - 技能详细说明
+13. `SKILL_USAGE.md` - 用户使用指南
+14. `README.md` - 项目说明
+15. `requirements.txt` - Python依赖
+
+## 🔧 安装步骤
+
+### 步骤1：安装Python依赖
+
+```bash
+cd D:\AI\cc_pro\program\20260113_GZH-collect
+pip install -r requirements.txt
+```
+
+### 步骤2：配置MCP服务（如果需要）
+
+确保Chrome DevTools MCP服务已安装并运行。
+
+### 步骤3：验证安装
+
+```bash
+python wechat_collector_skill.py help
+```
+
+如果看到帮助信息，说明安装成功！
+
+## 📋 Skill配置说明
+
+### skill.json
+```json
+{
+  "name": "wechat-collector",
+  "description": "微信公众号文章自动化采集工具",
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "wechat_article",
+      "description": "采集微信公众号文章...",
+      "usage": "请采集这篇微信文章：https://...",
+      "examples": [...]
+    }
+  ]
+}
+```
+
+### 将Skill添加到系统
+
+如果你的系统支持自定义Skill，将以下配置添加到Skill配置文件中：
+
+```yaml
+skills:
+  - name: wechat-collector
+    description: 微信公众号文章采集工具
+    module: wechat_collector_skill
+    version: 1.0.0
+    enabled: true
+```
+
+## 🎯 使用方式
+
+### 方式1：直接对话（最简单）
+
+```
+请采集这篇微信文章：https://mp.weixin.qq.com/s/5cuBvvdfHuunxzW825fNHA
+```
+
+### 方式2：命令行
+
+```bash
+# 采集单篇文章
+python wechat_collector.py article "https://mp.weixin.qq.com/s/xxx"
+
+# 批量采集
+python wechat_collector.py batch links.txt
+
+# 带图片下载
+python wechat_collector.py article "https://..." --download-images
+```
+
+### 方式3：Python代码
+
+```python
+from wechat_collector_skill import wechat_article_collector
+
+# 采集单篇文章
+result = wechat_article_collector(url="https://mp.weixin.qq.com/s/xxx")
+
+# 批量采集
+result = wechat_article_collector(urls=[
+    "https://mp.weixin.qq.com/s/xxx1",
+    "https://mp.weixin.qq.com/s/xxx2"
+])
+```
+
+## 🔍 测试Skill
+
+### 测试单篇文章采集
+
+在Claude Code中输入：
+
+```
+请帮我测试采集功能，采集这篇文章：
+https://mp.weixin.qq.com/s/5cuBvvdfHuunxzW825fNHA
+```
+
+预期结果：
+1. 系统识别为微信文章采集请求
+2. 自动调用Chrome DevTools MCP打开页面
+3. 提取文章信息
+4. 生成Markdown文件
+5. 下载图片（如果启用）
+6. 显示成功信息
+
+### 验证输出文件
+
+检查 `./wechat_articles/` 目录：
+
+```bash
+ls -R ./wechat_articles/
+```
+
+应该看到：
+- Markdown文件
+- 元数据JSON文件
+- 图片目录（如果下载了图片）
+
+## ⚙️ 自定义配置
+
+编辑 `config.py`：
+
+```python
+# 修改输出目录
+OUTPUT_DIR = Path("/your/custom/path")
+
+# 修改文件命名格式
+FILE_FORMAT = "{title}_{date}.md"  # 标题_日期.md
+
+# 修改是否默认下载图片
+DOWNLOAD_IMAGES = False  # 改为不下载
+
+# 调整采集速度
+DELAY_BETWEEN_REQUESTS = 5  # 增加延时到5秒
+```
+
+## 🐛 故障排除
+
+### 问题1：导入模块失败
+
+```
+ModuleNotFoundError: No module named 'markdownify'
+```
+
+**解决方案**：
+```bash
+pip install -r requirements.txt
+```
+
+### 问题2：Chrome DevTools MCP不可用
+
+```
+Error: MCP service not available
+```
+
+**解决方案**：
+- 检查MCP服务是否运行
+- 重启MCP服务
+- 查看MCP配置文件
+
+### 问题3：文件保存失败
+
+```
+PermissionError: [Errno 13] Permission denied
+```
+
+**解决方案**：
+- 检查目录权限
+- 更改OUTPUT_DIR到有权限的目录
+- 以管理员身份运行
+
+### 问题4：图片下载失败
+
+```
+Failed to download image: ...
+```
+
+**解决方案**：
+- 检查网络连接
+- 设置DOWNLOAD_IMAGES = False跳过图片
+- 增加IMAGE_TIMEOUT配置
+
+## 📊 性能优化
+
+### 批量采集优化
+
+```python
+# 增加并发数
+MAX_CONCURRENT_DOWNLOADS = 10  # 默认5
+
+# 减少延时
+DELAY_BETWEEN_REQUESTS = 1  # 默认2
+```
+
+### 内存优化
+
+```python
+# 限制同时处理的图片数量
+MAX_IMAGES_IN_MEMORY = 50
+```
+
+## 🔄 更新Skill
+
+当有新版本时：
+
+```bash
+# 备份当前配置
+cp config.py config.py.bak
+
+# 更新代码
+git pull
+
+# 恢复配置
+cp config.py.bak config.py
+```
+
+## 📈 监控和日志
+
+### 启用日志
+
+```python
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename='collector.log',
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+```
+
+### 查看日志
+
+```bash
+tail -f collector.log
+```
+
+## 🎓 进阶使用
+
+### 创建自定义采集脚本
+
+```python
+from wechat_collector_skill import wechat_article_collector
+
+# 自定义采集逻辑
+def collect_account_articles(account_name, article_urls):
+    """采集指定公众号的所有文章"""
+    results = []
+    for url in article_urls:
+        result = wechat_article_collector(url=url, download_images=True)
+        results.append(result)
+        print(f"已采集: {result.get('title', 'Unknown')}")
+    return results
+
+# 使用
+articles = [
+    "https://mp.weixin.qq.com/s/xxx1",
+    "https://mp.weixin.qq.com/s/xxx2"
+]
+collect_account_articles("走进电力市场", articles)
+```
+
+### 定时任务
+
+```python
+import schedule
+import time
+
+def daily_collect():
+    """每天定时采集"""
+    urls = get_new_articles()  # 获取新文章链接
+    wechat_article_collector(urls=urls)
+
+# 每天早上8点执行
+schedule.every().day.at("08:00").do(daily_collect)
+
+while True:
+    schedule.run_pending()
+    time.sleep(60)
+```
+
+## ✅ 检查清单
+
+安装完成后，检查以下项目：
+
+- [ ] Python依赖已安装
+- [ ] MCP服务正常运行
+- [ ] 配置文件已正确设置
+- [ ] 输出目录有写权限
+- [ ] 网络连接正常
+- [ ] 测试采集成功
+
+## 🎉 准备就绪！
+
+现在你可以开始使用Skill了：
+
+```
+请采集这篇微信文章：[你的文章链接]
+```
+
+祝使用愉快！🚀

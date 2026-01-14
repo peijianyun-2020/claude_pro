@@ -1,0 +1,429 @@
+"""
+价格预测器 - 完整预测流程
+
+Price predictor for electricity price forecasting.
+Orchestrates data loading, feature engineering, model inference, and result saving.
+"""
+
+from pathlib import Path
+from datetime import datetime, timedelta
+import pandas as pd
+import numpy as np
+import pickle
+import json
+from typing import Dict, Optional, Tuple, List
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+
+class PricePredictor:
+    """
+    价格预测器 - 完整预测流程
+
+    负责协调整个预测流程：
+    1. 加载最新数据（日前价格、实时价格、天气数据）
+    2. 特征工程
+    3. 加载训练好的模型
+    4. 执行预测
+    5. 保存预测结果
+
+    Attributes:
+        config (Dict): 配置参数
+        region (str): 预测区域（广东、广西、云南、贵州、海南、全区域）
+        models (Dict): 加载的模型字典
+        feature_engineer: 特征工程实例
+    """
+
+    def __init__(
+        self,
+        region: str = '广东',
+        config: Optional[Dict] = None,
+        lookback_days: int = 30,
+        forecast_days: int = 3
+    ):
+        """
+        初始化预测器
+
+        Args:
+            region: 预测区域
+            config: 配置参数字典
+            lookback_days: 用于构造特征的历史天数
+            forecast_days: 预测天数
+        """
+        self.region = region
+        self.config = config or self._load_default_config()
+        self.lookback_days = lookback_days
+        self.forecast_days = forecast_days
+        self.models = {}
+        self.feature_engineer = None
+
+        logger.info(f"初始化价格预测器 - 区域: {region}, 预测天数: {forecast_days}")
+
+    def _load_default_config(self) -> Dict:
+        """加载默认配置"""
+        return {
+            'data_paths': {
+                'day_ahead': '基础数据/每日日前数据表',
+                'real_time': '基础数据/每日实时数据表',
+                'weather': '基础数据/气象数据',
+                'predictions': 'data/predictions',
+                'models': 'models'
+            },
+            'models': {
+                'xgb_day_ahead': 'xgb_day_ahead.pkl',
+                'xgb_real_time': 'xgb_real_time.pkl',
+                'lstm_day_ahead': 'lstm_day_ahead.pth',
+                'lstm_real_time': 'lstm_real_time.pth',
+                'ensemble': 'ensemble.pkl'
+            }
+        }
+
+    def load_data(self) -> Tuple[pd.DataFrame, pd.DataFrame, Optional[pd.DataFrame]]:
+        """
+        加载最新数据
+
+        Returns:
+            (day_ahead_df, real_time_df, weather_df)
+            - day_ahead_df: 日前价格数据
+            - real_time_df: 实时价格数据
+            - weather_df: 天气数据（如果可用）
+        """
+        from src.data_collection.excel_reader import ExcelReader
+
+        reader = ExcelReader(region=self.region)
+
+        # Load day-ahead prices
+        day_ahead_dir = Path(self.config['data_paths']['day_ahead'])
+        if day_ahead_dir.exists():
+            day_ahead_df = reader.read_day_ahead_price_directory(day_ahead_dir)
+            logger.info(f"加载日前价格数据: {len(day_ahead_df)} 条记录")
+        else:
+            logger.warning(f"日前价格目录不存在: {day_ahead_dir}")
+            day_ahead_df = pd.DataFrame(columns=['datetime', 'price'])
+
+        # Load real-time prices
+        real_time_dir = Path(self.config['data_paths']['real_time'])
+        if real_time_dir.exists():
+            real_time_df = reader.read_real_time_price_directory(real_time_dir)
+            logger.info(f"加载实时价格数据: {len(real_time_df)} 条记录")
+        else:
+            logger.warning(f"实时价格目录不存在: {real_time_dir}")
+            real_time_df = pd.DataFrame(columns=['datetime', 'price'])
+
+        # Load weather data (optional)
+        weather_df = None
+        weather_dir = Path(self.config['data_paths']['weather'])
+        if weather_dir.exists():
+            weather_files = list(weather_dir.glob('*.json'))
+            if weather_files:
+                weather_df = self._load_weather_data(weather_files[-1])
+                if weather_df is not None:
+                    logger.info(f"加载天气数据: {len(weather_df)} 条记录")
+
+        return day_ahead_df, real_time_df, weather_df
+
+    def _load_weather_data(self, filepath: Path) -> Optional[pd.DataFrame]:
+        """加载天气数据"""
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+
+            records = []
+            if isinstance(data, list):
+                for item in data:
+                    if isinstance(item, dict) and 'datetime' in item:
+                        records.append(item)
+
+            if records:
+                return pd.DataFrame(records)
+        except Exception as e:
+            logger.warning(f"加载天气数据失败: {e}")
+
+        return None
+
+    def load_models(self, model_types: List[str] = None) -> None:
+        """
+        加载训练好的模型
+
+        Args:
+            model_types: 要加载的模型类型列表
+        """
+        if model_types is None:
+            model_types = ['xgb_day_ahead', 'xgb_real_time']
+
+        models_dir = Path(self.config['data_paths']['models'])
+        models_dir.mkdir(parents=True, exist_ok=True)
+
+        for model_type in model_types:
+            model_filename = self.config['models'].get(model_type)
+            if not model_filename:
+                logger.warning(f"未找到模型配置: {model_type}")
+                continue
+
+            model_path = models_dir / model_filename
+
+            if not model_path.exists():
+                logger.warning(f"模型文件不存在: {model_path}")
+                continue
+
+            try:
+                if model_type.startswith('xgb'):
+                    with open(model_path, 'rb') as f:
+                        self.models[model_type] = pickle.load(f)
+                    logger.info(f"加载XGBoost模型: {model_type}")
+                elif model_type.startswith('lstm'):
+                    import torch
+                    from src.models.lstm_model import LSTMPricePredictor
+
+                    model = LSTMPricePredictor(model_type=model_type.replace('lstm_', ''))
+                    model.load(str(model_path))
+                    self.models[model_type] = model
+                    logger.info(f"加载LSTM模型: {model_type}")
+                elif model_type == 'ensemble':
+                    with open(model_path, 'rb') as f:
+                        self.models[model_type] = pickle.load(f)
+                    logger.info(f"加载集成模型: {model_type}")
+
+            except Exception as e:
+                logger.error(f"加载模型失败 {model_type}: {e}")
+
+        if not self.models:
+            raise ValueError("未成功加载任何模型，请先训练模型")
+
+    def prepare_features(
+        self,
+        day_ahead_df: pd.DataFrame,
+        real_time_df: pd.DataFrame,
+        weather_df: Optional[pd.DataFrame] = None
+    ) -> Dict[str, np.ndarray]:
+        """
+        准备预测特征
+
+        Returns:
+            特征字典
+        """
+        from src.preprocessing.feature_engineering import FeatureEngineer
+
+        if self.feature_engineer is None:
+            self.feature_engineer = FeatureEngineer()
+
+        features = {}
+
+        # Prepare day-ahead features
+        if not day_ahead_df.empty and len(day_ahead_df) >= self.lookback_days * 24:
+            da_df = self.feature_engineer.create_all_features(
+                day_ahead_df,
+                price_col='price',
+                datetime_col='datetime'
+            )
+
+            da_df = da_df.dropna().tail(self.lookback_days * 24)
+
+            if 'xgb_day_ahead' in self.models or 'ensemble' in self.models:
+                X_xgb_da, _ = self.feature_engineer.prepare_training_samples(
+                    da_df,
+                    lookback_days=self.lookback_days,
+                    forecast_days=self.forecast_days
+                )
+                if len(X_xgb_da) > 0:
+                    features['xgb_day_ahead'] = X_xgb_da[-1:]
+                    logger.info(f"准备XGBoost日前特征: {features['xgb_day_ahead'].shape}")
+
+            if 'lstm_day_ahead' in self.models or 'ensemble' in self.models:
+                X_lstm_da, _ = self.feature_engineer.prepare_lstm_samples(
+                    da_df,
+                    lookback_days=self.lookback_days,
+                    forecast_days=self.forecast_days
+                )
+                if len(X_lstm_da) > 0:
+                    features['lstm_day_ahead'] = X_lstm_da[-1:]
+                    logger.info(f"准备LSTM日前特征: {features['lstm_day_ahead'].shape}")
+
+        # Prepare real-time features
+        if not real_time_df.empty and not day_ahead_df.empty:
+            rt_df = real_time_df.copy()
+            da_for_rt = day_ahead_df[['datetime', 'price']].copy()
+            da_for_rt = da_for_rt.rename(columns={'price': 'day_ahead_price'})
+
+            rt_df = rt_df.merge(da_for_rt, on='datetime', how='left')
+            rt_df['day_ahead_price'] = rt_df['day_ahead_price'].ffill()
+
+            rt_df = self.feature_engineer.create_all_features(
+                rt_df,
+                price_col='price',
+                datetime_col='datetime'
+            )
+
+            if 'day_ahead_price' in rt_df.columns:
+                rt_df = rt_df.sort_values('datetime').tail(self.lookback_days * 24)
+                rt_df = rt_df.dropna()
+
+                if 'xgb_real_time' in self.models or 'ensemble' in self.models:
+                    X_xgb_rt, _ = self.feature_engineer.prepare_training_samples(
+                        rt_df,
+                        lookback_days=self.lookback_days,
+                        forecast_days=self.forecast_days
+                    )
+                    if len(X_xgb_rt) > 0:
+                        features['xgb_real_time'] = X_xgb_rt[-1:]
+                        logger.info(f"准备XGBoost实时特征: {features['xgb_real_time'].shape}")
+
+                if 'lstm_real_time' in self.models or 'ensemble' in self.models:
+                    X_lstm_rt, _ = self.feature_engineer.prepare_lstm_samples(
+                        rt_df,
+                        lookback_days=self.lookback_days,
+                        forecast_days=self.forecast_days
+                    )
+                    if len(X_lstm_rt) > 0:
+                        features['lstm_real_time'] = X_lstm_rt[-1:]
+                        logger.info(f"准备LSTM实时特征: {features['lstm_real_time'].shape}")
+
+        return features
+
+    def predict(self, features: Dict[str, np.ndarray]) -> Dict[str, np.ndarray]:
+        """
+        执行预测
+
+        Returns:
+            预测结果字典
+        """
+        predictions = {}
+
+        # Predict day-ahead prices
+        if 'ensemble' in self.models:
+            ensemble_features = {}
+            if 'xgb_day_ahead' in features:
+                ensemble_features['xgb'] = features['xgb_day_ahead']
+            if 'lstm_day_ahead' in features:
+                ensemble_features['lstm'] = features['lstm_day_ahead']
+
+            if ensemble_features:
+                try:
+                    predictions['day_ahead'] = self.models['ensemble'].predict(ensemble_features)
+                    logger.info(f"集成模型日前预测: {predictions['day_ahead'].shape}")
+                except Exception as e:
+                    logger.error(f"集成模型日前预测失败: {e}")
+
+        if 'day_ahead' not in predictions and 'xgb_day_ahead' in self.models and 'xgb_day_ahead' in features:
+            predictions['day_ahead'] = self.models['xgb_day_ahead'].predict(features['xgb_day_ahead'])
+            logger.info(f"XGBoost日前预测: {predictions['day_ahead'].shape}")
+
+        # Predict real-time prices
+        if 'ensemble' in self.models:
+            ensemble_features = {}
+            if 'xgb_real_time' in features:
+                ensemble_features['xgb'] = features['xgb_real_time']
+            if 'lstm_real_time' in features:
+                ensemble_features['lstm'] = features['lstm_real_time']
+
+            if ensemble_features:
+                try:
+                    predictions['real_time'] = self.models['ensemble'].predict(ensemble_features)
+                    logger.info(f"集成模型实时预测: {predictions['real_time'].shape}")
+                except Exception as e:
+                    logger.error(f"集成模型实时预测失败: {e}")
+
+        if 'real_time' not in predictions and 'xgb_real_time' in self.models and 'xgb_real_time' in features:
+            predictions['real_time'] = self.models['xgb_real_time'].predict(features['xgb_real_time'])
+            logger.info(f"XGBoost实时预测: {predictions['real_time'].shape}")
+
+        return predictions
+
+    def save_predictions(
+        self,
+        predictions: Dict[str, np.ndarray],
+        output_path: Optional[Path] = None
+    ) -> Path:
+        """
+        保存预测结果
+
+        Returns:
+            保存的文件路径
+        """
+        if output_path is None:
+            predictions_dir = Path(self.config['data_paths']['predictions'])
+            predictions_dir.mkdir(parents=True, exist_ok=True)
+            output_path = predictions_dir / f"{datetime.now().strftime('%Y%m%d')}_predictions.csv"
+
+        records = []
+        base_date = datetime.now().date()
+
+        for pred_type, pred_values in predictions.items():
+            if pred_values is None:
+                continue
+
+            for day_offset in range(self.forecast_days):
+                for hour in range(24):
+                    idx = day_offset * 24 + hour
+                    if idx < len(pred_values):
+                        target_datetime = datetime.combine(
+                            base_date + timedelta(days=day_offset + 1),
+                            datetime.min.time()
+                        ) + timedelta(hours=hour)
+
+                        records.append({
+                            'datetime': target_datetime,
+                            'type': pred_type,
+                            'price': pred_values[idx],
+                            'day_offset': day_offset + 1,
+                            'hour': hour
+                        })
+
+        df = pd.DataFrame(records)
+
+        if not df.empty:
+            df.to_csv(output_path, index=False, encoding='utf-8-sig')
+            logger.info(f"保存预测结果: {output_path} ({len(df)} 条记录)")
+
+        return output_path
+
+    def run(self, save_results: bool = True) -> Tuple[Dict[str, np.ndarray], Optional[Path]]:
+        """
+        运行完整预测流程
+
+        Returns:
+            (predictions, output_path)
+        """
+        logger.info("=" * 60)
+        logger.info("开始预测流程")
+        logger.info("=" * 60)
+
+        # Step 1: Load data
+        logger.info("步骤 1/5: 加载数据...")
+        day_ahead_df, real_time_df, weather_df = self.load_data()
+
+        if day_ahead_df.empty:
+            raise ValueError("日前价格数据为空，无法进行预测")
+
+        # Step 2: Load models
+        logger.info("步骤 2/5: 加载模型...")
+        self.load_models()
+
+        # Step 3: Prepare features
+        logger.info("步骤 3/5: 准备特征...")
+        features = self.prepare_features(day_ahead_df, real_time_df, weather_df)
+
+        if not features:
+            raise ValueError("特征准备失败，数据不足")
+
+        # Step 4: Execute prediction
+        logger.info("步骤 4/5: 执行预测...")
+        predictions = self.predict(features)
+
+        if not predictions:
+            raise ValueError("预测失败，没有可用的模型或特征")
+
+        # Step 5: Save results
+        output_path = None
+        if save_results:
+            logger.info("步骤 5/5: 保存结果...")
+            output_path = self.save_predictions(predictions)
+
+        logger.info("=" * 60)
+        logger.info("预测流程完成")
+        logger.info("=" * 60)
+
+        return predictions, output_path

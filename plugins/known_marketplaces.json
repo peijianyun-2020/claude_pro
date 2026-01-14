@@ -22,5 +22,13 @@
     },
     "installLocation": "C:\\Users\\55315\\.claude\\plugins\\marketplaces\\anthropic-agent-skills",
     "lastUpdated": "2026-01-07T10:55:44.102Z"
+  },
+  "superpowers-marketplace": {
+    "source": {
+      "source": "github",
+      "repo": "obra/superpowers-marketplace"
+    },
+    "installLocation": "C:\\Users\\55315\\.claude\\plugins\\marketplaces\\superpowers-marketplace",
+    "lastUpdated": "2026-01-12T02:24:16.656Z"
   }
 }

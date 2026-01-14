@@ -1,0 +1,256 @@
+# 船运货盘提取工具 - 快速使用指南
+
+## ✅ 工具已创建成功！
+
+**Skill名称**: `cargoextract`
+**功能**: 自动读取QQ邮箱，识别船运经纪邮件，提取货盘信息到Excel
+
+---
+
+## 🚀 快速开始
+
+### 使用方法1: 通过Claude Code命令
+
+在Claude Code对话中直接输入：
+
+```
+/cargoextract
+```
+
+这将：
+- 读取最近50封邮件
+- 自动识别船运邮件
+- 提取货盘信息
+- 保存到 `D:\AI\cc_pro\test_9\数据提取.xlsx`
+
+### 使用方法2: 通过自然语言
+
+告诉Claude：
+- "帮我提取货盘信息"
+- "读取邮箱并整理货盘数据"
+- "更新货盘Excel表格"
+
+---
+
+## 📊 输出示例
+
+生成的Excel文件包含以下列：
+
+| 列名 | 说明 | 示例 |
+|------|------|------|
+| 邮件日期 | 邮件发送时间 | Fri, 9 Jan 2026 21:24:31 +0800 |
+| 发件人 | 发件人邮箱 | "简僤①dǐan" <407002606@qq.com> |
+| 标记 | 货盘标记 | A, B, C |
+| 货物名称 | CARGO名称 | GYPSUM IN BULK |
+| 数量 | QTY/QUANTITY | 10K MTS MIN/MAX |
+| 装货港 | LOAD PORT | PARADIP |
+| 卸货港 | DISCHARGE PORT | MONGLA |
+| 装货率 | LOAD RATE | 3000 MTS PWWD SSHEX UU |
+| 卸货率 | DISCHARGE RATE | 2000 MTS PWWD FSHEX UU |
+| 受载期 | LAYCAN | 06TH - 10TH OCT |
+| 佣金 | COMM | 1.25% TTL |
+| 邮件主题 | 完整邮件主题 | Fw: 10K GYPSUM EX PARADIP... |
+
+---
+
+## ✨ 核心功能
+
+### 1. 自动识别船运邮件
+
+工具会自动识别包含以下特征的邮件：
+- ✅ 主题包含船运关键词（cargo, shipping等）
+- ✅ 正文包含货盘标记（A)、B)、C)）
+- ✅ 包含8大核心字段
+
+### 2. 提取8大核心字段
+
+| 字段 | 英文关键词 | 说明 |
+|------|-----------|------|
+| 货物名称 | CARGO | 货物类型和描述 |
+| 数量 | QTY/QUANTITY | 支持格式：10K, 10,000, 3K-6K |
+| 装货港 | LOAD PORT | 保留原始港口名称 |
+| 卸货港 | DISCHARGE PORT/DISPORT | 保留原始港口名称 |
+| 装货率 | LOAD RATE | 完整保留原始条款 |
+| 卸货率 | DISCHARGE RATE/DISRATE | 完整保留原始条款 |
+| 受载期 | LAYCAN | 完整保留原始格式 |
+| 佣金 | COMM | 完整保留原始格式 |
+
+### 3. 自动去重
+
+- ✅ 识别依据：邮件日期 + 发件人 + 标记 + 货物名称
+- ✅ 自动跳过重复货盘
+- ✅ 显示去重统计
+
+### 4. 增量更新
+
+- ✅ 保留已有数据
+- ✅ 只添加新货盘
+- ✅ 追踪来源信息
+
+---
+
+## 📁 文件位置
+
+### 输出文件
+```
+D:\AI\cc_pro\test_9\数据提取.xlsx
+```
+
+### Skill位置
+```
+C:\Users\55315\.claude\skills\cargoextract\
+├── run.py              # 入口文件
+├── cargo_extractor.py  # 核心脚本
+└── skill.md            # 详细文档
+```
+
+---
+
+## 🎯 测试结果
+
+**本次测试运行**：
+- ✅ 读取邮件：39封
+- ✅ 识别船运邮件：2封
+- ✅ 提取货盘：5个
+- ✅ 新增货盘：4个
+- ✅ 重复货盘：1个（已跳过）
+
+**提取的货盘类型**：
+- ✅ 货盘A: GYPSUM IN BULK (石膏散装)
+- ✅ 货盘B: MANGANESE ORE (锰矿)
+- ✅ 货盘C: BOULDERS IN BULK (巨石散装)
+
+---
+
+## ⚙️ 高级用法
+
+### 读取更多邮件
+
+```
+/cargoextract 100    # 读取最近100封邮件
+```
+
+### 直接运行脚本
+
+```bash
+python "C:/Users/55315/.claude/skills/cargoextract/cargo_extractor.py"
+```
+
+### 查看详细日志
+
+运行时会显示：
+- 正在扫描的邮件数量
+- 识别到的船运邮件
+- 提取的货盘数量
+- 去重统计
+
+---
+
+## 🔧 常见问题
+
+### Q1: 工具无法识别某些船运邮件？
+
+**A**: 识别规则基于关键词匹配。确保邮件：
+- 主题或正文包含：cargo, load port, discharge port等
+- 使用标准格式：A)、B) 或 CARGO: XXX
+
+### Q2: Excel文件保存失败？
+
+**A**: 确保：
+- Excel文件已关闭
+- 目录 `D:\AI\cc_pro\test_9\` 存在
+- 有写入权限
+
+### Q3: 某些字段提取为空？
+
+**A**: 可能原因：
+- 邮件中该字段确实缺失
+- 格式不标准（如使用了缩写）
+- 解决：手动补充或调整邮件格式
+
+### Q4: 如何处理已读取过的邮件？
+
+**A**: 工具会自动去重：
+- 基于邮件日期+发件人+标记+货物名称
+- 重复货盘会被跳过
+- 显示去重统计
+
+---
+
+## 📈 数据质量提示
+
+1. **格式保留**
+   - 数量：10K MTS（保留原始）
+   - 港口：PARADIP（保留原始）
+   - 费率：完整条款描述
+
+2. **空字段处理**
+   - 如果某字段不存在，使用空字符串
+   - 不添加、不推断、不猜测
+
+3. **数据来源**
+   - 每行都标记邮件日期和发件人
+   - 可追溯到原始邮件
+
+---
+
+## 🎓 支持的货盘格式
+
+### 格式1: 带字母标记
+```
+A)
+CARGO : GYPSUM IN BULK
+QTY: 10K MTS MIN/MAX
+LOAD PORT: PARADIP
+DISCHARGE PORT: MONGLA
+LOAD RATE: 3000 MTS PWWD SSHEX UU
+DISCHARGE RATE: 2000 MTS PWWD FSHEX UU
+LAYCAN: 06TH - 10TH OCT
+COMM: 1.25% TTL
+```
+
+### 格式2: 关键词分段
+```
+CARGO: GYPSUM IN BULK
+QTY: 10,000 MTS
+LOAD PORT: PARADIP
+DISCHARGE PORT: MONGLA
+LAYCAN: 06TH - 10TH OCT
+COMM: 1.25%
+```
+
+### 格式3: 紧凑格式
+```
+A) CARGO: GYPSUM, QTY: 10K MTS, LOAD PORT: PARADIP, DISCHARGE PORT: MONGLA
+```
+
+---
+
+## 📞 技术支持
+
+如遇问题：
+1. 查看详细文档：`C:\Users\55315\.claude\skills\cargoextract\skill.md`
+2. 检查运行日志：观察控制台输出
+3. 验证数据：打开Excel文件检查提取结果
+
+---
+
+## ✅ 下一步
+
+1. **首次运行**
+   ```
+   /cargoextract
+   ```
+
+2. **查看结果**
+   - 打开 `D:\AI\cc_pro\test_9\数据提取.xlsx`
+   - 检查提取的货盘信息
+
+3. **定期更新**
+   - 每天运行一次
+   - 自动获取新货盘
+   - 自动去重
+
+---
+
+**祝您使用愉快！** 🚢⚓

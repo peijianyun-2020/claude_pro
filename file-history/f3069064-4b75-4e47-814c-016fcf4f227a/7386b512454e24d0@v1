@@ -1,0 +1,29 @@
+{
+  "title": "大模型狂飙2025：一篇文理清从模型到智能体的架构演进",
+  "author": "梁忠平",
+  "account_name": "腾讯云开发者",
+  "publish_time": "2026年1月13日 08:46",
+  "url": "https://mp.weixin.qq.com/s/uEjyTo8thO2ZuWPIhYDZFA",
+  "collected_at": "2026-01-13",
+  "image_count": 20,
+  "core_topics": [
+    "AI工程化",
+    "智能体(Agent)",
+    "MCP协议",
+    "LangChain",
+    "LangGraph",
+    "多智能体系统",
+    "认知架构",
+    "Agent Skills vs Tools"
+  ],
+  "key_points": [
+    "2025年是从聊天机器人向智能体系统工程的范式转移",
+    "现代LLM应用架构分为四层：智能层、能力层、连接层、编排层",
+    "MCP被誉为AI时代的USB-C接口，标准化模型与数据源的连接",
+    "LangGraph提供有状态的图结构，支持长期运行的智能体",
+    "从MLOps向AgentOps演进，关注非确定性软件的行为管理"
+  ],
+  "references_count": 31,
+  "article_type": "技术深度解析",
+  "reading_time_estimate": "15-20分钟"
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "content": "打开交易系统并等待用户登录",
+    "status": "in_progress",
+    "activeForm": "正在打开交易系统"
+  },
+  {
+    "content": "采集2026-01-01的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-01的实时价格"
+  },
+  {
+    "content": "采集2026-01-02的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-02的实时价格"
+  },
+  {
+    "content": "采集2026-01-03的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-03的实时价格"
+  },
+  {
+    "content": "采集2026-01-04的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-04的实时价格"
+  },
+  {
+    "content": "采集2026-01-05的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-05的实时价格"
+  },
+  {
+    "content": "采集2026-01-06的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-06的实时价格"
+  },
+  {
+    "content": "采集2026-01-07的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-07的实时价格"
+  },
+  {
+    "content": "采集2026-01-08的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-08的实时价格"
+  },
+  {
+    "content": "采集2026-01-09的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-09的实时价格"
+  },
+  {
+    "content": "采集2026-01-10的实时价格",
+    "status": "pending",
+    "activeForm": "正在采集2026-01-10的实时价格"
+  }
+]

@@ -1,0 +1,78 @@
+2026-01-13T07:32:04.550Z [DEBUG] Getting matching hook commands for SessionEnd with query: clear
+2026-01-13T07:32:04.550Z [DEBUG] Found 0 hook matchers in settings
+2026-01-13T07:32:04.550Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-13T07:32:04.550Z [DEBUG] Cleared all session hooks for session 75443c1a-0856-43c3-99ba-c1a649e5975c
+2026-01-13T07:32:04.553Z [DEBUG] Getting matching hook commands for SessionStart with query: clear
+2026-01-13T07:32:04.553Z [DEBUG] Found 0 hook matchers in settings
+2026-01-13T07:32:04.553Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-13T07:32:04.560Z [DEBUG] FileHistory: Added snapshot for 313ca000-9a3d-4d14-a910-67e1d7af4b9f, tracking 0 files
+2026-01-13T07:32:04.594Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-13T07:32:06.015Z [DEBUG] Applying permission update: Setting mode to 'bypassPermissions'
+2026-01-13T07:32:06.555Z [DEBUG] Applying permission update: Setting mode to 'default'
+2026-01-13T07:32:11.650Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.38880.1768289531650
+2026-01-13T07:32:11.650Z [DEBUG] Preserving file permissions: 100666
+2026-01-13T07:32:11.651Z [DEBUG] Temp file written successfully, size: 5102 bytes
+2026-01-13T07:32:11.652Z [DEBUG] Applied original permissions to temp file
+2026-01-13T07:32:11.652Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.38880.1768289531650 to C:\Users\55315\.claude.json
+2026-01-13T07:32:11.652Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-13T07:32:11.653Z [DEBUG] Metadata string for xianhuoprice:
+2026-01-13T07:32:11.653Z [DEBUG] <command-message>The "xianhuoprice" skill is running</command-message>
+<command-name>xianhuoprice</command-name>
+2026-01-13T07:32:11.653Z [DEBUG] command-message tags in metadata: 1
+2026-01-13T07:32:11.698Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-13T07:32:11.698Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-13T07:32:11.698Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-13T07:32:11.698Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-13T07:32:11.707Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-13T07:32:11.710Z [DEBUG] processPromptSlashCommand creating 4 messages for xianhuoprice
+2026-01-13T07:32:11.710Z [DEBUG] Message 1: <command-message>The "xianhuoprice" skill is running</command-message>
+<command-name>xianhuoprice</command-name>
+2026-01-13T07:32:11.710Z [DEBUG] Message 2 [META]: [{"type":"text","text":"Base directory for this skill: C:\\Users\\55315\\.claude\\skills\\xianhuoprice\n\n# 南方区域电力现货价格自动化采集助手\r\n\r\n## 概述\r\n\r\n本 Skill 提供从南方区域现货电能量交易系统**自动化提取**用电侧成交价格数据的能力，包括：\r\n1
+2026-01-13T07:32:11.710Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-13T07:32:11.710Z [DEBUG] Message 4: [ATTACHMENT]
+2026-01-13T07:32:11.718Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-13T07:32:11.718Z [DEBUG] Found 0 hook matchers in settings
+2026-01-13T07:32:11.718Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-13T07:32:11.738Z [DEBUG] FileHistory: Making snapshot for message 07bb4f5e-3ec6-4716-983a-a4a49f7aebb9
+2026-01-13T07:32:11.739Z [DEBUG] FileHistory: Added snapshot for 07bb4f5e-3ec6-4716-983a-a4a49f7aebb9, tracking 0 files
+2026-01-13T07:32:11.742Z [DEBUG] UserCommandMessage rendering: "The "xianhuoprice" skill is running" (args: "none")
+2026-01-13T07:32:11.742Z [DEBUG] isSkillFormat: true
+2026-01-13T07:32:11.773Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[D:\AI\cc_pro\.claude\skills]
+2026-01-13T07:32:11.815Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-13T07:32:11.815Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-13T07:32:11.815Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-13T07:32:11.913Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-13T07:32:11.913Z [DEBUG] Total plugin skills loaded: 1
+2026-01-13T07:32:11.913Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-13T07:32:11.913Z [DEBUG] Total plugin commands loaded: 1
+2026-01-13T07:32:11.915Z [DEBUG] Loaded 5 unique skills (managed: 0, user: 3, project: 2, legacy commands: 0)
+2026-01-13T07:32:11.915Z [DEBUG] getSkills returning: 5 skill dir commands, 1 plugin skills, 0 bundled skills
+2026-01-13T07:32:12.251Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-13T07:32:12.259Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-13T07:32:12.259Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-13T07:32:12.259Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-13T07:32:13.249Z [DEBUG] Stream started - received first chunk
+2026-01-13T07:32:18.399Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-13T07:32:18.399Z [DEBUG] Found 0 hook matchers in settings
+2026-01-13T07:32:18.399Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-13T07:32:25.434Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-13T07:32:25.434Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-13T07:32:25.434Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-13T07:32:25.434Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-13T07:32:25.449Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-13T07:32:25.449Z [DEBUG] Found 0 hook matchers in settings
+2026-01-13T07:32:25.449Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-13T07:32:25.451Z [DEBUG] FileHistory: Making snapshot for message a7c4f712-8b8b-40cf-881c-ba228573426f
+2026-01-13T07:32:25.451Z [DEBUG] FileHistory: Added snapshot for a7c4f712-8b8b-40cf-881c-ba228573426f, tracking 0 files
+2026-01-13T07:32:25.512Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-13T07:32:25.513Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-13T07:32:25.513Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-13T07:32:25.513Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-13T07:32:25.576Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-13T07:32:25.582Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-13T07:32:25.582Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-13T07:32:25.582Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-13T07:32:26.276Z [DEBUG] Stream started - received first chunk
+2026-01-13T07:32:26.693Z [DEBUG] Stream started - received first chunk
+2026-01-13T07:32:28.671Z [DEBUG] Streaming aborted by user: Request was aborted.
+2026-01-13T07:32:28.671Z [ERROR] Error in non-streaming fallback: Request was aborted.

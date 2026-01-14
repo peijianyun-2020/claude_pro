@@ -1,0 +1,174 @@
+# 飞书多维表格 MCP 服务器
+
+将 Claude Code 获取的数据（社交媒体数据、监控数据等）自动写入飞书多维表格。
+
+## 功能特性
+
+- ✅ **单条记录写入** - 写入单条数据到表格
+- ✅ **追加或更新** - 智能判断记录是否存在，自动追加或更新
+- ✅ **批量写入** - 一次性写入多条记录
+- ✅ **记录查找** - 根据字段值查找记录
+- ✅ **获取表结构** - 查看表格字段信息
+
+## 快速开始
+
+### 1. 创建飞书应用
+
+访问 [飞书开放平台](https://open.feishu.cn/app) 创建应用并获取凭证：
+- `App ID` 和 `App Secret`
+- 申请权限：`bitable:app`（读写多维表格）
+
+详细步骤请参考：[飞书应用创建指南](../docs/飞书应用创建指南.md)
+
+### 2. 获取表格信息
+
+从飞书表格 URL 中提取：
+- `app_token`: 表格应用 token
+- `table_id`: 数据表 ID
+
+URL 格式：`https://feishu.cn/base/app_token?table=table_id`
+
+### 3. 安装依赖
+
+```bash
+cd "D:\AI\cc_pro\program\202601 CLAUDE CODE链接飞书\feishu-bitable-mcp"
+pip install -r requirements.txt
+```
+
+### 4. 配置环境变量
+
+在 Claude Code 的 MCP 配置中设置环境变量：
+
+```json
+{
+  "mcpServers": {
+    "feishu-bitable": {
+      "command": "python",
+      "args": ["D:/AI/cc_pro/program/202601 CLAUDE CODE链接飞书/feishu-bitable-mcp/server.py"],
+      "env": {
+        "FEISHU_APP_ID": "cli_xxxxxxxxxxxxx",
+        "FEISHU_APP_SECRET": "xxxxxxxxxxxxxxxxxxxx",
+        "FEISHU_APP_TOKEN": "bascxxxxxxxxxxxxxxxxxxxx",
+        "FEISHU_TABLE_ID": "tblxxxxxxxxxxxxxxxxxxxx"
+      }
+    }
+  }
+}
+```
+
+或使用命令行安装：
+```bash
+claude mcp add feishu-bitable python "D:/AI/cc_pro/program/202601 CLAUDE CODE链接飞书/feishu-bitable-mcp/server.py"
+```
+
+### 5. 测试连接
+
+```bash
+python server.py --check
+```
+
+如果配置正确，会显示：
+```
+✅ FEISHU_APP_ID: 已配置
+✅ FEISHU_APP_SECRET: 已配置
+✅ FEISHU_APP_TOKEN: 已配置
+✅ FEISHU_TABLE_ID: 已配置
+✅ 成功连接到飞书多维表格！
+```
+
+## 使用方法
+
+### 在 Claude Code 中调用
+
+#### 写入小红书笔记数据
+
+```
+将这个小红书笔记写入飞书表格：
+- 标题：xxx
+- 作者：xxx
+- 点赞数：xxx
+- 收藏数：xxx
+- 笔记ID：xxx
+- 链接：xxx
+```
+
+#### 批量写入监控数据
+
+```
+将以下监控数据写入飞书表格：
+[数据列表]
+```
+
+#### 自定义字段写入
+
+直接使用工具：
+- `upsert_record` - 追加或更新记录（推荐）
+- `write_record` - 写入单条记录
+- `batch_write_records` - 批量写入
+- `find_record` - 查找记录
+- `get_table_schema` - 获取表结构
+
+## 数据结构示例
+
+### 小红书笔记数据
+
+```json
+{
+  "title": "笔记标题",
+  "author": "作者昵称",
+  "likes": 1234,
+  "collects": 567,
+  "comments": 89,
+  "url": "https://xiaohongshu.com/...",
+  "note_id": "唯一ID",
+  "publish_time": "2026-01-12",
+  "tags": ["标签1", "标签2"]
+}
+```
+
+### 抖音视频数据
+
+```json
+{
+  "title": "视频标题",
+  "author": "作者昵称",
+  "likes": 5678,
+  "shares": 234,
+  "comments": 156,
+  "url": "https://douyin.com/...",
+  "video_id": "唯一ID",
+  "publish_time": "2026-01-12"
+}
+```
+
+### 监控数据
+
+```json
+{
+  "timestamp": "2026-01-12 10:30:00",
+  "metric_name": "价格",
+  "value": 123.45,
+  "source": "数据来源",
+  "region": "地区"
+}
+```
+
+## 注意事项
+
+1. **权限申请**：确保应用有足够的权限访问多维表格
+2. **频率限制**：飞书 API 有频率限制，大量数据需分批处理
+3. **字段类型**：飞书多维表格字段类型需与数据匹配
+4. **唯一标识**：建议为每类数据定义唯一字段用于查重（如 `note_id`、`url` 等）
+5. **安全性**：不要将 `App Secret` 提交到代码仓库
+
+## 故障排查
+
+遇到问题？查看 [故障排查指南](../docs/故障排查.md)
+
+## 许可证
+
+MIT License
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request！

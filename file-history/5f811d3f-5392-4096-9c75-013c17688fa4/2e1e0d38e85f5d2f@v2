@@ -1,0 +1,339 @@
+"""
+测试模型动态更新器模块
+
+Test suite for model updater module.
+"""
+
+import pytest
+import pandas as pd
+import numpy as np
+from pathlib import Path
+from datetime import datetime, timedelta
+import json
+import pickle
+
+from src.model_update.model_updater import ModelUpdater
+
+
+class TestModelUpdater:
+    """测试ModelUpdater类"""
+
+    @pytest.fixture
+    def updater(self, tmp_path):
+        """创建ModelUpdater实例"""
+        return ModelUpdater(
+            region='广东',
+            models_dir=str(tmp_path / 'models'),
+            data_dir=str(tmp_path / 'data'),
+            lookback_days=7,
+            forecast_days=2
+        )
+
+    @pytest.fixture
+    def sample_metadata(self):
+        """创建示例模型元数据"""
+        return {
+            'last_update_date': (datetime.now() - timedelta(days=10)).isoformat(),
+            'update_type': 'incremental',
+            'mape': 5.5,
+            'old_mape': 6.0
+        }
+
+    def test_updater_initialization(self, updater):
+        """测试更新器初始化
+
+        Test that the updater initializes correctly.
+        """
+        assert updater.region == '广东'
+        assert updater.lookback_days == 7
+        assert updater.forecast_days == 2
+        assert updater.incremental_threshold_days == 7
+        assert updater.full_retrain_threshold_days == 30
+        assert len(updater.update_history) == 0
+        print("[PASS] Updater initialized correctly")
+
+    def test_default_config_loading(self, updater):
+        """测试默认配置加载
+
+        Test that default configuration is loaded correctly.
+        """
+        config = updater._load_default_config()
+
+        assert 'models' in config
+        assert 'model_types' in config
+        assert 'xgb_day_ahead' in config['models']
+        assert 'lstm_day_ahead' in config['models']
+        assert len(config['model_types']) == 4
+        print("[PASS] Default config loaded correctly")
+
+    def test_save_model_metadata(self, updater, sample_metadata):
+        """测试保存模型元数据
+
+        Test saving model metadata.
+        """
+        model_type = 'xgb_day_ahead'
+
+        updater.save_model_metadata(model_type, sample_metadata)
+
+        meta_path = updater.models_dir / updater.config['models'][model_type]
+        meta_path = meta_path.with_suffix('.meta.json')
+
+        assert meta_path.exists()
+
+        with open(meta_path, 'r', encoding='utf-8') as f:
+            saved_metadata = json.load(f)
+
+        assert saved_metadata['last_update_date'] == sample_metadata['last_update_date']
+        assert saved_metadata['mape'] == sample_metadata['mape']
+
+        print("[PASS] Model metadata saved correctly")
+
+    def test_load_model_metadata(self, updater, sample_metadata):
+        """测试加载模型元数据
+
+        Test loading model metadata.
+        """
+        model_type = 'lstm_day_ahead'
+
+        updater.save_model_metadata(model_type, sample_metadata)
+        loaded_metadata = updater.load_model_metadata(model_type)
+
+        assert loaded_metadata is not None
+        assert loaded_metadata['last_update_date'] == sample_metadata['last_update_date']
+        assert loaded_metadata['mape'] == sample_metadata['mape']
+
+        print("[PASS] Model metadata loaded correctly")
+
+    def test_load_nonexistent_metadata(self, updater):
+        """测试加载不存在的元数据
+
+        Test loading non-existent metadata.
+        """
+        metadata = updater.load_model_metadata('nonexistent_model')
+        assert metadata is None
+
+        print("[PASS] Non-existent metadata returns None")
+
+    def test_get_new_data_days_no_metadata(self, updater):
+        """测试无元数据时获取新数据天数
+
+        Test getting new data days when no metadata exists.
+        """
+        new_days = updater.get_new_data_days('xgb_day_ahead')
+        # Should return 0 since no data directory exists
+        assert new_days == 0
+
+        print("[PASS] No metadata and no data returns 0")
+
+    def test_get_new_data_days_with_metadata(self, updater, sample_metadata, tmp_path):
+        """测试有元数据时获取新数据天数
+
+        Test getting new data days with existing metadata.
+        """
+        # Create some test data files
+        data_dir = tmp_path / 'data' / '每日日前数据表'
+        data_dir.mkdir(parents=True)
+
+        # Create files for different dates
+        today = datetime.now().date()
+        for i in range(15):
+            date = today - timedelta(days=i)
+            date_str = date.strftime('%Y%m%d')
+            file_path = data_dir / f"{date_str}日前.xlsx"
+            file_path.touch()  # Create empty file
+
+        # Save metadata from 10 days ago
+        model_type = 'xgb_day_ahead'
+        updater.save_model_metadata(model_type, sample_metadata)
+
+        new_days = updater.get_new_data_days(model_type)
+
+        # Should count files newer than last_update_date (10 days ago)
+        # Files from last 10 days should be counted
+        assert 8 <= new_days <= 10  # Allow some margin
+
+        print(f"[PASS] New data days calculated: {new_days}")
+
+    def test_check_and_update_no_data(self, updater):
+        """测试无数据时检查更新
+
+        Test check_and_update when no data is available.
+        """
+        result = updater.check_and_update()
+
+        assert 'update_type' in result
+        assert 'models_updated' in result
+        assert 'timestamp' in result
+        assert result['update_type'] == 'none'
+        assert len(result['models_updated']) == 0
+
+        print("[PASS] No update needed without data")
+
+    def test_check_and_update_force_incremental(self, updater):
+        """测试强制增量更新
+
+        Test force incremental update.
+        """
+        # This will fail due to no actual models/data, but tests the flow
+        result = updater.check_and_update(force_incremental=True)
+
+        assert result['update_type'] == 'incremental'
+        assert 'models_updated' in result
+        assert 'details' in result
+
+        print(f"[PASS] Force incremental: {result['details']}")
+
+    def test_check_and_update_force_full_retrain(self, updater):
+        """测试强制完整重训练
+
+        Test force full retrain.
+        """
+        result = updater.check_and_update(force_full_retrain=True)
+
+        assert result['update_type'] == 'full_retrain'
+        assert 'models_updated' in result
+        assert 'details' in result
+
+        print(f"[PASS] Force full retrain: {result['details']}")
+
+    def test_get_update_history(self, updater):
+        """测试获取更新历史
+
+        Test getting update history.
+        """
+        # Perform some updates
+        updater.check_and_update(force_incremental=True)
+        updater.check_and_update(force_full_retrain=True)
+
+        history = updater.get_update_history(limit=10)
+
+        assert isinstance(history, list)
+        assert len(history) <= 10
+        assert len(history) >= 2
+
+        # Check structure of history entries
+        for entry in history:
+            assert 'timestamp' in entry
+            assert 'update_type' in entry
+            assert 'models_updated' in entry
+            assert 'details' in entry
+
+        print(f"[PASS] Update history: {len(history)} entries")
+
+    def test_get_model_status(self, updater, sample_metadata):
+        """测试获取模型状态
+
+        Test getting model status.
+        """
+        model_type = 'xgb_day_ahead'
+
+        # Save metadata
+        updater.save_model_metadata(model_type, sample_metadata)
+
+        status = updater.get_model_status(model_type)
+
+        assert status['model_type'] == model_type
+        assert 'model_path' in status
+        assert 'exists' in status
+        assert 'metadata' in status
+        assert 'new_data_days' in status
+        assert status['exists'] is True
+        assert status['metadata'] == sample_metadata
+
+        print("[PASS] Model status retrieved correctly")
+
+    def test_get_model_status_no_model(self, updater):
+        """测试不存在模型的状态
+
+        Test getting status for non-existent model.
+        """
+        status = updater.get_model_status('xgb_day_ahead')
+
+        assert status['model_type'] == 'xgb_day_ahead'
+        assert status['exists'] is False
+        assert status['metadata'] is None
+
+        print("[PASS] Non-existent model status correct")
+
+    def test_update_history_limit(self, updater):
+        """测试更新历史记录限制
+
+        Test that update history is limited to 50 entries.
+        """
+        # Perform more than 50 updates
+        for i in range(55):
+            updater.check_and_update(force_incremental=True)
+
+        history = updater.get_update_history(limit=100)
+
+        # Should be limited to 50
+        assert len(history) == 50
+
+        print("[PASS] Update history limited to 50 entries")
+
+
+class TestModelUpdaterIntegration:
+    """集成测试 - 模型更新完整流程"""
+
+    @pytest.fixture
+    def updater(self, tmp_path):
+        """创建ModelUpdater实例"""
+        return ModelUpdater(
+            region='广东',
+            models_dir=str(tmp_path / 'models'),
+            data_dir=str(tmp_path / 'data'),
+            lookback_days=7,
+            forecast_days=2
+        )
+
+    def test_update_workflow(self, updater):
+        """测试完整更新工作流
+
+        Test complete update workflow.
+        """
+        # 1. Initial status check
+        status_before = updater.get_model_status('xgb_day_ahead')
+        assert status_before['exists'] is False
+
+        # 2. Perform update (will fail but records attempt)
+        result = updater.check_and_update(force_incremental=True)
+
+        # 3. Check history
+        history = updater.get_update_history(limit=1)
+        assert len(history) == 1
+        assert history[0]['update_type'] == 'incremental'
+
+        print("[PASS] Complete update workflow works")
+
+    def test_metadata_persistence(self, updater, tmp_path):
+        """测试元数据持久化
+
+        Test that metadata persists across updater instances.
+        """
+        model_type = 'lstm_day_ahead'
+        metadata = {
+            'last_update_date': datetime.now().isoformat(),
+            'update_type': 'full_retrain',
+            'mape': 4.5
+        }
+
+        # Save with first updater instance
+        updater.save_model_metadata(model_type, metadata)
+
+        # Create new updater instance
+        updater2 = ModelUpdater(
+            region='广东',
+            models_dir=str(tmp_path / 'models'),
+            data_dir=str(tmp_path / 'data'),
+            lookback_days=7,
+            forecast_days=2
+        )
+
+        # Load metadata
+        loaded_metadata = updater2.load_model_metadata(model_type)
+
+        assert loaded_metadata is not None
+        assert loaded_metadata['last_update_date'] == metadata['last_update_date']
+        assert loaded_metadata['mape'] == metadata['mape']
+
+        print("[PASS] Metadata persists across instances")

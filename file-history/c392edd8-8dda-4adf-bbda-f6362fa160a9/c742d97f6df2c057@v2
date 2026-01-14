@@ -1,0 +1,207 @@
+"""
+飞书知识库文件上传工具
+支持上传单个文件或整个文件夹到飞书知识库
+"""
+
+import os
+import json
+import requests
+from pathlib import Path
+from typing import Optional, List
+import mimetypes
+
+
+class FeishuWikiUploader:
+    """飞书知识库上传器"""
+
+    def __init__(self, app_id: str, app_secret: str):
+        """
+        初始化上传器
+
+        Args:
+            app_id: 飞书应用的App ID
+            app_secret: 飞书应用的App Secret
+        """
+        self.app_id = app_id
+        self.app_secret = app_secret
+        self.tenant_access_token = None
+        self.base_url = "https://open.feishu.cn/open-apis"
+
+    def get_tenant_access_token(self) -> str:
+        """获取 tenant_access_token"""
+        url = f"{self.base_url}/auth/v3/tenant_access_token/internal"
+        payload = {
+            "app_id": self.app_id,
+            "app_secret": self.app_secret
+        }
+
+        response = requests.post(url, json=payload)
+        data = response.json()
+
+        if data.get("code") != 0:
+            raise Exception(f"获取token失败: {data.get('msg')}")
+
+        self.tenant_access_token = data.get("tenant_access_token")
+        return self.tenant_access_token
+
+    def upload_file(self, file_path: str, parent_node_token: str) -> dict:
+        """
+        上传文件到知识库
+
+        Args:
+            file_path: 文件路径
+            parent_node_token: 父节点token（知识库文件夹的token）
+
+        Returns:
+            上传结果
+        """
+        if not self.tenant_access_token:
+            self.get_tenant_access_token()
+
+        file_path = Path(file_path)
+        if not file_path.exists():
+            raise FileNotFoundError(f"文件不存在: {file_path}")
+
+        # 读取文件内容
+        with open(file_path, 'rb') as f:
+            file_content = f.read()
+
+        # 获取文件MIME类型
+        mime_type, _ = mimetypes.guess_type(file_path.name)
+        if mime_type is None:
+            mime_type = 'application/octet-stream'
+
+        # 上传文件到云空间
+        upload_url = f"{self.base_url}/drive/v1/medias/upload_all"
+        headers = {
+            "Authorization": f"Bearer {self.tenant_access_token}"
+        }
+
+        files = {
+            'file': (file_path.name, file_content, mime_type)
+        }
+        data = {
+            "file_type": "file",
+            "parent_type": "wiki"
+        }
+
+        response = requests.post(upload_url, headers=headers, files=files, data=data)
+        result = response.json()
+
+        if result.get("code") != 0:
+            raise Exception(f"上传文件失败: {result.get('msg')}")
+
+        file_token = result.get("data", {}).get("file_token")
+
+        # 创建知识库文档节点
+        return self.create_wiki_node(
+            parent_node_token=parent_node_token,
+            obj_type="file",
+            title=file_path.name,
+            file_token=file_token
+        )
+
+    def create_wiki_node(self, parent_node_token: str, obj_type: str,
+                        title: str, file_token: Optional[str] = None) -> dict:
+        """
+        创建知识库节点
+
+        Args:
+            parent_node_token: 父节点token
+            obj_type: 节点类型 (file/doc/sheet等)
+            title: 节点标题
+            file_token: 文件token（如果是文件类型）
+
+        Returns:
+            创建结果
+        """
+        if not self.tenant_access_token:
+            self.get_tenant_access_token()
+
+        url = f"{self.base_url}/wiki/v2/spaces/*/nodes"
+        headers = {
+            "Authorization": f"Bearer {self.tenant_access_token}",
+            "Content-Type": "application/json"
+        }
+
+        payload = {
+            "parent_node_token": parent_node_token,
+            "obj_type": obj_type,
+            "title": title
+        }
+
+        if file_token:
+            payload["file_token"] = file_token
+
+        response = requests.post(url, headers=headers, json=payload)
+        result = response.json()
+
+        if result.get("code") != 0:
+            raise Exception(f"创建知识库节点失败: {result.get('msg')}")
+
+        return result
+
+    def upload_folder(self, folder_path: str, parent_node_token: str,
+                     recursive: bool = True) -> List[dict]:
+        """
+        上传文件夹中的所有文件
+
+        Args:
+            folder_path: 文件夹路径
+            parent_node_token: 父节点token
+            recursive: 是否递归上传子文件夹
+
+        Returns:
+            上传结果列表
+        """
+        folder_path = Path(folder_path)
+        if not folder_path.exists() or not folder_path.is_dir():
+            raise NotADirectoryError(f"文件夹不存在: {folder_path}")
+
+        results = []
+
+        # 获取所有文件
+        if recursive:
+            files = list(folder_path.rglob("*"))
+        else:
+            files = list(folder_path.glob("*"))
+
+        for file_path in files:
+            if file_path.is_file():
+                try:
+                    result = self.upload_file(str(file_path), parent_node_token)
+                    results.append({
+                        "file": str(file_path),
+                        "status": "success",
+                        "result": result
+                    })
+                    print(f"✓ 上传成功: {file_path.name}")
+                except Exception as e:
+                    results.append({
+                        "file": str(file_path),
+                        "status": "failed",
+                        "error": str(e)
+                    })
+                    print(f"✗ 上传失败: {file_path.name} - {str(e)}")
+
+        return results
+
+
+def main():
+    """示例用法"""
+    # 从环境变量或配置文件读取
+    app_id = os.getenv("FEISHU_APP_ID", "your_app_id")
+    app_secret = os.getenv("FEISHU_APP_SECRET", "your_app_secret")
+    parent_node_token = os.getenv("FEISHU_WIKI_NODE_TOKEN", "your_node_token")
+
+    uploader = FeishuWikiUploader(app_id, app_secret)
+
+    # 示例1: 上传单个文件
+    # result = uploader.upload_file("数据文档/20260114日前.xlsx", parent_node_token)
+
+    # 示例2: 上传整个文件夹
+    # results = uploader.upload_folder("数据文档", parent_node_token)
+
+
+if __name__ == "__main__":
+    main()

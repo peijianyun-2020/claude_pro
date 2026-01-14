@@ -1,0 +1,27 @@
+[
+  {
+    "content": "访问交易系统并检查登录状态",
+    "status": "completed",
+    "activeForm": "访问交易系统并检查登录状态"
+  },
+  {
+    "content": "导航到用电侧成交价格模块",
+    "status": "completed",
+    "activeForm": "导航到用电侧成交价格模块"
+  },
+  {
+    "content": "选择实时数据和日期2026-01-01",
+    "status": "completed",
+    "activeForm": "选择实时数据和日期2026-01-01"
+  },
+  {
+    "content": "提取API响应数据",
+    "status": "in_progress",
+    "activeForm": "提取API响应数据"
+  },
+  {
+    "content": "生成CSV文件并验证",
+    "status": "pending",
+    "activeForm": "生成CSV文件并验证"
+  }
+]

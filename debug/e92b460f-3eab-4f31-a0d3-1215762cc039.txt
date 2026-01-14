@@ -1,0 +1,28 @@
+2026-01-11T12:40:28.543Z [DEBUG] Getting matching hook commands for SessionEnd with query: clear
+2026-01-11T12:40:28.543Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:40:28.543Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-11T12:40:28.543Z [DEBUG] Cleared all session hooks for session e4546d4d-09e8-41fb-be22-9f6e1de34b09
+2026-01-11T12:40:28.546Z [DEBUG] Getting matching hook commands for SessionStart with query: clear
+2026-01-11T12:40:28.546Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T12:40:28.546Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-11T12:40:28.558Z [DEBUG] FileHistory: Added snapshot for 32b35a04-3973-42e3-93e4-6ed1a517c12a, tracking 0 files
+2026-01-11T12:40:28.589Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-11T12:40:28.839Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.39032.1768135228839
+2026-01-11T12:40:28.840Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:40:28.840Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T12:40:28.841Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:40:28.841Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.39032.1768135228839 to C:\Users\55315\.claude.json
+2026-01-11T12:40:28.842Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T12:40:28.872Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.39032.1768135228872
+2026-01-11T12:40:28.873Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:40:28.873Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T12:40:28.874Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:40:28.874Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.39032.1768135228872 to C:\Users\55315\.claude.json
+2026-01-11T12:40:28.874Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T12:40:31.644Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.39032.1768135231644
+2026-01-11T12:40:31.644Z [DEBUG] Preserving file permissions: 100666
+2026-01-11T12:40:31.645Z [DEBUG] Temp file written successfully, size: 5069 bytes
+2026-01-11T12:40:31.645Z [DEBUG] Applied original permissions to temp file
+2026-01-11T12:40:31.645Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.39032.1768135231644 to C:\Users\55315\.claude.json
+2026-01-11T12:40:31.647Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-11T12:40:31.647Z [DEBUG] Applying permission update: Setting mode to 'plan'

@@ -1,0 +1,200 @@
+"""
+图片下载器
+下载文章中的图片到本地
+"""
+import os
+import time
+import requests
+from pathlib import Path
+from typing import Dict, List, Optional
+from urllib.parse import urlparse, parse_qs
+from config import IMAGE_TIMEOUT, MAX_RETRIES
+
+
+class ImageDownloader:
+    """图片下载器"""
+
+    def __init__(self, base_dir: Path):
+        """
+        初始化图片下载器
+
+        Args:
+            base_dir: 基础目录
+        """
+        self.base_dir = base_dir
+        self.image_dir = base_dir / "images"
+        self.image_dir.mkdir(parents=True, exist_ok=True)
+
+    def download_image(self, url: str, save_path: Optional[str] = None) -> Optional[str]:
+        """
+        下载单张图片
+
+        Args:
+            url: 图片URL
+            save_path: 保存路径（可选）
+
+        Returns:
+            保存的本地路径，失败返回None
+        """
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Referer': 'https://mp.weixin.qq.com/',
+        }
+
+        for attempt in range(MAX_RETRIES):
+            try:
+                response = requests.get(url, headers=headers, timeout=IMAGE_TIMEOUT)
+                response.raise_for_status()
+
+                # 如果没有指定保存路径，自动生成
+                if not save_path:
+                    filename = self._generate_filename(url)
+                    save_path = str(self.image_dir / filename)
+
+                # 保存图片
+                Path(save_path).parent.mkdir(parents=True, exist_ok=True)
+                with open(save_path, 'wb') as f:
+                    f.write(response.content)
+
+                return save_path
+
+            except Exception as e:
+                print(f"下载图片失败 (尝试 {attempt + 1}/{MAX_RETRIES}): {url}")
+                print(f"错误: {e}")
+                if attempt < MAX_RETRIES - 1:
+                    time.sleep(2 ** attempt)  # 指数退避
+
+        return None
+
+    def download_images(self, urls: List[str], prefix: str = "") -> Dict[str, str]:
+        """
+        批量下载图片
+
+        Args:
+            urls: 图片URL列表
+            prefix: 文件名前缀（用于区分不同文章）
+
+        Returns:
+            URL到本地路径的映射字典
+        """
+        mappings = {}
+
+        for i, url in enumerate(urls, 1):
+            try:
+                # 生成文件名
+                filename = self._generate_filename(url, prefix, i)
+                save_path = str(self.image_dir / filename)
+
+                # 下载图片
+                local_path = self.download_image(url, save_path)
+
+                if local_path:
+                    # 保存相对路径
+                    relative_path = os.path.relpath(local_path, self.base_dir)
+                    mappings[url] = relative_path
+                    print(f"已下载图片 {i}/{len(urls)}: {filename}")
+                else:
+                    print(f"跳过图片 {i}/{len(urls)}: {url}")
+
+                # 添加延时，避免请求过快
+                time.sleep(0.5)
+
+            except Exception as e:
+                print(f"处理图片失败: {url}, 错误: {e}")
+
+        return mappings
+
+    def _generate_filename(self, url: str, prefix: str = "", index: int = 0) -> str:
+        """
+        从URL生成文件名
+
+        Args:
+            url: 图片URL
+            prefix: 文件名前缀
+            index: 图片索引
+
+        Returns:
+            文件名
+        """
+        try:
+            parsed = urlparse(url)
+
+            # 从URL中提取文件名
+            pathname = parsed.path
+
+            # 微信图片URL通常包含文件类型信息
+            # 例如: /mmbiz_jpg/xxx/640?wxtype=jpeg&wxfrom=0
+            if 'wxtype=' in url:
+                # 从查询参数中获取文件类型
+                query = parse_qs(parsed.query)
+                wxtype = query.get('wxtype', ['png'])[0]
+                ext = f".{wxtype}"
+            else:
+                # 从路径中获取扩展名
+                ext = os.path.splitext(pathname)[1] or '.png'
+
+            # 如果没有索引，使用URL的hash
+            if index == 0:
+                import hashlib
+                url_hash = hashlib.md5(url.encode()).hexdigest()[:8]
+                filename = f"{prefix}{url_hash}{ext}"
+            else:
+                filename = f"{prefix}{index:03d}{ext}"
+
+            return filename
+
+        except Exception as e:
+            print(f"生成文件名失败: {e}")
+            # fallback: 使用时间戳
+            import time
+            return f"{prefix}{int(time.time())}.png"
+
+    def get_image_info(self, url: str) -> Optional[Dict]:
+        """
+        获取图片信息（不下载）
+
+        Args:
+            url: 图片URL
+
+        Returns:
+            图片信息字典
+        """
+        try:
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Referer': 'https://mp.weixin.qq.com/',
+            }
+
+            response = requests.head(url, headers=headers, timeout=IMAGE_TIMEOUT)
+
+            return {
+                'url': url,
+                'size': int(response.headers.get('content-length', 0)),
+                'type': response.headers.get('content-type', 'image/png'),
+                'accessible': response.status_code == 200
+            }
+
+        except Exception as e:
+            print(f"获取图片信息失败: {url}, 错误: {e}")
+            return None
+
+    def check_images_accessible(self, urls: List[str]) -> Dict[str, bool]:
+        """
+        检查图片是否可访问
+
+        Args:
+            urls: 图片URL列表
+
+        Returns:
+            URL到可访问状态的映射
+        """
+        results = {}
+
+        for url in urls:
+            info = self.get_image_info(url)
+            if info:
+                results[url] = info.get('accessible', False)
+            else:
+                results[url] = False
+
+        return results

@@ -1,0 +1,343 @@
+"""
+测试价格预测器模块
+
+Test suite for price predictor module.
+"""
+
+import pytest
+import pandas as pd
+import numpy as np
+from pathlib import Path
+from datetime import datetime, timedelta
+import pickle
+
+from src.prediction.predictor import PricePredictor
+
+
+class TestPricePredictor:
+    """测试PricePredictor类"""
+
+    @pytest.fixture
+    def predictor(self):
+        """创建PricePredictor实例"""
+        return PricePredictor(region='广东', lookback_days=7, forecast_days=2)
+
+    @pytest.fixture
+    def sample_config(self):
+        """示例配置"""
+        return {
+            'data_paths': {
+                'day_ahead': '基础数据/每日日前数据表',
+                'real_time': '基础数据/每日实时数据表',
+                'weather': '基础数据/气象数据',
+                'predictions': 'data/predictions',
+                'models': 'models'
+            },
+            'models': {
+                'xgb_day_ahead': 'xgb_day_ahead.pkl',
+                'xgb_real_time': 'xgb_real_time.pkl'
+            }
+        }
+
+    @pytest.fixture
+    def sample_day_ahead_data(self):
+        """创建示例日前价格数据"""
+        dates = pd.date_range(start='2025-07-01', periods=40, freq='D')
+        data = []
+
+        for date in dates:
+            for hour in range(24):
+                base_price = 300 + 100 * np.sin(2 * np.pi * hour / 24)
+                data.append({
+                    'datetime': date + timedelta(hours=hour),
+                    'price': base_price + np.random.normal(0, 20)
+                })
+
+        return pd.DataFrame(data)
+
+    @pytest.fixture
+    def sample_real_time_data(self):
+        """创建示例实时价格数据"""
+        dates = pd.date_range(start='2025-07-01', periods=39, freq='D')
+        data = []
+
+        for date in dates:
+            for hour in range(24):
+                base_price = 310 + 110 * np.sin(2 * np.pi * hour / 24)
+                data.append({
+                    'datetime': date + timedelta(hours=hour),
+                    'price': base_price + np.random.normal(0, 25)
+                })
+
+        return pd.DataFrame(data)
+
+    def test_predictor_initialization(self, predictor):
+        """测试预测器初始化
+
+        Test that the predictor initializes correctly.
+        """
+        assert predictor.region == '广东'
+        assert predictor.lookback_days == 7
+        assert predictor.forecast_days == 2
+        assert isinstance(predictor.models, dict)
+        assert len(predictor.models) == 0
+        print("[PASS] Predictor initialized correctly")
+
+    def test_default_config_loading(self, predictor):
+        """测试默认配置加载
+
+        Test that default configuration is loaded correctly.
+        """
+        config = predictor._load_default_config()
+
+        assert 'data_paths' in config
+        assert 'models' in config
+        assert 'day_ahead' in config['data_paths']
+        assert 'real_time' in config['data_paths']
+        assert 'predictions' in config['data_paths']
+        assert 'xgb_day_ahead' in config['models']
+        print("[PASS] Default config loaded correctly")
+
+    def test_custom_config_loading(self, sample_config):
+        """测试自定义配置加载
+
+        Test that custom configuration is used correctly.
+        """
+        predictor = PricePredictor(region='广东', config=sample_config)
+
+        assert predictor.config == sample_config
+        print("[PASS] Custom config loaded correctly")
+
+    def test_load_data_without_data_files(self, predictor, tmp_path):
+        """测试无数据文件时加载
+
+        Test loading data when data files don't exist.
+        """
+        # Update config to use temporary path
+        predictor.config['data_paths']['day_ahead'] = str(tmp_path / 'nonexistent')
+
+        day_ahead_df, real_time_df, weather_df = predictor.load_data()
+
+        assert isinstance(day_ahead_df, pd.DataFrame)
+        assert isinstance(real_time_df, pd.DataFrame)
+        assert day_ahead_df.empty or len(day_ahead_df.columns) > 0
+        assert real_time_df.empty or len(real_time_df.columns) > 0
+        print("[PASS] Load data handles non-existent files gracefully")
+
+    def test_prepare_features_day_ahead(self, predictor, sample_day_ahead_data):
+        """测试日前特征准备
+
+        Test preparing features for day-ahead prediction.
+        """
+        # Mock a simple model to enable feature preparation
+        from src.models.xgboost_model import XGBoostPricePredictor
+
+        # Create a simple mock model
+        class MockModel:
+            def predict(self, X):
+                return np.array([300.0] * 72)
+
+        predictor.models['xgb_day_ahead'] = MockModel()
+
+        features = predictor.prepare_features(
+            sample_day_ahead_data,
+            pd.DataFrame(),  # Empty real-time data
+            None  # No weather data
+        )
+
+        assert isinstance(features, dict)
+        # Features should contain xgb_day_ahead if enough data
+        print(f"[PASS] Day-ahead features prepared: {list(features.keys())}")
+
+    def test_prepare_features_insufficient_data(self, predictor):
+        """测试数据不足时的特征准备
+
+        Test feature preparation with insufficient data.
+        """
+        # Create only 3 days of data (less than lookback_days=7)
+        dates = pd.date_range(start='2025-07-01', periods=3, freq='D')
+        data = []
+        for date in dates:
+            for hour in range(24):
+                data.append({
+                    'datetime': date + timedelta(hours=hour),
+                    'price': 300.0
+                })
+
+        df = pd.DataFrame(data)
+
+        features = predictor.prepare_features(df, pd.DataFrame(), None)
+
+        # Should return empty dict if insufficient data
+        assert isinstance(features, dict)
+        print("[PASS] Insufficient data handled correctly")
+
+    def test_predict_without_models(self, predictor):
+        """测试无模型时的预测
+
+        Test prediction without loaded models.
+        """
+        features = {}  # Empty features
+
+        predictions = predictor.predict(features)
+
+        assert isinstance(predictions, dict)
+        assert len(predictions) == 0  # No models, no predictions
+        print("[PASS] Predict without models returns empty dict")
+
+    def test_predict_with_mock_model(self, predictor):
+        """测试使用模拟模型预测
+
+        Test prediction with mock model.
+        """
+        # Create mock model
+        class MockModel:
+            def predict(self, X):
+                return np.array([300.0] * 72)
+
+        predictor.models['xgb_day_ahead'] = MockModel()
+
+        features = {
+            'xgb_day_ahead': np.random.randn(1, 100)  # Mock features
+        }
+
+        predictions = predictor.predict(features)
+
+        assert 'day_ahead' in predictions
+        assert predictions['day_ahead'].shape == (72,)
+        print("[PASS] Prediction with mock model works")
+
+    def test_save_predictions(self, predictor, tmp_path):
+        """测试保存预测结果
+
+        Test saving prediction results.
+        """
+        predictions = {
+            'day_ahead': np.array([300.0 + i for i in range(48)]),  # 2 days × 24 hours
+            'real_time': np.array([310.0 + i for i in range(48)])
+        }
+
+        output_path = tmp_path / 'test_predictions.csv'
+        result_path = predictor.save_predictions(predictions, output_path)
+
+        assert result_path == output_path
+        assert output_path.exists()
+
+        # Verify saved file
+        df = pd.read_csv(output_path)
+        assert len(df) == 96  # 48 day-ahead + 48 real-time
+        assert 'datetime' in df.columns
+        assert 'type' in df.columns
+        assert 'price' in df.columns
+
+        print(f"[PASS] Predictions saved correctly: {len(df)} records")
+
+    def test_save_predictions_auto_path(self, predictor, tmp_path):
+        """测试自动路径保存预测结果
+
+        Test saving predictions with auto-generated path.
+        """
+        predictor.config['data_paths']['predictions'] = str(tmp_path)
+
+        predictions = {
+            'day_ahead': np.array([300.0] * 72)
+        }
+
+        result_path = predictor.save_predictions(predictions)
+
+        assert result_path is not None
+        assert result_path.exists()
+        assert result_path.name.endswith('_predictions.csv')
+
+        print(f"[PASS] Auto-path save works: {result_path.name}")
+
+
+class TestPredictionWorkflow:
+    """测试PredictionWorkflow类"""
+
+    @pytest.fixture
+    def workflow(self):
+        """创建PredictionWorkflow实例"""
+        from src.prediction.prediction_workflow import PredictionWorkflow
+        return PredictionWorkflow(region='广东', lookback_days=7, forecast_days=2)
+
+    def test_workflow_initialization(self, workflow):
+        """测试工作流初始化
+
+        Test that workflow initializes correctly.
+        """
+        assert workflow.region == '广东'
+        assert workflow.predictor is not None
+        assert isinstance(workflow.prediction_history, list)
+        assert len(workflow.prediction_history) == 0
+        print("[PASS] Workflow initialized correctly")
+
+    def test_get_prediction_summary_empty(self, workflow):
+        """测试空预测结果的摘要
+
+        Test summary with empty prediction result.
+        """
+        result = {
+            'predictions': {},
+            'status': 'success'
+        }
+
+        summary = workflow.get_prediction_summary(result)
+
+        assert isinstance(summary, dict)
+        assert len(summary) == 0
+        print("[PASS] Empty prediction summary handled correctly")
+
+    def test_get_prediction_summary_with_data(self, workflow):
+        """测试有数据时的预测摘要
+
+        Test summary with actual prediction data.
+        """
+        result = {
+            'predictions': {
+                'day_ahead': np.array([300.0, 350.0, 400.0]),
+                'real_time': np.array([310.0, 360.0, 410.0])
+            },
+            'status': 'success'
+        }
+
+        summary = workflow.get_prediction_summary(result)
+
+        assert 'day_ahead' in summary
+        assert 'real_time' in summary
+        assert 'mean' in summary['day_ahead']
+        assert 'min' in summary['day_ahead']
+        assert 'max' in summary['day_ahead']
+        assert 'std' in summary['day_ahead']
+
+        # Check values
+        assert summary['day_ahead']['mean'] == pytest.approx(350.0, rel=1e-3)
+        assert summary['day_ahead']['min'] == 300.0
+        assert summary['day_ahead']['max'] == 400.0
+
+        print(f"[PASS] Prediction summary: {summary}")
+
+    def test_load_predictions_nonexistent(self, workflow, tmp_path):
+        """测试加载不存在的预测文件
+
+        Test loading non-existent prediction file.
+        """
+        nonexistent_file = tmp_path / 'nonexistent.csv'
+        df = workflow.load_predictions(nonexistent_file)
+
+        assert isinstance(df, pd.DataFrame)
+        assert df.empty
+        print("[PASS] Non-existent prediction file handled correctly")
+
+    def test_get_latest_predictions_no_directory(self, workflow, tmp_path):
+        """测试无目录时获取最新预测
+
+        Test getting latest predictions when directory doesn't exist.
+        """
+        workflow.predictor.config['data_paths']['predictions'] = str(tmp_path / 'nonexistent')
+
+        df = workflow.get_latest_predictions()
+
+        assert isinstance(df, pd.DataFrame)
+        assert df.empty
+        print("[PASS] No directory case handled correctly")

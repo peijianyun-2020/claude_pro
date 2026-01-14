@@ -1,0 +1,191 @@
+"""
+回测引擎 - 测试历史预测性能
+
+Backtest engine for evaluating historical prediction performance.
+"""
+
+from pathlib import Path
+from datetime import datetime, timedelta
+import pandas as pd
+import numpy as np
+import json
+import logging
+from typing import Dict, Optional, List, Tuple
+
+logger = logging.getLogger(__name__)
+
+
+class BacktestEngine:
+    """
+    回测引擎
+
+    使用历史数据测试预测模型性能：
+    - 时间序列分割
+    - 滚动窗口预测
+    - 性能指标计算
+    - 结果保存
+
+    Usage:
+        engine = BacktestEngine()
+        results = engine.run_backtest(model, data, forecast_days=3)
+    """
+
+    def __init__(self, output_dir: str = 'data/backtest'):
+        """
+        初始化回测引擎
+
+        Args:
+            output_dir: 输出目录
+        """
+        self.output_dir = Path(output_dir)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+
+        self.results = []
+
+        logger.info(f"初始化回测引擎 - 输出目录: {output_dir}")
+
+    def run_backtest(
+        self,
+        model,
+        historical_data: pd.DataFrame,
+        forecast_days: int = 3,
+        test_days: int = 30,
+        lookback_days: int = 30
+    ) -> Dict:
+        """
+        执行回测
+
+        Args:
+            model: 预测模型（需有predict方法）
+            historical_data: 历史价格数据
+            forecast_days: 预测天数
+            test_days: 测试天数
+            lookback_days: 特征构造的历史天数
+
+        Returns:
+            回测结果字典
+        """
+        logger.info(f"开始回测 - 测试天数: {test_days}, 预测天数: {forecast_days}")
+
+        all_predictions = []
+        all_actuals = []
+        all_metrics = []
+
+        # Rolling window backtest
+        for day_offset in range(test_days):
+            # Split data
+            train_end = len(historical_data) - (test_days - day_offset) * 24 - forecast_days * 24
+            test_start = train_end
+            test_end = test_start + forecast_days * 24
+
+            if train_end < lookback_days * 24:
+                logger.warning(f"跳过day_offset={day_offset}: 训练数据不足")
+                continue
+
+            # Prepare features and predict
+            train_data = historical_data.iloc[:train_end]
+            test_data = historical_data.iloc[test_start:test_end]
+
+            try:
+                # Get prediction (placeholder - actual implementation depends on model)
+                if hasattr(model, 'predict'):
+                    prediction = self._get_prediction(model, train_data, forecast_days)
+                else:
+                    logger.warning(f"模型无predict方法")
+                    continue
+
+                actual = test_data['price'].values
+
+                # Calculate metrics
+                from src.evaluation.metrics import calculate_metrics
+                metrics = calculate_metrics(prediction, actual)
+
+                all_predictions.append(prediction)
+                all_actuals.append(actual)
+                all_metrics.append(metrics)
+
+            except Exception as e:
+                logger.error(f"预测失败 day_offset={day_offset}: {e}")
+                continue
+
+        # Aggregate results
+        if all_metrics:
+            avg_metrics = {
+                'mape': float(np.mean([m['mape'] for m in all_metrics if not np.isnan(m['mape'])])),
+                'mae': float(np.mean([m['mae'] for m in all_metrics if not np.isnan(m['mae'])])),
+                'rmse': float(np.mean([m['rmse'] for m in all_metrics if not np.isnan(m['rmse'])]))
+            }
+
+            result = {
+                'test_days': test_days,
+                'forecast_days': forecast_days,
+                'num_predictions': len(all_metrics),
+                'avg_metrics': avg_metrics,
+                'all_metrics': all_metrics
+            }
+
+            # Save results
+            self._save_results(result)
+
+            logger.info(f"回测完成 - 预测次数: {len(all_metrics)}, "
+                       f"平均MAPE: {avg_metrics['mape']:.2f}%")
+
+            return result
+        else:
+            logger.error("回测失败: 无有效预测")
+            return {}
+
+    def _get_prediction(self, model, train_data: pd.DataFrame, forecast_days: int) -> np.ndarray:
+        """获取预测（简化版）"""
+        # Placeholder - 实际实现取决于模型类型
+        # 这里简单返回训练数据的最后几个值的均值
+        last_prices = train_data['price'].tail(24).values
+        base_price = np.mean(last_prices)
+        return np.full(forecast_days * 24, base_price)
+
+    def _save_results(self, result: Dict) -> None:
+        """保存回测结果"""
+        try:
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            file_path = self.output_dir / f"backtest_{timestamp}.json"
+
+            # Convert numpy arrays to lists for JSON serialization
+            result_serializable = self._make_json_serializable(result)
+
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(result_serializable, f, indent=2, ensure_ascii=False)
+
+            logger.info(f"保存回测结果: {file_path}")
+        except Exception as e:
+            logger.error(f"保存回测结果失败: {e}")
+
+    def _make_json_serializable(self, obj):
+        """转换为JSON可序列化格式"""
+        if isinstance(obj, dict):
+            return {k: self._make_json_serializable(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [self._make_json_serializable(item) for item in obj]
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, (np.integer, np.floating)):
+            return float(obj)
+        else:
+            return obj
+
+    def load_results(self, result_id: Optional[str] = None) -> Optional[Dict]:
+        """加载回测结果"""
+        if result_id:
+            file_path = self.output_dir / f"backtest_{result_id}.json"
+        else:
+            # Load latest
+            files = sorted(self.output_dir.glob('backtest_*.json'))
+            if not files:
+                return None
+            file_path = files[-1]
+
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            logger.error(f"加载回测结果失败: {e}")
+            return None

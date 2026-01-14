@@ -1,0 +1,17 @@
+[
+  {
+    "content": "从南方区域现货交易系统提取2026-01-11日前价格API数据",
+    "status": "in_progress",
+    "activeForm": "从南方区域现货交易系统提取日前价格API数据"
+  },
+  {
+    "content": "处理API数据生成CSV文件",
+    "status": "pending",
+    "activeForm": "处理API数据生成CSV文件"
+  },
+  {
+    "content": "验证生成的CSV文件完整性",
+    "status": "pending",
+    "activeForm": "验证生成的CSV文件完整性"
+  }
+]

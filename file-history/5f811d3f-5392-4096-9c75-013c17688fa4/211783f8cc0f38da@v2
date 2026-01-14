@@ -1,0 +1,149 @@
+"""
+测试回测引擎和报告生成器
+
+Test suite for backtest engine and report generator.
+"""
+
+import pytest
+import numpy as np
+import pandas as pd
+from pathlib import Path
+from datetime import datetime, timedelta
+
+from src.backtest.backtester import BacktestEngine
+from src.backtest.reporter import ReportGenerator
+
+
+class MockModel:
+    """模拟预测模型"""
+
+    def predict(self, X):
+        # Simple prediction: return mean of input
+        if len(X.shape) == 1:
+            return np.full(72, np.mean(X))
+        return np.full(72, np.mean(X))
+
+
+class TestBacktestEngine:
+    """测试BacktestEngine类"""
+
+    @pytest.fixture
+    def engine(self, tmp_path):
+        """创建BacktestEngine实例"""
+        return BacktestEngine(output_dir=str(tmp_path / 'backtest'))
+
+    @pytest.fixture
+    def sample_data(self):
+        """创建示例历史数据"""
+        dates = pd.date_range(start='2025-07-01', periods=60, freq='D')
+        data = []
+        for date in dates:
+            for hour in range(24):
+                base_price = 300 + 100 * np.sin(2 * np.pi * hour / 24)
+                data.append({
+                    'datetime': date + timedelta(hours=hour),
+                    'price': base_price + np.random.normal(0, 20)
+                })
+        df = pd.DataFrame(data)
+        return df
+
+    def test_engine_initialization(self, engine):
+        """测试引擎初始化"""
+        assert engine.output_dir.exists()
+        assert len(engine.results) == 0
+        print("[PASS] Engine initialized")
+
+    def test_run_backtest(self, engine, sample_data):
+        """测试执行回测"""
+        model = MockModel()
+        result = engine.run_backtest(
+            model=model,
+            historical_data=sample_data,
+            forecast_days=2,
+            test_days=5,
+            lookback_days=7
+        )
+
+        assert 'avg_metrics' in result
+        assert 'num_predictions' in result
+        assert 'mape' in result['avg_metrics']
+        print("[PASS] Backtest completed")
+
+    def test_save_results(self, engine):
+        """测试保存结果"""
+        result = {
+            'test_days': 5,
+            'forecast_days': 2,
+            'num_predictions': 5,
+            'avg_metrics': {'mape': 5.0, 'mae': 15.0, 'rmse': 20.0},
+            'all_metrics': []
+        }
+
+        engine._save_results(result)
+
+        # Check file exists
+        files = list(engine.output_dir.glob('backtest_*.json'))
+        assert len(files) > 0
+        print("[PASS] Results saved")
+
+
+class TestReportGenerator:
+    """测试ReportGenerator类"""
+
+    @pytest.fixture
+    def generator(self, tmp_path):
+        """创建ReportGenerator实例"""
+        return ReportGenerator(output_dir=str(tmp_path / 'reports'))
+
+    def test_generator_initialization(self, generator):
+        """测试生成器初始化"""
+        assert generator.output_dir.exists()
+        print("[PASS] Generator initialized")
+
+    def test_generate_price_comparison_plot(self, generator):
+        """测试生成价格对比图"""
+        predictions = np.array([300, 310, 320, 330, 340])
+        actual = np.array([305, 315, 325, 335, 345])
+
+        save_path = generator.generate_price_comparison_plot(predictions, actual)
+
+        assert save_path.exists()
+        assert save_path.suffix == '.png'
+        print("[PASS] Price comparison plot created")
+
+    def test_generate_html_report(self, generator):
+        """测试生成HTML报告"""
+        backtest_results = {
+            'test_days': 30,
+            'forecast_days': 3,
+            'num_predictions': 30,
+            'avg_metrics': {'mape': 5.5, 'mae': 15.2, 'rmse': 20.1}
+        }
+
+        save_path = generator.generate_html_report(backtest_results)
+
+        assert save_path.exists()
+        assert save_path.suffix == '.html'
+
+        # Check content
+        content = save_path.read_text(encoding='utf-8')
+        assert '5.50%' in content  # MAPE value
+        print("[PASS] HTML report generated")
+
+    def test_export_metrics_to_csv(self, generator):
+        """测试导出指标到CSV"""
+        metrics_history = [
+            {'mape': 5.0, 'mae': 15.0, 'rmse': 20.0, 'date': '2025-01-01'},
+            {'mape': 5.5, 'mae': 16.0, 'rmse': 21.0, 'date': '2025-01-02'}
+        ]
+
+        save_path = generator.export_metrics_to_csv(metrics_history)
+
+        assert save_path.exists()
+        assert save_path.suffix == '.csv'
+
+        # Verify content
+        df = pd.read_csv(save_path)
+        assert len(df) == 2
+        assert 'mape' in df.columns
+        print("[PASS] Metrics exported to CSV")

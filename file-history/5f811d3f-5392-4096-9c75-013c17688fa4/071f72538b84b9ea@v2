@@ -1,0 +1,90 @@
+"""
+指标计算工具
+
+Metrics calculation utilities for evaluation.
+"""
+
+import numpy as np
+import pandas as pd
+from typing import Dict, Union
+
+
+def calculate_metrics(
+    predicted: Union[np.ndarray, pd.Series],
+    actual: Union[np.ndarray, pd.Series]
+) -> Dict[str, float]:
+    """
+    计算预测性能指标
+
+    Args:
+        predicted: 预测值
+        actual: 实际值
+
+    Returns:
+        指标字典 {mape, mae, rmse, r2}
+    """
+    # Convert to numpy arrays
+    predicted = np.array(predicted)
+    actual = np.array(actual)
+
+    # Remove NaN values
+    mask = ~(np.isnan(predicted) | np.isnan(actual))
+    predicted = predicted[mask]
+    actual = actual[mask]
+
+    if len(predicted) == 0:
+        return {
+            'mape': float('nan'),
+            'mae': float('nan'),
+            'rmse': float('nan'),
+            'r2': float('nan')
+        }
+
+    # MAPE (handle zero values)
+    actual_safe = np.where(np.abs(actual) < 1e-10, 1e-10, actual)
+    mape = np.mean(np.abs((actual - predicted) / actual_safe)) * 100
+
+    # MAE
+    mae = np.mean(np.abs(actual - predicted))
+
+    # RMSE
+    rmse = np.sqrt(np.mean((actual - predicted) ** 2))
+
+    # R²
+    ss_res = np.sum((actual - predicted) ** 2)
+    ss_tot = np.sum((actual - np.mean(actual)) ** 2)
+    r2 = 1 - (ss_res / ss_tot) if ss_tot != 0 else float('nan')
+
+    return {
+        'mape': float(mape),
+        'mae': float(mae),
+        'rmse': float(rmse),
+        'r2': float(r2)
+    }
+
+
+class MetricsCalculator:
+    """指标计算器类"""
+
+    @staticmethod
+    def mape(predicted: np.ndarray, actual: np.ndarray) -> float:
+        """计算MAPE"""
+        actual_safe = np.where(np.abs(actual) < 1e-10, 1e-10, actual)
+        return float(np.mean(np.abs((actual - predicted) / actual_safe)) * 100)
+
+    @staticmethod
+    def mae(predicted: np.ndarray, actual: np.ndarray) -> float:
+        """计算MAE"""
+        return float(np.mean(np.abs(actual - predicted)))
+
+    @staticmethod
+    def rmse(predicted: np.ndarray, actual: np.ndarray) -> float:
+        """计算RMSE"""
+        return float(np.sqrt(np.mean((actual - predicted) ** 2)))
+
+    @staticmethod
+    def r2(predicted: np.ndarray, actual: np.ndarray) -> float:
+        """计算R²"""
+        ss_res = np.sum((actual - predicted) ** 2)
+        ss_tot = np.sum((actual - np.mean(actual)) ** 2)
+        return float(1 - (ss_res / ss_tot) if ss_tot != 0 else float('nan'))

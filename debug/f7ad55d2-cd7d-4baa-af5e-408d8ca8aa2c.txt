@@ -1,0 +1,27 @@
+2026-01-11T14:23:37.888Z [DEBUG] Getting matching hook commands for SessionEnd with query: clear
+2026-01-11T14:23:37.888Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T14:23:37.888Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-11T14:23:37.888Z [DEBUG] Cleared all session hooks for session ba5385f7-1c5a-4c6e-90e2-913fe838d285
+2026-01-11T14:23:37.890Z [DEBUG] Getting matching hook commands for SessionStart with query: clear
+2026-01-11T14:23:37.890Z [DEBUG] Found 0 hook matchers in settings
+2026-01-11T14:23:37.890Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-11T14:23:37.902Z [DEBUG] FileHistory: Added snapshot for 1072f711-06e7-44aa-b202-e7304b29ff92, tracking 0 files
+2026-01-11T14:23:37.921Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-11T14:23:45.825Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP connection dropped after 607s uptime
+2026-01-11T14:23:45.825Z [DEBUG] MCP server "xiaohongshu-mcp": Connection error: SSE stream disconnected: TypeError: terminated
+2026-01-11T14:23:45.825Z [DEBUG] MCP server "xiaohongshu-mcp": Terminal connection error 2/3
+2026-01-11T14:23:46.830Z [DEBUG] MCP server "xiaohongshu-mcp": No token data found
+2026-01-11T14:23:46.836Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP connection dropped after 608s uptime
+2026-01-11T14:23:46.836Z [DEBUG] MCP server "xiaohongshu-mcp": Connection error: fetch failed
+2026-01-11T14:23:46.836Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP connection dropped after 608s uptime
+2026-01-11T14:23:46.836Z [DEBUG] MCP server "xiaohongshu-mcp": Connection error: Failed to reconnect SSE stream: fetch failed
+2026-01-11T14:23:48.345Z [DEBUG] MCP server "xiaohongshu-mcp": No token data found
+2026-01-11T14:23:48.348Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP connection dropped after 609s uptime
+2026-01-11T14:23:48.348Z [DEBUG] MCP server "xiaohongshu-mcp": Connection error: fetch failed
+2026-01-11T14:23:48.348Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP connection dropped after 609s uptime
+2026-01-11T14:23:48.348Z [DEBUG] MCP server "xiaohongshu-mcp": Connection error: Failed to reconnect SSE stream: fetch failed
+2026-01-11T14:23:48.348Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP connection dropped after 609s uptime
+2026-01-11T14:23:48.348Z [DEBUG] MCP server "xiaohongshu-mcp": Connection error: Maximum reconnection attempts (2) exceeded.
+2026-01-11T14:27:48.686Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-11T14:27:48.686Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-11T14:27:48.686Z [DEBUG] Metrics export disabled by organization setting

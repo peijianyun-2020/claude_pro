@@ -1,0 +1,157 @@
+"""
+简单的微信文章采集测试脚本
+演示如何使用MCP工具采集文章
+"""
+import json
+import re
+from pathlib import Path
+from bs4 import BeautifulSoup
+from markdownify import markdownify as md
+from config import OUTPUT_DIR
+from utils import sanitize_filename, extract_date_from_string, save_json
+
+
+def collect_article_from_snapshot(snapshot_text: str, url: str):
+    """
+    从页面快照采集文章
+
+    Args:
+        snapshot_text: 页面快照文本
+        url: 文章URL
+    """
+    print("开始采集文章...")
+
+    # 1. 从快照中提取元数据
+    print("步骤1: 提取元数据...")
+
+    # 提取标题
+    title_match = re.search(r'uid=2_1 heading "([^"]+)"', snapshot_text)
+    title = title_match.group(1) if title_match else "未命名文章"
+
+    # 提取作者
+    author_match = re.search(r'uid=2_3 StaticText "([^"]+)"', snapshot_text)
+    author = author_match.group(1) if author_match else "未知作者"
+
+    # 提取公众号名称
+    account_match = re.search(r'uid=2_5 StaticText "([^"]+)"', snapshot_text)
+    account_name = account_match.group(1) if account_match else "未知公众号"
+
+    # 提取发布时间
+    time_match = re.search(r'uid=2_6 StaticText "([^"]+)"', snapshot_text)
+    publish_time = time_match.group(1) if time_match else ""
+
+    # 提取日期
+    date_str = extract_date_from_string(publish_time)
+
+    print(f"  标题: {title}")
+    print(f"  作者: {author}")
+    print(f"  公众号: {account_name}")
+    print(f"  发布时间: {publish_time}")
+
+    # 2. 使用JavaScript获取HTML内容（需要MCP环境）
+    print("\n步骤2: 提取文章内容...")
+    print("  注意: 这一步需要在MCP环境中通过JavaScript获取HTML")
+    print("  当前使用示例内容...")
+
+    # 示例：使用快照中的文本内容构建简单的Markdown
+    # 实际使用时应该通过evaluate_script获取完整的HTML
+    content_lines = []
+
+    # 从快照中提取正文内容（uid=2_12开始）
+    lines = snapshot_text.split('\n')
+    in_content = False
+    for line in lines:
+        if 'uid=2_11 StaticText "引言"' in line:
+            in_content = True
+            continue
+
+        if in_content and 'uid=2_236 StaticText "|| 相关文章' in line:
+            break
+
+        if in_content and 'StaticText' in line:
+            # 提取文本内容
+            match = re.search(r'StaticText "([^"]*)"', line)
+            if match:
+                text = match.group(1)
+                if text and text not in ['原创', 'LineBreak "', '"']:
+                    # 识别特殊格式
+                    if text in ['【解读】', '【分析讨论】', '【建议】', '【版本】']:
+                        content_lines.append(f"\n**{text}**\n")
+                    elif text.startswith('【') and text.endswith('】'):
+                        content_lines.append(f"\n**{text}**\n")
+                    elif re.match(r'^第[一二三四五六七八九十]+条', text):
+                        content_lines.append(f"\n## {text}\n")
+                    else:
+                        content_lines.append(text)
+
+    # 组合内容
+    markdown_content = f"# {title}\n\n"
+    markdown_content += "**元数据**\n\n"
+    markdown_content += f"- **作者**: {author}\n"
+    markdown_content += f"- **公众号**: {account_name}\n"
+    markdown_content += f"- **发布时间**: {publish_time}\n"
+    markdown_content += f"- **原文链接**: {url}\n\n"
+    markdown_content += "---\n\n"
+    markdown_content += "\n".join(content_lines)
+
+    # 3. 创建保存目录
+    print("\n步骤3: 创建保存目录...")
+    account_dir = OUTPUT_DIR / sanitize_filename(account_name)
+    account_dir.mkdir(parents=True, exist_ok=True)
+    print(f"  目录: {account_dir}")
+
+    # 4. 生成文件名
+    filename = f"{date_str}_{sanitize_filename(title)}.md"
+    filepath = account_dir / filename
+
+    # 5. 保存Markdown文件
+    print("\n步骤4: 保存Markdown文件...")
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(markdown_content)
+    print(f"  已保存: {filepath}")
+
+    # 6. 保存元数据
+    metadata = {
+        "title": title,
+        "author": author,
+        "account_name": account_name,
+        "publish_time": publish_time,
+        "url": url,
+        "filename": filename,
+        "collected_at": str(Path(__file__).stat().st_mtime)
+    }
+
+    metadata_path = account_dir / f"{date_str}_{sanitize_filename(title)}_metadata.json"
+    save_json(metadata, str(metadata_path))
+    print(f"  元数据: {metadata_path}")
+
+    print("\n✓ 采集完成!")
+    return filepath, metadata_path
+
+
+# 测试用的快照文本（实际应该从MCP工具获取）
+test_snapshot = """
+uid=2_1 heading "《电力中长期市场基本规则》解读：总则和总体要求" level="1"
+uid=2_2 StaticText "原创"
+uid=2_3 StaticText "荆朝霞"
+uid=2_5 StaticText "走进电力市场"
+uid=2_6 StaticText "2026年1月4日 11:16"
+"""
+
+if __name__ == '__main__':
+    # 示例URL
+    test_url = "https://mp.weixin.qq.com/s/5cuBvvdfHuunxzW825fNHA"
+
+    print("=" * 60)
+    print("微信公众号文章采集工具 - 测试脚本")
+    print("=" * 60)
+    print()
+    print("说明: 此脚本演示如何采集微信文章")
+    print("实际使用时，需要通过Chrome DevTools MCP获取页面快照")
+    print()
+    print("使用方法:")
+    print("  1. 在Claude Code中请求采集文章")
+    print("  2. Claude会自动使用MCP工具获取页面数据")
+    print("  3. 自动解析并保存为Markdown格式")
+    print()
+    print("=" * 60)

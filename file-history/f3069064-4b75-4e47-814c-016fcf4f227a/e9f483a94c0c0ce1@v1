@@ -1,0 +1,220 @@
+"""
+Chrome DevTools MCP采集器
+封装Chrome DevTools MCP工具调用，提供统一的访问接口
+"""
+import json
+import re
+from typing import Dict, List, Optional, Any
+from dataclasses import dataclass
+from config import PAGE_LOAD_TIMEOUT
+
+
+@dataclass
+class ArticleMetadata:
+    """文章元数据"""
+    title: str
+    author: str
+    account_name: str
+    publish_time: str
+    url: str
+    content_html: str
+    images: List[str]
+
+
+class ChromeCollector:
+    """Chrome DevTools MCP采集器"""
+
+    def __init__(self):
+        self.current_url = None
+
+    def navigate_to_url(self, url: str, timeout: int = PAGE_LOAD_TIMEOUT) -> bool:
+        """
+        导航到指定URL
+
+        Args:
+            url: 目标URL
+            timeout: 超时时间（毫秒）
+
+        Returns:
+            bool: 是否成功导航
+        """
+        try:
+            # 这里将在实际运行时通过MCP工具调用
+            # mcp__chrome-devtools__navigate_page(url=url, type='url', timeout=timeout)
+            self.current_url = url
+            return True
+        except Exception as e:
+            print(f"导航失败: {e}")
+            return False
+
+    def get_page_snapshot(self) -> Optional[str]:
+        """
+        获取页面快照（基于a11y树）
+
+        Returns:
+            页面快照文本
+        """
+        try:
+            # 这里将在实际运行时通过MCP工具调用
+            # snapshot = mcp__chrome-devtools__take_snapshot()
+            # return snapshot
+            return None  # 占位符
+        except Exception as e:
+            print(f"获取快照失败: {e}")
+            return None
+
+    def extract_html_content(self, javascript_code: str) -> Optional[Any]:
+        """
+        执行JavaScript提取HTML内容
+
+        Args:
+            javascript_code: JavaScript代码
+
+        Returns:
+            执行结果
+        """
+        try:
+            # 这里将在实际运行时通过MCP工具调用
+            # result = mcp__chrome-devtools__evaluate_script(function=javascript_code)
+            # return result
+            return None  # 占位符
+        except Exception as e:
+            print(f"执行JavaScript失败: {e}")
+            return None
+
+    def extract_article_metadata(self, snapshot: str) -> Optional[ArticleMetadata]:
+        """
+        从页面快照提取文章元数据
+
+        Args:
+            snapshot: 页面快照文本
+
+        Returns:
+            ArticleMetadata对象
+        """
+        try:
+            # 基于实际测试的快照结构提取元数据
+            # uid=1_1: 标题
+            # uid=1_3: 作者
+            # uid=1_5: 公众号名称
+            # uid=1_6: 发布时间
+
+            # 提取标题
+            title_match = re.search(r'uid=1_1 heading "([^"]+)"', snapshot)
+            title = title_match.group(1) if title_match else ""
+
+            # 提取作者
+            author_match = re.search(r'uid=1_3 StaticText "([^"]+)"', snapshot)
+            author = author_match.group(1) if author_match else ""
+
+            # 提取公众号名称
+            account_match = re.search(r'uid=1_5 StaticText "([^"]+)"', snapshot)
+            account_name = account_match.group(1) if account_match else ""
+
+            # 提取发布时间
+            time_match = re.search(r'uid=1_6 StaticText "([^"]+)"', snapshot)
+            publish_time = time_match.group(1) if time_match else ""
+
+            # 提取图片URL（从快照中）
+            images = re.findall(r'url="(https://mmbiz\.qpic\.cn/[^"]+)"', snapshot)
+
+            return ArticleMetadata(
+                title=title,
+                author=author,
+                account_name=account_name,
+                publish_time=publish_time,
+                url=self.current_url,
+                content_html="",  # 需要通过JavaScript获取
+                images=images
+            )
+        except Exception as e:
+            print(f"提取元数据失败: {e}")
+            return None
+
+    def extract_full_content(self) -> Optional[Dict[str, Any]]:
+        """
+        使用JavaScript提取完整的文章内容（HTML + 图片）
+
+        Returns:
+            包含content_html和images的字典
+        """
+        js_code = """
+        () => {
+            return {
+                title: document.querySelector('h1')?.innerText || '',
+                author: document.querySelector('#js_author_name')?.innerText || document.querySelector('.rich_media_meta_text')?.innerText || '',
+                account_name: document.querySelector('.rich_media_meta_link_text')?.innerText || '',
+                publish_time: document.querySelector('.rich_media_meta_text[id*="time"]')?.innerText || '',
+                content_html: document.querySelector('#js_content')?.innerHTML || '',
+                images: Array.from(document.querySelectorAll('#js_content img'))
+                    .map(img => img.src || img['data-src'])
+                    .filter(src => src)
+            };
+        }
+        """
+
+        return self.extract_html_content(js_code)
+
+    def extract_related_articles(self, snapshot: str) -> List[str]:
+        """
+        从页面快照提取"相关文章"链接
+
+        Args:
+            snapshot: 页面快照文本
+
+        Returns:
+            相关文章URL列表
+        """
+        try:
+            # 从快照中提取所有mp.weixin.qq.com的链接
+            links = re.findall(r'url="(https://mp\.weixin\.qq\.com/s/[^"]+)"', snapshot)
+
+            # 过滤掉当前文章
+            if self.current_url:
+                links = [link for link in links if link != self.current_url]
+
+            return links
+        except Exception as e:
+            print(f"提取相关文章失败: {e}")
+            return []
+
+
+# 供MCP工具调用的函数
+def navigate_page(url: str, timeout: int = PAGE_LOAD_TIMEOUT) -> bool:
+    """
+    导航到指定URL（供MCP调用）
+
+    Args:
+        url: 目标URL
+        timeout: 超时时间（毫秒）
+
+    Returns:
+        bool: 是否成功
+    """
+    collector = ChromeCollector()
+    return collector.navigate_to_url(url, timeout)
+
+
+def get_snapshot() -> Optional[str]:
+    """
+    获取页面快照（供MCP调用）
+
+    Returns:
+        页面快照文本
+    """
+    collector = ChromeCollector()
+    return collector.get_page_snapshot()
+
+
+def evaluate_script(javascript_code: str):
+    """
+    执行JavaScript代码（供MCP调用）
+
+    Args:
+        javascript_code: JavaScript代码
+
+    Returns:
+        执行结果
+    """
+    collector = ChromeCollector()
+    return collector.extract_html_content(javascript_code)

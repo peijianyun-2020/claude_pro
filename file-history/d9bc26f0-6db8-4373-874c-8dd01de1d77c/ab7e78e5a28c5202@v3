@@ -1,0 +1,376 @@
+---
+name: douyin-account-analysis
+description: Analyze Douyin (TikTok China) accounts, identify top viral content, deconstruct successful videos, and generate copy and scripts for content creation. Use when user provides Douyin account ID, asks for account analysis, viral content breakdown, or needs content creation templates based on successful accounts.
+---
+
+# Douyin Account Analysis
+
+## Overview
+
+This skill analyzes Douyin accounts to identify viral content patterns, deconstruct successful video elements, and generate actionable content creation materials including copy, scripts, and production guidance.
+
+## Quick Start
+
+When a user provides Douyin account ID:
+
+1. Navigate to Douyin and collect account data using Chrome DevTools
+2. Identify top 10 viral videos based on engagement metrics
+3. Deconstruct each viral video's key elements
+4. Generate analysis reports in a new dated folder
+5. Create copy and script templates for content replication
+
+## Analysis Workflow
+
+Copy this checklist to track progress:
+
+```
+Analysis Progress:
+- [ ] Step 1: Navigate to Douyin and collect account data
+- [ ] Step 2: Create output directory (YYYY-MM-DD_抖音号_抖音名称)
+- [ ] Step 3: Extract account information
+- [ ] Step 4: Identify top 10 viral content
+- [ ] Step 5: Deconstruct viral videos
+- [ ] Step 6: Analyze content patterns
+- [ ] Step 7: Generate copy templates
+- [ ] Step 8: Generate script templates
+- [ ] Step 9: Create production guide
+- [ ] Step 10: Save all outputs with Chinese filenames
+```
+
+---
+
+## Step 1: Navigate to Douyin and Collect Account Data
+
+### 1.1 Initial Navigation
+
+When user provides Douyin account ID:
+
+```bash
+# List Chrome pages to check current state
+mcp__chrome-devtools__list_pages
+
+# Navigate to Douyin search with the account ID
+mcp__chrome-devtools__navigate_page?type=url&url=https://www.douyin.com/search/[ACCOUNT_ID]
+```
+
+### 1.2 Handle Verification (if present)
+
+Douyin may show verification (puzzle/captcha). If verification appears:
+
+1. **Take screenshot to confirm**
+   ```bash
+   mcp__chrome-devtools__take_screenshot
+   ```
+
+2. **Wait for user to complete verification**
+   - Prompt user: "请完成抖音验证（拼图验证），完成后告诉我"
+   - Wait for user confirmation: "已经完成验证"
+
+3. **Refresh or navigate again after verification**
+   ```bash
+   mcp__chrome-devtools__navigate_page?type=reload&ignoreCache=true
+   ```
+
+### 1.3 Find Account in Search Results
+
+```bash
+# Take snapshot to see search results
+mcp__chrome-devtools__take_snapshot
+
+# Look for account link and navigate to account homepage
+# Find the user link in snapshot and click it
+mcp__chrome-devtools__click?uid=[ACCOUNT_LINK_UID]
+```
+
+### 1.4 Navigate to Account Homepage
+
+```bash
+# Direct navigation to user homepage (alternative method)
+mcp__chrome-devtools__navigate_page?type=url&url=https://www.douyin.com/user/[USER_SEC_ID]
+```
+
+### 1.5 Extract Account Information from Homepage
+
+```bash
+# Take snapshot to get account details
+mcp__chrome-devtools__take_snapshot
+```
+
+Extract from snapshot:
+- Account name (账号名称)
+- Douyin ID (抖音号)
+- Follower count (粉丝数)
+- Total likes (获赞数)
+- IP location (IP属地)
+- Total works (作品数)
+- Account description (简介)
+
+### 1.6 Navigate to Top Viral Video
+
+```bash
+# Click on the top/first video to get detailed metrics
+mcp__chrome-devtools__click?uid=[TOP_VIDEO_UID]
+
+# Navigate to video detail page
+mcp__chrome-devtools__navigate_page?type=url&url=https://www.douyin.com/video/[VIDEO_ID]
+```
+
+### 1.7 Extract Video Details
+
+```bash
+# Take snapshot of video page
+mcp__chrome-devtools__take_snapshot
+```
+
+Extract from video page:
+- Video title (视频标题)
+- Like count (点赞数)
+- Comment count (评论数)
+- Share count (分享数)
+- Video duration (时长)
+- Publish time (发布时间)
+- Hashtags (话题标签)
+
+---
+
+## Step 2: Create Output Directory
+
+### 2.1 Generate Directory Name
+
+Format: `YYYY-MM-DD_抖音号_抖音名称`
+
+Example: `2026-01-11_34064634565_二狗脱口秀`
+
+```bash
+# Get current date
+DATE=$(date +%Y-%m-%d)
+
+# Create directory name
+DIR_NAME="${DATE}_${DOUYIN_ID}_${ACCOUNT_NAME}"
+
+# Create directory in test_13
+mkdir -p "test_13/${DIR_NAME}"
+```
+
+### 2.2 Set Output Path
+
+All subsequent files will be saved to:
+```
+test_13/${DIR_NAME}/
+```
+
+---
+
+## Step 3: Extract Account Information
+
+### 3.1 Basic Information
+
+Collect from account homepage:
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| 账号名称 | Account display name | 二狗脱口秀 |
+| 抖音号 | Douyin ID | 34064634565 |
+| 粉丝数 | Follower count | 4.3万 |
+| 获赞数 | Total likes received | 22.1万 |
+| 作品数 | Total works | 202 |
+| IP属地 | Location | 福建 |
+| 简介/签名 | Bio description | [if available] |
+
+### 3.2 Content Positioning
+
+Identify:
+- **Niche/Category**: 脱口秀/搞笑/知识分享/美妆等
+- **Content Style**: 内容风格特点
+- **Target Audience**: 目标受众
+- **Unique Selling Point**: 独特卖点
+
+---
+
+## Step 4: Identify Top 10 Viral Content
+
+### 4.1 Data Collection
+
+For each video on the account homepage, collect:
+
+| Metric | Description |
+|--------|-------------|
+| Video Title | 视频标题 |
+| Likes | 点赞数 |
+| Comments | 评论数 |
+| Shares | 分享数 |
+| Duration | 时长 |
+| Publish Date | 发布日期 |
+| Is Pinned | 是否置顶 |
+
+### 4.2 Rank by Engagement
+
+Calculate engagement score:
+```
+Score = (Likes × 1) + (Comments × 5) + (Shares × 10)
+```
+
+Sort by score and select top 10.
+
+### 4.3 Document Top 10
+
+Create ranking table:
+
+| Rank | Title | Likes | Comments | Shares | Score |
+|------|-------|-------|---------|--------|-------|
+| 1 | [title] | [count] | [count] | [count] | [score] |
+| ... | ... | ... | ... | ... | ... |
+| 10 | [title] | [count] | [count] | [count] | [score] |
+
+---
+
+## Step 5: Deconstruct Viral Videos
+
+Use the deconstruction template in `templates/viral_deconstruction.md`
+
+For each video analyze:
+- **Hook (0-3 seconds)**: What grabs attention immediately
+- **Content structure**: Beginning, middle, end pattern
+- **Key elements**: Visual style, music, editing, effects
+- **Script pattern**: Dialogue, narration, text overlay
+- **Engagement triggers**: What encourages likes, comments, shares
+- **CTA (Call to Action)**: How it drives action
+
+---
+
+## Step 6: Analyze Content Patterns
+
+Identify common patterns across top 10 videos:
+
+**Content Themes**:
+- Recurring topics
+- Target audience interests
+- Value proposition
+
+**Format Patterns**:
+- Video length (short/medium/long)
+- Editing style (fast/slow, effects used)
+- Visual style (lighting, camera angles, background)
+- Audio style (music choices, sound effects, voiceover)
+
+**Structural Elements**:
+- Hook patterns used
+- Storytelling frameworks
+- Pacing and rhythm
+- Transition techniques
+
+**Engagement Strategies**:
+- Questions asked
+- Controversial statements
+- Emotional triggers
+- Interactive elements
+
+---
+
+## Step 7: Generate Copy Templates
+
+Use templates in `templates/copy_templates.md`
+
+Create copy for:
+- Video titles
+- Descriptions
+- Hashtags
+- CTAs
+- Comment engagement prompts
+
+---
+
+## Step 8: Generate Script Templates
+
+Use templates in `templates/script_templates.md`
+
+Create scripts for:
+- 15-second videos
+- 30-second videos
+- 60-second videos
+- Storytelling format
+- Tutorial format
+- Entertainment format
+
+---
+
+## Step 9: Create Production Guide
+
+Document:
+- Recommended equipment
+- Shooting tips
+- Editing workflow
+- Posting schedule
+- Engagement strategy
+
+---
+
+## Step 10: Save All Outputs with Chinese Filenames
+
+### 10.1 File Naming Convention
+
+All output files must use **Chinese names** for better readability:
+
+| English | Chinese |
+|---------|---------|
+| account_analysis.md | 账号分析报告.md |
+| top_10_viral_videos.md | 爆款视频榜单.md |
+| pattern_analysis.md | 内容模式分析.md |
+| copy_templates.md | 文案模板库.md |
+| script_templates.md | 脚本模板库.md |
+| production_guide.md | 制作完整指南.md |
+| success_checklist.md | 发布检查清单.md |
+| README.md | 分析说明.md |
+
+### 10.2 Output File Structure
+
+```
+test_13/
+└── YYYY-MM-DD_抖音号_抖音名称/
+    ├── 分析说明.md
+    ├── 账号分析报告.md
+    ├── 爆款视频榜单.md
+    ├── 内容模式分析.md
+    ├── 文案模板库.md
+    ├── 脚本模板库.md
+    ├── 制作完整指南.md
+    └── 发布检查清单.md
+```
+
+### 10.3 README Content
+
+The `分析说明.md` (README) should include:
+- Analysis date
+- Account ID and name
+- Summary of findings
+- List of all files
+- Quick start recommendations
+
+---
+
+## Output Format
+
+All analysis outputs are saved to dated subdirectories within `test_13/` with clear, descriptive filenames in **Chinese**.
+
+---
+
+## Templates
+
+- **Viral Deconstruction**: See `templates/viral_deconstruction.md`
+- **Copy Templates**: See `templates/copy_templates.md`
+- **Script Templates**: See `templates/script_templates.md`
+- **Success Checklist**: See `templates/success_checklist.md`
+
+---
+
+## Best Practices
+
+1. **Automated Data Collection**: Use Chrome DevTools MCP for efficient data extraction
+2. **Handle Verification**: Be prepared to wait for user to complete Douyin verification
+3. **Organized Outputs**: Create dated directories for each analysis session
+4. **Chinese Filenames**: Use descriptive Chinese names for all output files
+5. **Be Specific**: Provide concrete examples from the analyzed content
+6. **Actionable Outputs**: Generate materials that can be directly used for content creation
+7. **Pattern Recognition**: Identify what makes content successful, not just describe it
+8. **Cultural Context**: Consider Chinese social media trends and Douyin-specific features
+9. **Engagement Focus**: Always consider what drives user interaction

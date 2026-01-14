@@ -1,0 +1,56 @@
+# -*- coding: utf-8 -*-
+"""
+飞书知识库上传脚本
+"""
+import os
+import sys
+from dotenv import load_dotenv
+from feishu_uploader import FeishuWikiUploader
+from pathlib import Path
+
+# 设置 Windows 控制台编码
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+# 加载环境变量
+load_dotenv()
+
+# 获取配置
+app_id = os.getenv("FEISHU_APP_ID")
+app_secret = os.getenv("FEISHU_APP_SECRET")
+wiki_space_id = os.getenv("FEISHU_WIKI_SPACE_ID")
+
+# 创建上传器
+print("=" * 60)
+print("飞书知识库文件上传")
+print("=" * 60)
+print(f"\n正在连接飞书...")
+uploader = FeishuWikiUploader(app_id, app_secret, wiki_space_id)
+
+# 获取访问令牌
+uploader.get_tenant_access_token()
+print("连接成功！")
+
+# 上传文件
+file_path = r"D:\AI\cc_pro\program\20260113_File2feishu\数据文档\20260113日前.xlsx"
+print(f"\n正在上传文件：{Path(file_path).name}")
+print(f"   知识库：{wiki_space_id}")
+print(f"   位置：根目录\n")
+
+try:
+    result = uploader.upload_file(file_path)
+    print("上传成功！")
+    print(f"\n结果详情：")
+    node_data = result.get('data', {}).get('node', {})
+    print(f"  节点 Token: {node_data.get('node_token')}")
+    print(f"  节点标题: {node_data.get('title')}")
+except Exception as e:
+    print(f"上传失败：{str(e)}")
+    import traceback
+    traceback.print_exc()
+
+print("\n" + "=" * 60)
+print("打开飞书知识库查看上传的文件吧！")
+print(f"https://my.feishu.cn/wiki/{wiki_space_id}")
+print("=" * 60)

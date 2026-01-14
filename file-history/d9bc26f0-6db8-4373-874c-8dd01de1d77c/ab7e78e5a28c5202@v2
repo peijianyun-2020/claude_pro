@@ -1,0 +1,160 @@
+---
+name: douyin-account-analysis
+description: Analyze Douyin (TikTok China) accounts, identify top viral content, deconstruct successful videos, and generate copy and scripts for content creation. Use when user provides Douyin account information, asks for account analysis, viral content breakdown, or needs content creation templates based on successful accounts.
+---
+
+# Douyin Account Analysis
+
+## Overview
+
+This skill analyzes Douyin accounts to identify viral content patterns, deconstruct successful video elements, and generate actionable content creation materials including copy, scripts, and production guidance.
+
+## Quick Start
+
+When a user provides Douyin account information:
+
+1. Extract and organize account details
+2. Identify top 10 viral videos based on engagement metrics
+3. Deconstruct each viral video's key elements
+4. Generate analysis report in `test_13/` directory
+5. Create copy and script templates for content replication
+
+## Analysis Workflow
+
+Copy this checklist to track progress:
+
+```
+Analysis Progress:
+- [ ] Step 1: Parse account information
+- [ ] Step 2: Identify top 10 viral content
+- [ ] Step 3: Deconstruct each viral video
+- [ ] Step 4: Analyze content patterns
+- [ ] Step 5: Generate copy templates
+- [ ] Step 6: Generate script templates
+- [ ] Step 7: Create production guide
+- [ ] Step 8: Save all outputs to test_13/
+```
+
+### Step 1: Parse Account Information
+
+Extract the following from user input:
+- Account name/ID
+- Follower count
+- Niche/category
+- Content themes
+- Posting frequency
+- Account description/bio
+
+### Step 2: Identify Top 10 Viral Content
+
+Sort provided videos by engagement metrics (likes, comments, shares) and identify the top 10 performing videos.
+
+For each video record:
+- Title/description
+- View count
+- Like count
+- Comment count
+- Share count
+- Content theme
+
+### Step 3: Deconstruct Each Viral Video
+
+Use the deconstruction template in `templates/viral_deconstruction.md`
+
+For each video analyze:
+- **Hook (0-3 seconds)**: What grabs attention immediately
+- **Content structure**: Beginning, middle, end pattern
+- **Key elements**: Visual style, music, editing, effects
+- **Script pattern**: Dialogue, narration, text overlay
+- **Engagement triggers**: What encourages likes, comments, shares
+- **CTA (Call to Action)**: How it drives action
+
+### Step 4: Analyze Content Patterns
+
+Identify common patterns across top 10 videos:
+
+**Content Themes**:
+- Recurring topics
+- Target audience interests
+- Value proposition
+
+**Format Patterns**:
+- Video length (short/medium/long)
+- Editing style (fast/slow, effects used)
+- Visual style (lighting, camera angles, background)
+- Audio style (music choices, sound effects, voiceover)
+
+**Structural Elements**:
+- Hook patterns used
+- Storytelling frameworks
+- Pacing and rhythm
+- Transition techniques
+
+**Engagement Strategies**:
+- Questions asked
+- Controversial statements
+- Emotional triggers
+- Interactive elements
+
+### Step 5: Generate Copy Templates
+
+Use templates in `templates/copy_templates.md`
+
+Create copy for:
+- Video titles
+- Descriptions
+- Hashtags
+- CTAs
+- Comment engagement prompts
+
+### Step 6: Generate Script Templates
+
+Use templates in `templates/script_templates.md`
+
+Create scripts for:
+- 15-second videos
+- 30-second videos
+- 60-second videos
+- Storytelling format
+- Tutorial format
+- Entertainment format
+
+### Step 7: Create Production Guide
+
+Document:
+- Recommended equipment
+- Shooting tips
+- Editing workflow
+- Posting schedule
+- Engagement strategy
+
+### Step 8: Save All Outputs to test_13/
+
+Create the following files in `test_13/`:
+- `account_analysis.md` - Complete account overview
+- `top_10_viral_videos.md` - Ranked viral content list
+- `content_deconstruction.md` - Detailed breakdown of each video
+- `pattern_analysis.md` - Cross-video patterns identified
+- `copy_templates.md` - Ready-to-use copy for new content
+- `script_templates.md` - Script templates for different formats
+- `production_guide.md` - Production and posting recommendations
+- `success_checklist.md` - Pre-upload checklist
+
+## Output Format
+
+All analysis outputs should be saved to the `test_13/` directory with clear, descriptive filenames using Chinese and English where appropriate.
+
+## Templates
+
+- **Viral Deconstruction**: See `templates/viral_deconstruction.md`
+- **Copy Templates**: See `templates/copy_templates.md`
+- **Script Templates**: See `templates/script_templates.md`
+- **Success Checklist**: See `templates/success_checklist.md`
+
+## Best Practices
+
+1. **Be Specific**: Provide concrete examples from the analyzed content
+2. **Actionable Outputs**: Generate materials that can be directly used for content creation
+3. **Pattern Recognition**: Identify what makes content successful, not just describe it
+4. **Cultural Context**: Consider Chinese social media trends and Douyin-specific features
+5. **Engagement Focus**: Always consider what drives user interaction

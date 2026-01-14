@@ -1,0 +1,52 @@
+[
+  {
+    "content": "探索现有数据结构和文件组织",
+    "status": "in_progress",
+    "activeForm": "探索现有数据结构和文件组织"
+  },
+  {
+    "content": "设计项目架构和数据导入方案",
+    "status": "pending",
+    "activeForm": "设计项目架构和数据导入方案"
+  },
+  {
+    "content": "研究并选择气象数据API接口",
+    "status": "pending",
+    "activeForm": "研究并选择气象数据API接口"
+  },
+  {
+    "content": "研究预测模型和回测方法",
+    "status": "pending",
+    "activeForm": "研究预测模型和回测方法"
+  },
+  {
+    "content": "实现数据加载和预处理模块",
+    "status": "pending",
+    "activeForm": "实现数据加载和预处理模块"
+  },
+  {
+    "content": "实现气象数据采集模块",
+    "status": "pending",
+    "activeForm": "实现气象数据采集模块"
+  },
+  {
+    "content": "实现特征工程模块",
+    "status": "pending",
+    "activeForm": "实现特征工程模块"
+  },
+  {
+    "content": "实现预测模型训练模块",
+    "status": "pending",
+    "activeForm": "实现预测模型训练模块"
+  },
+  {
+    "content": "实现回测和评估模块",
+    "status": "pending",
+    "activeForm": "实现回测和评估模块"
+  },
+  {
+    "content": "实现动态迭代和在线学习",
+    "status": "pending",
+    "activeForm": "实现动态迭代和在线学习"
+  }
+]

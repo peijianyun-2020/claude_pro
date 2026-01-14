@@ -1,0 +1,12 @@
+2026-01-12T13:04:56.345Z [DEBUG] Getting matching hook commands for SessionEnd with query: clear
+2026-01-12T13:04:56.345Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:04:56.345Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-12T13:04:56.345Z [DEBUG] Cleared all session hooks for session eb1722ce-2093-4c55-a537-d9a22e85a5b2
+2026-01-12T13:04:56.357Z [DEBUG] Getting matching hook commands for SessionStart with query: clear
+2026-01-12T13:04:56.357Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:04:56.357Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-01-12T13:04:56.361Z [DEBUG] FileHistory: Added snapshot for 0c8a168d-3946-4a1d-9328-9181329f89e2, tracking 0 files
+2026-01-12T13:04:56.381Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-12T13:05:01.106Z [DEBUG] Getting matching hook commands for SessionEnd with query: prompt_input_exit
+2026-01-12T13:05:01.106Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T13:05:01.106Z [DEBUG] Matched 0 unique hooks for query "prompt_input_exit" (0 before deduplication)

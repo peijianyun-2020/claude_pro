@@ -1,0 +1,477 @@
+# 抖音脚本模板 / Douyin Script Templates
+
+## 15-Second Video Script / 15秒视频脚本
+
+### Quick Tip Format / 快速技巧型
+
+```
+┌─────────────────────────────────────┐
+│ TIME  │ VISUAL          │ AUDIO     │
+├─────────────────────────────────────┤
+│ 0-2s  │ Hook: Shocking  │ Music: Up │
+│       │ fact or visual  │ tempo,    │
+│       │ impact          │ voice:    │
+│       │                 │ "你绝对   │
+│       │                 │ 不会相信.."│
+├─────────────────────────────────────┤
+│ 2-12s │ Main content:  │ Voiceover  │
+│       │ Show problem   │ explains   │
+│       │ → Show solution│ solution   │
+│       │ with demo      │ with       │
+│       │                │ examples   │
+├─────────────────────────────────────┤
+│ 12-15s│ CTA: "Follow   │ "关注我，  │
+│       │ for more"      │ 下期更     │
+│       │ text overlay   │ 精彩"      │
+└─────────────────────────────────────┘
+
+Script Formula:
+Hook (2s) + Value delivery (10s) + CTA (3s)
+```
+
+### Product Showcase / 产品展示型
+
+```
+0-3s:   Problem presentation (show the pain)
+        "还在为[Problem]烦恼？"
+
+3-10s:  Product solution (show the fix)
+        "试试这个[Product]，只需[Action]，立马[Result]！"
+
+10-15s: CTA + Demo
+        "点击左下角/评论区见，有问必答！"
+```
+
+### Transformation / 转变展示型
+
+```
+0-2s:   "Before" state
+        Visual: Show problem/result before
+
+2-10s:  Process/Magic moment
+        "只需[Number]步/招，"
+        [Quick demonstration]
+
+10-15s: "After" state + CTA
+        "是不是很简单？关注我学更多！"
+```
+
+---
+
+## 30-Second Video Script / 30秒视频脚本
+
+### Tutorial Format / 教程型
+
+```
+┌────────────────────────────────────────────┐
+│ TIME  │ VISUAL            │ AUDIO          │
+├────────────────────────────────────────────┤
+│ 0-3s  │ Hook statement    │ "想知道如何    │
+│       │ with question     │ [Goal]吗？"    │
+├────────────────────────────────────────────┤
+│ 3-5s  │ Preview of result │ "只需[Number]  │
+│       │ (the "after")     │ 步，就能.."    │
+├────────────────────────────────────────────┤
+│ 5-20s │ Step-by-step      │ Step 1: [Action]│
+│       │ demonstration     │ Step 2: [Action]│
+│       │ with text overlay │ Step 3: [Action]│
+├────────────────────────────────────────────┤
+│ 20-25s│ Final result +   │ "看，就是这么   │
+│       │ comparison       │ 简单！"         │
+├────────────────────────────────────────────┤
+│ 25-30s│ CTA with specific │ "评论区'想要'， │
+│       │ action prompt     │ 发你详细教程"  │
+└────────────────────────────────────────────┘
+
+Script Formula:
+Hook (3s) + Promise (2s) + Content (15s) + Result (5s) + CTA (5s)
+```
+
+### Story Format / 故事型
+
+```
+0-5s:   Setup (establish relatable situation)
+        "你是不是也有过这种情况：[Situation]？"
+
+5-20s:  Journey (struggle → discovery)
+        "我之前也是，直到我发现[Method]。
+         首先要[Step 1]，
+         然后注意[Step 2]，
+         最重要的是[Step 3]。"
+
+20-25s: Resolution (show transformation)
+        "现在[Improved situation]！"
+
+25-30s: CTA + Connection
+        "你也想试试吗？关注我，一起变更好！"
+```
+
+### List Format / 列表型
+
+```
+0-3s:   Hook with number
+        "[Number]个[Topic]技巧，第[Number]个最实用！"
+
+3-25s:  Rapid-fire tips (3-5 tips)
+        "第一，[Tip 1]；
+         第二，[Tip 2]；
+         第三，[Tip 3]；
+         ..."
+        [Visual: Quick cuts, text overlays]
+
+25-30s: Highlight one + CTA
+        "尤其是第[Number]个，你学会了吗？
+         评论区告诉我，关注我获取更多！"
+```
+
+---
+
+## 60-Second Video Script / 60秒视频脚本
+
+### Deep Dive Tutorial / 深度教程型
+
+```
+┌────────────────────────────────────────────────────┐
+│ TIME  │ VISUAL                  │ AUDIO            │
+├────────────────────────────────────────────────────┤
+│ 0-5s  │ Strong hook +          │ "为什么[Result]   │
+│       │ preview                │ 这么难？其实你   │
+│       │                        │ 一直都做错了！"  │
+├────────────────────────────────────────────────────┤
+│ 5-10s │ Common mistakes         │ "大多数人都在[   │
+│       │ (before)                │ Mistake]，结果   │
+│       │                        │ 当然不好。"      │
+├────────────────────────────────────────────────────┤
+│ 10-45s│ Correct method          │ "正确的方法应该  │
+│       │ (3-5 detailed steps)    │ 是这样的："      │
+│       │                        │ - Step 1 (10s)   │
+│       │                        │ - Step 2 (10s)   │
+│       │                        │ - Step 3 (10s)   │
+│       │                        │ - Step 4 (10s)   │
+│       │                        │ - Step 5 (5s)    │
+├────────────────────────────────────────────────────┤
+│ 45-50s│ Before/After comparison │ "看，区别这么大！│
+├────────────────────────────────────────────────────┤
+│ 50-60s│ CTA + Next video tease  │ "想学习更多[Topic│
+│       │                        │ ]技巧？关注我，  │
+│       │                        │ 下期讲[Next Topic│
+│       │                        │ ]！"            │
+└────────────────────────────────────────────────────┘
+
+Script Formula:
+Hook (5s) + Problem (5s) + Solution (35s) + Proof (5s) + CTA (10s)
+```
+
+### Storytelling Format / 讲故事型
+
+```
+0-8s:   Opening hook (relatable struggle)
+        "去年这个时候，我还[Pain point]。
+         直到有一天，我发现了..."
+
+8-15s:  Turning point (the discovery)
+        "一个改变一切的[Method/Tip]"
+
+15-45s: The journey (process with details)
+        "开始我也不信，但坚持[Time period]后，
+         第一周：[Result 1]
+         第二周：[Result 2]
+         一个月后：[Result 3]
+         关键是要[Key principle]"
+
+45-52s: Transformation reveal
+        "现在的我 vs 以前的我"
+
+52-60s: CTA + Inspiration
+        "如果你也在[Similar situation]，
+         相信我，你也可以！
+         关注我，一起成长！"
+```
+
+### Interview/Q&A Format / 问答型
+
+```
+0-5s:   Question intro
+        "今天回答粉丝最多的问题："
+
+5-10s:  State the question
+        "[Question]？"
+
+10-50s: Detailed answer
+        "其实答案是[Answer]。
+         具体来说：
+         [Point 1]
+         [Point 2]
+         [Point 3]
+         但是要注意[Caution]"
+
+50-55s: Summary
+        "所以简单来说：[One sentence summary]"
+
+55-60s: CTA for more questions
+        "还有什么问题？评论区留言，下期解答！"
+```
+
+---
+
+## Storytelling Script Patterns / 讲故事脚本模式
+
+### Hero's Journey / 英雄之旅模式
+
+```markdown
+[0-5s] Ordinary World
+    "普通的一天，[Ordinary situation]"
+
+[5-15s] Call to Adventure
+    "突然，[Event/Discovery]..."
+
+[15-40s] Trials + Transformation
+    "经历了[Challenges]，
+    尝试了[Methods]，
+    终于找到了[Solution]"
+
+[40-50s] Return with Elixir
+    "现在的我，[New state]"
+
+[50-60s] Share the Wisdom
+    "把这个分享给你，[Value/Advice]"
+```
+
+### Before-After-Bridge / 前后桥梁模式
+
+```markdown
+[0-10s] BEFORE (Pain)
+    "以前[Problem]，真的很难..."
+
+[10-20s] AFTER (Dream)
+    "现在[Result]，生活完全不一样了！"
+
+[20-50s] BRIDGE (Method)
+    "改变的关键是这几点：
+     1. [Key point 1]
+     2. [Key point 2]
+     3. [Key point 3]"
+
+[50-60s] CTA
+    "你也可以！关注我了解更多"
+```
+
+### Problem-Agitate-Solve / 问题-煽动-解决模式
+
+```markdown
+[0-8s] PROBLEM
+    "你是否[Problem]？"
+
+[8-18s] AGITATE
+    "[Problem]不仅影响[Area 1]，
+     还会导致[Area 2]，
+     甚至[Area 3]...
+     真的很难受对吧？"
+
+[18-50s] SOLVE
+    "别担心，我找到了解决方法：
+     [Solution details]"
+
+[50-60s] CTA
+    "想了解更多吗？关注我！"
+```
+
+---
+
+## Content Type Scripts / 内容类型脚本
+
+### Beauty/Makeup Tutorial / 美妆教程
+
+```markdown
+[0-3s] Hook
+    "普通妆容vs精致妆容，差别就在这3步！"
+
+[3-25s] Step-by-step
+    "Step 1: [Action]（关键点：[Tip]）
+     Step 2: [Action]（关键点：[Tip]）
+     Step 3: [Action]（关键点：[Tip]）"
+
+[25-30s] Comparison
+    [Split screen: before vs after]
+    "看，差别是不是很大？"
+
+[30-35s] Product mention
+    "用到的产品在[Location]"
+
+[35-40s] CTA
+    "收藏起来，下次化妆就用这个方法！"
+```
+
+### Food/Cooking / 美食烹饪
+
+```markdown
+[0-3s] Hook (visual appeal)
+    [Appetizing shot]
+    "3分钟搞定[Meal]，比外卖还香！"
+
+[3-5s] Ingredients
+    "需要：[List ingredients quickly]"
+
+[5-25s] Cooking process
+    "第一步：[Action]
+     第二步：[Action]
+     第三步：[Action]"
+
+[25-28s] Final reveal
+    [Beautiful food shot]
+    "完成！"
+
+[28-30s] Taste test + CTA
+    "太香了！关注我，简单快手菜天天更！"
+```
+
+### Fashion/OOTD / 穿搭分享
+
+```markdown
+[0-3s] Full outfit reveal
+    [Spin or outfit showcase]
+    "今天的穿搭，[Number]个亮点！"
+
+[3-20s] Detail breakdown
+    "Point 1: [Detail] - [Why it works]
+     Point 2: [Detail] - [Why it works]
+     Point 3: [Detail] - [Why it works]"
+
+[20-25s] Styling tips
+    "小个子/微胖/肤色[Tip]也能驾驭！"
+
+[25-30s] CTA
+    "get同款在评论区，关注我获取更多穿搭灵感！"
+```
+
+### Fitness/Sports / 健身运动
+
+```markdown
+[0-3s] Hook
+    "[Number]天练出[Result]！这个动作最有效"
+
+[3-20s] Demo
+    "动作要点：
+     - [Point 1]
+     - [Point 2]
+     - [Point 3]"
+
+[20-25s] Common mistakes
+    "注意不要[Mistake]"
+
+[25-30s] CTA + Consistency
+    "每天坚持，关注我一起打卡！"
+```
+
+### Educational/Knowledge / 知识科普
+
+```markdown
+[0-5s] Curiosity hook
+    "为什么[Phenomenon]？90%的人都想错了"
+
+[5-10s] Common misconception
+    "大多数人以为[Misconception]..."
+
+[10-25s] Scientific explanation
+    "其实是[Scientific fact]。
+     原理是[Explanation]"
+
+[25-28s] Practical application
+    "所以在生活中[Application]"
+
+[28-30s] CTA
+    "学到了吗？关注我，每天涨知识！"
+```
+
+---
+
+## Script Writing Tips / 脚本写作技巧
+
+### Hook Patterns / 钩子模式
+
+1. **Question Hook / 提问钩子**
+   - "你是否也有过...？"
+   - "为什么...？"
+   - "怎么才能...？"
+
+2. **Shock Hook / 震惊钩子**
+   - "没想到...竟然..."
+   - "千万别..."
+   - "终于找到了..."
+
+3. **Value Hook / 价值钩子**
+   - "X分钟学会..."
+   - "X个技巧..."
+   - "最全/最强/最简单的..."
+
+4. **Story Hook / 故事钩子**
+   - "去年这个时候..."
+   - "我要分享一个秘密..."
+   - "今天要告诉大家..."
+
+### Pacing Techniques / 节奏控制
+
+1. **Fast Pacing (15s) / 快节奏**
+   - 1-2 seconds per shot
+   - Quick cuts
+   - Energetic music
+
+2. **Medium Pacing (30s) / 中节奏**
+   - 2-4 seconds per shot
+   - Mix of quick and steady
+   - Building energy
+
+3. **Slow Pacing (60s) / 慢节奏**
+   - 4-8 seconds per shot
+   - Story-driven
+   - Emotional peaks
+
+### Emotional Arc Design / 情感曲线设计
+
+```markdown
+Engagement
+High │         Peak       Peak
+    │        /   \      /   \
+    │  Start /     \____/     \___ End
+    │  ____/
+Low  │─�─────────────────────────────→ Time
+    0s    10s   20s   30s   40s   60s
+
+Design your script to have multiple engagement peaks!
+```
+
+---
+
+## Viral Script Checklist / 爆款脚本检查清单
+
+### Pre-Production Check / 拍摄前检查
+
+- [ ] Hook is clear and strong in first 3 seconds
+- [ ] Content delivers on hook's promise
+- [ ] Script has single, clear focus
+- [ ] Length fits content type (15/30/60s)
+- [ ] CTA is specific and actionable
+
+### Content Check / 内容检查
+
+- [ ] Provides real value
+- [ ] Easy to understand
+- [ ] Visually engaging
+- [ ] Audio is clear
+- [ ] Authentic tone
+
+### Engagement Check / 互动检查
+
+- [ ] Encourages comments
+- [ ] Easy to share
+- [ ] Relatable to target audience
+- [ ] Has emotional hook
+- [ ] Creates curiosity
+
+### Technical Check / 技术检查
+
+- [ ] Visual quality is good
+- [ ] Lighting is adequate
+- [ ] Audio is clear
+- [ ] Text overlays are readable
+- [ ] Transitions are smooth

@@ -1,0 +1,197 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""批量处理现货价格数据并生成CSV文件 (2026-01-05 to 2026-01-08)"""
+
+import json
+import csv
+from pathlib import Path
+from datetime import datetime
+
+# 地区代码映射
+REGION_MAP = {
+    "00": "全区域",
+    "02": "广东",
+    "03": "广西",
+    "04": "云南",
+    "05": "贵州",
+    "06": "海南"
+}
+
+# API数据（2026-01-05到2026-01-08）
+api_data_by_date = {
+    "2026-01-05": {
+        "code": 0,
+        "msg": "success",
+        "data": [
+            {"watchUserPriceId": "3fe08b843a07430b84c174f35cd0f20f", "price1900": "384.1782", "price1800": "398.6005", "price1200": "-56.4762", "price1300": "-3.0572", "price1000": "15.6773", "dateType": "1", "price1100": "-35.0922", "price1600": "182.8933", "price1700": "405.4551", "price1400": "0.5686", "price1500": "-12.6348", "price0900": "184.1137", "price0700": "464.9736", "price0800": "440.7118", "price0100": "411.9894", "price0200": "435.2223", "price2300": "347.877", "price2200": "390.3898", "price0000": "400.8891", "price2100": "435.0705", "price0500": "432.9603", "price0600": "454.9194", "exchange": "06", "price0300": "441.1543", "price0400": "432.8882", "price2000": "437.1183", "operateDate": "2026-01-05"},
+            {"watchUserPriceId": "0dc6076b376c407fbfc85c1748b9023a", "price1900": "383.9722", "price1800": "383.8773", "price1200": "191.523", "price1300": "196.8943", "price1000": "268.574", "dateType": "1", "price1100": "214.2822", "price1600": "311.7459", "price1700": "396.2488", "price1400": "194.6841", "price1500": "273.7773", "price0900": "343.1519", "price0700": "315.0957", "price0800": "379.1666", "price0100": "303.3016", "price0200": "282.7434", "price2300": "274.418", "price2200": "313.5504", "price0000": "444.3805", "price2100": "325.5676", "price0500": "276.7077", "price0600": "296.7356", "exchange": "02", "price0300": "275.7013", "price0400": "273.2798", "price2000": "359.7155", "operateDate": "2026-01-05"},
+            {"watchUserPriceId": "e17310b2cef94d67817f551b9808406c", "price1900": "494.9678", "price1800": "604.955", "price1200": "276.7591", "price1300": "276.0414", "price1000": "391.325", "dateType": "1", "price1100": "286.5579", "price1600": "426.8494", "price1700": "478.3691", "price1400": "291.5982", "price1500": "354.6348", "price0900": "450.6559", "price0700": "430.849", "price0800": "457.8873", "price0100": "426.2753", "price0200": "396.996", "price2300": "423.8652", "price2200": "461.0225", "price0000": "433.2397", "price2100": "489.8724", "price0500": "384.6114", "price0600": "399.717", "exchange": "05", "price0300": "391.2893", "price0400": "379.2246", "price2000": "492.7016", "operateDate": "2026-01-05"},
+            {"watchUserPriceId": "172b7138bff64f44846f5f14cbaa1f96", "price1900": "362.6255", "price1800": "320.9237", "price1200": "140.7385", "price1300": "70.9385", "price1000": "206.0557", "dateType": "1", "price1100": "220.3412", "price1600": "263.9247", "price1700": "396.8085", "price1400": "105.4433", "price1500": "192.9981", "price0900": "276.0795", "price0700": "249.2096", "price0800": "313.0826", "price0100": "243.3411", "price0200": "226.3775", "price2300": "218.5265", "price2200": "266.6787", "price0000": "255.7085", "price2100": "322.3558", "price0500": "51.949", "price0600": "179.4386", "exchange": "03", "price0300": "218.0567", "price0400": "161.3263", "price2000": "358.9027", "operateDate": "2026-01-05"},
+            {"watchUserPriceId": "ba8c191961444a9b8c1f942a92ceae77", "price1900": "452.4654", "price1800": "489.5345", "price1200": "129.1536", "price1300": "84.8514", "price1000": "350.1775", "dateType": "1", "price1100": "240.0542", "price1600": "189.443", "price1700": "322.7894", "price1400": "34.2494", "price1500": "73.5592", "price0900": "445.3561", "price0700": "503.6935", "price0800": "582.3732", "price0100": "394.6545", "price0200": "453.6426", "price2300": "401.5092", "price2200": "450.398", "price0000": "376.1617", "price2100": "420.9645", "price0500": "373.0848", "price0600": "367.4782", "exchange": "04", "price0300": "355.8859", "price0400": "357.3763", "price2000": "414.8022", "operateDate": "2026-01-05"},
+            {"watchUserPriceId": "0b0901c0699242768829d18779ac1472", "price1900": "406.8541", "price1800": "421.7043", "price1200": "158.6789", "price1300": "146.201", "price1000": "264.7684", "dateType": "1", "price1100": "205.4942", "price1600": "283.0867", "price1700": "393.5869", "price1400": "143.7392", "price1500": "206.1629", "price0900": "349.3924", "price0700": "367.6905", "price0800": "421.6041", "price0100": "335.7618", "price0200": "333.6666", "price2300": "314.1407", "price2200": "356.6504", "price0000": "395.1796", "price2100": "373.26", "price0500": "285.6229", "price0600": "318.1272", "exchange": "00", "price0300": "310.8934", "price0400": "298.5361", "price2000": "393.432", "operateDate": "2026-01-05"}
+        ]
+    },
+    "2026-01-06": {
+        "code": 0,
+        "msg": "success",
+        "data": [
+            {"watchUserPriceId": "0a6ef97d443a48ad9275a554fc542980", "price1900": "381.014", "price1800": "368.0698", "price1200": "158.689", "price1300": "175.9189", "price1000": "226.5893", "dateType": "1", "price1100": "212.0233", "price1600": "265.8915", "price1700": "324.6706", "price1400": "189.4398", "price1500": "207.064", "price0900": "299.7223", "price0700": "280.9812", "price0800": "348.5517", "price0100": "278.0449", "price0200": "259.7724", "price2300": "272.4801", "price2200": "311.9315", "price0000": "285.7267", "price2100": "402.1633", "price0500": "211.7197", "price0600": "263.0133", "exchange": "02", "price0300": "250.9643", "price0400": "235.4805", "price2000": "414.8677", "operateDate": "2026-01-06"},
+            {"watchUserPriceId": "0530509d6b4646de9a85a3a5b57dad5f", "price1900": "427.6251", "price1800": "415.3723", "price1200": "162.6845", "price1300": "177.0907", "price1000": "235.4582", "dateType": "1", "price1100": "204.6042", "price1600": "266.5843", "price1700": "371.7437", "price1400": "190.1192", "price1500": "200.3054", "price0900": "340.6282", "price0700": "297.3273", "price0800": "383.1944", "price0100": "304.8283", "price0200": "273.3232", "price2300": "325.9038", "price2200": "357.873", "price0000": "326.2927", "price2100": "425.6056", "price0500": "231.293", "price0600": "259.456", "exchange": "00", "price0300": "261.4196", "price0400": "248.2642", "price2000": "437.6202", "operateDate": "2026-01-06"},
+            {"watchUserPriceId": "9ac3aac70c5d4c2c8b2ce19cd27d74e6", "price1900": "365.4386", "price1800": "318.4396", "price1200": "5.1153", "price1300": "5.7934", "price1000": "32.8288", "dateType": "1", "price1100": "3.3986", "price1600": "59.1742", "price1700": "258.4501", "price1400": "5.369", "price1500": "8.7436", "price0900": "210.8485", "price0700": "107.2083", "price0800": "218.9434", "price0100": "144.0173", "price0200": "0.2734", "price2300": "244.2666", "price2200": "258.4129", "price0000": "197.002", "price2100": "301.7855", "price0500": "0.0213", "price0600": "0.5102", "exchange": "03", "price0300": "35.133", "price0400": "2.8642", "price2000": "326.6737", "operateDate": "2026-01-06"},
+            {"watchUserPriceId": "185aca5d786a458a84f43e6f6ea0c041", "price1900": "479.1145", "price1800": "460.7363", "price1200": "-1.3564", "price1300": "-2.4623", "price1000": "71.2876", "dateType": "1", "price1100": "-2.9639", "price1600": "216.0117", "price1700": "443.7296", "price1400": "10.1787", "price1500": "25.2557", "price0900": "346.3015", "price0700": "337.4647", "price0800": "322.1908", "price0100": "410.5478", "price0200": "365.8812", "price2300": "343.1725", "price2200": "401.0811", "price0000": "454.6599", "price2100": "450.1202", "price0500": "225.4949", "price0600": "331.8709", "exchange": "06", "price0300": "290.4642", "price0400": "244.2959", "price2000": "466.7953", "operateDate": "2026-01-06"},
+            {"watchUserPriceId": "0ddd82b80916468a9e323a88d294c2b1", "price1900": "535.4161", "price1800": "553.8734", "price1200": "319.784", "price1300": "331.1834", "price1000": "388.7735", "dateType": "1", "price1100": "332.7408", "price1600": "384.0015", "price1700": "489.8508", "price1400": "345.8549", "price1500": "362.258", "price0900": "469.4587", "price0700": "391.9244", "price0800": "470.5277", "price0100": "390.8808", "price0200": "426.4913", "price2300": "454.3325", "price2200": "475.8056", "price0000": "409.0754", "price2100": "515.2396", "price0500": "396.1433", "price0600": "363.9321", "exchange": "04", "price0300": "409.449", "price0400": "426.4266", "price2000": "555.6235", "operateDate": "2026-01-06"},
+            {"watchUserPriceId": "1b2e2e8858234ea598a4ae1b9965b6fd", "price1900": "472.1563", "price1800": "466.9774", "price1200": "275.1899", "price1300": "314.5164", "price1000": "431.448", "dateType": "1", "price1100": "412.7764", "price1600": "407.5875", "price1700": "455.0634", "price1400": "341.6539", "price1500": "321.5417", "price0900": "458.8656", "price0700": "435.4682", "price0800": "639.7773", "price0100": "403.1645", "price0200": "383.634", "price2300": "415.4365", "price2200": "440.9796", "price0000": "418.5651", "price2100": "519.3673", "price0500": "364.4796", "price0600": "379.9478", "exchange": "05", "price0300": "354.6002", "price0400": "354.8192", "price2000": "464.9921", "operateDate": "2026-01-06"}
+        ]
+    },
+    "2026-01-07": {
+        "code": 0,
+        "msg": "success",
+        "data": [
+            {"watchUserPriceId": "1322a073a28a4350a4267a11b21c8a41", "price1900": "445.5091", "price1800": "553.0346", "price1200": "7.4864", "price1300": "2.9939", "price1000": "28.4652", "dateType": "1", "price1100": "14.1847", "price1600": "153.4348", "price1700": "341.0753", "price1400": "3.1089", "price1500": "12.8108", "price0900": "27.3723", "price0700": "10.9965", "price0800": "60.2156", "price0100": "114.0986", "price0200": "7.8333", "price2300": "202.6492", "price2200": "328.0261", "price0000": "234.8566", "price2100": "425.0908", "price0500": "0.0015", "price0600": "1.2647", "exchange": "03", "price0300": "4.1048", "price0400": "8.5481", "price2000": "447.1063", "operateDate": "2026-01-07"},
+            {"watchUserPriceId": "c4dff00670b6442ba85661a2b53696f7", "price1900": "586.4177", "price1800": "605.946", "price1200": "461.4454", "price1300": "380.1374", "price1000": "324.9362", "dateType": "1", "price1100": "320.5798", "price1600": "432.6282", "price1700": "445.8988", "price1400": "359.3918", "price1500": "376.5698", "price0900": "447.4392", "price0700": "420.9336", "price0800": "434.622", "price0100": "413.0559", "price0200": "363.3417", "price2300": "399.1262", "price2200": "469.4433", "price0000": "433.1411", "price2100": "581.0889", "price0500": "258.0304", "price0600": "366.9005", "exchange": "05", "price0300": "348.2854", "price0400": "345.3207", "price2000": "493.0369", "operateDate": "2026-01-07"},
+            {"watchUserPriceId": "2e542c44d9d54769bd374186f6b72237", "price1900": "635.1037", "price1800": "606.6786", "price1200": "169.7638", "price1300": "187.024", "price1000": "240.4441", "dateType": "1", "price1100": "193.2816", "price1600": "302.7341", "price1700": "454.0951", "price1400": "210.2496", "price1500": "208.4306", "price0900": "274.2106", "price0700": "284.5846", "price0800": "303.7981", "price0100": "291.5176", "price0200": "262.3561", "price2300": "336.8478", "price2200": "474.9196", "price0000": "324.5251", "price2100": "613.0023", "price0500": "240.5404", "price0600": "265.3491", "exchange": "00", "price0300": "252.4611", "price0400": "252.2851", "price2000": "608.3356", "operateDate": "2026-01-07"},
+            {"watchUserPriceId": "5c3f551543174f928c739ed122b7240f", "price1900": "602.0427", "price1800": "451.9475", "price1200": "552.0431", "price1300": "554.7486", "price1000": "562.7297", "dateType": "1", "price1100": "483.6531", "price1600": "377.1379", "price1700": "574.3048", "price1400": "447.5918", "price1500": "418.191", "price0900": "606.7912", "price0700": "353.6941", "price0800": "458.5568", "price0100": "357.4404", "price0200": "366.6929", "price2300": "434.1979", "price2200": "654.4828", "price0000": "410.2308", "price2100": "798.8716", "price0500": "374.945", "price0600": "352.6713", "exchange": "04", "price0300": "372.0431", "price0400": "395.2662", "price2000": "604.5543", "operateDate": "2026-01-07"},
+            {"watchUserPriceId": "56972b1fd1714185b8df82833c6e0824", "price1900": "766.6715", "price1800": "704.1906", "price1200": "32.5561", "price1300": "96.6279", "price1000": "218.4816", "dateType": "1", "price1100": "154.3509", "price1600": "328.9896", "price1700": "456.0211", "price1400": "202.3008", "price1500": "201.9747", "price0900": "231.651", "price0700": "283.2266", "price0800": "301.2921", "price0100": "276.2937", "price0200": "267.2495", "price2300": "302.2097", "price2200": "456.9438", "price0000": "280.0514", "price2100": "643.7201", "price0500": "249.1856", "price0600": "270.1117", "exchange": "02", "price0300": "260.4425", "price0400": "250.9788", "price2000": "726.6009", "operateDate": "2026-01-07"},
+            {"watchUserPriceId": "accbc86c49754c63b3f254fa02f98f14", "price1900": "490.5724", "price1800": "559.5782", "price1200": "-53.1977", "price1300": "-55.8316", "price1000": "-36.6072", "dateType": "1", "price1100": "-55.812", "price1600": "126.2889", "price1700": "415.3921", "price1400": "-55.6919", "price1500": "-54.642", "price0900": "16.7608", "price0700": "454.6299", "price0800": "264.1098", "price0100": "382.7526", "price0200": "346.6012", "price2300": "456.7758", "price2200": "465.8395", "price0000": "374.4561", "price2100": "473.6715", "price0500": "332.3582", "price0600": "399.9005", "exchange": "06", "price0300": "288.2345", "price0400": "279.9641", "price2000": "504.2127", "operateDate": "2026-01-07"}
+        ]
+    },
+    "2026-01-08": {
+        "code": 0,
+        "msg": "success",
+        "data": [
+            {"watchUserPriceId": "48d773afe24e433fad87bcfa9fe793e4", "price1900": "1155.8564", "price1800": "1200.1671", "price1200": "63.1351", "price1300": "133.2894", "price1000": "212.3801", "dateType": "1", "price1100": "254.2631", "price1600": "311.8257", "price1700": "560.4542", "price1400": "134.599", "price1500": "268.7345", "price0900": "273.7417", "price0700": "309.3946", "price0800": "388.4057", "price0100": "310.8226", "price0200": "289.1724", "price2300": "287.9645", "price2200": "315.5427", "price0000": "326.5992", "price2100": "906.6896", "price0500": "251.9286", "price0600": "269.1009", "exchange": "02", "price0300": "265.2128", "price0400": "252.9513", "price2000": "988.1632", "operateDate": "2026-01-08"},
+            {"watchUserPriceId": "a27d53c7567b4627ad433ef1f0854595", "price1900": "1023.6309", "price1800": "667.8467", "price1200": "1.8708", "price1300": "6.2902", "price1000": "25.3393", "dateType": "1", "price1100": "7.4616", "price1600": "213.2893", "price1700": "685.0858", "price1400": "2.4021", "price1500": "44.9248", "price0900": "34.2377", "price0700": "108.1587", "price0800": "136.7956", "price0100": "246.3096", "price0200": "70.0354", "price2300": "267.3147", "price2200": "336.2493", "price0000": "257.7628", "price2100": "473.1164", "price0500": "21.2296", "price0600": "50.8937", "exchange": "03", "price0300": "9.1002", "price0400": "9.2167", "price2000": "879.9885", "operateDate": "2026-01-08"},
+            {"watchUserPriceId": "d91cfdb1c6da48aaacd28f115d21c992", "price1900": "998.7788", "price1800": "936.2087", "price1200": "121.7384", "price1300": "146.4123", "price1000": "249.0078", "dateType": "1", "price1100": "256.3545", "price1600": "276.2463", "price1700": "568.9972", "price1400": "128.9829", "price1500": "218.8568", "price0900": "313.9354", "price0700": "332.2824", "price0800": "368.7417", "price0100": "347.0708", "price0200": "348.3025", "price2300": "333.5815", "price2200": "385.4804", "price0000": "402.8599", "price2100": "748.1484", "price0500": "278.3122", "price0600": "298.3045", "exchange": "00", "price0300": "351.6254", "price0400": "296.6156", "price2000": "906.0975", "operateDate": "2026-01-08"},
+            {"watchUserPriceId": "150b64ffa10b441c83d7ca759e7f1546", "price1900": "890.0039", "price1800": "766.8729", "price1200": "380.1228", "price1300": "324.4028", "price1000": "604.0937", "dateType": "1", "price1100": "597.8858", "price1600": "342.8794", "price1700": "617.423", "price1400": "322.4775", "price1500": "331.1829", "price0900": "697.5819", "price0700": "478.5986", "price0800": "489.7962", "price0100": "428.1401", "price0200": "733.2348", "price2300": "403.5071", "price2200": "470.6596", "price0000": "672.3284", "price2100": "884.7183", "price0500": "477.2996", "price0600": "481.8006", "exchange": "04", "price0300": "957.2264", "price0400": "693.9455", "price2000": "854.3493", "operateDate": "2026-01-08"},
+            {"watchUserPriceId": "7c231c0fda6540d683aecd0b8f3b2252", "price1900": "665.8112", "price1800": "717.6979", "price1200": "-51.6654", "price1300": "-42.9081", "price1000": "-29.2319", "dateType": "1", "price1100": "-53.6577", "price1600": "105.4997", "price1700": "559.9638", "price1400": "-47.7098", "price1500": "-32.5481", "price0900": "19.4704", "price0700": "478.8984", "price0800": "334.0399", "price0100": "473.5647", "price0200": "471.5754", "price2300": "417.9493", "price2200": "478.759", "price0000": "453.3501", "price2100": "382.8187", "price0500": "463.5856", "price0600": "469.4262", "exchange": "06", "price0300": "421.5883", "price0400": "461.271", "price2000": "581.8866", "operateDate": "2026-01-08"},
+            {"watchUserPriceId": "fb418759d32b420ea7ce4f69c78292f1", "price1900": "831.501", "price1800": "789.1112", "price1200": "229.187", "price1300": "254.961", "price1000": "351.2549", "dateType": "1", "price1100": "315.439", "price1600": "264.5204", "price1700": "376.6632", "price1400": "119.8863", "price1500": "297.781", "price0900": "472.9023", "price0700": "378.5999", "price0800": "452.744", "price0100": "389.8614", "price0200": "249.9314", "price2300": "412.4661", "price2200": "497.3719", "price0000": "417.9532", "price2100": "629.2971", "price0500": "271.3632", "price0600": "322.7787", "exchange": "05", "price0300": "140.7849", "price0400": "105.2526", "price2000": "978.6304", "operateDate": "2026-01-08"}
+        ]
+    }
+}
+
+def process_api_response_to_csv(api_response, date_str):
+    """处理单个API响应并生成CSV"""
+    # Check if data is empty
+    if not api_response["data"]:
+        print(f"[ERROR] {date_str}: API returned empty data")
+        return False, None
+
+    # Create region-price mapping
+    region_prices = {}
+    for item in api_response["data"]:
+        exchange = item["exchange"]
+        region_name = REGION_MAP.get(exchange, f"Unknown({exchange})")
+        region_prices[region_name] = item
+
+    # Generate 24 hours time list
+    hours = [f"{i:02d}:00" for i in range(24)]
+
+    # Prepare CSV data
+    csv_rows = []
+    csv_rows.append(["Time"] + list(REGION_MAP.values()))
+
+    # Fill data for each hour
+    for hour_idx in range(24):
+        hour_str = f"{hour_idx:02d}:00"
+        row = [hour_str]
+
+        for region_code, region_name in REGION_MAP.items():
+            if region_name in region_prices:
+                price_key = f"price{hour_idx:02d}00"
+                price = region_prices[region_name].get(price_key, "")
+                row.append(price)
+            else:
+                row.append("")
+
+        csv_rows.append(row)
+
+    return True, csv_rows
+
+def batch_process_all_dates():
+    """批量处理所有日期的数据"""
+    output_dir = Path(r"D:\AI\cc_pro\现货价格采集")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    backup_dir = output_dir / "backups"
+    backup_dir.mkdir(parents=True, exist_ok=True)
+
+    results = {
+        "success": [],
+        "failed": [],
+        "total": len(api_data_by_date)
+    }
+
+    print("=" * 60)
+    print("[INFO] Batch Processing Spot Price Data (2026-01-05 to 2026-01-08)")
+    print("=" * 60)
+
+    for date_str, api_response in sorted(api_data_by_date.items()):
+        date_filename = date_str.replace("-", "")
+        csv_filename = f"实时价格_{date_filename}.csv"
+        backup_filename = f"api_backup_realtime_{date_filename}.json"
+
+        csv_path = output_dir / csv_filename
+        backup_path = backup_dir / backup_filename
+
+        # Process data
+        success, csv_rows = process_api_response_to_csv(api_response, date_str)
+
+        if success:
+            # Save CSV file
+            with open(csv_path, 'w', newline='', encoding='utf-8-sig') as f:
+                writer = csv.writer(f)
+                writer.writerows(csv_rows)
+
+            # Save API backup
+            with open(backup_path, 'w', encoding='utf-8') as f:
+                json.dump(api_response, f, ensure_ascii=False, indent=2)
+
+            # Verify data integrity
+            actual_regions = len(api_response["data"])
+            actual_hours = len(csv_rows) - 1
+
+            integrity_ok = (actual_regions == 6 and actual_hours == 24)
+
+            print(f"\n[OK] {date_str}:")
+            print(f"  - CSV: {csv_path}")
+            print(f"  - Backup: {backup_path}")
+            print(f"  - Regions: {actual_regions}/6")
+            print(f"  - Hours: {actual_hours}/24")
+            print(f"  - Integrity: {'PASS' if integrity_ok else 'WARNING'}")
+
+            results["success"].append({
+                "date": date_str,
+                "csv": csv_path,
+                "backup": backup_path,
+                "regions": actual_regions,
+                "hours": actual_hours,
+                "integrity": integrity_ok
+            })
+        else:
+            print(f"\n[ERROR] {date_str}: Failed to process data")
+            results["failed"].append(date_str)
+
+    # Summary
+    print("\n" + "=" * 60)
+    print("[SUMMARY] Batch Collection Results")
+    print("=" * 60)
+    print(f"Total: {results['total']} dates")
+    print(f"Success: {len(results['success'])} dates")
+    print(f"Failed: {len(results['failed'])} dates")
+
+    if results['success']:
+        print("\n[SUCCESS] Successfully collected files:")
+        for item in results['success']:
+            print(f"  - {item['date']}: {item['csv'].name}")
+
+    if results['failed']:
+        print(f"\n[FAILED] Failed to collect: {', '.join(results['failed'])}")
+
+    print("\n" + "=" * 60)
+    print("[COMPLETE] Batch collection finished!")
+    print("=" * 60)
+
+    return results
+
+if __name__ == "__main__":
+    results = batch_process_all_dates()

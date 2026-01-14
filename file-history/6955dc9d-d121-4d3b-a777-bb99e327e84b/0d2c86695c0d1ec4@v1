@@ -1,0 +1,282 @@
+# 船运货盘信息提取工具
+
+自动读取QQ邮箱的最近N封邮件，识别船运经纪邮件，并准确提取货盘信息保存到Excel。
+
+## 使用场景
+
+当您需要：
+- 自动提取船运经纪邮件中的货盘信息
+- 整理多个货盘的核心数据到Excel表格
+- 跟踪和管理货运机会
+- 自动去重避免重复录入
+- 批量处理历史邮件
+
+## 配置说明
+
+此SKILL使用以下环境变量（已配置在项目根目录的.env文件中）：
+- `QQMAIL_EMAIL`: 你的QQ邮箱地址
+- `QQMAIL_AUTH_CODE`: QQ邮箱授权码
+
+## 输出说明
+
+提取的数据将保存到：`D:\AI\cc_pro\test_9\数据提取.xlsx`
+
+Excel表格包含以下列：
+- 邮件日期：邮件发送时间
+- 发件人：邮件发送者邮箱
+- 标记：货盘标记（A、B、C等）
+- 货物名称：CARGO名称
+- 数量：QTY/QUANTITY（保留原始格式，如10K MTS）
+- 装货港：LOAD PORT（保留原始格式）
+- 卸货港：DISCHARGE PORT/DISPORT（保留原始格式）
+- 装货率：LOAD RATE（保留原始格式）
+- 卸货率：DISCHARGE RATE/DISRATE（保留原始格式）
+- 受载期：LAYCAN（保留原始格式）
+- 佣金：COMM（保留原始格式）
+- 邮件主题：原始邮件主题
+
+## 使用方法
+
+在Claude Code对话中使用：
+
+```
+/cargoextract        # 读取最近50封邮件并提取货盘
+/cargoextract 100    # 读取最近100封邮件并提取货盘
+```
+
+或者直接告诉Claude：
+- "帮我提取货盘信息"
+- "读取邮箱并提取货运信息"
+- "整理最近的货盘数据"
+
+## 参数说明
+
+- `count`: 读取邮件数量，默认50封
+
+## 识别规则
+
+工具会自动识别包含以下特征的邮件：
+
+### 1. 主题关键词
+- cargo（货盘）
+- load port（装货港）
+- discharge port（卸货港）
+- laycan（受载期）
+- quantity（数量）
+- vessel（船舶）
+- shipping（船运）
+
+### 2. 货盘标记
+- A)、B)、C) 等字母标记
+- 或明确的货盘段落分隔
+
+### 3. 正文关键词密度
+包含5个以上船运相关关键词
+
+## 提取规则
+
+### 自动识别的货盘格式
+
+**格式1：带字母标记**
+```
+A)
+CARGO : GYPSUM IN BULK
+QTY: 10K MTS MIN/MAX
+LOAD PORT: PARADIP
+DISCHARGE PORT: MONGLA
+...
+```
+
+**格式2：关键词分段**
+```
+CARGO: GYPSUM IN BULK
+QTY: 10,000 MTS
+LOAD PORT: PARADIP
+DISCHARGE PORT: MONGLA
+...
+```
+
+### 字段提取说明
+
+1. **货物名称（CARGO）**
+   - 识别：CARGO、Cargo
+   - 提取：冒号后的完整描述
+
+2. **数量（QTY/QUANTITY）**
+   - 识别：QTY、QUANTITY、Qty
+   - 格式：支持10K、10,000、3K-6K等多种格式
+   - 保留：保留原始单位和格式
+
+3. **装货港（LOAD PORT）**
+   - 识别：LOAD PORT、Load Port
+   - 保留：保留完整的港口名称（可能包含国家信息）
+
+4. **卸货港（DISCHARGE PORT/DISPORT）**
+   - 识别：DISCHARGE PORT、DISPORT、Discharge Port
+   - 保留：保留完整的港口名称
+
+5. **装货率（LOAD RATE）**
+   - 识别：LOAD RATE、Load Rate
+   - 格式：如"3000 MTS PWWD SSHEX UU"
+   - 保留：完整保留原始格式
+
+6. **卸货率（DISCHARGE RATE/DISRATE）**
+   - 识别：DISCHARGE RATE、DISRATE、Discharge Rate
+   - 格式：如"2000 MTS PWWD FSHEX UU"
+   - 保留：完整保留原始格式
+
+7. **受载期（LAYCAN）**
+   - 识别：LAYCAN、Laycan
+   - 格式：如"06TH - 10TH OCT"、"SPOT"
+   - 保留：完整保留原始格式
+
+8. **佣金（COMM）**
+   - 识别：COMM、Commission
+   - 格式：如"1.25% TTL"
+   - 保留：完整保留原始格式
+
+## 去重机制
+
+工具会自动识别并跳过重复的货盘信息：
+
+**去重依据：**
+- 邮件日期 + 发件人 + 标记 + 货物名称
+
+**去重行为：**
+- 如果检测到重复，会跳过该货盘
+- 在输出中显示重复货盘数量
+- 保留首次出现的记录
+
+## 数据示例
+
+### 输入邮件示例
+```
+Subject: 10K GYPSUM EX PARADIP TO MONGLA // 3/6K MANGANESE ORE
+
+A)
+CARGO : GYPSUM IN BULK
+QTY: 10K MTS MIN/MAX
+LOAD PORT: PARADIP
+DISCHARGE PORT: MONGLA
+LOAD RATE: 3000 MTS PWWD SSHEX UU
+DISCHARGE RATE: 2000 MTS PWWD FSHEX UU
+LAYCAN: 06TH - 10TH OCT
+COMM: 1.25% TTL
+
+B)
+CARGO : MANGANESE ORE
+QTY: 3K - 6K MTS
+LOAD PORT: HALDIA
+DISCHARGE PORT: MONGLA
+...
+```
+
+### 输出Excel示例
+
+| 邮件日期 | 发件人 | 标记 | 货物名称 | 数量 | 装货港 | 卸货港 | 装货率 | 卸货率 | 受载期 | 佣金 | 邮件主题 |
+|---------|--------|------|---------|------|--------|--------|--------|--------|--------|------|---------|
+| Fri, 9 Jan 2026 21:24:31 | xxx@qq.com | A | GYPSUM IN BULK | 10K MTS MIN/MAX | PARADIP | MONGLA | 3000 MTS PWWD SSHEX UU | 2000 MTS PWWD FSHEX UU | 06TH - 10TH OCT | 1.25% TTL | 10K GYPSUM... |
+| Fri, 9 Jan 2026 21:24:31 | xxx@qq.com | B | MANGANESE ORE | 3K - 6K MTS | HALDIA | MONGLA | 3000 MTS PWWD SSHEX UU | 2000 MTS PWWD FSHEX UU | SPOT | 1.25% TTL | 10K GYPSUM... |
+
+## 约束与规则
+
+1. **客观性原则**
+   - 只提取邮件中明确给出的信息
+   - 不添加、不推断、不猜测
+   - 缺失字段使用空字符串
+
+2. **格式保留**
+   - 数量保留原始格式（10K MTS、3000 MTS等）
+   - 港口保留原始格式（包括缩写）
+   - 费率保留完整条款描述
+   - 不进行单位换算或格式转换
+
+3. **容错处理**
+   - 如果某个字段不存在，使用空字符串
+   - 如果邮件不是船运邮件，跳过不处理
+   - 如果提取失败，记录到日志但继续处理
+
+4. **数据完整性**
+   - 所有8个核心字段都会在Excel中创建列
+   - 即使某些字段为空，也保持数据结构一致
+   - 每行数据都有明确的邮件来源
+
+## 依赖库
+
+- `imaplib`: 读取邮件（Python标准库）
+- `email`: 解析邮件（Python标准库）
+- `openpyxl`: 操作Excel文件
+  - 安装：`pip install openpyxl`
+
+## 注意事项
+
+1. **IMAP连接限制**
+   - QQ邮箱对IMAP连接有频率限制
+   - 避免短时间内频繁调用
+   - 建议每次处理不超过100封邮件
+
+2. **Excel文件锁定**
+   - 如果Excel文件正在打开，保存会失败
+   - 请关闭Excel文件后再运行工具
+
+3. **授权码安全**
+   - 授权码等同于邮箱密码
+   - 已安全存储在.env文件中
+   - 请勿泄露或提交到版本控制
+
+4. **识别准确性**
+   - 工具基于关键词和模式匹配
+   - 特殊格式的邮件可能无法识别
+   - 建议定期检查Excel数据准确性
+
+## 技术实现
+
+- **协议**: IMAP (imap.qq.com:993 SSL)
+- **脚本位置**: `.claude/skills/cargoextract/cargo_extractor.py`
+- **配置文件**: `.env`
+- **输出目录**: `D:\AI\cc_pro\test_9\`
+
+## 故障排除
+
+### 问题1: 未找到货盘信息
+
+**可能原因：**
+- 邮件中不包含足够的关键词
+- 货盘格式不符合识别规则
+- 邮件内容为纯图片
+
+**解决方案：**
+- 检查邮件主题和正文是否包含关键词
+- 尝试增加关键词数量
+- 联系发送者使用标准格式
+
+### 问题2: Excel保存失败
+
+**可能原因：**
+- Excel文件正在被打开
+- 目录不存在
+- 权限不足
+
+**解决方案：**
+- 关闭Excel文件
+- 检查目录是否存在
+- 确保有写入权限
+
+### 问题3: 识别错误的邮件
+
+**可能原因：**
+- 关键词过于通用
+- 邮件内容包含船运词汇但不是货盘
+
+**解决方案：**
+- 手动检查Excel数据
+- 删除不相关的行
+- 调整识别规则（需修改代码）
+
+## 更新日志
+
+- v1.0 (2026-01-09): 初始版本
+  - 支持读取QQ邮箱
+  - 自动识别船运邮件
+  - 提取8个核心货盘字段
+  - Excel自动保存和去重

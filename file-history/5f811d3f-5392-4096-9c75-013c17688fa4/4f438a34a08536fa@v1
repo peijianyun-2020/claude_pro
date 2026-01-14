@@ -1,0 +1,243 @@
+"""
+报告生成器 - 生成可视化和报告
+
+Report generator for creating visualizations and reports.
+"""
+
+from pathlib import Path
+from datetime import datetime
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import json
+import logging
+from typing import Dict, Optional, List
+
+logger = logging.getLogger(__name__)
+
+# Configure matplotlib for Chinese
+plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+
+class ReportGenerator:
+    """
+    报告生成器
+
+    生成可视化和报告：
+    - 预测vs实际价格曲线图
+    - 性能指标统计图
+    - HTML报告
+    - CSV导出
+
+    Usage:
+        generator = ReportGenerator()
+        generator.generate_report(backtest_results, output_path)
+    """
+
+    def __init__(self, output_dir: str = 'data/reports'):
+        """
+        初始化报告生成器
+
+        Args:
+            output_dir: 输出目录
+        """
+        self.output_dir = Path(output_dir)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+
+        logger.info(f"初始化报告生成器 - 输出目录: {output_dir}")
+
+    def generate_price_comparison_plot(
+        self,
+        predictions: np.ndarray,
+        actual: np.ndarray,
+        title: str = "预测vs实际价格",
+        save_path: Optional[Path] = None
+    ) -> Path:
+        """
+        生成价格对比图
+
+        Args:
+            predictions: 预测值
+            actual: 实际值
+            title: 图表标题
+            save_path: 保存路径
+
+        Returns:
+            保存的文件路径
+        """
+        fig, ax = plt.subplots(figsize=(14, 6))
+
+        hours = np.arange(len(predictions))
+        ax.plot(hours, actual, label='实际价格', linewidth=2, alpha=0.7)
+        ax.plot(hours, predictions, label='预测价格', linewidth=2, alpha=0.7, linestyle='--')
+
+        ax.set_xlabel('小时')
+        ax.set_ylabel('价格 (元/MWh)')
+        ax.set_title(title)
+        ax.legend()
+        ax.grid(True, alpha=0.3)
+
+        if save_path is None:
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            save_path = self.output_dir / f"price_comparison_{timestamp}.png"
+
+        plt.savefig(save_path, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        logger.info(f"保存价格对比图: {save_path}")
+        return save_path
+
+    def generate_metrics_chart(
+        self,
+        metrics_history: List[Dict],
+        save_path: Optional[Path] = None
+    ) -> Path:
+        """
+        生成性能指标趋势图
+
+        Args:
+            metrics_history: 指标历史记录
+            save_path: 保存路径
+
+        Returns:
+            保存的文件路径
+        """
+        fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+
+        df = pd.DataFrame(metrics_history)
+
+        # MAPE趋势
+        if 'mape' in df.columns:
+            axes[0, 0].plot(df.index, df['mape'], marker='o')
+            axes[0, 0].set_title('MAPE趋势')
+            axes[0, 0].set_ylabel('MAPE (%)')
+            axes[0, 0].grid(True, alpha=0.3)
+
+        # MAE趋势
+        if 'mae' in df.columns:
+            axes[0, 1].plot(df.index, df['mae'], marker='o', color='orange')
+            axes[0, 1].set_title('MAE趋势')
+            axes[0, 1].set_ylabel('MAE')
+            axes[0, 1].grid(True, alpha=0.3)
+
+        # RMSE趋势
+        if 'rmse' in df.columns:
+            axes[1, 0].plot(df.index, df['rmse'], marker='o', color='green')
+            axes[1, 0].set_title('RMSE趋势')
+            axes[1, 0].set_ylabel('RMSE')
+            axes[1, 0].grid(True, alpha=0.3)
+
+        # R²趋势
+        if 'r2' in df.columns:
+            axes[1, 1].plot(df.index, df['r2'], marker='o', color='red')
+            axes[1, 1].set_title('R²趋势')
+            axes[1, 1].set_ylabel('R²')
+            axes[1, 1].grid(True, alpha=0.3)
+
+        plt.tight_layout()
+
+        if save_path is None:
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            save_path = self.output_dir / f"metrics_trend_{timestamp}.png"
+
+        plt.savefig(save_path, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        logger.info(f"保存指标趋势图: {save_path}")
+        return save_path
+
+    def generate_html_report(
+        self,
+        backtest_results: Dict,
+        save_path: Optional[Path] = None
+    ) -> Path:
+        """
+        生成HTML报告
+
+        Args:
+            backtest_results: 回测结果
+            save_path: 保存路径
+
+        Returns:
+            保存的文件路径
+        """
+        avg_metrics = backtest_results.get('avg_metrics', {})
+
+        html_content = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>回测报告</title>
+    <style>
+        body {{ font-family: Arial, sans-serif; margin: 20px; }}
+        h1 {{ color: #333; }}
+        .metric {{ margin: 10px 0; padding: 15px; background: #f5f5f5; border-left: 4px solid #007bff; }}
+        .metric-value {{ font-size: 24px; font-weight: bold; color: #007bff; }}
+    </style>
+</head>
+<body>
+    <h1>电力价格预测回测报告</h1>
+    <p>生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+
+    <h2>性能指标</h2>
+    <div class="metric">
+        <p>平均MAPE</p>
+        <p class="metric-value">{avg_metrics.get('mape', 'N/A'):.2f}%</p>
+    </div>
+    <div class="metric">
+        <p>平均MAE</p>
+        <p class="metric-value">{avg_metrics.get('mae', 'N/A'):.2f}</p>
+    </div>
+    <div class="metric">
+        <p>平均RMSE</p>
+        <p class="metric-value">{avg_metrics.get('rmse', 'N/A'):.2f}</p>
+    </div>
+
+    <h2>回测配置</h2>
+    <ul>
+        <li>测试天数: {backtest_results.get('test_days', 'N/A')}</li>
+        <li>预测天数: {backtest_results.get('forecast_days', 'N/A')}</li>
+        <li>预测次数: {backtest_results.get('num_predictions', 'N/A')}</li>
+    </ul>
+</body>
+</html>
+"""
+
+        if save_path is None:
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            save_path = self.output_dir / f"backtest_report_{timestamp}.html"
+
+        with open(save_path, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+
+        logger.info(f"保存HTML报告: {save_path}")
+        return save_path
+
+    def export_metrics_to_csv(
+        self,
+        metrics_history: List[Dict],
+        save_path: Optional[Path] = None
+    ) -> Path:
+        """
+        导出指标到CSV
+
+        Args:
+            metrics_history: 指标历史记录
+            save_path: 保存路径
+
+        Returns:
+            保存的文件路径
+        """
+        df = pd.DataFrame(metrics_history)
+
+        if save_path is None:
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            save_path = self.output_dir / f"metrics_{timestamp}.csv"
+
+        df.to_csv(save_path, index=False, encoding='utf-8-sig')
+
+        logger.info(f"导出指标CSV: {save_path}")
+        return save_path

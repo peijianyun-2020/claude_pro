@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+船运货盘信息提取工具 - 用户级SKILL入口
+从项目目录读取配置并执行货盘提取
+"""
+
+import sys
+import os
+from pathlib import Path
+
+# 添加项目skills目录到路径
+project_root = Path.cwd()
+skills_dir = project_root / ".claude" / "skills"
+sys.path.insert(0, str(skills_dir))
+
+# 导入并执行主脚本
+if __name__ == "__main__":
+    # 导入cargo_extractor模块
+    import cargo_extractor
+
+    # 解析参数
+    count = 50
+    if len(sys.argv) > 1:
+        try:
+            count = int(sys.argv[1])
+        except ValueError:
+            print("无效的邮件数量，使用默认值50")
+
+    # 从.env加载配置并执行
+    cargo_extractor.load_env_file()
+
+    email = os.getenv("QQMAIL_EMAIL")
+    auth_code = os.getenv("QQMAIL_AUTH_CODE")
+
+    if not email or not auth_code:
+        print("错误: 未找到邮箱配置")
+        print("请确保.env文件中配置了QQMAIL_EMAIL和QQMAIL_AUTH_CODE")
+        sys.exit(1)
+
+    # 读取邮件并提取货盘
+    results = cargo_extractor.read_emails_and_extract_cargo(email, auth_code, count)
+
+    if results:
+        # 保存到Excel
+        success = cargo_extractor.save_to_excel(results, cargo_extractor.EXCEL_FILE)
+
+        if success:
+            print("\n" + "="*80)
+            print("完成！")
+            print("="*80 + "\n")
+        else:
+            print("\n保存失败\n")
+    else:
+        print("\n未找到货盘信息\n")

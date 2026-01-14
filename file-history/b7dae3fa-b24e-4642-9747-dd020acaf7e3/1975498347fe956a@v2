@@ -1,0 +1,320 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""处理现货价格数据并生成CSV文件"""
+
+import json
+import csv
+from pathlib import Path
+
+# API响应数据
+api_response = {
+    "code": 0,
+    "msg": "success",
+    "data": [
+        {
+            "watchUserPriceId": "186aba5f7ad9466d8f5f3fb2968ccf94",
+            "lastOperator": None,
+            "price1900": "265.9159",
+            "price1800": "291.3924",
+            "price1200": "170.8695",
+            "price1300": "59.743",
+            "price1000": "136.9224",
+            "dateType": "1",
+            "price1100": "89.6082",
+            "price1600": "188.1387",
+            "price1700": "289.8174",
+            "price1400": "59.758",
+            "price1500": "60.2053",
+            "price0900": "0.836",
+            "price0700": "70",
+            "price0800": "0",
+            "price0100": "241.2339",
+            "price0200": "333.0961",
+            "price2300": "214.6522",
+            "price2200": "302.8872",
+            "price0000": "316.1899",
+            "price2100": "323.0642",
+            "price0500": "298.2913",
+            "price0600": "251.8243",
+            "createTime": "2026-01-02T23:55:00",
+            "price0300": "313.6496",
+            "price0400": "309.0107",
+            "lastModifyTime": None,
+            "exchange": "03",
+            "createUser": "system",
+            "price2000": "318.7536",
+            "operateDate": "2026-01-01"
+        },
+        {
+            "watchUserPriceId": "a71ca666e1074a23a781eeb417bd2e81",
+            "lastOperator": None,
+            "price1900": "316.1885",
+            "price1800": "326.9857",
+            "price1200": "2.4019",
+            "price1300": "1.5764",
+            "price1000": "209.9804",
+            "dateType": "1",
+            "price1100": "2.8231",
+            "price1600": "126.1538",
+            "price1700": "298.1729",
+            "price1400": "1.0502",
+            "price1500": "0.0634",
+            "price0900": "329.4608",
+            "price0700": "288.2088",
+            "price0800": "369.4331",
+            "price0100": "316.7768",
+            "price0200": "323.9446",
+            "price2300": "322.0065",
+            "price2200": "341.7416",
+            "price0000": "310.387",
+            "price2100": "327.9909",
+            "price0500": "340.6721",
+            "price0600": "307.0947",
+            "createTime": "2026-01-02T23:55:00",
+            "price0300": "319.6005",
+            "price0400": "346.9964",
+            "lastModifyTime": None,
+            "exchange": "04",
+            "createUser": "system",
+            "price2000": "342.693",
+            "operateDate": "2026-01-01"
+        },
+        {
+            "watchUserPriceId": "3a1e0bb3da784f4587bee4ff4f4c73e9",
+            "lastOperator": None,
+            "price1900": "416.667",
+            "price1800": "421.8599",
+            "price1200": "-28.3368",
+            "price1300": "-28.3371",
+            "price1000": "-0.1285",
+            "dateType": "1",
+            "price1100": "0.0116",
+            "price1600": "206.4189",
+            "price1700": "442.7313",
+            "price1400": "0.3305",
+            "price1500": "0.2508",
+            "price0900": "0.0289",
+            "price0700": "346.6174",
+            "price0800": "441.272",
+            "price0100": "499.8078",
+            "price0200": "489.9343",
+            "price2300": "313.6434",
+            "price2200": "426.2545",
+            "price0000": "462.6225",
+            "price2100": "435.881",
+            "price0500": "493.3239",
+            "price0600": "307.4546",
+            "createTime": "2026-01-02T23:55:00",
+            "price0300": "490.4159",
+            "price0400": "506.5509",
+            "lastModifyTime": None,
+            "exchange": "06",
+            "createUser": "system",
+            "price2000": "436.1413",
+            "operateDate": "2026-01-01"
+        },
+        {
+            "watchUserPriceId": "6457c63ea07343f59564307e461c89da",
+            "lastOperator": None,
+            "price1900": "197.8061",
+            "price1800": "246.628",
+            "price1200": "-10.5099",
+            "price1300": "-27.7683",
+            "price1000": "-48.4911",
+            "dateType": "1",
+            "price1100": "-46.967",
+            "price1600": "47.171",
+            "price1700": "226.6157",
+            "price1400": "-43.3412",
+            "price1500": "-31.7262",
+            "price0900": "-46.7089",
+            "price0700": "-9.715",
+            "price0800": "-47.7564",
+            "price0100": "223.249",
+            "price0200": "199.5099",
+            "price2300": "240.531",
+            "price2200": "246.891",
+            "price0000": "281.1468",
+            "price2100": "230.9795",
+            "price0500": "128.1824",
+            "price0600": "25.1138",
+            "createTime": "2026-01-02T23:55:00",
+            "price0300": "209.1765",
+            "price0400": "187.2269",
+            "lastModifyTime": None,
+            "exchange": "02",
+            "createUser": "system",
+            "price2000": "247.8867",
+            "operateDate": "2026-01-01"
+        },
+        {
+            "watchUserPriceId": "d4a1d4e199ea4e94832288a37d804ca0",
+            "lastOperator": None,
+            "price1900": "283.3118",
+            "price1800": "313.3171",
+            "price1200": "73.22",
+            "price1300": "50.2187",
+            "price1000": "87.8696",
+            "dateType": "1",
+            "price1100": "47.8993",
+            "price1600": "149.206",
+            "price1700": "299.292",
+            "price1400": "47.3546",
+            "price1500": "51.4076",
+            "price0900": "92.5387",
+            "price0700": "131.4093",
+            "price0800": "131.1204",
+            "price0100": "297.7477",
+            "price0200": "302.7989",
+            "price2300": "285.8201",
+            "price2200": "319.1474",
+            "price0000": "331.0569",
+            "price2100": "311.9426",
+            "price0500": "251.8756",
+            "price0600": "190.5886",
+            "createTime": "2026-01-02T23:55:00",
+            "price0300": "302.345",
+            "price0400": "297.9936",
+            "lastModifyTime": None,
+            "exchange": "00",
+            "createUser": "system",
+            "price2000": "320.6021",
+            "operateDate": "2026-01-01"
+        },
+        {
+            "watchUserPriceId": "5c7dd10ea7054c06a2e3beb775e9a407",
+            "lastOperator": None,
+            "price1900": "456.027",
+            "price1800": "473.9531",
+            "price1200": "423.0881",
+            "price1300": "446.7",
+            "price1000": "384.9741",
+            "dateType": "1",
+            "price1100": "431.8101",
+            "price1600": "448.0569",
+            "price1700": "460.0592",
+            "price1400": "457.0683",
+            "price1500": "450.1127",
+            "price0900": "417.6119",
+            "price0700": "308.25",
+            "price0800": "337.95",
+            "price0100": "452.4663",
+            "price0200": "450.8524",
+            "price2300": "464.7058",
+            "price2200": "479.3596",
+            "price0000": "457.5696",
+            "price2100": "463.1772",
+            "price0500": "305.8184",
+            "price0600": "425.4595",
+            "createTime": "2026-01-02T23:55:00",
+            "price0300": "445.3712",
+            "price0400": "439.5222",
+            "lastModifyTime": None,
+            "exchange": "05",
+            "createUser": "system",
+            "price2000": "457.4",
+            "operateDate": "2026-01-01"
+        }
+    ]
+}
+
+# 地区代码映射
+REGION_MAP = {
+    "00": "全区域",
+    "02": "广东",
+    "03": "广西",
+    "04": "云南",
+    "05": "贵州",
+    "06": "海南"
+}
+
+def process_data_to_csv():
+    """处理API数据并生成CSV文件"""
+
+    # Check if data is empty
+    if not api_response["data"]:
+        print("[ERROR] API returned empty data")
+        return False
+
+    # 创建地区-价格映射
+    region_prices = {}
+    for item in api_response["data"]:
+        exchange = item["exchange"]
+        region_name = REGION_MAP.get(exchange, f"未知({exchange})")
+        region_prices[region_name] = item
+
+    # 生成24小时的时间列表
+    hours = []
+    for i in range(24):
+        hour_str = f"{i:02d}:00"
+        hours.append(hour_str)
+
+    # 准备CSV数据
+    csv_rows = []
+    csv_rows.append(["时间"] + list(REGION_MAP.values()))
+
+    # 填充每个小时的数据
+    for hour_idx in range(24):
+        hour_str = f"{hour_idx:02d}:00"
+        row = [hour_str]
+
+        for region_code, region_name in REGION_MAP.items():
+            if region_name in region_prices:
+                price_key = f"price{hour_idx:02d}00"
+                price = region_prices[region_name].get(price_key, "")
+                row.append(price)
+            else:
+                row.append("")
+
+        csv_rows.append(row)
+
+    # 保存CSV文件
+    output_dir = Path(r"D:\AI\cc_pro\现货价格采集")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    csv_file = output_dir / "实时价格_20260101.csv"
+
+    with open(csv_file, 'w', newline='', encoding='utf-8-sig') as f:
+        writer = csv.writer(f)
+        writer.writerows(csv_rows)
+
+    print(f"[OK] CSV file generated: {csv_file}")
+    print(f"[INFO] Data rows: {len(csv_rows) - 1} (excluding header)")
+
+    # Save API backup
+    backup_dir = output_dir / "backups"
+    backup_dir.mkdir(parents=True, exist_ok=True)
+
+    backup_file = backup_dir / f"api_backup_realtime_20260101.json"
+
+    with open(backup_file, 'w', encoding='utf-8') as f:
+        json.dump(api_response, f, ensure_ascii=False, indent=2)
+
+    print(f"[BACKUP] API backup saved: {backup_file}")
+
+    # Verify data integrity
+    print("\n[CHECK] Data integrity verification:")
+    expected_regions = 6
+    expected_hours = 24
+
+    actual_regions = len(region_prices)
+    actual_hours = len(csv_rows) - 1
+
+    print(f"  - 期望地区数: {expected_regions}")
+    print(f"  - 实际地区数: {actual_regions}")
+    print(f"  - 期望小时数: {expected_hours}")
+    print(f"  - 实际小时数: {actual_hours}")
+
+    if actual_regions == expected_regions and actual_hours == expected_hours:
+        print("  [OK] Data integrity: PERFECT")
+        return True
+    else:
+        print("  [WARNING] Data integrity: ISSUES FOUND")
+        return False
+
+if __name__ == "__main__":
+    success = process_data_to_csv()
+    if success:
+        print("\n[SUCCESS] Collection completed successfully!")
+    else:
+        print("\n[ERROR] Issues occurred during collection")

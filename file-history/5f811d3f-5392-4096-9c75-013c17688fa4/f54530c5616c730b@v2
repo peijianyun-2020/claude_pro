@@ -1,0 +1,388 @@
+"""
+自动化预测调度器
+
+Automated prediction scheduler using APScheduler.
+Schedules and runs daily price predictions automatically.
+"""
+
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
+from datetime import datetime, time
+import logging
+from typing import Dict, Optional, Callable
+from pathlib import Path
+
+logger = logging.getLogger(__name__)
+
+
+class PredictionScheduler:
+    """
+    自动化预测调度器
+
+    使用APScheduler实现定时预测任务调度：
+    - 每日定时预测
+    - 可配置的调度时间
+    - 任务状态监控
+    - 错误处理和重试
+
+    Usage:
+        scheduler = PredictionScheduler(region='广东')
+        scheduler.schedule_daily_prediction(hour=8, minute=0)
+        scheduler.start()
+    """
+
+    def __init__(
+        self,
+        region: str = '广东',
+        config: Optional[Dict] = None,
+        lookback_days: int = 30,
+        forecast_days: int = 3
+    ):
+        """
+        初始化调度器
+
+        Args:
+            region: 预测区域
+            config: 配置参数
+            lookback_days: 特征构造的历史天数
+            forecast_days: 预测天数
+        """
+        self.region = region
+        self.config = config
+        self.lookback_days = lookback_days
+        self.forecast_days = forecast_days
+
+        # Create background scheduler
+        self.scheduler = BackgroundScheduler(
+            timezone='Asia/Shanghai',
+            job_defaults={
+                'coalesce': True,  # 合并堆积的任务
+                'max_instances': 1,  # 同一任务最多1个实例
+                'misfire_grace_time': 3600  # 错过执行时间的宽容时间（秒）
+            }
+        )
+
+        # Prediction workflow instance (created on demand)
+        self._workflow = None
+
+        # Task history
+        self.task_history = []
+
+        logger.info(f"初始化预测调度器 - 区域: {region}")
+
+    @property
+    def workflow(self):
+        """延迟创建预测工作流实例"""
+        if self._workflow is None:
+            from src.prediction.prediction_workflow import PredictionWorkflow
+            self._workflow = PredictionWorkflow(
+                region=self.region,
+                config=self.config,
+                lookback_days=self.lookback_days,
+                forecast_days=self.forecast_days
+            )
+        return self._workflow
+
+    def schedule_daily_prediction(
+        self,
+        hour: int = 8,
+        minute: int = 0,
+        job_id: Optional[str] = None
+    ) -> str:
+        """
+        调度每日预测任务
+
+        Args:
+            hour: 执行小时（0-23）
+            minute: 执行分钟（0-59）
+            job_id: 任务ID（可选，默认自动生成）
+
+        Returns:
+            任务ID
+        """
+        if job_id is None:
+            job_id = f'daily_prediction_{self.region}'
+
+        # Add daily job using cron trigger
+        job = self.scheduler.add_job(
+            func=self._run_prediction_task,
+            trigger=CronTrigger(hour=hour, minute=minute),
+            id=job_id,
+            name=f'每日预测-{self.region}({hour:02d}:{minute:02d})',
+            replace_existing=True
+        )
+
+        logger.info(f"调度每日预测任务 - ID: {job_id}, 时间: {hour:02d}:{minute:02d}")
+
+        return job_id
+
+    def schedule_interval_prediction(
+        self,
+        hours: int = 1,
+        job_id: Optional[str] = None
+    ) -> str:
+        """
+        调度间隔预测任务
+
+        Args:
+            hours: 执行间隔（小时）
+            job_id: 任务ID（可选）
+
+        Returns:
+            任务ID
+        """
+        if job_id is None:
+            job_id = f'interval_prediction_{self.region}'
+
+        from apscheduler.triggers.interval import IntervalTrigger
+
+        job = self.scheduler.add_job(
+            func=self._run_prediction_task,
+            trigger=IntervalTrigger(hours=hours),
+            id=job_id,
+            name=f'间隔预测-{self.region}(每{hours}小时)',
+            replace_existing=True
+        )
+
+        logger.info(f"调度间隔预测任务 - ID: {job_id}, 间隔: {hours}小时")
+
+        return job_id
+
+    def schedule_one_time_prediction(
+        self,
+        run_date: datetime,
+        job_id: Optional[str] = None
+    ) -> str:
+        """
+        调度一次性预测任务
+
+        Args:
+            run_date: 执行时间
+            job_id: 任务ID（可选）
+
+        Returns:
+            任务ID
+        """
+        if job_id is None:
+            job_id = f'onetime_prediction_{self.region}_{run_date.strftime("%Y%m%d%H%M")}'
+
+        from apscheduler.triggers.date import DateTrigger
+
+        job = self.scheduler.add_job(
+            func=self._run_prediction_task,
+            trigger=DateTrigger(run_date=run_date),
+            id=job_id,
+            name=f'一次性预测-{self.region}({run_date.strftime("%Y-%m-%d %H:%M")})',
+            replace_existing=True
+        )
+
+        logger.info(f"调度一次性预测任务 - ID: {job_id}, 时间: {run_date}")
+
+        return job_id
+
+    def _run_prediction_task(self) -> Dict:
+        """
+        执行预测任务（内部方法）
+
+        Returns:
+            任务结果字典
+        """
+        task_start = datetime.now()
+        job_id = f"manual_{task_start.strftime('%Y%m%d%H%M%S')}"
+
+        logger.info("=" * 60)
+        logger.info(f"开始执行预测任务 - {task_start.strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.info("=" * 60)
+
+        try:
+            # Run prediction
+            result = self.workflow.run_daily_prediction(save_results=True)
+
+            task_result = {
+                'job_id': job_id,
+                'start_time': task_start,
+                'end_time': datetime.now(),
+                'status': result.get('status', 'unknown'),
+                'region': self.region,
+                'output_path': result.get('output_path'),
+                'error': result.get('error')
+            }
+
+            # Log result
+            if task_result['status'] == 'success':
+                logger.info(f"预测任务成功 - 输出: {task_result['output_path']}")
+            else:
+                logger.error(f"预测任务失败 - {task_result['error']}")
+
+            # Record to history
+            self.task_history.append(task_result)
+
+            # Keep only last 100 records
+            if len(self.task_history) > 100:
+                self.task_history = self.task_history[-100:]
+
+            return task_result
+
+        except Exception as e:
+            logger.error(f"预测任务异常: {e}", exc_info=True)
+
+            task_result = {
+                'job_id': job_id,
+                'start_time': task_start,
+                'end_time': datetime.now(),
+                'status': 'error',
+                'region': self.region,
+                'error': str(e)
+            }
+
+            self.task_history.append(task_result)
+            return task_result
+
+    def run_prediction_now(self) -> Dict:
+        """
+        立即执行一次预测
+
+        Returns:
+            任务结果字典
+        """
+        logger.info("手动触发预测任务")
+        return self._run_prediction_task()
+
+    def start(self):
+        """启动调度器"""
+        if not self.scheduler.running:
+            self.scheduler.start()
+            logger.info("调度器已启动")
+        else:
+            logger.warning("调度器已在运行")
+
+    def stop(self, wait: bool = True):
+        """
+        停止调度器
+
+        Args:
+            wait: 是否等待正在执行的任务完成
+        """
+        if self.scheduler.running:
+            self.scheduler.shutdown(wait=wait)
+            logger.info("调度器已停止")
+        else:
+            logger.warning("调度器未运行")
+
+    def pause(self):
+        """暂停调度器"""
+        if self.scheduler.running:
+            self.scheduler.pause()
+            logger.info("调度器已暂停")
+
+    def resume(self):
+        """恢复调度器"""
+        if self.scheduler.running:
+            self.scheduler.resume()
+            logger.info("调度器已恢复")
+
+    def remove_job(self, job_id: str) -> bool:
+        """
+        移除任务
+
+        Args:
+            job_id: 任务ID
+
+        Returns:
+            是否成功移除
+        """
+        try:
+            self.scheduler.remove_job(job_id)
+            logger.info(f"移除任务: {job_id}")
+            return True
+        except Exception as e:
+            logger.warning(f"移除任务失败 {job_id}: {e}")
+            return False
+
+    def get_jobs(self) -> list:
+        """
+        获取所有任务
+
+        Returns:
+            任务列表
+        """
+        return self.scheduler.get_jobs()
+
+    def get_job_info(self, job_id: str) -> Optional[Dict]:
+        """
+        获取任务信息
+
+        Args:
+            job_id: 任务ID
+
+        Returns:
+            任务信息字典或None
+        """
+        try:
+            job = self.scheduler.get_job(job_id)
+            if job:
+                # Get next run time from trigger
+                next_run = None
+                if hasattr(job, 'next_run_time'):
+                    next_run = job.next_run_time
+                elif hasattr(job.trigger, 'next_run_time'):
+                    next_run = job.trigger.next_run_time
+
+                return {
+                    'id': job.id,
+                    'name': job.name,
+                    'next_run_time': next_run,
+                    'trigger': str(job.trigger)
+                }
+        except Exception as e:
+            logger.warning(f"获取任务信息失败 {job_id}: {e}")
+
+        return None
+
+    def get_task_history(self, limit: int = 10) -> list:
+        """
+        获取任务历史记录
+
+        Args:
+            limit: 返回记录数限制
+
+        Returns:
+            任务历史列表
+        """
+        return self.task_history[-limit:]
+
+    def get_scheduler_status(self) -> Dict:
+        """
+        获取调度器状态
+
+        Returns:
+            状态字典 {
+                'running': 是否运行中,
+                'job_count': 任务数量,
+                'jobs': 任务列表,
+                'task_history_count': 历史任务数量
+            }
+        """
+        jobs = self.get_jobs()
+
+        # Format job list with safe next_run_time access
+        job_list = []
+        for job in jobs:
+            next_run = None
+            if hasattr(job, 'next_run_time'):
+                next_run = job.next_run_time
+            elif hasattr(job.trigger, 'next_run_time'):
+                next_run = job.trigger.next_run_time
+
+            job_list.append({
+                'id': job.id,
+                'name': job.name,
+                'next_run_time': next_run
+            })
+
+        return {
+            'running': self.scheduler.running,
+            'job_count': len(jobs),
+            'jobs': job_list,
+            'task_history_count': len(self.task_history)
+        }

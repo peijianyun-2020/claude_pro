@@ -1,0 +1,198 @@
+"""
+Markdown生成器
+将HTML转换为Markdown格式
+"""
+import re
+from typing import Dict, Optional
+from bs4 import BeautifulSoup
+from markdownify import markdownify as md
+from chrome_collector import ArticleMetadata
+
+
+class MarkdownGenerator:
+    """Markdown生成器"""
+
+    def __init__(self):
+        pass
+
+    def html_to_markdown(self, html_content: str) -> str:
+        """
+        将HTML转换为Markdown
+
+        Args:
+            html_content: HTML字符串
+
+        Returns:
+            Markdown字符串
+        """
+        try:
+            # 使用markdownify转换
+            markdown_text = md(html_content)
+
+            # 清理多余的空行
+            markdown_text = re.sub(r'\n{3,}', '\n\n', markdown_text)
+
+            return markdown_text
+        except Exception as e:
+            print(f"转换Markdown失败: {e}")
+            return ""
+
+    def generate_article_markdown(
+        self,
+        metadata: ArticleMetadata,
+        image_mappings: Optional[Dict[str, str]] = None
+    ) -> str:
+        """
+        生成完整的文章Markdown
+
+        Args:
+            metadata: 文章元数据
+            image_mappings: 图片URL到本地路径的映射
+
+        Returns:
+            完整的Markdown字符串
+        """
+        try:
+            # 生成头部元数据
+            header = self._generate_header(metadata)
+
+            # 转换正文
+            content_markdown = self.html_to_markdown(metadata.content_html)
+
+            # 如果有图片映射，替换图片URL
+            if image_mappings:
+                content_markdown = self._replace_image_urls(content_markdown, image_mappings)
+
+            # 组合完整内容
+            full_markdown = f"{header}\n\n{content_markdown}"
+
+            return full_markdown
+        except Exception as e:
+            print(f"生成Markdown失败: {e}")
+            return ""
+
+    def _generate_header(self, metadata: ArticleMetadata) -> str:
+        """
+        生成Markdown头部元数据
+
+        Args:
+            metadata: 文章元数据
+
+        Returns:
+            头部Markdown字符串
+        """
+        lines = [
+            f"# {metadata.title}",
+            "",
+            "**元数据**",
+            "",
+            f"- **作者**: {metadata.author}",
+            f"- **公众号**: {metadata.account_name}",
+            f"- **发布时间**: {metadata.publish_time}",
+            f"- **原文链接**: {metadata.url}",
+            f"- **图片数量**: {len(metadata.images)}",
+            "",
+            "---",
+            ""
+        ]
+
+        return "\n".join(lines)
+
+    def _replace_image_urls(self, markdown_text: str, image_mappings: Dict[str, str]) -> str:
+        """
+        替换Markdown中的图片URL为本地路径
+
+        Args:
+            markdown_text: 原始Markdown文本
+            image_mappings: URL到本地路径的映射
+
+        Returns:
+            替换后的Markdown文本
+        """
+        for url, local_path in image_mappings.items():
+            markdown_text = markdown_text.replace(url, local_path)
+
+        return markdown_text
+
+    def save_markdown_file(self, markdown_content: str, filepath: str) -> bool:
+        """
+        保存Markdown文件
+
+        Args:
+            markdown_content: Markdown内容
+            filepath: 文件保存路径
+
+        Returns:
+            是否保存成功
+        """
+        try:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(markdown_content)
+            return True
+        except Exception as e:
+            print(f"保存Markdown文件失败: {e}")
+            return False
+
+    def generate_filename(self, metadata: ArticleMetadata, file_format: str = "{date}_{title}.md") -> str:
+        """
+        生成文件名
+
+        Args:
+            metadata: 文章元数据
+            file_format: 文件名格式模板
+
+        Returns:
+            文件名
+        """
+        from article_parser import ArticleParser
+
+        parser = ArticleParser()
+
+        # 提取日期
+        date_str = ""
+        if metadata.publish_time:
+            # 尝试从发布时间中提取日期
+            date_match = re.search(r'(\d{4})年(\d{1,2})月(\d{1,2})日', metadata.publish_time)
+            if date_match:
+                year, month, day = date_match.groups()
+                date_str = f"{year}-{month.zfill(2)}-{day.zfill(2)}"
+
+        # 清理标题作为文件名
+        safe_title = parser.sanitize_filename(metadata.title)
+
+        # 如果没有日期，使用默认日期
+        if not date_str:
+            from datetime import datetime
+            date_str = datetime.now().strftime("%Y-%m-%d")
+
+        # 生成文件名
+        filename = file_format.format(date=date_str, title=safe_title)
+
+        return filename
+
+    def add_image_references(self, markdown_text: str, images: list) -> str:
+        """
+        在Markdown末尾添加图片引用列表
+
+        Args:
+            markdown_text: Markdown文本
+            images: 图片URL列表
+
+        Returns:
+            添加了图片引用的Markdown文本
+        """
+        if not images:
+            return markdown_text
+
+        lines = [
+            "",
+            "---",
+            "",
+            "## 图片列表",
+            ""
+        ]
+
+        for i, url in enumerate(images, 1):
+            lines.append(f"{i}. ![]({url})")
+
+        return markdown_text + "\n".join(lines)

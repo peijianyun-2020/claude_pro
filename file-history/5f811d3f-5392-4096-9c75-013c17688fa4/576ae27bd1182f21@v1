@@ -1,0 +1,250 @@
+"""
+性能监控器 - 收集和记录预测性能指标
+
+Performance monitor for tracking prediction metrics over time.
+"""
+
+from pathlib import Path
+from datetime import datetime
+import pandas as pd
+import numpy as np
+import json
+import logging
+from typing import Dict, Optional, List
+
+logger = logging.getLogger(__name__)
+
+
+class PerformanceMonitor:
+    """
+    性能监控器
+
+    收集和记录预测性能指标：
+    - 记录每次预测的性能
+    - 计算准确度统计
+    - 生成性能报告
+    - 保存性能历史
+
+    Usage:
+        monitor = PerformanceMonitor()
+        monitor.log_prediction(predictions, actual, timestamp)
+        metrics = monitor.get_performance_summary()
+    """
+
+    def __init__(self, storage_dir: str = 'data/performance'):
+        """
+        初始化性能监控器
+
+        Args:
+            storage_dir: 性能数据存储目录
+        """
+        self.storage_dir = Path(storage_dir)
+        self.storage_dir.mkdir(parents=True, exist_ok=True)
+
+        self.performance_history = []
+
+        logger.info(f"初始化性能监控器 - 存储目录: {storage_dir}")
+
+    def log_prediction(
+        self,
+        predictions: Dict[str, np.ndarray],
+        actual: Dict[str, np.ndarray],
+        timestamp: Optional[datetime] = None
+    ) -> Dict[str, float]:
+        """
+        记录预测性能
+
+        Args:
+            predictions: 预测值字典 {'day_ahead': array, 'real_time': array}
+            actual: 实际值字典 {'day_ahead': array, 'real_time': array}
+            timestamp: 时间戳
+
+        Returns:
+            性能指标字典
+        """
+        if timestamp is None:
+            timestamp = datetime.now()
+
+        metrics = {}
+
+        for pred_type in predictions.keys():
+            if pred_type not in actual:
+                continue
+
+            pred_values = predictions[pred_type]
+            actual_values = actual[pred_type]
+
+            # Calculate metrics
+            type_metrics = self._calculate_metrics(pred_values, actual_values)
+
+            for metric_name, value in type_metrics.items():
+                key = f"{pred_type}_{metric_name}"
+                metrics[key] = value
+
+        # Record to history
+        record = {
+            'timestamp': timestamp.isoformat(),
+            'metrics': metrics
+        }
+        self.performance_history.append(record)
+
+        # Save to file
+        self._save_record(record)
+
+        logger.info(f"记录预测性能 - MAPE日前: {metrics.get('day_ahead_mape', 'N/A')}%, "
+                   f"实时: {metrics.get('real_time_mape', 'N/A')}%")
+
+        return metrics
+
+    def _calculate_metrics(self, predicted: np.ndarray, actual: np.ndarray) -> Dict[str, float]:
+        """
+        计算性能指标
+
+        Args:
+            predicted: 预测值
+            actual: 实际值
+
+        Returns:
+            指标字典 {mape, mae, rmse}
+        """
+        # Remove NaN values
+        mask = ~(np.isnan(predicted) | np.isnan(actual))
+        predicted = predicted[mask]
+        actual = actual[mask]
+
+        if len(predicted) == 0:
+            return {'mape': float('nan'), 'mae': float('nan'), 'rmse': float('nan')}
+
+        # MAPE (handle zero values)
+        actual_safe = np.where(np.abs(actual) < 1e-10, 1e-10, actual)
+        mape = np.mean(np.abs((actual - predicted) / actual_safe)) * 100
+
+        # MAE
+        mae = np.mean(np.abs(actual - predicted))
+
+        # RMSE
+        rmse = np.sqrt(np.mean((actual - predicted) ** 2))
+
+        return {
+            'mape': float(mape),
+            'mae': float(mae),
+            'rmse': float(rmse)
+        }
+
+    def _save_record(self, record: Dict) -> None:
+        """保存记录到文件"""
+        try:
+            date_str = datetime.fromisoformat(record['timestamp']).strftime('%Y%m%d')
+            file_path = self.storage_dir / f"performance_{date_str}.jsonl"
+
+            with open(file_path, 'a', encoding='utf-8') as f:
+                f.write(json.dumps(record) + '\n')
+        except Exception as e:
+            logger.error(f"保存性能记录失败: {e}")
+
+    def get_performance_summary(self, days: int = 7) -> Dict:
+        """
+        获取性能摘要
+
+        Args:
+            days: 统计最近N天的数据
+
+        Returns:
+            性能摘要字典
+        """
+        if not self.performance_history:
+            return {}
+
+        # Filter recent records
+        cutoff_time = datetime.now() - pd.Timedelta(days=days)
+        recent_records = [
+            r for r in self.performance_history
+            if datetime.fromisoformat(r['timestamp']) > cutoff_time
+        ]
+
+        if not recent_records:
+            return {}
+
+        # Aggregate metrics
+        all_metrics = {}
+        for record in recent_records:
+            for key, value in record['metrics'].items():
+                if key not in all_metrics:
+                    all_metrics[key] = []
+                if not np.isnan(value):
+                    all_metrics[key].append(value)
+
+        summary = {}
+        for key, values in all_metrics.items():
+            summary[key] = {
+                'mean': float(np.mean(values)),
+                'std': float(np.std(values)),
+                'min': float(np.min(values)),
+                'max': float(np.max(values)),
+                'count': len(values)
+            }
+
+        return summary
+
+    def load_history(self, days: int = 30) -> List[Dict]:
+        """
+        加载历史性能记录
+
+        Args:
+            days: 加载最近N天的数据
+
+        Returns:
+            历史记录列表
+        """
+        cutoff_date = datetime.now() - pd.Timedelta(days=days)
+        records = []
+
+        for file_path in sorted(self.storage_dir.glob('performance_*.jsonl')):
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        record = json.loads(line.strip())
+                        record_time = datetime.fromisoformat(record['timestamp'])
+                        if record_time > cutoff_date:
+                            records.append(record)
+            except Exception as e:
+                logger.warning(f"加载性能记录失败 {file_path}: {e}")
+
+        return records
+
+    def get_performance_report(self) -> str:
+        """
+        生成性能报告
+
+        Returns:
+            报告文本
+        """
+        summary = self.get_performance_summary(days=7)
+
+        if not summary:
+            return "无性能数据"
+
+        lines = [
+            "=" * 60,
+            "性能监控报告",
+            "=" * 60,
+            f"统计周期: 最近7天",
+            ""
+        ]
+
+        for pred_type in ['day_ahead', 'real_time']:
+            mape_key = f"{pred_type}_mape"
+            if mape_key not in summary:
+                continue
+
+            lines.append(f"### {pred_type.upper()} 价格预测")
+            lines.append(f"MAPE: {summary[mape_key]['mean']:.2f}% "
+                       f"(±{summary[mape_key]['std']:.2f}%)")
+            lines.append(f"MAE:  {summary[f'{pred_type}_mae']['mean']:.2f}")
+            lines.append(f"RMSE: {summary[f'{pred_type}_rmse']['mean']:.2f}")
+            lines.append(f"预测次数: {summary[mape_key]['count']}")
+            lines.append("")
+
+        lines.append("=" * 60)
+
+        return '\n'.join(lines)

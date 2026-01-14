@@ -1,0 +1,65 @@
+"""
+微信公众号文章采集 Skill
+用户级技能实现
+"""
+
+SKILL_NAME = "wechat-collector"
+SKILL_VERSION = "1.0.0"
+SKILL_DESCRIPTION = """
+微信公众号文章自动化采集工具
+
+功能：
+- 采集单篇文章并保存为Markdown格式
+- 批量采集多个文章
+- 自动下载文章中的图片
+- 提取并保存文章元数据
+- 从文章中发现并采集相关文章
+
+使用方法：
+直接提供一个微信文章链接即可
+
+示例：
+"请采集这篇微信文章：https://mp.weixin.qq.com/s/xxx"
+"批量采集这些文章：[链接列表]"
+"""
+
+SKILL_CAPABILITIES = [
+    "单篇文章采集",
+    "批量文章采集",
+    "相关文章自动发现和采集",
+    "图片自动下载",
+    "元数据保存",
+    "Markdown格式输出"
+]
+
+SKILL_EXAMPLES = [
+    "请采集这篇微信文章：https://mp.weixin.qq.com/s/5cuBvvdfHuunxzW825fNHA",
+    "帮我采集这篇文章并下载图片：https://mp.weixin.qq.com/s/xxx",
+    "批量采集这些文章：https://mp.weixin.qq.com/s/xxx1, https://mp.weixin.qq.com/s/xxx2",
+    "从这篇文章采集所有相关文章"
+]
+
+
+def skill_info():
+    """返回技能信息"""
+    return {
+        "name": SKILL_NAME,
+        "version": SKILL_VERSION,
+        "description": SKILL_DESCRIPTION,
+        "capabilities": SKILL_CAPABILITIES,
+        "examples": SKILL_EXAMPLES
+    }
+
+
+if __name__ == "__main__":
+    print("=" * 60)
+    print(f"微信公众号文章采集工具 v{SKILL_VERSION}")
+    print("=" * 60)
+    print(SKILL_DESCRIPTION)
+    print("\n功能列表：")
+    for i, capability in enumerate(SKILL_CAPABILITIES, 1):
+        print(f"  {i}. {capability}")
+    print("\n使用示例：")
+    for example in SKILL_EXAMPLES:
+        print(f"  - {example}")
+    print("=" * 60)

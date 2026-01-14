@@ -1,0 +1,247 @@
+# 爆款视频拆解模板
+
+## 视频信息
+
+**视频标题**: [视频标题]
+
+**数据指标**:
+- 播放量: [X万]
+- 点赞: [X万]
+- 评论: [X千]
+- 转发: [X千]
+- 互动率: [X%]
+
+**内容类别**: [例如, 搞笑/教育/美妆/美食/剧情]
+
+---
+
+## 1. Hook Analysis / 黄金3秒分析 / 0-3秒钩子分析
+
+### Visual Hook / 视觉钩子
+- **Opening shot / 开篇画面**: [描述]
+- **Color scheme / 色彩方案**: [描述]
+- **Movement / 动态元素**: [描述]
+
+### Audio Hook / 听觉钩子
+- **Music / 音乐**: [BGM类型、节奏]
+- **Sound effect / 音效**: [特殊音效]
+- **Voiceover / 旁白**: [第一句话]
+
+### Hook Technique / 钩子技巧
+- [ ] Curiosity gap / 好奇心缺口
+- [ ] Strong statement / 强烈观点
+- [ ] Question / 提问
+- [ ] Visual shock / 视觉冲击
+- [ ] Unexpected twist / 反转
+
+**Why it works / 原理**: [解释为什么这个钩子有效]
+
+---
+
+## 2. Content Structure / 内容结构
+
+### Beginning / 开头 (0-5秒)
+**Purpose / 作用**: [建立钩子、引入主题]
+**Content / 内容**: [详细描述]
+
+### Middle / 中间 (5-25秒)
+**Purpose / 作用**: [展开内容、提供价值]
+**Content / 内容**:
+- Segment 1 / 片段1: [描述]
+- Segment 2 / 片段2: [描述]
+- Segment 3 / 片段3: [描述]
+
+### End / 结尾 (25-30秒)
+**Purpose / 作用**: [强化印象、引导行动]
+**Content / 内容**: [描述]
+
+---
+
+## 3. Key Elements / 关键元素
+
+### Visual Elements / 视觉元素
+| Element / 元素 | Description / 描述 | Purpose / 作用 |
+|---|---|---|
+| Camera angle / 镜头角度 | [e.g., 俯视/仰视/平视] | [效果] |
+| Lighting / 灯光 | [描述] | [效果] |
+| Background / 背景 | [描述] | [效果] |
+| Costume/Outfit / 服装 | [描述] | [效果] |
+| Props / 道具 | [列举] | [效果] |
+| Text overlay / 文字叠加 | [内容/位置/样式] | [效果] |
+| Effects / 特效 | [列举] | [效果] |
+
+### Audio Elements / 听觉元素
+| Element / 元素 | Description / 描述 | Purpose / 作用 |
+|---|---|---|
+| Background music / 背景音乐 | [类型/节奏/情绪] | [效果] |
+| Voiceover / 旁白 | [语调/节奏/风格] | [效果] |
+| Sound effects / 音效 | [列举] | [效果] |
+| Dialogue / 对话 | [关键台词] | [效果] |
+
+### Editing Style / 剪辑风格
+- **Pacing / 节奏**: [快/中/慢, cuts per second]
+- **Transitions / 转场**: [使用的转场技巧]
+- **Color grading / 调色**: [色调风格]
+- **Text style / 字幕风格**: [字体/颜色/动画]
+
+---
+
+## 4. Script Pattern / 脚本模式
+
+### Opening / 开场
+```
+[Exact opening words or action]
+[具体开场白或动作]
+```
+
+### Body / 正文
+```
+[Main content script with timing]
+[带时间标记的主要内容脚本]
+```
+- 5s: [Content]
+- 10s: [Content]
+- 15s: [Content]
+- 20s: [Content]
+
+### Closing / 收尾
+```
+[Exact closing words or CTA]
+[具体收尾语或行动号召]
+```
+
+### Script Formula / 脚本公式
+**Pattern detected / 检测到的模式**:
+- Formula type / 公式类型: [e.g., Problem-Agitate-Solve, Hook-Story-Offer]
+- How it's executed / 执行方式: [描述]
+
+---
+
+## 5. Emotional Journey / 情感曲线
+
+```
+High ↑           │              ███
+Engagement │     ██        ██     ███
+      │  ███        ██             ███
+Low  │────────────────────────────────→ Time
+     0s    5s    10s    15s    20s    30s
+```
+
+**Emotional beats / 情感节点**:
+- 0-3s: [Emotion - e.g., Surprise/好奇]
+- 3-10s: [Emotion - e.g., Interest/兴趣]
+- 10-20s: [Emotion - e.g., Enjoyment/享受]
+- 20-30s: [Emotion - e.g., Satisfaction/满足]
+
+---
+
+## 6. Engagement Triggers / 互动触发点
+
+### Like Triggers / 点赞触发
+- [ ] Relatable content / 共鸣内容
+- [ ] High value / 高价值
+- [ ] Entertainment / 娱乐性
+- [ ] Emotional resonance / 情感共鸣
+- [ ] Visual appeal / 视觉美感
+
+**Specific triggers / 具体触发点**: [列出]
+
+### Comment Triggers / 评论触发
+- [ ] Question asked / 提出问题
+- [ ] Controversial statement / 争议观点
+- [ ] Request for opinion / 征求意见
+- [ ] Incomplete information / 信息不完整
+- [ ] Call for sharing / 请求分享
+
+**Specific triggers / 具体触发点**: [列出]
+
+### Share Triggers / 转发触发
+- [ ] Social currency / 社交货币
+- [ ] Practical value / 实用价值
+- [ ] Identity signaling / 身份标识
+- [ ] Emotional connection / 情感连接
+- [ ] Entertainment / 娱乐价值
+
+**Specific triggers / 具体触发点**: [列出]
+
+---
+
+## 7. Call to Action / 行动号召
+
+### Type / 类型
+- [ ] Follow for more / 关注更多
+- [ ] Like and comment / 点赞评论
+- [ ] Share with friends / 分享给朋友
+- [ ] Link in bio / 见主页链接
+- [ ] Comment specific word / 评论关键词
+
+### CTA Wording / CTA 措辞
+```
+[Exact CTA text]
+[具体行动号召文案]
+```
+
+### CTA Placement / 位置
+- [ ] Beginning / 开头
+- [ ] Middle / 中间
+- [ ] End / 结尾
+- [ ] Throughout / 贯穿全程
+
+### CTA Effectiveness / 有效性分析
+**Why it works / 原理**: [解释为什么这个CTA有效]
+
+---
+
+## 8. Success Factors / 成功因素
+
+### Top 3 Success Drivers / 前3大成功驱动因素
+
+1. **[Factor 1]**
+   - Description / 描述: [详细说明]
+   - Why it matters / 为什么重要: [解释]
+
+2. **[Factor 2]**
+   - Description / 描述: [详细说明]
+   - Why it matters / 为什么重要: [解释]
+
+3. **[Factor 3]**
+   - Description / 描述: [详细说明]
+   - Why it matters / 为什么重要: [解释]
+
+### X-Factor / 独特因素
+**What makes this video special / 这个视频的独特之处**: [分析]
+
+---
+
+## 9. Replication Potential / 复制潜力
+
+### Easy to Replicate / 容易复制的元素
+1. [Element 1] - [Why / 原因]
+2. [Element 2] - [Why / 原因]
+3. [Element 3] - [Why / 原因]
+
+### Hard to Replicate / 难以复制的元素
+1. [Element 1] - [Why / 原因]
+2. [Element 2] - [Why / 原因]
+
+### Replication Strategy / 复制策略
+**How to adapt this format / 如何改编这个格式**: [给出具体建议]
+
+---
+
+## 10. Improvement Opportunities / 改进机会
+
+**What could make this even better / 如何可以做得更好**:
+1. [Idea 1]
+2. [Idea 2]
+3. [Idea 3]
+
+---
+
+## Summary / 总结
+
+**This video succeeded because / 这个视频成功是因为**:
+[1-2句话总结核心成功因素]
+
+**Key takeaway for content creation / 内容创作的关键要点**:
+[可操作的建议]

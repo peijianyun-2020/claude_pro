@@ -1,0 +1,105 @@
+"""
+测试性能监控器模块
+
+Test suite for performance monitoring module.
+"""
+
+import pytest
+import numpy as np
+from datetime import datetime
+from pathlib import Path
+
+from src.evaluation.performance_monitor import PerformanceMonitor
+from src.evaluation.metrics import calculate_metrics, MetricsCalculator
+
+
+class TestPerformanceMonitor:
+    """测试PerformanceMonitor类"""
+
+    @pytest.fixture
+    def monitor(self, tmp_path):
+        """创建PerformanceMonitor实例"""
+        return PerformanceMonitor(storage_dir=str(tmp_path / 'performance'))
+
+    def test_monitor_initialization(self, monitor):
+        """测试监控器初始化"""
+        assert monitor.storage_dir.exists()
+        assert len(monitor.performance_history) == 0
+        print("[PASS] Monitor initialized")
+
+    def test_log_prediction(self, monitor):
+        """测试记录预测性能"""
+        predictions = {
+            'day_ahead': np.array([300, 310, 320]),
+            'real_time': np.array([310, 320, 330])
+        }
+        actual = {
+            'day_ahead': np.array([305, 315, 325]),
+            'real_time': np.array([315, 325, 335])
+        }
+
+        metrics = monitor.log_prediction(predictions, actual)
+
+        assert 'day_ahead_mape' in metrics
+        assert 'real_time_mape' in metrics
+        assert len(monitor.performance_history) == 1
+        print("[PASS] Prediction logged")
+
+    def test_get_performance_summary(self, monitor):
+        """测试获取性能摘要"""
+        # Log some predictions
+        for i in range(5):
+            predictions = {'day_ahead': np.array([300 + i*10])}
+            actual = {'day_ahead': np.array([305 + i*10])}
+            monitor.log_prediction(predictions, actual)
+
+        summary = monitor.get_performance_summary(days=7)
+
+        assert 'day_ahead_mape' in summary
+        assert 'mean' in summary['day_ahead_mape']
+        assert 'count' in summary['day_ahead_mape']
+        print("[PASS] Performance summary retrieved")
+
+
+class TestMetricsCalculator:
+    """测试指标计算"""
+
+    def test_calculate_metrics(self):
+        """测试计算指标"""
+        predicted = np.array([300, 310, 320, 330, 340])
+        actual = np.array([305, 315, 325, 335, 345])
+
+        metrics = calculate_metrics(predicted, actual)
+
+        assert 'mape' in metrics
+        assert 'mae' in metrics
+        assert 'rmse' in metrics
+        assert 'r2' in metrics
+        assert metrics['mape'] > 0
+        assert metrics['mae'] > 0
+        print("[PASS] Metrics calculated")
+
+    def test_calculate_metrics_with_nan(self):
+        """测试处理NaN值"""
+        predicted = np.array([300, np.nan, 320, 330, np.nan])
+        actual = np.array([305, 315, 325, 335, 345])
+
+        metrics = calculate_metrics(predicted, actual)
+
+        # Should only consider non-NaN values
+        assert not np.isnan(metrics['mape'])
+        print("[PASS] NaN values handled")
+
+    def test_metrics_calculator_static_methods(self):
+        """测试静态方法"""
+        predicted = np.array([300, 310, 320])
+        actual = np.array([305, 315, 325])
+
+        mape = MetricsCalculator.mape(predicted, actual)
+        mae = MetricsCalculator.mae(predicted, actual)
+        rmse = MetricsCalculator.rmse(predicted, actual)
+
+        assert mape > 0
+        assert mae > 0
+        assert rmse > 0
+        print("[PASS] Static methods work")

@@ -1,0 +1,128 @@
+"""
+Create complete Markdown with images from WeChat article
+Uses requests and BeautifulSoup to fetch and convert
+"""
+import requests
+from bs4 import BeautifulSoup
+from markdownify import markdownify as md
+from pathlib import Path
+import json
+import re
+
+# Article URL
+url = "https://mp.weixin.qq.com/s/uEjyTo8thO2ZuWPIhYDZFA"
+
+# Output directory
+output_dir = Path(r"D:\AI\cc_pro\program\20260113_GZH-collect\wechat_articles\腾讯云开发者")
+image_dir = output_dir / "images"
+
+# Fetch the page
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+}
+
+print("Fetching article...")
+response = requests.get(url, headers=headers, timeout=30)
+response.encoding = 'utf-8'
+
+# Parse HTML
+soup = BeautifulSoup(response.text, 'lxml')
+
+# Extract metadata
+title = soup.select_one('#activity-name, .rich_media_title').get_text(strip=True)
+author = soup.select_one('#js_author_name, .rich_media_meta_text').get_text(strip=True) if soup.select_one('#js_author_name, .rich_media_meta_text') else ''
+account_elem = soup.select_one('#js_profile_qrcode > span, .rich_media_meta_link_text')
+account = account_elem.get_text(strip=True) if account_elem else ''
+publish_time_elem = soup.select_one('#publish_time, .rich_media_meta_text')
+publish_time = publish_time_elem.get_text(strip=True) if publish_time_elem else ''
+
+print(f"Title: {title}")
+print(f"Author: {author}")
+print(f"Account: {account}")
+print(f"Publish Time: {publish_time}")
+
+# Extract content
+content_div = soup.select_one('#js_content')
+if not content_div:
+    print("ERROR: Content not found!")
+    exit(1)
+
+# Process images - replace data-src with src for proper conversion
+for img in content_div.find_all('img'):
+    data_src = img.get('data-src')
+    if data_src:
+        img['src'] = data_src
+
+# Convert to markdown
+markdown_text = md(str(content_div))
+
+# Now replace image URLs with local paths
+image_mapping_file = image_dir / "image_mapping.json"
+if image_mapping_file.exists():
+    with open(image_mapping_file, 'r', encoding='utf-8') as f:
+        image_mapping = json.load(f)
+
+    for img in image_mapping:
+        original_url = img['url']
+        local_path = img['local_path']
+        # Replace in markdown
+        markdown_text = markdown_text.replace(original_url, local_path)
+        # Also try replacing URL without hash fragment
+        base_url = original_url.split('#')[0]
+        markdown_text = markdown_text.replace(base_url, local_path)
+
+# Create complete markdown with metadata
+complete_markdown = f"""# {title}
+
+**元数据**
+
+- **作者**: {author}
+- **公众号**: {account}
+- **发布时间**: {publish_time}
+- **原文链接**: {url}
+- **采集时间**: 2026-01-13
+- **标签**: AI, 大模型, 智能体, Agent, MCP, LangChain, LangGraph
+
+---
+
+{markdown_text}
+
+---
+
+**采集说明**：本文档由微信公众号采集工具自动生成，完整内容请查看原文链接。
+图片已下载至本地 `images/` 目录。
+"""
+
+# Save markdown file
+md_filename = f"2026-01-13_{title}.md"
+md_file = output_dir / md_filename
+
+# Handle Windows filename length limit
+if len(md_filename) > 200:
+    md_filename = f"2026-01-13_大模型狂飙2025.md"
+    md_file = output_dir / md_filename
+
+with open(md_file, 'w', encoding='utf-8') as f:
+    f.write(complete_markdown)
+
+print(f"\nComplete Markdown saved: {md_file}")
+print(f"File size: {md_file.stat().st_size} bytes")
+
+# Save metadata
+metadata = {
+    "title": title,
+    "author": author,
+    "account_name": account,
+    "publish_time": publish_time,
+    "url": url,
+    "collected_at": "2026-01-13",
+    "image_count": 2,
+    "images_downloaded": True,
+    "local_images_dir": "images/"
+}
+
+metadata_file = output_dir / f"2026-01-13_大模型狂飙2025_metadata.json"
+with open(metadata_file, 'w', encoding='utf-8') as f:
+    json.dump(metadata, f, ensure_ascii=False, indent=2)
+
+print(f"Metadata saved: {metadata_file}")

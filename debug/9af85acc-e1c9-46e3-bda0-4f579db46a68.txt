@@ -1,0 +1,991 @@
+2026-01-12T07:08:11.099Z [DEBUG] Watching for changes in setting files C:\Users\55315\.claude, D:\AI\cc_pro\.claude...
+2026-01-12T07:08:11.103Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-12T07:08:11.103Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-12T07:08:11.103Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-12T07:08:11.103Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-12T07:08:11.135Z [DEBUG] Using bash path: "C:\Program Files\Git\bin\bash.exe"
+2026-01-12T07:08:11.141Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-12T07:08:11.141Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-12T07:08:11.141Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-12T07:08:11.146Z [DEBUG] Applying permission update: Adding 38 allow rule(s) to destination 'localSettings': ["Skill(glm-plan-usage:usage-query-skill)","Bash(claude mcp add:*)","mcp__web-reader__webReader","WebSearch","Bash(claude:*)","mcp__web-search-prime__webSearchPrime","Bash(findstr:*)","Bash(cat:*)","Bash(git clone:*)","Bash(node:*)","Bash(npm --version:*)","Bash(pip:*)","Bash(if:*)","Bash(powershell:*)","Bash(dir:*)","Skill(xianhuoprice)","mcp__chrome-devtools__list_pages","mcp__chrome-devtools__navigate_page","mcp__chrome-devtools__take_snapshot","mcp__chrome-devtools__take_screenshot","mcp__chrome-devtools__list_network_requests","mcp__chrome-devtools__get_network_request","Bash(python:*)","Bash(where:*)","Bash(npm prefix:*)","Bash(npm update:*)","Bash(npm install:*)","Bash(npm view:*)","Bash(mkdir:*)","Bash(more:*)","Bash(cmd:*)","Bash(del:*)","Bash(echo:*)","Bash(ls:*)","Bash(tree:*)","mcp__zai-mcp-server__analyze_image","mcp__chrome-devtools__click","Bash(find:*)"]
+2026-01-12T07:08:11.146Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-01-12T07:08:11.151Z [DEBUG] Loading plugin glm-plan-usage from source: "./plugins/glm-plan-usage"
+2026-01-12T07:08:11.152Z [DEBUG] Using manifest version for glm-plan-usage@zai-coding-plugins: 0.0.1
+2026-01-12T07:08:11.153Z [DEBUG] Plugin glm-plan-usage@zai-coding-plugins version 0.0.1 already cached at C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-12T07:08:11.153Z [DEBUG] Copied local plugin glm-plan-usage to versioned cache: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1
+2026-01-12T07:08:11.155Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-12T07:08:11.155Z [DEBUG] [STARTUP] MCP configs loaded in 9ms
+2026-01-12T07:08:11.156Z [DEBUG] [STARTUP] Running setup()...
+2026-01-12T07:08:11.159Z [DEBUG] Stats cache is up to date
+2026-01-12T07:08:11.160Z [DEBUG] Plugin autoupdate: skipped (auto-updater disabled)
+2026-01-12T07:08:11.164Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\55315\.claude\skills, project=[D:\AI\cc_pro\.claude\skills]
+2026-01-12T07:08:11.625Z [DEBUG] Loaded 2 installed plugins from C:\Users\55315\.claude\plugins\installed_plugins.json
+2026-01-12T07:08:11.661Z [DEBUG] Writing to temp file: C:\Users\55315\.claude\todos\9af85acc-e1c9-46e3-bda0-4f579db46a68-agent-9af85acc-e1c9-46e3-bda0-4f579db46a68.json.tmp.19224.1768201691661
+2026-01-12T07:08:11.662Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-12T07:08:11.662Z [DEBUG] Renaming C:\Users\55315\.claude\todos\9af85acc-e1c9-46e3-bda0-4f579db46a68-agent-9af85acc-e1c9-46e3-bda0-4f579db46a68.json.tmp.19224.1768201691661 to C:\Users\55315\.claude\todos\9af85acc-e1c9-46e3-bda0-4f579db46a68-agent-9af85acc-e1c9-46e3-bda0-4f579db46a68.json
+2026-01-12T07:08:11.663Z [DEBUG] File C:\Users\55315\.claude\todos\9af85acc-e1c9-46e3-bda0-4f579db46a68-agent-9af85acc-e1c9-46e3-bda0-4f579db46a68.json written atomically
+2026-01-12T07:08:11.667Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-12T07:08:11.667Z [DEBUG] Checking plugin glm-plan-usage: skillsPath=exists, skillsPaths=0 paths
+2026-01-12T07:08:11.667Z [DEBUG] Attempting to load skills from plugin glm-plan-usage default skillsPath: C:\Users\55315\.claude\plugins\cache\zai-coding-plugins\glm-plan-usage\0.0.1\skills
+2026-01-12T07:08:11.672Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-01-12T07:08:11.686Z [DEBUG] [STARTUP] setup() completed in 530ms
+2026-01-12T07:08:11.686Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-01-12T07:08:11.687Z [DEBUG] Loaded 1 skills from plugin glm-plan-usage default directory
+2026-01-12T07:08:11.687Z [DEBUG] Total plugin skills loaded: 1
+2026-01-12T07:08:11.687Z [DEBUG] Loaded 1 commands from plugin glm-plan-usage default directory
+2026-01-12T07:08:11.687Z [DEBUG] Total plugin commands loaded: 1
+2026-01-12T07:08:11.689Z [DEBUG] Loaded 1 agents from plugin glm-plan-usage default directory
+2026-01-12T07:08:11.689Z [DEBUG] Total plugin agents loaded: 1
+2026-01-12T07:08:11.690Z [DEBUG] Loaded 5 unique skills (managed: 0, user: 3, project: 2, legacy commands: 0)
+2026-01-12T07:08:11.690Z [DEBUG] getSkills returning: 5 skill dir commands, 1 plugin skills, 0 bundled skills
+2026-01-12T07:08:11.690Z [DEBUG] [STARTUP] Commands and agents loaded in 4ms
+2026-01-12T07:08:11.690Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-01-12T07:08:11.692Z [DEBUG] [render] initYoga starting
+2026-01-12T07:08:11.701Z [DEBUG] Total LSP servers loaded: 0
+2026-01-12T07:08:11.701Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-01-12T07:08:11.701Z [DEBUG] LSP manager initialized with 0 servers
+2026-01-12T07:08:11.701Z [DEBUG] LSP server manager initialized successfully
+2026-01-12T07:08:11.701Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-01-12T07:08:11.721Z [DEBUG] Creating shell snapshot for bash (C:\Program Files\Git\bin\bash.exe)
+2026-01-12T07:08:11.722Z [DEBUG] Looking for shell config file: C:\Users\55315\.bashrc
+2026-01-12T07:08:11.722Z [DEBUG] Shell config file not found: C:\Users\55315\.bashrc, creating snapshot with Claude Code defaults only
+2026-01-12T07:08:11.722Z [DEBUG] Snapshots directory: C:\Users\55315\.claude\shell-snapshots
+2026-01-12T07:08:11.778Z [DEBUG] [render] initYoga complete
+2026-01-12T07:08:11.781Z [DEBUG] Watching for changes in skill directories: C:\Users\55315\.claude\skills, D:\AI\cc_pro\.claude\skills...
+2026-01-12T07:08:11.785Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\55315\AppData\Roaming\npm\node_modules\@anthropic-ai\claude-code\vendor\ripgrep\x64-win32\rg.exe)
+2026-01-12T07:08:11.819Z [DEBUG] Creating snapshot at: C:\Users\55315\.claude\shell-snapshots\snapshot-bash-1768201691722-zenwco.sh
+2026-01-12T07:08:11.819Z [DEBUG] Shell binary exists: true
+2026-01-12T07:08:11.819Z [DEBUG] Execution timeout: 10000ms
+2026-01-12T07:08:11.887Z [DEBUG] [STARTUP] showSetupScreens() completed in 197ms
+2026-01-12T07:08:11.927Z [DEBUG] MCP server "zai-mcp-server": Starting connection with timeout of 30000ms
+2026-01-12T07:08:11.944Z [DEBUG] MCP server "chrome-devtools": Starting connection with timeout of 30000ms
+2026-01-12T07:08:11.957Z [DEBUG] MCP server "web-search-prime": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-12T07:08:11.957Z [DEBUG] MCP server "web-search-prime": Node version: v22.21.0, Platform: win32
+2026-01-12T07:08:11.957Z [DEBUG] MCP server "web-search-prime": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-12T07:08:11.958Z [DEBUG] MCP server "web-reader": Initializing HTTP transport to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-12T07:08:11.958Z [DEBUG] MCP server "web-reader": Node version: v22.21.0, Platform: win32
+2026-01-12T07:08:11.958Z [DEBUG] MCP server "web-reader": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-12T07:08:11.959Z [DEBUG] MCP server "github": Initializing HTTP transport to https://api.githubcopilot.com/mcp/
+2026-01-12T07:08:11.959Z [DEBUG] MCP server "github": Node version: v22.21.0, Platform: win32
+2026-01-12T07:08:11.959Z [DEBUG] MCP server "github": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-12T07:08:11.960Z [DEBUG] MCP server "xiaohongshu-mcp": Initializing HTTP transport to http://localhost:18060/mcp
+2026-01-12T07:08:11.960Z [DEBUG] MCP server "xiaohongshu-mcp": Node version: v22.21.0, Platform: win32
+2026-01-12T07:08:11.960Z [DEBUG] MCP server "xiaohongshu-mcp": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-12T07:08:11.971Z [DEBUG] All plugins already exist, skipping migration
+2026-01-12T07:08:12.039Z [DEBUG] Initialized versioned plugins system with 2 plugins
+2026-01-12T07:08:12.039Z [DEBUG] MCP server "web-search-prime": Proxy options: default
+2026-01-12T07:08:12.040Z [DEBUG] MCP server "web-search-prime": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_search_prime/mcp","headers":{"User-Agent":"claude-code/2.1.2","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-12T07:08:12.040Z [DEBUG] MCP server "web-search-prime": HTTP transport created successfully
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-search-prime": Client created, setting up request handler
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-search-prime": Starting connection with timeout of 30000ms
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-search-prime": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_search_prime/mcp
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-search-prime": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-reader": Proxy options: default
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-reader": HTTP transport options: {"url":"https://open.bigmodel.cn/api/mcp/web_reader/mcp","headers":{"User-Agent":"claude-code/2.1.2","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-reader": HTTP transport created successfully
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-reader": Client created, setting up request handler
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-reader": Starting connection with timeout of 30000ms
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-reader": Testing basic HTTP connectivity to https://open.bigmodel.cn/api/mcp/web_reader/mcp
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "web-reader": Parsed URL: host=open.bigmodel.cn, port=default, protocol=https:
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "github": Proxy options: default
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "github": HTTP transport options: {"url":"https://api.githubcopilot.com/mcp/","headers":{"User-Agent":"claude-code/2.1.2"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-12T07:08:12.041Z [DEBUG] MCP server "github": HTTP transport created successfully
+2026-01-12T07:08:12.042Z [DEBUG] MCP server "github": Client created, setting up request handler
+2026-01-12T07:08:12.042Z [DEBUG] MCP server "github": Starting connection with timeout of 30000ms
+2026-01-12T07:08:12.042Z [DEBUG] MCP server "github": Testing basic HTTP connectivity to https://api.githubcopilot.com/mcp/
+2026-01-12T07:08:12.042Z [DEBUG] MCP server "github": Parsed URL: host=api.githubcopilot.com, port=default, protocol=https:
+2026-01-12T07:08:12.042Z [DEBUG] MCP server "xiaohongshu-mcp": Proxy options: default
+2026-01-12T07:08:12.042Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP transport options: {"url":"http://localhost:18060/mcp","headers":{"User-Agent":"claude-code/2.1.2"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-12T07:08:12.042Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP transport created successfully
+2026-01-12T07:08:12.042Z [DEBUG] MCP server "xiaohongshu-mcp": Client created, setting up request handler
+2026-01-12T07:08:12.045Z [DEBUG] MCP server "xiaohongshu-mcp": Starting connection with timeout of 30000ms
+2026-01-12T07:08:12.045Z [DEBUG] MCP server "xiaohongshu-mcp": Testing basic HTTP connectivity to http://localhost:18060/mcp
+2026-01-12T07:08:12.045Z [DEBUG] MCP server "xiaohongshu-mcp": Parsed URL: host=localhost, port=18060, protocol=http:
+2026-01-12T07:08:12.045Z [DEBUG] MCP server "xiaohongshu-mcp": Using loopback address: localhost
+2026-01-12T07:08:12.059Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.19224.1768201692059
+2026-01-12T07:08:12.059Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T07:08:12.059Z [DEBUG] Temp file written successfully, size: 5675 bytes
+2026-01-12T07:08:12.060Z [DEBUG] Applied original permissions to temp file
+2026-01-12T07:08:12.060Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.19224.1768201692059 to C:\Users\55315\.claude.json
+2026-01-12T07:08:12.060Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T07:08:12.090Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-01-12T07:08:12.090Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:12.090Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-01-12T07:08:12.091Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-12T07:08:12.092Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T07:08:12.092Z [DEBUG] MCP server "github": No token data found
+2026-01-12T07:08:12.092Z [DEBUG] MCP server "xiaohongshu-mcp": No token data found
+2026-01-12T07:08:12.098Z [DEBUG] [render] initYoga starting
+2026-01-12T07:08:12.115Z [DEBUG] [render] initYoga complete
+2026-01-12T07:08:12.120Z [DEBUG] Git remote URL: null
+2026-01-12T07:08:12.121Z [DEBUG] No git remote URL found
+2026-01-12T07:08:12.121Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-01-12T07:08:12.127Z [DEBUG] Getting matching hook commands for SubagentStart with query: Explore
+2026-01-12T07:08:12.127Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:12.127Z [DEBUG] Matched 0 unique hooks for query "Explore" (0 before deduplication)
+2026-01-12T07:08:12.142Z [DEBUG] Getting matching hook commands for SubagentStart with query: Plan
+2026-01-12T07:08:12.142Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:12.142Z [DEBUG] Matched 0 unique hooks for query "Plan" (0 before deduplication)
+2026-01-12T07:08:12.156Z [DEBUG] Getting matching hook commands for SubagentStart with query: Bash
+2026-01-12T07:08:12.156Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:12.156Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T07:08:12.239Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-01-12T07:08:12.242Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-01-12T07:08:12.243Z [DEBUG] performStartupChecks called
+2026-01-12T07:08:12.244Z [DEBUG] Starting background plugin installations
+2026-01-12T07:08:12.244Z [DEBUG] performBackgroundPluginInstallations called
+2026-01-12T07:08:12.258Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-12T07:08:12.260Z [DEBUG] Found 1 enabled plugins
+2026-01-12T07:08:12.260Z [DEBUG] All plugins already exist, skipping migration
+2026-01-12T07:08:12.260Z [DEBUG] Found 2 installed plugins (V2 format)
+2026-01-12T07:08:12.264Z [DEBUG] Loaded plugins - Enabled: 1, Disabled: 0, Commands: 1, Agents: 1, Errors: 0
+2026-01-12T07:08:12.264Z [DEBUG] Found 0 missing plugins (not installed):
+2026-01-12T07:08:12.264Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-01-12T07:08:12.301Z [DEBUG] MCP server "xiaohongshu-mcp": HTTP Connection failed after 341ms: fetch failed (code: none, errno: none)
+2026-01-12T07:08:12.301Z [ERROR] MCP server "xiaohongshu-mcp" TypeError: fetch failed
+2026-01-12T07:08:12.313Z [DEBUG] MCP server "xiaohongshu-mcp": Connection failed after 353ms: fetch failed
+2026-01-12T07:08:12.313Z [ERROR] MCP server "xiaohongshu-mcp" Connection failed: fetch failed
+2026-01-12T07:08:12.346Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.19224.1768201692346
+2026-01-12T07:08:12.346Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T07:08:12.347Z [DEBUG] Temp file written successfully, size: 5675 bytes
+2026-01-12T07:08:12.347Z [DEBUG] Applied original permissions to temp file
+2026-01-12T07:08:12.347Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.19224.1768201692346 to C:\Users\55315\.claude.json
+2026-01-12T07:08:12.348Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T07:08:12.380Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:12.380Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:08:12.380Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:08:12.383Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-12T07:08:12.383Z [DEBUG] Skills and commands included in Skill tool: xianhuoprice, xianhuoxiaohongshu, douyin-account-analysis, glm-plan-usage:usage-query, usage-query-skill
+2026-01-12T07:08:12.383Z [DEBUG] Skill prompt: showing "glm-plan-usage:usage-query-skill" (userFacingName="usage-query-skill")
+2026-01-12T07:08:12.385Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:12.385Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:12.386Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:12.390Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:12.390Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:12.391Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:12.391Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:12.391Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:12.391Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:12.623Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-12T07:08:12.656Z [DEBUG] Shell snapshot created successfully (342 bytes)
+2026-01-12T07:08:12.682Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T07:08:12.800Z [DEBUG] MCP server "web-reader": Successfully connected to http server in 842ms
+2026-01-12T07:08:12.800Z [DEBUG] MCP server "web-reader": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"web-reader-server","version":"0.0.1"}}
+2026-01-12T07:08:12.800Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T07:08:12.984Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:13.021Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:13.106Z [DEBUG] MCP server "web-search-prime": Successfully connected to http server in 1149ms
+2026-01-12T07:08:13.106Z [DEBUG] MCP server "web-search-prime": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"mcp-web-search-prime","version":"0.0.1"}}
+2026-01-12T07:08:13.106Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-12T07:08:13.205Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:15.265Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-12T07:08:15.265Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:15.265Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:08:15.281Z [DEBUG] Applying permission update: Setting mode to 'bypassPermissions'
+2026-01-12T07:08:15.327Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-12T07:08:15.328Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-12T07:08:15.328Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:15.328Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T07:08:15.400Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:15.403Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:15.403Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:15.403Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:15.776Z [DEBUG] Applying permission update: Setting mode to 'default'
+2026-01-12T07:08:15.872Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:16.264Z [DEBUG] Applying permission update: Setting mode to 'acceptEdits'
+2026-01-12T07:08:16.745Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-12T07:08:16.746Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-12T07:08:16.746Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:16.746Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-12T07:08:16.811Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:16.812Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:16.812Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:16.812Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:17.295Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:17.320Z [DEBUG] npm view failed with code 1
+2026-01-12T07:08:17.320Z [DEBUG] npm stderr: (empty)
+2026-01-12T07:08:17.970Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-12T07:08:17.970Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:17.970Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:08:18.320Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.19224.1768201698320
+2026-01-12T07:08:18.320Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T07:08:18.320Z [DEBUG] Temp file written successfully, size: 5675 bytes
+2026-01-12T07:08:18.320Z [DEBUG] Applied original permissions to temp file
+2026-01-12T07:08:18.320Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.19224.1768201698320 to C:\Users\55315\.claude.json
+2026-01-12T07:08:18.321Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T07:08:18.321Z [DEBUG] Applying permission update: Setting mode to 'plan'
+2026-01-12T07:08:18.622Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-12T07:08:18.622Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-12T07:08:18.622Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:18.622Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T07:08:18.692Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:18.693Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:18.693Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:18.693Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:19.065Z [DEBUG] Applying permission update: Setting mode to 'bypassPermissions'
+2026-01-12T07:08:19.079Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:20.169Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:20.171Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:20.171Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:20.171Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:20.368Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:08:20.368Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:08:20.369Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:08:20.369Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:08:20.564Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T07:08:20.564Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:20.564Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:08:20.568Z [DEBUG] FileHistory: Added snapshot for 8d934331-d9ad-4dd2-939e-4646eede0243, tracking 0 files
+2026-01-12T07:08:20.609Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:20.609Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:20.609Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:20.609Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:20.621Z [DEBUG] Total plugin output styles loaded: 0
+2026-01-12T07:08:20.632Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:08:20.637Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:20.637Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:20.637Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:20.880Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:21.566Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-12T07:08:21.567Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-12T07:08:21.567Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:21.567Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T07:08:21.623Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:21.625Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:21.625Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:21.625Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:21.862Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:22.568Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-12T07:08:22.569Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-12T07:08:22.569Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:22.569Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T07:08:22.636Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:22.637Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:22.637Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:22.637Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:22.905Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:24.084Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-12T07:08:24.085Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-12T07:08:24.085Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:24.085Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-12T07:08:24.140Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:24.141Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:24.141Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:24.141Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:24.366Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:25.003Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:25.254Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-12T07:08:25.257Z] INFO: MCP Server Application initialized
+2026-01-12T07:08:25.254Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-12T07:08:25.258Z] INFO: Starting MCP server...
+2026-01-12T07:08:25.256Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-12T07:08:25.258Z] INFO: UI to Artifact tool registered successfully
+[2026-01-12T07:08:25.258Z] INFO: Text Extraction tool registered successfully
+[2026-01-12T07:08:25.258Z] INFO: Error Diagnosis tool registered successfully
+[2026-01-12T07:08:25.259Z] INFO: Diagram Analysis tool registered successfully
+[2026-01-12T07:08:25.259Z] INFO: Data Visualization Analysis tool registered successfully
+[2026-01-12T07:08:25.259Z] INFO: UI Diff Check tool registered successfully
+[2026-01-12T07:08:25.259Z] INFO: General Image Analysis tool registered successfully
+[2026-01-12T07:08:25.259Z] INFO: Video analysis tool registered successfully
+[2026-01-12T07:08:25.259Z] INFO: Successfully registered all tools
+[2026-01-12T07:08:25.259Z] INFO: MCP Server started successfully [{"mode":"ZHIPU","name":"zai-mcp-server","version":"0.1.2"}]
+2026-01-12T07:08:25.260Z [DEBUG] MCP server "zai-mcp-server": Successfully connected to stdio server in 13338ms
+2026-01-12T07:08:25.260Z [DEBUG] MCP server "zai-mcp-server": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zai-mcp-server","version":"0.1.2"}}
+2026-01-12T07:08:25.452Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-12T07:08:25.453Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-12T07:08:25.453Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:25.453Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-12T07:08:25.463Z [ERROR] MCP server "chrome-devtools" Server stderr: chrome-devtools-mcp exposes content of the browser instance to the MCP clients allowing them to inspect,
+debug, and modify any data in the browser or DevTools.
+Avoid sharing sensitive or personal information that you do not want to share with MCP clients.
+2026-01-12T07:08:25.463Z [DEBUG] MCP server "chrome-devtools": Successfully connected to stdio server in 13520ms
+2026-01-12T07:08:25.464Z [DEBUG] MCP server "chrome-devtools": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"chrome_devtools","title":"Chrome DevTools MCP server","version":"0.12.1"}}
+2026-01-12T07:08:25.512Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:25.513Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:25.513Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:25.513Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:25.823Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:26.251Z [DEBUG] MCP server "github": No client info found
+2026-01-12T07:08:26.251Z [DEBUG] MCP server "github": HTTP Connection failed after 14292ms: Incompatible auth server: does not support dynamic client registration (code: none, errno: none)
+2026-01-12T07:08:26.251Z [ERROR] MCP server "github" Error: Incompatible auth server: does not support dynamic client registration
+2026-01-12T07:08:26.251Z [DEBUG] MCP server "github": Connection failed after 14292ms: Incompatible auth server: does not support dynamic client registration
+2026-01-12T07:08:26.251Z [ERROR] MCP server "github" Connection failed: Incompatible auth server: does not support dynamic client registration
+2026-01-12T07:08:26.762Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-12T07:08:26.763Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-12T07:08:26.763Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:26.763Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T07:08:26.817Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:26.818Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:26.818Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:26.818Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:27.092Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:27.571Z [DEBUG] executePreToolHooks called for tool: mcp__web-reader__webReader
+2026-01-12T07:08:27.584Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-reader__webReader
+2026-01-12T07:08:27.584Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:27.584Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T07:08:27.595Z [DEBUG] MCP server "web-reader": Calling MCP tool: webReader
+2026-01-12T07:08:27.595Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T07:08:28.544Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-12T07:08:28.545Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-12T07:08:28.545Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:28.545Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-12T07:08:28.601Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:28.602Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:28.602Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:28.602Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:28.850Z [DEBUG] MCP server "web-reader": Tool 'webReader' completed successfully in 1s
+2026-01-12T07:08:28.857Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-reader__webReader
+2026-01-12T07:08:28.857Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:28.857Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T07:08:28.910Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:08:28.910Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:08:28.910Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:08:28.910Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:08:28.911Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:28.921Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:08:28.925Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:28.925Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:28.925Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:29.253Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:29.878Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-12T07:08:29.879Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-12T07:08:29.879Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:29.879Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-12T07:08:29.935Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:29.936Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:29.936Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:29.936Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:30.164Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:30.720Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T07:08:30.720Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:30.720Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:30.720Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:31.955Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-12T07:08:31.956Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-12T07:08:31.956Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:31.956Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-12T07:08:32.013Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:32.014Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:32.014Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:32.014Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:32.239Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:34.635Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:08:34.636Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:08:34.636Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:08:34.636Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:08:34.883Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:08:38.655Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-12T07:08:38.655Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:08:38.655Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:09:15.518Z [WARN] Streaming stall detected: 44.6s gap between events (stall #1)
+2026-01-12T07:09:15.569Z [WARN] Streaming completed with 1 stall(s), total stall time: 44.6s
+2026-01-12T07:09:15.719Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-12T07:09:15.724Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-12T07:09:15.724Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:09:15.724Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T07:09:16.891Z [DEBUG] FileHistory: Tracked file modification for D:\AI\cc_pro\可再生能源绿色电力证书管理实施细则（试行）.md
+2026-01-12T07:09:16.895Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-01-12T07:09:17.891Z [DEBUG] rg error (signal=undefined, code=ABORT_ERR, stderr: rg: D:\AI\cc_pro\nul: 函数不正确。 (os error 1)
+rg: D:\AI\cc_pro\test_2\nul: 函数不正确。 (os error 1)
+rg: D:\AI\cc_pro\现货价格预测系统\guangdong_price_predictor\nul: 函数不正确。 (os error 1)
+), 379 results
+2026-01-12T07:09:17.895Z [DEBUG] Writing to temp file: D:\AI\cc_pro\可再生能源绿色电力证书管理实施细则（试行）.md.tmp.19224.1768201757895
+2026-01-12T07:09:17.896Z [DEBUG] Temp file written successfully, size: 7203 bytes
+2026-01-12T07:09:17.896Z [DEBUG] Renaming D:\AI\cc_pro\可再生能源绿色电力证书管理实施细则（试行）.md.tmp.19224.1768201757895 to D:\AI\cc_pro\可再生能源绿色电力证书管理实施细则（试行）.md
+2026-01-12T07:09:17.896Z [DEBUG] File D:\AI\cc_pro\可再生能源绿色电力证书管理实施细则（试行）.md written atomically
+2026-01-12T07:09:17.901Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-12T07:09:17.901Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:09:17.901Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T07:09:17.931Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:09:17.931Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:09:17.931Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:09:17.931Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:09:18.028Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:09:18.032Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:09:18.032Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:09:18.032Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:09:28.625Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T07:09:28.625Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:09:28.625Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:09:28.625Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:09:32.243Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T07:09:32.243Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:09:32.243Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:09:32.341Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.19224.1768201772341
+2026-01-12T07:09:32.341Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T07:09:32.341Z [DEBUG] Temp file written successfully, size: 5675 bytes
+2026-01-12T07:09:32.342Z [DEBUG] Applied original permissions to temp file
+2026-01-12T07:09:32.342Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.19224.1768201772341 to C:\Users\55315\.claude.json
+2026-01-12T07:09:32.342Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T07:09:32.362Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.19224.1768201772362
+2026-01-12T07:09:32.362Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T07:09:32.362Z [DEBUG] Temp file written successfully, size: 5675 bytes
+2026-01-12T07:09:32.362Z [DEBUG] Applied original permissions to temp file
+2026-01-12T07:09:32.362Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.19224.1768201772362 to C:\Users\55315\.claude.json
+2026-01-12T07:09:32.363Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T07:10:32.292Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-01-12T07:10:32.292Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:10:32.292Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-01-12T07:13:11.883Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T07:13:11.883Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T07:13:11.883Z [DEBUG] Metrics export disabled by organization setting
+2026-01-12T07:20:07.508Z [DEBUG] UserCommandMessage rendering: "skills" (args: "none")
+2026-01-12T07:20:07.508Z [DEBUG] isSkillFormat: false
+2026-01-12T07:20:07.537Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-12T07:20:10.289Z [DEBUG] Applying permission update: Setting mode to 'default'
+2026-01-12T07:20:30.174Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:20:30.174Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:20:30.174Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:20:30.174Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:20:30.263Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T07:20:30.264Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:20:30.264Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:20:30.264Z [DEBUG] FileHistory: Making snapshot for message c75d7268-77a1-46ce-b551-7813b1e54ecc
+2026-01-12T07:20:30.280Z [DEBUG] FileHistory: Added snapshot for c75d7268-77a1-46ce-b551-7813b1e54ecc, tracking 1 files
+2026-01-12T07:20:30.310Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:20:30.310Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:20:30.310Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:20:30.311Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:20:30.339Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:20:30.344Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:20:30.344Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:20:30.344Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:20:40.936Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T07:20:40.937Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:20:40.937Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:20:40.937Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:20:40.939Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T07:20:40.939Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:20:40.939Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:20:40.939Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:21:27.939Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T07:21:27.939Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:21:27.939Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:22:27.996Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-01-12T07:22:27.996Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:22:27.996Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-01-12T07:23:11.898Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T07:23:11.898Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T07:23:11.898Z [DEBUG] Metrics export disabled by organization setting
+2026-01-12T07:25:08.656Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.19224.1768202708656
+2026-01-12T07:25:08.656Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T07:25:08.656Z [DEBUG] Temp file written successfully, size: 5675 bytes
+2026-01-12T07:25:08.657Z [DEBUG] Applied original permissions to temp file
+2026-01-12T07:25:08.657Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.19224.1768202708656 to C:\Users\55315\.claude.json
+2026-01-12T07:25:08.657Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T07:25:08.658Z [DEBUG] Metadata string for qqmail:
+2026-01-12T07:25:08.658Z [DEBUG] <command-message>The "qqmail" skill is running</command-message>
+<command-name>qqmail</command-name>
+2026-01-12T07:25:08.658Z [DEBUG] command-message tags in metadata: 1
+2026-01-12T07:25:08.686Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:25:08.686Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:25:08.686Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:25:08.686Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:25:08.692Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-12T07:25:08.785Z [DEBUG] processPromptSlashCommand creating 3 messages for qqmail
+2026-01-12T07:25:08.785Z [DEBUG] Message 1: <command-message>The "qqmail" skill is running</command-message>
+<command-name>qqmail</command-name>
+2026-01-12T07:25:08.785Z [DEBUG] Message 2 [META]: [{"type":"text","text":"Base directory for this skill: C:\\Users\\55315\\.claude\\skills\\qqmail\n\n# QQ邮箱读取工具\r\n\r\n读取QQ邮箱的最近N封邮件内容。\r\n\r\n## 使用场景\r\n\r\n当用户想要：\r\n- 读取QQ邮箱的最新邮件\r\n- 查看最近的邮件列表\r\n-
+2026-01-12T07:25:08.785Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-12T07:25:08.791Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T07:25:08.791Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:25:08.791Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:25:08.801Z [DEBUG] FileHistory: Making snapshot for message e0ef1e64-4bbe-4eaf-82f7-9aa8ac8a1e03
+2026-01-12T07:25:08.802Z [DEBUG] FileHistory: Added snapshot for e0ef1e64-4bbe-4eaf-82f7-9aa8ac8a1e03, tracking 1 files
+2026-01-12T07:25:08.804Z [DEBUG] UserCommandMessage rendering: "The "qqmail" skill is running" (args: "none")
+2026-01-12T07:25:08.804Z [DEBUG] isSkillFormat: true
+2026-01-12T07:25:08.875Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:25:08.881Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:25:08.881Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:25:08.881Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:25:09.775Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:25:15.543Z [DEBUG] Streaming aborted by user: Request was aborted.
+2026-01-12T07:25:15.543Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2026-01-12T07:25:26.675Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:25:26.675Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:25:26.675Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:25:26.675Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:25:26.757Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T07:25:26.757Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:25:26.757Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:25:26.758Z [DEBUG] FileHistory: Making snapshot for message 5f9cf171-2d0d-4e57-aa60-950666975ff4
+2026-01-12T07:25:26.758Z [DEBUG] FileHistory: Added snapshot for 5f9cf171-2d0d-4e57-aa60-950666975ff4, tracking 1 files
+2026-01-12T07:25:26.788Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:25:26.788Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:25:26.788Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:25:26.788Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:25:26.815Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:25:26.818Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:25:26.818Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:25:26.818Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:25:37.390Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T07:25:37.390Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:25:37.390Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:25:37.390Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:25:37.393Z [ERROR] Error streaming, falling back to non-streaming mode: Request timed out.
+2026-01-12T07:25:37.393Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:25:37.393Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:25:37.393Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:25:49.551Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T07:25:49.551Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:25:49.551Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:26:49.587Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-01-12T07:26:49.587Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:26:49.587Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-01-12T07:28:11.910Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T07:28:11.910Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T07:28:11.911Z [DEBUG] Metrics export disabled by organization setting
+2026-01-12T07:33:34.415Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:33:34.415Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:33:34.415Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:33:34.415Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:33:34.499Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T07:33:34.499Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:33:34.499Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:33:34.499Z [DEBUG] FileHistory: Making snapshot for message cb06ca1c-bebb-47f5-9fa6-82c55270fd9c
+2026-01-12T07:33:34.500Z [DEBUG] FileHistory: Added snapshot for cb06ca1c-bebb-47f5-9fa6-82c55270fd9c, tracking 1 files
+2026-01-12T07:33:34.530Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T07:33:34.530Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:33:34.530Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:33:34.530Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:33:34.559Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:33:34.563Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:33:34.563Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:33:34.563Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:33:35.566Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:33:35.607Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:33:38.875Z [DEBUG] executePreToolHooks called for tool: mcp__web-reader__webReader
+2026-01-12T07:33:38.878Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-reader__webReader
+2026-01-12T07:33:38.878Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:33:38.878Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T07:33:38.885Z [DEBUG] MCP server "web-reader": Calling MCP tool: webReader
+2026-01-12T07:33:38.885Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T07:33:40.205Z [DEBUG] MCP server "web-reader": Tool 'webReader' completed successfully in 1s
+2026-01-12T07:33:40.215Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-reader__webReader
+2026-01-12T07:33:40.215Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:33:40.215Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T07:33:40.249Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:33:40.249Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:33:40.249Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:33:40.249Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:33:40.372Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:33:40.379Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:33:40.379Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:33:40.379Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:33:40.974Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:33:44.177Z [DEBUG] Writing to temp file: C:\Users\55315\.claude.json.tmp.19224.1768203224177
+2026-01-12T07:33:44.178Z [DEBUG] Preserving file permissions: 100666
+2026-01-12T07:33:44.178Z [DEBUG] Temp file written successfully, size: 5675 bytes
+2026-01-12T07:33:44.179Z [DEBUG] Applied original permissions to temp file
+2026-01-12T07:33:44.179Z [DEBUG] Renaming C:\Users\55315\.claude.json.tmp.19224.1768203224177 to C:\Users\55315\.claude.json
+2026-01-12T07:33:44.179Z [DEBUG] File C:\Users\55315\.claude.json written atomically
+2026-01-12T07:34:40.457Z [WARN] Streaming stall detected: 57.9s gap between events (stall #1)
+2026-01-12T07:34:40.594Z [WARN] Streaming completed with 1 stall(s), total stall time: 57.9s
+2026-01-12T07:34:40.693Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-12T07:34:40.697Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-12T07:34:40.697Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:34:40.697Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T07:34:42.085Z [DEBUG] Permission suggestions for Write: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2026-01-12T07:34:42.360Z [DEBUG] executePermissionRequestHooks called for tool: Write
+2026-01-12T07:34:42.561Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Write
+2026-01-12T07:34:42.561Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:34:42.561Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T07:34:48.378Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-01-12T07:34:48.378Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:34:48.378Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-01-12T07:38:11.919Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T07:38:11.919Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T07:38:11.919Z [DEBUG] Metrics export disabled by organization setting
+2026-01-12T07:38:37.248Z [DEBUG] Applying permission update: Setting mode to 'acceptEdits'
+2026-01-12T07:38:37.249Z [DEBUG] Writing to temp file: D:\AI\cc_pro\关于促进电网高质量发展的指导意见.md.tmp.19224.1768203517249
+2026-01-12T07:38:37.250Z [DEBUG] Temp file written successfully, size: 5860 bytes
+2026-01-12T07:38:37.250Z [DEBUG] Renaming D:\AI\cc_pro\关于促进电网高质量发展的指导意见.md.tmp.19224.1768203517249 to D:\AI\cc_pro\关于促进电网高质量发展的指导意见.md
+2026-01-12T07:38:37.250Z [DEBUG] File D:\AI\cc_pro\关于促进电网高质量发展的指导意见.md written atomically
+2026-01-12T07:38:37.265Z [DEBUG] FileHistory: Tracked file modification for D:\AI\cc_pro\关于促进电网高质量发展的指导意见.md
+2026-01-12T07:38:37.276Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-01-12T07:38:37.277Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-01-12T07:38:37.284Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-12T07:38:37.284Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:38:37.284Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T07:38:37.319Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:38:37.319Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:38:37.319Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:38:37.319Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:38:37.532Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:38:37.534Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:38:37.534Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:38:37.534Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:38:42.288Z [DEBUG] npm view failed with code 1
+2026-01-12T07:38:42.288Z [DEBUG] npm stderr: (empty)
+2026-01-12T07:38:48.856Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:38:53.913Z [DEBUG] executePreToolHooks called for tool: mcp__web-reader__webReader
+2026-01-12T07:38:53.914Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-reader__webReader
+2026-01-12T07:38:53.914Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:38:53.914Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T07:38:53.928Z [DEBUG] MCP server "web-reader": Calling MCP tool: webReader
+2026-01-12T07:38:53.929Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T07:38:54.879Z [DEBUG] MCP server "web-reader": Tool 'webReader' completed successfully in 951ms
+2026-01-12T07:38:54.884Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-reader__webReader
+2026-01-12T07:38:54.884Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:38:54.884Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T07:38:54.906Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:38:54.906Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:38:54.906Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:38:54.906Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:38:55.113Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:38:55.115Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:38:55.115Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:38:55.115Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:38:56.117Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:39:17.383Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-12T07:39:17.386Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-12T07:39:17.386Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:39:17.386Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T07:39:18.323Z [DEBUG] Writing to temp file: D:\AI\cc_pro\电网高质量发展指导意见答记者问.md.tmp.19224.1768203558323
+2026-01-12T07:39:18.324Z [DEBUG] Temp file written successfully, size: 1626 bytes
+2026-01-12T07:39:18.324Z [DEBUG] Renaming D:\AI\cc_pro\电网高质量发展指导意见答记者问.md.tmp.19224.1768203558323 to D:\AI\cc_pro\电网高质量发展指导意见答记者问.md
+2026-01-12T07:39:18.324Z [DEBUG] File D:\AI\cc_pro\电网高质量发展指导意见答记者问.md written atomically
+2026-01-12T07:39:18.347Z [DEBUG] FileHistory: Tracked file modification for D:\AI\cc_pro\电网高质量发展指导意见答记者问.md
+2026-01-12T07:39:18.351Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-01-12T07:39:18.354Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-12T07:39:18.354Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:39:18.354Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T07:39:18.371Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T07:39:18.371Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T07:39:18.371Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T07:39:18.371Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T07:39:18.617Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T07:39:18.622Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T07:39:18.622Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T07:39:18.622Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T07:39:19.367Z [DEBUG] Stream started - received first chunk
+2026-01-12T07:39:26.418Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T07:39:26.418Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:39:26.418Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T07:40:26.476Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-01-12T07:40:26.476Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T07:40:26.476Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-01-12T07:43:11.925Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T07:43:11.925Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T07:43:11.925Z [DEBUG] Metrics export disabled by organization setting
+2026-01-12T08:08:42.310Z [DEBUG] npm view failed with code 1
+2026-01-12T08:08:42.310Z [DEBUG] npm stderr: (empty)
+2026-01-12T08:38:42.318Z [DEBUG] npm view failed with code 1
+2026-01-12T08:38:42.318Z [DEBUG] npm stderr: (empty)
+2026-01-12T09:08:42.335Z [DEBUG] npm view failed with code 1
+2026-01-12T09:08:42.335Z [DEBUG] npm stderr: (empty)
+2026-01-12T09:26:37.300Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:26:37.300Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:26:37.300Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:26:37.300Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:26:37.658Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T09:26:37.658Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:26:37.658Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T09:26:37.659Z [DEBUG] FileHistory: Making snapshot for message 6017b342-d5fc-43d4-9c05-5fe713bd14a4
+2026-01-12T09:26:37.661Z [DEBUG] FileHistory: Added snapshot for 6017b342-d5fc-43d4-9c05-5fe713bd14a4, tracking 3 files
+2026-01-12T09:26:37.722Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T09:26:37.723Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:26:37.723Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:26:37.723Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:26:37.782Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:26:37.791Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:26:37.791Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:26:37.791Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:26:38.744Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:26:38.776Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:26:45.622Z [DEBUG] executePreToolHooks called for tool: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:45.663Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:45.663Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:26:45.663Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:26:45.679Z [DEBUG] MCP server "web-search-prime": Calling MCP tool: webSearchPrime
+2026-01-12T09:26:45.680Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-12T09:26:47.896Z [DEBUG] MCP server "web-search-prime": Tool 'webSearchPrime' completed successfully in 2s
+2026-01-12T09:26:47.911Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:47.911Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:26:47.911Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:26:47.938Z [DEBUG] executePreToolHooks called for tool: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:47.973Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:47.973Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:26:47.973Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:26:47.988Z [DEBUG] MCP server "web-search-prime": Calling MCP tool: webSearchPrime
+2026-01-12T09:26:47.988Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-12T09:26:50.409Z [DEBUG] MCP server "web-search-prime": Tool 'webSearchPrime' completed successfully in 2s
+2026-01-12T09:26:50.429Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:50.429Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:26:50.429Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:26:50.521Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:26:50.521Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:26:50.521Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:26:50.521Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:26:51.408Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:26:51.430Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:26:51.430Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:26:51.430Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:26:52.389Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:26:54.956Z [DEBUG] executePreToolHooks called for tool: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:55.010Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:55.010Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:26:55.010Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:26:55.028Z [DEBUG] MCP server "web-search-prime": Calling MCP tool: webSearchPrime
+2026-01-12T09:26:55.029Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-12T09:26:58.488Z [DEBUG] MCP server "web-search-prime": Tool 'webSearchPrime' completed successfully in 3s
+2026-01-12T09:26:58.508Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:58.508Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:26:58.508Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:26:58.553Z [DEBUG] executePreToolHooks called for tool: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:58.616Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:26:58.616Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:26:58.616Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:26:58.640Z [DEBUG] MCP server "web-search-prime": Calling MCP tool: webSearchPrime
+2026-01-12T09:26:58.641Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-12T09:27:02.708Z [DEBUG] MCP server "web-search-prime": Tool 'webSearchPrime' completed successfully in 4s
+2026-01-12T09:27:02.726Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:27:02.727Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:02.727Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:27:02.824Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:27:02.824Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:27:02.824Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:27:02.824Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:27:03.320Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:27:03.336Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:27:03.336Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:27:03.336Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:27:03.854Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:27:10.827Z [DEBUG] executePreToolHooks called for tool: mcp__web-reader__webReader
+2026-01-12T09:27:10.846Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:27:10.846Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:10.846Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:27:10.866Z [DEBUG] MCP server "web-reader": Calling MCP tool: webReader
+2026-01-12T09:27:10.867Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T09:27:12.077Z [DEBUG] MCP server "web-reader": Tool 'webReader' completed successfully in 1s
+2026-01-12T09:27:12.100Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:27:12.100Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:12.100Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:27:12.148Z [DEBUG] executePreToolHooks called for tool: mcp__web-reader__webReader
+2026-01-12T09:27:12.199Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:27:12.199Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:12.199Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:27:12.219Z [DEBUG] MCP server "web-reader": Calling MCP tool: webReader
+2026-01-12T09:27:12.219Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T09:27:15.042Z [DEBUG] MCP server "web-reader": Tool 'webReader' completed successfully in 2s
+2026-01-12T09:27:15.057Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:27:15.057Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:15.057Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:27:15.164Z [DEBUG] executePreToolHooks called for tool: mcp__web-reader__webReader
+2026-01-12T09:27:15.225Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:27:15.225Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:15.225Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:27:15.246Z [DEBUG] MCP server "web-reader": Calling MCP tool: webReader
+2026-01-12T09:27:15.247Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T09:27:17.760Z [DEBUG] MCP server "web-reader": Tool 'webReader' completed successfully in 2s
+2026-01-12T09:27:17.788Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:27:17.788Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:17.788Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:27:18.038Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:27:18.038Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:27:18.038Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:27:18.038Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:27:18.638Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:27:18.654Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:27:18.654Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:27:18.654Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:27:19.364Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:27:23.139Z [DEBUG] executePreToolHooks called for tool: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:27:23.142Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:27:23.142Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:23.142Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:27:23.170Z [DEBUG] MCP server "web-search-prime": Calling MCP tool: webSearchPrime
+2026-01-12T09:27:23.170Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-12T09:27:25.416Z [DEBUG] MCP server "web-search-prime": Tool 'webSearchPrime' completed successfully in 2s
+2026-01-12T09:27:25.442Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:27:25.442Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:25.442Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:27:25.513Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:27:25.513Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:27:25.513Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:27:25.513Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:27:25.894Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:27:25.899Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:27:25.899Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:27:25.899Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:27:26.518Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:27:33.079Z [DEBUG] executePreToolHooks called for tool: mcp__web-reader__webReader
+2026-01-12T09:27:33.101Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:27:33.101Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:33.101Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:27:33.127Z [DEBUG] MCP server "web-reader": Calling MCP tool: webReader
+2026-01-12T09:27:33.128Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T09:27:35.034Z [DEBUG] MCP server "web-reader": Tool 'webReader' completed successfully in 1s
+2026-01-12T09:27:35.042Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:27:35.042Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:35.042Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:27:35.089Z [DEBUG] executePreToolHooks called for tool: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:27:35.121Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:27:35.121Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:35.121Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:27:35.130Z [DEBUG] MCP server "web-search-prime": Calling MCP tool: webSearchPrime
+2026-01-12T09:27:35.131Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-12T09:27:37.257Z [DEBUG] MCP server "web-search-prime": Tool 'webSearchPrime' completed successfully in 2s
+2026-01-12T09:27:37.269Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-search-prime__webSearchPrime
+2026-01-12T09:27:37.269Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:27:37.269Z [DEBUG] Matched 0 unique hooks for query "mcp__web-search-prime__webSearchPrime" (0 before deduplication)
+2026-01-12T09:27:37.352Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:27:37.352Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:27:37.352Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:27:37.352Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:27:37.809Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:27:37.817Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:27:37.817Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:27:37.817Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:27:38.441Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:28:12.074Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T09:28:12.074Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T09:28:12.074Z [DEBUG] Metrics export disabled by organization setting
+2026-01-12T09:28:21.217Z [WARN] Streaming stall detected: 38.5s gap between events (stall #1)
+2026-01-12T09:28:21.221Z [WARN] Streaming completed with 1 stall(s), total stall time: 38.5s
+2026-01-12T09:28:21.451Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-12T09:28:21.461Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-12T09:28:21.461Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:28:21.461Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T09:28:23.030Z [DEBUG] Writing to temp file: D:\AI\cc_pro\海南电力市场结算试运行实施方案整理.md.tmp.19224.1768210103030
+2026-01-12T09:28:23.031Z [DEBUG] Temp file written successfully, size: 4306 bytes
+2026-01-12T09:28:23.031Z [DEBUG] Renaming D:\AI\cc_pro\海南电力市场结算试运行实施方案整理.md.tmp.19224.1768210103030 to D:\AI\cc_pro\海南电力市场结算试运行实施方案整理.md
+2026-01-12T09:28:23.031Z [DEBUG] File D:\AI\cc_pro\海南电力市场结算试运行实施方案整理.md written atomically
+2026-01-12T09:28:23.053Z [DEBUG] FileHistory: Tracked file modification for D:\AI\cc_pro\海南电力市场结算试运行实施方案整理.md
+2026-01-12T09:28:23.060Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-01-12T09:28:23.065Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-12T09:28:23.065Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:28:23.065Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T09:28:23.091Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:28:23.091Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:28:23.091Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:28:23.091Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:28:23.586Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:28:23.591Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:28:23.591Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:28:23.591Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:28:24.196Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:28:35.709Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T09:28:35.709Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:28:35.709Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T09:29:35.801Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-01-12T09:29:35.801Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:29:35.801Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-01-12T09:30:54.009Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:30:54.009Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:30:54.009Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:30:54.009Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:30:54.648Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T09:30:54.648Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:30:54.648Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T09:30:54.649Z [DEBUG] FileHistory: Making snapshot for message 71f25d2f-ba33-4cb5-bbce-82cccf741d41
+2026-01-12T09:30:54.651Z [DEBUG] FileHistory: Added snapshot for 71f25d2f-ba33-4cb5-bbce-82cccf741d41, tracking 4 files
+2026-01-12T09:30:54.703Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T09:30:54.704Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:30:54.704Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:30:54.704Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:30:54.759Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:30:54.766Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:30:54.766Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:30:54.766Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:30:55.483Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:30:55.756Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:31:04.639Z [DEBUG] executePreToolHooks called for tool: mcp__web-reader__webReader
+2026-01-12T09:31:04.657Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:31:04.657Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:31:04.657Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:31:04.677Z [DEBUG] MCP server "web-reader": Calling MCP tool: webReader
+2026-01-12T09:31:04.678Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T09:31:15.202Z [DEBUG] MCP server "web-reader": HTTP connection dropped after 8582s uptime
+2026-01-12T09:31:15.202Z [DEBUG] MCP server "web-reader": Connection error: fetch failed
+2026-01-12T09:31:15.203Z [DEBUG] MCP server "web-reader": Tool 'webReader' failed after 10s: fetch failed
+2026-01-12T09:31:15.230Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: mcp__web-reader__webReader
+2026-01-12T09:31:15.230Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:31:15.230Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:31:15.256Z [DEBUG] executePreToolHooks called for tool: mcp__web-reader__webReader
+2026-01-12T09:31:15.295Z [DEBUG] Getting matching hook commands for PreToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:31:15.295Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:31:15.295Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:31:15.314Z [DEBUG] MCP server "web-reader": Calling MCP tool: webReader
+2026-01-12T09:31:15.315Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-12T09:31:17.536Z [DEBUG] MCP server "web-reader": Tool 'webReader' completed successfully in 2s
+2026-01-12T09:31:17.553Z [DEBUG] Getting matching hook commands for PostToolUse with query: mcp__web-reader__webReader
+2026-01-12T09:31:17.553Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:31:17.553Z [DEBUG] Matched 0 unique hooks for query "mcp__web-reader__webReader" (0 before deduplication)
+2026-01-12T09:31:17.698Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:31:17.698Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:31:17.698Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:31:17.698Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:31:18.389Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:31:18.437Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:31:18.437Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:31:18.437Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:31:19.382Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:31:30.077Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T09:31:30.077Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:31:30.077Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T09:33:12.091Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T09:33:12.092Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T09:33:12.092Z [DEBUG] Metrics export disabled by organization setting
+2026-01-12T09:33:58.995Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:33:58.995Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:33:58.995Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:33:58.995Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:33:59.659Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-12T09:33:59.659Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:33:59.659Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T09:33:59.661Z [DEBUG] FileHistory: Making snapshot for message 6b6c940d-1bd7-4e00-bcfe-3d2c328f238d
+2026-01-12T09:33:59.663Z [DEBUG] FileHistory: Added snapshot for 6b6c940d-1bd7-4e00-bcfe-3d2c328f238d, tracking 4 files
+2026-01-12T09:33:59.729Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-01-12T09:33:59.729Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:33:59.729Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:33:59.730Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:33:59.833Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:33:59.844Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:33:59.844Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:33:59.844Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:34:00.831Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:34:01.107Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:38:12.096Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T09:38:12.097Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T09:38:12.097Z [DEBUG] Metrics export disabled by organization setting
+2026-01-12T09:39:25.388Z [ERROR] Error streaming, falling back to non-streaming mode: terminated
+2026-01-12T09:39:25.388Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:39:25.388Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:39:25.388Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:42:26.123Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-12T09:42:26.137Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-12T09:42:26.137Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:42:26.137Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T09:42:27.822Z [DEBUG] Writing to temp file: D:\AI\cc_pro\海南省发改委关于2026年海南电力市场化交易有关事项的通知.md.tmp.19224.1768210947822
+2026-01-12T09:42:27.822Z [DEBUG] Temp file written successfully, size: 8485 bytes
+2026-01-12T09:42:27.822Z [DEBUG] Renaming D:\AI\cc_pro\海南省发改委关于2026年海南电力市场化交易有关事项的通知.md.tmp.19224.1768210947822 to D:\AI\cc_pro\海南省发改委关于2026年海南电力市场化交易有关事项的通知.md
+2026-01-12T09:42:27.823Z [DEBUG] File D:\AI\cc_pro\海南省发改委关于2026年海南电力市场化交易有关事项的通知.md written atomically
+2026-01-12T09:42:27.843Z [DEBUG] FileHistory: Tracked file modification for D:\AI\cc_pro\海南省发改委关于2026年海南电力市场化交易有关事项的通知.md
+2026-01-12T09:42:27.849Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-01-12T09:42:27.855Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-12T09:42:27.855Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:42:27.855Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-12T09:42:27.887Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-12T09:42:27.888Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-12T09:42:27.888Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-12T09:42:27.888Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-12T09:42:28.631Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-12T09:42:28.635Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-12T09:42:28.635Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-12T09:42:28.635Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-12T09:42:29.488Z [DEBUG] Stream started - received first chunk
+2026-01-12T09:42:44.435Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-12T09:42:44.435Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:42:44.435Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-12T09:43:12.103Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-12T09:43:12.104Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-12T09:43:12.104Z [DEBUG] Metrics export disabled by organization setting
+2026-01-12T09:43:44.526Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-01-12T09:43:44.526Z [DEBUG] Found 0 hook matchers in settings
+2026-01-12T09:43:44.526Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-01-12T11:18:09.518Z [DEBUG] npm view failed with code 1
+2026-01-12T11:18:09.518Z [DEBUG] npm stderr: (empty)
